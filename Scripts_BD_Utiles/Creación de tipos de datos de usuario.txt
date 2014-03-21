@@ -1,0 +1,8 @@
+Para crear un tipo de dato de usuario, utilizamos la siguientes sintaxis:
+
+IF  EXISTS (SELECT * FROM sys.types st JOIN sys.schemas ss ON st.schema_id = ss.schema_id WHERE st.name = N'CHAR421' AND ss.name = N'dbo')
+DROP TYPE [dbo].[CHAR421]
+GO
+CREATE TYPE [dbo].[CHAR421] FROM [char](421) NOT NULL
+GO
+PRINT 'Creado UDT -> CHAR421'

@@ -1,0 +1,21 @@
+Para utilizar correctamente el try y catch, utilizamos lo siguiente:
+
+BEGIN TRY
+  .
+  .
+  . 
+  .
+
+END TRY                                        
+
+ 
+BEGIN CATCH
+
+            SET @salida = -1
+            SET @s_500_MensajeError =  Convert(varchar,ERROR_NUMBER()) + ' - ' 
+                                      + Convert(varchar(500),ERROR_MESSAGE()) 
+                                      + ' [SP: ' + ISNULL(Convert(varchar,ERROR_PROCEDURE()),'') 
+                                      + ' | Linea: ' + ISNULL(Convert(varchar,ERROR_LINE()),'0') + '].' 
+            RETURN -1
+            
+END CATCH

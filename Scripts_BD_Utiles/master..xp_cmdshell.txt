@@ -1,0 +1,2 @@
+exec master..xp_cmdshell 'dir c:\PROGRA~2\MICROS~1\110\Shared /x'
+exec master..xp_cmdshell 'dir g:\ /x'

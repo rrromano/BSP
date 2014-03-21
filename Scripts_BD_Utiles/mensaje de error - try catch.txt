@@ -1,0 +1,19 @@
+USE CTAdintar
+GO
+
+BEGIN TRY
+  BEGIN TRAN
+  
+  insert into admonedas_adm ( [cod_adm] , [cod_mon] , [codmon_adm] , [login_modif] , [fecha_modif] , [login_conf] , [fecha_conf] , [term_modif] , [term_conf]) 
+  values (	9	,	2	,	'840'	,	NULL	,	NULL		,	'GYF'	,	GETDATE()	,	HOST_NAME() ,	NULL	)
+  
+  COMMIT
+  
+END TRY
+
+BEGIN CATCH
+  PRINT 'ACTUALIZACION CANCELADA POR ERROR'
+  PRINT ''
+  SELECT ERROR_NUMBER() 'ERROR_NUMBER' , ERROR_MESSAGE()'ERROR_MESSAGE', ERROR_LINE()'ERROR_LINE'
+  ROLLBACK
+END CATCH

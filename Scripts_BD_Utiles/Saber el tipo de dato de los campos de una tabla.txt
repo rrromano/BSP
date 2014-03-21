@@ -1,0 +1,1 @@
+select b.name, * from syscolumns a inner join sys.types b on a.xusertype = b.user_type_id where id = (select id from sysobjects where name = 'AD_PADSOC_NOV_1_TMP_PG' ) 

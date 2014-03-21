@@ -1,0 +1,11 @@
+Use CTAdintar
+GO
+
+
+IF NOT EXISTS (select 1 FROM INFORMATION_SCHEMA.COLUMNS AS A where A.column_name = 'cod_momento_pago' and A.table_name = 'ADCUENTAS')
+  ALTER TABLE ADCUENTAS ADD cod_momento_pago NUMERIC(2) NULL
+GO
+
+IF NOT EXISTS (select 1 FROM INFORMATION_SCHEMA.COLUMNS AS A where A.column_name = 'cod_momento_pago' and A.table_name = 'ADDEBITOS')
+ALTER TABLE ADDEBITOS ADD cod_momento_pago NUMERIC(2) NULL
+GO
