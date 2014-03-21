@@ -1,0 +1,1 @@
+En este directorio se encontrará el Binario. Programa Ejecutable.
