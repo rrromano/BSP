@@ -1,0 +1,23 @@
+Opcion-1
+
+simplemente fui a la registry a las entradas
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Perflib]
+"Last Counter"=1846
+"LastHelp"=1847
+
+Opcion-2
+
+1. En el editor de registro en HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsNT\CurrentVersion\Perflib, creeen una clave de nombre 00A.
+
+2. Creen una nueva entrada de tipo valor de cadena multiple con nombre Counter
+
+3. Creen una nueva entrada de tipo valor de cadena multiple con nombre Help, hasta aqui deberian tener 3 entradas: predeterminado, Counter y Help.
+
+3. Ahora En HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsNT\CurrentVersion\Perflib, existe la clave de nombre 009, y existe dos entradas: Counter y Help. Se debe copiar el valor que tienen estas entradas y asignarlo respectivamente (Counter a Counter y Help a Help) a las que se crearon en la clave 00A.
+
+Opcion-3
+
+
+Descomprimir el SQL (SQLEXPRWT_x64_ENU.EXE) y ejecutar este comando en donde se descomprimió el paquete:
+
+    SQLEXPRWT_x64_ENU>setup.exe /ACTION=install /SKIPRULES=PerfMonCounterNotCorruptedCheck  
