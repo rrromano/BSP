@@ -53,7 +53,7 @@ GO
 ------------------------------------ TABLE RUBROS ---------------------------------------------
 --=============================================================================================
 create table RUBROS(
-	ID_Rubro	int identity not null,
+	ID_Rubro    int identity not null,
 	Descripcion varchar(255) not null,
 )
 ALTER TABLE RUBROS ADD PRIMARY KEY(ID_Rubro)
@@ -65,12 +65,12 @@ GO
 --=============================================================================================
 create table ARTICULOS(
 	ID_Articulo  varchar(100)  not null,
-	Codigo		 varchar(100)  null	   ,	
+	Codigo       varchar(100)  null	   ,	
 	Descripcion  varchar(255)  not null,
 	Precio_Venta numeric(10,2) not null,
-	Rubro		 int		   not null,
-	Fecha		 datetime      not null,
-	Hora		 varchar(8)	   not null
+	Rubro        int           not null,
+	Fecha        datetime      not null,
+	Hora         varchar(8)	   not null
 )
 GO
 ALTER TABLE ARTICULOS ADD PRIMARY KEY(ID_Articulo)
@@ -83,11 +83,11 @@ GO
 --=============================================================================================
 create table TMP_VENTAS(
 	ID_Venta	  numeric(20) identity not null,
-	Codigo	      varchar(100)		   not null,
-	Cantidad	  numeric(10)		   not null,
-	sino_correcta numeric(1)		   not null, -- 0:Incorrecta 1:Correcta.	
-	Fecha		  datetime			   not null,
-	Hora		  varchar(8)		   not null
+	Codigo	      varchar(100)         not null,
+	Cantidad	  numeric(10)          not null,
+	sino_correcta numeric(1)           not null, -- 0:Incorrecta 1:Correcta.	
+	Fecha		  datetime             not null,
+	Hora		  varchar(8)           not null
 )
 GO
 ALTER TABLE TMP_VENTAS ADD PRIMARY KEY(ID_Venta)
@@ -97,12 +97,12 @@ GO
 ------------------------------------ TABLE VENTAS ---------------------------------------------
 --=============================================================================================
 create table VENTAS(
-	ID_Venta	  numeric(20) identity not null,
-	Codigo	      varchar(100)		   not null,
-	Cantidad	  numeric(10)		   not null,
-	sino_correcta numeric(1)		   not null, -- 0:Incorrecta 1:Correcta.	
-	Fecha		  datetime			   not null,
-	Hora		  varchar(8)		   not null
+	ID_Venta      numeric(20) identity not null,
+	Codigo        varchar(100)         not null,
+	Cantidad      numeric(10)          not null,
+	sino_correcta numeric(1)           not null, -- 0:Incorrecta 1:Correcta.	
+	Fecha         datetime             not null,
+	Hora          varchar(8)           not null
 )
 GO
 ALTER TABLE VENTAS ADD PRIMARY KEY(ID_Venta)
@@ -113,14 +113,14 @@ GO
 --=============================================================================================
 create table PROVEEDORES(
 	ID_Proveedor int identity not null,
-	Rubro		 int		  not null,
-	Nombre		 varchar(255) null	  ,
-	Contacto	 varchar(255) null	  ,
-	Direccion	 varchar(255) null	  ,
-	Localidad	 varchar(255) null	  ,
-	Provincia	 varchar(255) null	  ,
-	Telefono	 numeric(20)  null	  ,
-	Cuit		 numeric(11)  null	  
+	Rubro        int		  not null,
+	Nombre       varchar(255) null    ,
+	Contacto     varchar(255) null    ,
+	Direccion    varchar(255) null    ,
+	Localidad    varchar(255) null    ,
+	Provincia    varchar(255) null    ,
+	Telefono     numeric(20)  null    ,
+	Cuit         numeric(11)  null	  
 )
 GO
 ALTER TABLE PROVEEDORES ADD PRIMARY KEY(ID_Proveedor)
@@ -138,7 +138,7 @@ create table TMP_MOVIMIENTOS_CAJA(
 	Valor		   numeric(10,2) not null,
 	Valor_Actual   numeric(10,2) not null,
 	Fecha		   DATETIME      not null,
-	Hora		   varchar(8)	 not null, 						 
+	Hora		   varchar(8)    not null, 						 
 )
 GO
 ALTER TABLE TMP_MOVIMIENTOS_CAJA ADD PRIMARY KEY(ID_Movimiento)
@@ -150,11 +150,11 @@ GO
 create table MOVIMIENTOS_CAJA(
 	ID_Movimiento  int identity  not null,
 	Ingreso_Salida numeric(1)    not null, -- 0:Ingreso 1:Salida.
-	Descripcion	   varchar(255)  not null,	
-	Valor		   numeric(10,2) not null,
+	Descripcion    varchar(255)  not null,	
+	Valor          numeric(10,2) not null,
 	Valor_Actual   numeric(10,2) not null,
-	Fecha		   DATETIME      not null,
-	Hora		   varchar(8)	 not null, 						 
+	Fecha          DATETIME      not null,
+	Hora           varchar(8)    not null, 						 
 )
 GO
 ALTER TABLE MOVIMIENTOS_CAJA ADD PRIMARY KEY(ID_Movimiento)
