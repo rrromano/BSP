@@ -1,0 +1,4 @@
+C:\Users\SuperUser\AppData\Local\Temporary Projects\ADBISYS\obj\Release\ResolveAssemblyReference.cache
+C:\Users\SuperUser\AppData\Local\Temporary Projects\ADBISYS\obj\Release\ADBISYS.FrmPrincipal.resources
+C:\Users\SuperUser\AppData\Local\Temporary Projects\ADBISYS\obj\Release\ADBISYS.Properties.Resources.resources
+C:\Users\SuperUser\AppData\Local\Temporary Projects\ADBISYS\obj\Release\ADBISYS.csproj.GenerateResource.Cache

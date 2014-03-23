@@ -1,0 +1,18 @@
+C:\Users\SuperUser\AppData\Local\Temporary Projects\ADBISYS\bin\Debug\ADBISYS.exe
+C:\Users\SuperUser\AppData\Local\Temporary Projects\ADBISYS\bin\Debug\ADBISYS.pdb
+C:\Users\SuperUser\AppData\Local\Temporary Projects\ADBISYS\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\SuperUser\AppData\Local\Temporary Projects\ADBISYS\obj\Debug\ADBISYS.Properties.Resources.resources
+C:\Users\SuperUser\AppData\Local\Temporary Projects\ADBISYS\obj\Debug\ADBISYS.csproj.GenerateResource.Cache
+C:\Users\SuperUser\AppData\Local\Temporary Projects\ADBISYS\obj\Debug\ADBISYS.exe
+C:\Users\SuperUser\AppData\Local\Temporary Projects\ADBISYS\obj\Debug\ADBISYS.pdb
+C:\Users\SuperUser\AppData\Local\Temporary Projects\ADBISYS\obj\Debug\ADBISYS.FrmPrincipal.resources
+C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\ADBISYS\bin\Debug\ADBISYS.exe
+C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\ADBISYS\bin\Debug\ADBISYS.pdb
+C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\ADBISYS\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\ADBISYS\obj\Debug\ADBISYS.FrmPrincipal.resources
+C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\ADBISYS\obj\Debug\ADBISYS.Properties.Resources.resources
+C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\ADBISYS\obj\Debug\ADBISYS.csproj.GenerateResource.Cache
+C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\ADBISYS\obj\Debug\ADBISYS.exe
+C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\ADBISYS\obj\Debug\ADBISYS.pdb
+C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Debug\ADBISYS.exe
+C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Debug\ADBISYS.pdb
