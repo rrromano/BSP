@@ -1,5 +1,5 @@
-Use ADBISYS
-go
+USE ADBISYS
+GO
 
 -- RR 2014-03-21: CREACIÓN DE LAS DIFERENTES TABLAS QUE UTILIZARÁ EL SISTEMA ADBISYS.
 
@@ -14,6 +14,12 @@ GO
 
 If Exists ( Select 1 From sysobjects Where Name = 'USUARIOS' )
   Drop Table USUARIOS
+Go
+If Exists ( Select 1 From sysobjects Where Name = 'TMP_ARTICULOS_VENTAS' )
+  Drop Table TMP_ARTICULOS_VENTAS
+Go
+If Exists ( Select 1 From sysobjects Where Name = 'ARTICULOS_VENTAS' )
+  Drop Table ARTICULOS_VENTAS
 Go
 If Exists ( Select 1 From sysobjects Where Name = 'ARTICULOS' )
   Drop Table ARTICULOS
@@ -64,8 +70,8 @@ GO
 ------------------------------------ TABLE ARTICULOS ------------------------------------------
 --=============================================================================================
 create table ARTICULOS(
-	ID_Articulo  varchar(100)  not null,
-	Codigo       varchar(100)  null	   ,	
+	ID_Articulo  varchar(100)  not null, --¿Por qué varchar(100)?
+	Codigo       varchar(100)  null	   , --¿Qué es el código? ¿Es distinto al Id_Venta?
 	Descripcion  varchar(255)  not null,
 	Precio_Venta numeric(10,2) not null,
 	Rubro        int           not null,
@@ -82,24 +88,44 @@ GO
 ------------------------------------ TABLE TMP_VENTAS -----------------------------------------
 --=============================================================================================
 create table TMP_VENTAS(
-	ID_Venta	  numeric(20) identity not null,
-	Codigo	      varchar(100)         not null,
-	Cantidad	  numeric(10)          not null,
-	sino_correcta numeric(1)           not null, -- 0:Incorrecta 1:Correcta.	
-	Fecha		  datetime             not null,
-	Hora		  varchar(8)           not null
+	ID_Venta	    numeric(20) identity  not null,
+	Codigo			varchar(100)          not null, --¿Qué es el código? ¿Es distinto al Id_Venta?
+	Cantidad	    numeric(10)           not null,
+	Importe			numeric(14,2)         not null, 
+	sino_correcta	numeric(1)            not null, -- 0:Incorrecta 1:Correcta.	
+	Fecha		    datetime              not null,
+	Hora		    varchar(8)            not null
 )
 GO
 ALTER TABLE TMP_VENTAS ADD PRIMARY KEY(ID_Venta)
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA TMP_VENTAS.'
 GO
 --=============================================================================================
+------------------------------------ TABLE TMP_ARTICULOS_VENTAS -------------------------------
+--=============================================================================================
+create table TMP_ARTICULOS_VENTAS(
+	ID_Item_Venta	    numeric(20) identity  not null,
+	ID_Venta            numeric(20)           not null, --¿Qué es el código? ¿Es distinto al Id_Venta?
+	ID_Articulo         varchar(100)          not null, --¿Por qué varchar(100)?  
+	Cantidad	        numeric(10)           not null,
+	Precio_Venta        numeric(10,2)         not null  --Agrego el precio para que quede registrado a que precio se vendió el articulo ese día, ya que mañana ese artículo puede cambiar.
+)
+GO
+ALTER TABLE TMP_ARTICULOS_VENTAS ADD PRIMARY KEY(ID_Item_Venta)
+ALTER TABLE TMP_ARTICULOS_VENTAS ADD CONSTRAINT FK_TMP_ITEM_VENTAS
+	FOREIGN KEY(ID_Venta) REFERENCES TMP_VENTAS(ID_Venta)
+ALTER TABLE TMP_ARTICULOS_VENTAS ADD CONSTRAINT FK_TMP_ITEM_ARTICULOS
+	FOREIGN KEY(ID_Articulo) REFERENCES ARTICULOS(ID_Articulo)
+PRINT 'SE CREÓ CORRECTAMENTE LA TABLA TMP_ARTICULOS_VENTAS.'
+GO
+--=============================================================================================
 ------------------------------------ TABLE VENTAS ---------------------------------------------
 --=============================================================================================
 create table VENTAS(
 	ID_Venta      numeric(20) identity not null,
-	Codigo        varchar(100)         not null,
+	Codigo        varchar(100)         not null, --¿Qué es el código? ¿Es distinto al Id_Venta?
 	Cantidad      numeric(10)          not null,
+	Importe       numeric(14,2)        not null, 
 	sino_correcta numeric(1)           not null, -- 0:Incorrecta 1:Correcta.	
 	Fecha         datetime             not null,
 	Hora          varchar(8)           not null
@@ -107,6 +133,23 @@ create table VENTAS(
 GO
 ALTER TABLE VENTAS ADD PRIMARY KEY(ID_Venta)
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA VENTAS.'
+GO
+--=============================================================================================
+------------------------------------ TABLE ARTICULOS_VENTAS -------------------------------
+--=============================================================================================
+create table ARTICULOS_VENTAS(
+	ID_Item_Venta	    numeric(20) identity  not null,
+	ID_Venta            numeric(20)           not null, --¿Qué es el código? ¿Es distinto al Id_Venta?
+	ID_Articulo         varchar(100)          not null, --¿Por qué varchar(100)?  
+	Cantidad	        numeric(10)           not null
+)
+GO
+ALTER TABLE ARTICULOS_VENTAS ADD PRIMARY KEY(ID_Item_Venta)
+ALTER TABLE ARTICULOS_VENTAS ADD CONSTRAINT FK_ITEM_VENTAS
+	FOREIGN KEY(ID_Venta) REFERENCES VENTAS(ID_Venta)
+ALTER TABLE ARTICULOS_VENTAS ADD CONSTRAINT FK_ITEM_ARTICULOS
+	FOREIGN KEY(ID_Articulo) REFERENCES ARTICULOS(ID_Articulo)
+PRINT 'SE CREÓ CORRECTAMENTE LA TABLA ARTICULOS_VENTAS.'
 GO
 --=============================================================================================
 ------------------------------------ TABLE PROVEEDORES ----------------------------------------
