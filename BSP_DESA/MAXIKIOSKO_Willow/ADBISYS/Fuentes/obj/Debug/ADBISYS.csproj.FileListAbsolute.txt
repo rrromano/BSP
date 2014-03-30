@@ -16,3 +16,9 @@ C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\ADBISY
 C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\ADBISYS\obj\Debug\ADBISYS.pdb
 C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Debug\ADBISYS.exe
 C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Debug\ADBISYS.pdb
+C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\bin\Debug\ADBISYS.exe
+C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\bin\Debug\ADBISYS.pdb
+C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Debug\ADBISYS.FrmPrincipal.resources
+C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Debug\ADBISYS.Properties.Resources.resources
+C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Debug\ADBISYS.csproj.GenerateResource.Cache

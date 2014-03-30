@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             this.StripPrincipal = new System.Windows.Forms.MenuStrip();
             this.artículosTS = new System.Windows.Forms.ToolStripMenuItem();
             this.ventasTS = new System.Windows.Forms.ToolStripMenuItem();
@@ -36,9 +37,12 @@
             this.rubrosTS = new System.Windows.Forms.ToolStripMenuItem();
             this.reportesTS = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaTS = new System.Windows.Forms.ToolStripMenuItem();
-            this.salirTS = new System.Windows.Forms.ToolStripMenuItem();
+            this.salidaTS = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStripPrincipal = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.fechaTSS = new System.Windows.Forms.ToolStripStatusLabel();
+            this.salirTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.usuarioTSS = new System.Windows.Forms.ToolStripStatusLabel();
+            this.horaTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.StripPrincipal.SuspendLayout();
             this.statusStripPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -55,7 +59,7 @@
             this.rubrosTS,
             this.reportesTS,
             this.ayudaTS,
-            this.salirTS});
+            this.salidaTS});
             this.StripPrincipal.Location = new System.Drawing.Point(0, 0);
             this.StripPrincipal.Name = "StripPrincipal";
             this.StripPrincipal.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
@@ -107,27 +111,55 @@
             this.ayudaTS.Size = new System.Drawing.Size(67, 24);
             this.ayudaTS.Text = "Ayuda";
             // 
-            // salirTS
+            // salidaTS
             // 
-            this.salirTS.Name = "salirTS";
-            this.salirTS.Size = new System.Drawing.Size(55, 24);
-            this.salirTS.Text = "Salir";
+            this.salidaTS.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.salirTSMI});
+            this.salidaTS.Name = "salidaTS";
+            this.salidaTS.Size = new System.Drawing.Size(67, 24);
+            this.salidaTS.Text = "Salida";
             // 
             // statusStripPrincipal
             // 
             this.statusStripPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStripPrincipal.Location = new System.Drawing.Point(0, 573);
+            this.fechaTSS,
+            this.usuarioTSS,
+            this.horaTSS});
+            this.statusStripPrincipal.Location = new System.Drawing.Point(0, 569);
             this.statusStripPrincipal.Name = "statusStripPrincipal";
-            this.statusStripPrincipal.Size = new System.Drawing.Size(1444, 25);
+            this.statusStripPrincipal.Size = new System.Drawing.Size(1444, 29);
             this.statusStripPrincipal.TabIndex = 1;
             this.statusStripPrincipal.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel1
+            // fechaTSS
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(151, 20);
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            this.fechaTSS.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.fechaTSS.Name = "fechaTSS";
+            this.fechaTSS.Size = new System.Drawing.Size(51, 24);
+            this.fechaTSS.Text = "Fecha";
+            // 
+            // salirTSMI
+            // 
+            this.salirTSMI.Name = "salirTSMI";
+            this.salirTSMI.Size = new System.Drawing.Size(152, 24);
+            this.salirTSMI.Text = "Salir";
+            this.salirTSMI.Click += new System.EventHandler(this.salirTSMI_Click);
+            // 
+            // usuarioTSS
+            // 
+            this.usuarioTSS.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
+            this.usuarioTSS.Name = "usuarioTSS";
+            this.usuarioTSS.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.usuarioTSS.Size = new System.Drawing.Size(63, 24);
+            this.usuarioTSS.Text = "Usuario";
+            this.usuarioTSS.Visible = false;
+            // 
+            // horaTSS
+            // 
+            this.horaTSS.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
+            this.horaTSS.Name = "horaTSS";
+            this.horaTSS.Size = new System.Drawing.Size(46, 24);
+            this.horaTSS.Text = "Hora";
             // 
             // FrmPrincipal
             // 
@@ -138,6 +170,7 @@
             this.Controls.Add(this.StripPrincipal);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "FrmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -162,9 +195,12 @@
         private System.Windows.Forms.ToolStripMenuItem rubrosTS;
         private System.Windows.Forms.ToolStripMenuItem reportesTS;
         private System.Windows.Forms.ToolStripMenuItem ayudaTS;
-        private System.Windows.Forms.ToolStripMenuItem salirTS;
+        private System.Windows.Forms.ToolStripMenuItem salidaTS;
         private System.Windows.Forms.StatusStrip statusStripPrincipal;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel fechaTSS;
+        private System.Windows.Forms.ToolStripMenuItem salirTSMI;
+        private System.Windows.Forms.ToolStripStatusLabel usuarioTSS;
+        private System.Windows.Forms.ToolStripStatusLabel horaTSS;
 
 
 

@@ -20,11 +20,21 @@ namespace ADBISYS
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
+            IniciarPrograma(); // RR 2014-03-22.
+        }
+
+        private void IniciarPrograma()
+        {
             // RR 2014-03-22 [INICIO]: Ajusta a pantalla completa el Formulario Principal.
             this.Location = Screen.PrimaryScreen.WorkingArea.Location;
             this.Size = Screen.PrimaryScreen.WorkingArea.Size;
             // RR 2014-03-22 [FIN]: Ajusta a pantalla completa el Formulario Principal.
+            fechaTSS.Text = DateTime.Today.ToString("D"); //RR 2014-03-22.
         }
 
+        private void salirTSMI_Click(object sender, EventArgs e)
+        {
+            Application.Exit(); //RR 2014-03-22
+        }
     }
 }
