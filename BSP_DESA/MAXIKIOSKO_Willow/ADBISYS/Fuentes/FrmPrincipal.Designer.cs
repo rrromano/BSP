@@ -54,7 +54,7 @@
             // 
             // StripPrincipal
             // 
-            this.StripPrincipal.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.StripPrincipal.BackColor = System.Drawing.Color.White;
             this.StripPrincipal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StripPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.artículosTS,
@@ -141,6 +141,7 @@
             // 
             // statusStripPrincipal
             // 
+            this.statusStripPrincipal.BackColor = System.Drawing.Color.White;
             this.statusStripPrincipal.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statusStripPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fechaTSS,
@@ -202,7 +203,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1733, 748);
             this.Controls.Add(this.statusStripPrincipal);
             this.Controls.Add(this.StripPrincipal);
