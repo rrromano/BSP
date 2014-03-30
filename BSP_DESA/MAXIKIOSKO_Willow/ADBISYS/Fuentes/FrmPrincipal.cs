@@ -28,8 +28,6 @@ namespace ADBISYS
             // RR 2014-03-22 [INICIO]: Inicializa el programa y las propiedades de los diferentes controles.
             this.Location = Screen.PrimaryScreen.WorkingArea.Location;
             this.Size = Screen.PrimaryScreen.WorkingArea.Size;
-            //this.Height = Screen.PrimaryScreen.WorkingArea.Height;
-            //this.Width = Screen.PrimaryScreen.WorkingArea.Width;
             fechaTSS.Text = DateTime.Today.ToString("D"); 
             timer.Start();
             vacioTSS.Text = "";

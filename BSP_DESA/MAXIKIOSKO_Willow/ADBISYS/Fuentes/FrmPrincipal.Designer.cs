@@ -38,7 +38,7 @@
             this.rubrosTS = new System.Windows.Forms.ToolStripMenuItem();
             this.reportesTS = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaTS = new System.Windows.Forms.ToolStripMenuItem();
-            this.acercaDeBSPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.acercaDeBSPTSM = new System.Windows.Forms.ToolStripMenuItem();
             this.salidaTS = new System.Windows.Forms.ToolStripMenuItem();
             this.salirTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStripPrincipal = new System.Windows.Forms.StatusStrip();
@@ -48,6 +48,8 @@
             this.maquinaTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.horaTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.ingresarTS = new System.Windows.Forms.ToolStripMenuItem();
+            this.acercaDeWillowTSM = new System.Windows.Forms.ToolStripMenuItem();
             this.StripPrincipal.SuspendLayout();
             this.statusStripPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -63,6 +65,7 @@
             this.proveedoresTS,
             this.rubrosTS,
             this.reportesTS,
+            this.ingresarTS,
             this.ayudaTS,
             this.salidaTS});
             this.StripPrincipal.Location = new System.Drawing.Point(0, 0);
@@ -113,16 +116,17 @@
             // ayudaTS
             // 
             this.ayudaTS.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.acercaDeBSPToolStripMenuItem});
+            this.acercaDeWillowTSM,
+            this.acercaDeBSPTSM});
             this.ayudaTS.Name = "ayudaTS";
             this.ayudaTS.Size = new System.Drawing.Size(76, 28);
             this.ayudaTS.Text = "A&yuda";
             // 
-            // acercaDeBSPToolStripMenuItem
+            // acercaDeBSPTSM
             // 
-            this.acercaDeBSPToolStripMenuItem.Name = "acercaDeBSPToolStripMenuItem";
-            this.acercaDeBSPToolStripMenuItem.Size = new System.Drawing.Size(208, 28);
-            this.acercaDeBSPToolStripMenuItem.Text = "Acerca de BSP";
+            this.acercaDeBSPTSM.Name = "acercaDeBSPTSM";
+            this.acercaDeBSPTSM.Size = new System.Drawing.Size(227, 28);
+            this.acercaDeBSPTSM.Text = "Acerca de BSP";
             // 
             // salidaTS
             // 
@@ -135,7 +139,7 @@
             // salirTSMI
             // 
             this.salirTSMI.Name = "salirTSMI";
-            this.salirTSMI.Size = new System.Drawing.Size(116, 28);
+            this.salirTSMI.Size = new System.Drawing.Size(152, 28);
             this.salirTSMI.Text = "Salir";
             this.salirTSMI.Click += new System.EventHandler(this.salirTSMI_Click);
             // 
@@ -197,6 +201,18 @@
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // ingresarTS
+            // 
+            this.ingresarTS.Name = "ingresarTS";
+            this.ingresarTS.Size = new System.Drawing.Size(90, 28);
+            this.ingresarTS.Text = "&Ingresar";
+            // 
+            // acercaDeWillowTSM
+            // 
+            this.acercaDeWillowTSM.Name = "acercaDeWillowTSM";
+            this.acercaDeWillowTSM.Size = new System.Drawing.Size(227, 28);
+            this.acercaDeWillowTSM.Text = "Acerca de Willow";
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -240,9 +256,11 @@
         private System.Windows.Forms.ToolStripStatusLabel usuarioTSS;
         private System.Windows.Forms.ToolStripStatusLabel horaTSS;
         private System.Windows.Forms.Timer timer;
-        private System.Windows.Forms.ToolStripMenuItem acercaDeBSPToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem acercaDeBSPTSM;
         private System.Windows.Forms.ToolStripStatusLabel vacioTSS;
         private System.Windows.Forms.ToolStripStatusLabel maquinaTSS;
+        private System.Windows.Forms.ToolStripMenuItem ingresarTS;
+        private System.Windows.Forms.ToolStripMenuItem acercaDeWillowTSM;
 
 
 
