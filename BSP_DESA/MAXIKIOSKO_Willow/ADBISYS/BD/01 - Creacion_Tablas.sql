@@ -42,14 +42,18 @@ Go
 If Exists ( Select 1 From sysobjects Where Name = 'MOVIMIENTOS_CAJA' )
   Drop Table MOVIMIENTOS_CAJA
 Go
+If Exists ( Select 1 From sysobjects Where Name = 'CAJA' )
+  Drop Table CAJA
+Go
 
 --=============================================================================================
 ------------------------------------ TABLE USUARIOS -------------------------------------------
 --=============================================================================================
 create table USUARIOS(
-	ID_User  int identity not null,
-	Username varchar(255) not null,
-	Pass	 varchar(255) not null,
+	ID_User			int identity not null,
+	Username		varchar(255) not null,
+	Pass			varchar(255) not null,
+	sino_bloqueado	numeric(1) not null,
 	)
 ALTER TABLE USUARIOS ADD PRIMARY KEY(ID_User)
 GO
@@ -70,8 +74,7 @@ GO
 ------------------------------------ TABLE ARTICULOS ------------------------------------------
 --=============================================================================================
 create table ARTICULOS(
-	ID_Articulo  varchar(100)  not null, --¿Por qué varchar(100)?
-	Codigo       varchar(100)  null	   , --¿Qué es el código? ¿Es distinto al Id_Venta?
+	ID_Articulo  numeric(20)   not null, 
 	Descripcion  varchar(255)  not null,
 	Precio_Venta numeric(10,2) not null,
 	Rubro        int           not null,
@@ -85,35 +88,14 @@ ALTER TABLE ARTICULOS ADD CONSTRAINT FK_RUBRO_ARTICULOS
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA ARTICULOS.'
 GO
 --=============================================================================================
------------------------------------- TABLE TMP_VENTAS -----------------------------------------
---=============================================================================================
-create table TMP_VENTAS(
-	ID_Venta	    numeric(20) identity  not null,
-	Codigo			varchar(100)          not null, --¿Qué es el código? ¿Es distinto al Id_Venta?
-	Cantidad	    numeric(10)           not null,
-	Importe			numeric(14,2)         not null, 
-	sino_correcta	numeric(1)            not null, -- 0:Incorrecta 1:Correcta.	
-	Fecha		    datetime              not null,
-	Hora		    varchar(8)            not null
-)
-GO
-ALTER TABLE TMP_VENTAS ADD PRIMARY KEY(ID_Venta)
-PRINT 'SE CREÓ CORRECTAMENTE LA TABLA TMP_VENTAS.'
-GO
---=============================================================================================
 ------------------------------------ TABLE TMP_ARTICULOS_VENTAS -------------------------------
 --=============================================================================================
 create table TMP_ARTICULOS_VENTAS(
-	ID_Item_Venta	    numeric(20) identity  not null,
-	ID_Venta            numeric(20)           not null, --¿Qué es el código? ¿Es distinto al Id_Venta?
-	ID_Articulo         varchar(100)          not null, --¿Por qué varchar(100)?  
-	Cantidad	        numeric(10)           not null,
-	Precio_Venta        numeric(10,2)         not null  --Agrego el precio para que quede registrado a que precio se vendió el articulo ese día, ya que mañana ese artículo puede cambiar.
+	ID_Item_Venta	    numeric(30) identity  not null,
+	ID_Articulo         numeric(20)           not null, 
+	Cantidad	        numeric(10)           not null
 )
 GO
-ALTER TABLE TMP_ARTICULOS_VENTAS ADD PRIMARY KEY(ID_Item_Venta)
-ALTER TABLE TMP_ARTICULOS_VENTAS ADD CONSTRAINT FK_TMP_ITEM_VENTAS
-	FOREIGN KEY(ID_Venta) REFERENCES TMP_VENTAS(ID_Venta)
 ALTER TABLE TMP_ARTICULOS_VENTAS ADD CONSTRAINT FK_TMP_ITEM_ARTICULOS
 	FOREIGN KEY(ID_Articulo) REFERENCES ARTICULOS(ID_Articulo)
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA TMP_ARTICULOS_VENTAS.'
@@ -122,10 +104,9 @@ GO
 ------------------------------------ TABLE VENTAS ---------------------------------------------
 --=============================================================================================
 create table VENTAS(
-	ID_Venta      numeric(20) identity not null,
-	Codigo        varchar(100)         not null, --¿Qué es el código? ¿Es distinto al Id_Venta?
+	ID_Venta      numeric(30) identity not null,
 	Cantidad      numeric(10)          not null,
-	Importe       numeric(14,2)        not null, 
+	Importe       numeric(10,2)        not null, 
 	sino_correcta numeric(1)           not null, -- 0:Incorrecta 1:Correcta.	
 	Fecha         datetime             not null,
 	Hora          varchar(8)           not null
@@ -138,16 +119,17 @@ GO
 ------------------------------------ TABLE ARTICULOS_VENTAS -------------------------------
 --=============================================================================================
 create table ARTICULOS_VENTAS(
-	ID_Item_Venta	    numeric(20) identity  not null,
-	ID_Venta            numeric(20)           not null, --¿Qué es el código? ¿Es distinto al Id_Venta?
-	ID_Articulo         varchar(100)          not null, --¿Por qué varchar(100)?  
-	Cantidad	        numeric(10)           not null
+	ID_Venta            numeric(30)           not null, 
+	ID_Item_Venta	    numeric(20)			  not null,
+	ID_Articulo         numeric(20)		      not null, 
+	Cantidad	        numeric(10)           not null,
+	Precio_Venta        numeric(10,2)         not null  --Agrego el precio para que quede registrado a que precio se vendió el articulo ese día, ya que mañana ese artículo puede cambiar.
 )
 GO
-ALTER TABLE ARTICULOS_VENTAS ADD PRIMARY KEY(ID_Item_Venta)
-ALTER TABLE ARTICULOS_VENTAS ADD CONSTRAINT FK_ITEM_VENTAS
+ALTER TABLE ARTICULOS_VENTAS ADD PRIMARY KEY(ID_Venta,ID_Item_Venta)
+ALTER TABLE ARTICULOS_VENTAS ADD CONSTRAINT FK_ID_Item_Venta_ARTICULOS_VENTAS
 	FOREIGN KEY(ID_Venta) REFERENCES VENTAS(ID_Venta)
-ALTER TABLE ARTICULOS_VENTAS ADD CONSTRAINT FK_ITEM_ARTICULOS
+ALTER TABLE ARTICULOS_VENTAS ADD CONSTRAINT FK_ID_Articulo_VENTAS
 	FOREIGN KEY(ID_Articulo) REFERENCES ARTICULOS(ID_Articulo)
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA ARTICULOS_VENTAS.'
 GO
@@ -179,7 +161,6 @@ create table TMP_MOVIMIENTOS_CAJA(
 	Ingreso_Salida numeric(1)    not null, -- 0:Ingreso 1:Salida
 	Descripcion	   varchar(255)  not null,	
 	Valor		   numeric(10,2) not null,
-	Valor_Actual   numeric(10,2) not null,
 	Fecha		   DATETIME      not null,
 	Hora		   varchar(8)    not null, 						 
 )
@@ -191,11 +172,10 @@ GO
 ------------------------------------ TABLE MOVIMIENTOS_CAJA -----------------------------------
 --=============================================================================================
 create table MOVIMIENTOS_CAJA(
-	ID_Movimiento  int identity  not null,
+	ID_Movimiento  int			 not null,
 	Ingreso_Salida numeric(1)    not null, -- 0:Ingreso 1:Salida.
 	Descripcion    varchar(255)  not null,	
 	Valor          numeric(10,2) not null,
-	Valor_Actual   numeric(10,2) not null,
 	Fecha          DATETIME      not null,
 	Hora           varchar(8)    not null, 						 
 )
@@ -203,6 +183,22 @@ GO
 ALTER TABLE MOVIMIENTOS_CAJA ADD PRIMARY KEY(ID_Movimiento)
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA MOVIMIENTOS_CAJA.'
 GO
+--=============================================================================================
+------------------------------------ TABLE CAJA -----------------------------------------------
+--=============================================================================================
+create table CAJA(
+	Fecha		   datetime		 not null,
+	Caja_Inicial   numeric(10,2) not null,
+	Caja_Final	   numeric(10,2) not null,
+	Importe_Total  numeric(10,2) not null,
+)
+GO
+ALTER TABLE CAJA ADD PRIMARY KEY(Fecha)
+PRINT 'SE CREÓ CORRECTAMENTE LA TABLA CAJA.'
+GO
+
+
+
 
 COMMIT
 
