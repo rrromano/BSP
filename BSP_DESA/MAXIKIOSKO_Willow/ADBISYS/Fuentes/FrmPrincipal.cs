@@ -25,16 +25,26 @@ namespace ADBISYS
 
         private void IniciarPrograma()
         {
-            // RR 2014-03-22 [INICIO]: Ajusta a pantalla completa el Formulario Principal.
+            // RR 2014-03-22 [INICIO]: Inicializa el programa y las propiedades de los diferentes controles.
             this.Location = Screen.PrimaryScreen.WorkingArea.Location;
             this.Size = Screen.PrimaryScreen.WorkingArea.Size;
-            // RR 2014-03-22 [FIN]: Ajusta a pantalla completa el Formulario Principal.
-            fechaTSS.Text = DateTime.Today.ToString("D"); //RR 2014-03-22.
+            //this.Height = Screen.PrimaryScreen.WorkingArea.Height;
+            //this.Width = Screen.PrimaryScreen.WorkingArea.Width;
+            fechaTSS.Text = DateTime.Today.ToString("D"); 
+            timer.Start();
+            vacioTSS.Text = "";
+            maquinaTSS.Text = Environment.MachineName;
+            // RR 2014-03-22 [FIN]: Inicializa el programa y las propiedades de los diferentes controles.
         }
 
         private void salirTSMI_Click(object sender, EventArgs e)
         {
             Application.Exit(); //RR 2014-03-22
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            horaTSS.Text = DateTime.Now.ToLongTimeString();//RR 2014-03-22.
         }
     }
 }
