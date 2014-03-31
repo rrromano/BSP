@@ -49,6 +49,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexion\ConectarBD.cs" />
+    <Compile Include="Entidades\ArticuloVenta.cs" />
+    <Compile Include="Entidades\Ventas.cs" />
+    <Compile Include="Formularios\frmCajaInicial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmCajaInicial.Designer.cs">
+      <DependentUpon>frmCajaInicial.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,6 +66,9 @@
     <Compile Include="FuncionesGenerales\FuncionesGenerales.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Formularios\frmCajaInicial.resx">
+      <DependentUpon>frmCajaInicial.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </EmbeddedResource>

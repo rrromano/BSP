@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ADBISYS.Formularios;
 
 // RR 2014-03-22: Comienzo del sistema ADBISYS.
 
@@ -18,9 +19,16 @@ namespace ADBISYS
             InitializeComponent();
         }
 
+        private void mostrarFormularioCajaInicial()
+        {
+            frmCajaInicial cajaIni = new frmCajaInicial();
+            cajaIni.ShowDialog();
+        }
+
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
             IniciarPrograma(); // RR 2014-03-22.
+            mostrarFormularioCajaInicial();
         }
 
         private void IniciarPrograma()
@@ -43,6 +51,12 @@ namespace ADBISYS
         private void timer_Tick(object sender, EventArgs e)
         {
             horaTSS.Text = DateTime.Now.ToLongTimeString();//RR 2014-03-22.
+        }
+
+        private void articulosTS_Click(object sender, EventArgs e)
+        {
+            Conexion.ConectarBD conect = new ADBISYS.Conexion.ConectarBD();
+            conect.conectar();
         }
     }
 }

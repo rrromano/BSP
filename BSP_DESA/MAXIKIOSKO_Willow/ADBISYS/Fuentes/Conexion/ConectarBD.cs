@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Data;           //Se utiliza para la conexion con SQL.
 using System.Data.SqlClient; //Se utiliza para la conexion con SQL.
+using System.IO;
+using System.Collections;
 
 namespace ADBISYS.Conexion
 {
@@ -11,11 +13,53 @@ namespace ADBISYS.Conexion
     {
         SqlConnection conexion = new SqlConnection();
         DataSet dataSet = new DataSet();
+        static String CONFIG_FILE_PATH = "..\\..\\..\\Config\\Config.ini";
+
+        public String getPropertyFromConfigFile(String prop)
+        {
+            String property = "";
+            StreamReader objReader = new StreamReader(CONFIG_FILE_PATH);
+            String sLine = "";
+
+            ArrayList arrText = new ArrayList();
+            while (sLine != null)
+            {
+                sLine = objReader.ReadLine();
+                if (sLine != null && sLine.Contains(prop))
+                {
+                    arrText.Add(sLine);
+                }
+            }
+            objReader.Close();
+            foreach (string sOutput in arrText)
+            {
+                int ini = sOutput.LastIndexOf("=") + 1;
+                property = sOutput.Substring(ini);
+            }
+
+            return property;
+        }
+
 
         public void conectar() //Metodo para abrir la conexion
         {
-            conexion = new SqlConnection("Data Source=.\\SQLSERVER2008;initial catalog = ADBISYS; user id = bsp; password = bspadmin; Connect Timeout=120");
+            string data_source = getPropertyFromConfigFile("Data_Source=");
+            string initial_catalog = getPropertyFromConfigFile("Initial_catalog=");
+            string user_id = getPropertyFromConfigFile("User_id=");
+            string password = getPropertyFromConfigFile("Password=");
+            string connect_timeout = getPropertyFromConfigFile("Connect_Timeout=");
+
+            string stringConexion = "Data Source=" + data_source;
+            stringConexion = stringConexion + ";initial catalog=" + initial_catalog;
+            stringConexion = stringConexion + "; user id =" + user_id;
+            stringConexion = stringConexion + ";password=" + password;
+            stringConexion = stringConexion + ";Connect Timeout=" + connect_timeout;
+
+            conexion = new SqlConnection(stringConexion);
             conexion.Open();
+
+            //conexion = new SqlConnection("Data Source=.\\SQLSERVER2008;initial catalog = GD1C2013; user id = gd; password = gd2013;Connect Timeout=120");
+            //conexion.Open();
         }
 
         public void cerrar() //Metodo para cerrar la conexion
@@ -45,9 +89,9 @@ namespace ADBISYS.Conexion
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(query, conexion);
                 dataAdapter.Fill(dataSet);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                Console.Write("Error -> " + e.Message.ToString());
             }
             finally
             {
@@ -83,7 +127,7 @@ namespace ADBISYS.Conexion
             return resultado; //regresamos el resultado
         }
 
-        public void ejecutarQuery(string query) //Metodo para ejecutar exec con stored procedure
+        public void ejecutarQuery(string query) //Metodo para ejecutar exec con stores procedures
         {
             try
             {

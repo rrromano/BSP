@@ -50,9 +50,9 @@ Go
 ------------------------------------ TABLE USUARIOS -------------------------------------------
 --=============================================================================================
 create table USUARIOS(
-	ID_User			int identity not null,
-	Username		varchar(255) not null,
-	Pass			varchar(255) not null,
+	ID_User			    int identity not null,
+	Username		    varchar(255) not null,
+	Pass			      varchar(255) not null,
 	sino_bloqueado	numeric(1) not null,
 	)
 ALTER TABLE USUARIOS ADD PRIMARY KEY(ID_User)
@@ -92,7 +92,7 @@ GO
 --=============================================================================================
 create table TMP_ARTICULOS_VENTAS(
 	ID_Item_Venta	    numeric(30) identity  not null,
-	ID_Articulo         numeric(20)           not null, 
+	ID_Articulo       numeric(20)           not null, 
 	Cantidad	        numeric(10)           not null
 )
 GO
@@ -119,11 +119,11 @@ GO
 ------------------------------------ TABLE ARTICULOS_VENTAS -------------------------------
 --=============================================================================================
 create table ARTICULOS_VENTAS(
-	ID_Venta            numeric(30)           not null, 
+	ID_Venta          numeric(30)           not null, 
 	ID_Item_Venta	    numeric(20)			  not null,
-	ID_Articulo         numeric(20)		      not null, 
+	ID_Articulo       numeric(20)		      not null, 
 	Cantidad	        numeric(10)           not null,
-	Precio_Venta        numeric(10,2)         not null  --Agrego el precio para que quede registrado a que precio se vendió el articulo ese día, ya que mañana ese artículo puede cambiar.
+	Precio_Venta      numeric(10,2)         not null  --Agrego el precio para que quede registrado a que precio se vendió el articulo ese día, ya que mañana ese artículo puede cambiar.
 )
 GO
 ALTER TABLE ARTICULOS_VENTAS ADD PRIMARY KEY(ID_Venta,ID_Item_Venta)
@@ -157,12 +157,12 @@ GO
 ------------------------------------ TABLE TMP_MOVIMIENTOS_CAJA -------------------------------
 --=============================================================================================
 create table TMP_MOVIMIENTOS_CAJA(
-	ID_Movimiento  int identity  not null,
-	Ingreso_Salida numeric(1)    not null, -- 0:Ingreso 1:Salida
-	Descripcion	   varchar(255)  not null,	
-	Valor		   numeric(10,2) not null,
-	Fecha		   DATETIME      not null,
-	Hora		   varchar(8)    not null, 						 
+	ID_Movimiento   int identity  not null,
+	Ingreso_Salida  numeric(1)    not null, -- 0:Ingreso 1:Salida
+	Descripcion	    varchar(255)  not null,	
+	Valor		        numeric(10,2) not null,
+	Fecha		        DATETIME      not null,
+	Hora		        varchar(8)    not null, 						 
 )
 GO
 ALTER TABLE TMP_MOVIMIENTOS_CAJA ADD PRIMARY KEY(ID_Movimiento)
@@ -187,10 +187,10 @@ GO
 ------------------------------------ TABLE CAJA -----------------------------------------------
 --=============================================================================================
 create table CAJA(
-	Fecha		   datetime		 not null,
-	Caja_Inicial   numeric(10,2) not null,
-	Caja_Final	   numeric(10,2) not null,
-	Importe_Total  numeric(10,2) not null,
+	Fecha		        datetime		 not null,
+	Caja_Inicial    numeric(10,2) not null,
+	Caja_Final	    numeric(10,2) not null,
+	Importe_Total   numeric(10,2) not null,
 )
 GO
 ALTER TABLE CAJA ADD PRIMARY KEY(Fecha)
