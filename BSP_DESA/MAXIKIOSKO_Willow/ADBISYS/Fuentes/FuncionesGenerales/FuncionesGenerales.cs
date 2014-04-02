@@ -308,7 +308,6 @@ namespace ADBISYS.FuncionesGenerales
         {
             if (char.IsWhiteSpace(e.KeyChar))
             {
-                MessageBox.Show("Estimado usuario, solo se permiten letras y números en este campo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 e.Handled = true;
                 return;
             }

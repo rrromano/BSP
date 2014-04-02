@@ -75,6 +75,14 @@ namespace ADBISYS
             mostrarFormularioIniciarSesion();
         }
 
+        private void FrmPrincipal_Activated(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.UsuarioLogueado != "")
+            {
+                usuarioTSS.Text = Properties.Settings.Default.UsuarioLogueado;
+            }
+        }
+
 
     }
 }

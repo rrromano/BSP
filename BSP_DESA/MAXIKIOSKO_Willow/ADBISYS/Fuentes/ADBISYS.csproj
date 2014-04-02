@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Conexion\ConectarBD.cs" />
     <Compile Include="Entidades\ArticuloVenta.cs" />
+    <Compile Include="Entidades\Caja.cs" />
     <Compile Include="Entidades\Ventas.cs" />
     <Compile Include="Formularios\Caja\frmCajaInicial.cs">
       <SubType>Form</SubType>
@@ -90,6 +91,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
