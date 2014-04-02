@@ -1,4 +1,4 @@
-USE ADBISYS
+USE WIAdbisys
 GO
 
 If Exists ( Select 1 From SysObjects Where Name = 'adp_registrar_mov_caja')

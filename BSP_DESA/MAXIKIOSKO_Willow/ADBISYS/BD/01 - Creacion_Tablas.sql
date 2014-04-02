@@ -1,4 +1,4 @@
-USE ADBISYS
+USE WIAdbisys
 GO
 
 -- RR 2014-03-21: CREACIÓN DE LAS DIFERENTES TABLAS QUE UTILIZARÁ EL SISTEMA ADBISYS.
@@ -36,6 +36,9 @@ Go
 If Exists ( Select 1 From sysobjects Where Name = 'VENTAS' )
   Drop Table VENTAS
 Go
+If Exists ( Select 1 From sysobjects Where Name = 'ESTADOS_VENTAS' )
+  Drop Table ESTADOS_VENTAS
+Go
 If Exists ( Select 1 From sysobjects Where Name = 'TMP_MOVIMIENTOS_CAJA' )
   Drop Table TMP_MOVIMIENTOS_CAJA
 Go
@@ -45,14 +48,17 @@ Go
 If Exists ( Select 1 From sysobjects Where Name = 'CAJA' )
   Drop Table CAJA
 Go
+If Exists ( Select 1 From sysobjects Where Name = 'PARAMETROS_GENERALES' )
+  Drop Table PARAMETROS_GENERALES
+Go
 
 --=============================================================================================
 ------------------------------------ TABLE USUARIOS -------------------------------------------
 --=============================================================================================
 create table USUARIOS(
-	ID_User			    int identity not null,
-	Username		    varchar(255) not null,
-	Pass			      varchar(255) not null,
+	ID_User			int identity not null,
+	Username		varchar(255) not null,
+	Pass			varchar(255) not null,
 	sino_bloqueado	numeric(1) not null,
 	)
 ALTER TABLE USUARIOS ADD PRIMARY KEY(ID_User)
@@ -91,14 +97,25 @@ GO
 ------------------------------------ TABLE TMP_ARTICULOS_VENTAS -------------------------------
 --=============================================================================================
 create table TMP_ARTICULOS_VENTAS(
-	ID_Item_Venta	    numeric(30) identity  not null,
+	ID_Item_Venta	  numeric(30) identity  not null,
 	ID_Articulo       numeric(20)           not null, 
-	Cantidad	        numeric(10)           not null
+	Cantidad	      numeric(10)           not null
 )
 GO
-ALTER TABLE TMP_ARTICULOS_VENTAS ADD CONSTRAINT FK_TMP_ITEM_ARTICULOS
+ALTER TABLE TMP_ARTICULOS_VENTAS ADD CONSTRAINT FK_ID_Articulo_TMP_ARTICULOS_VENTAS
 	FOREIGN KEY(ID_Articulo) REFERENCES ARTICULOS(ID_Articulo)
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA TMP_ARTICULOS_VENTAS.'
+GO
+--=============================================================================================
+------------------------------------ TABLE ESTADOS_VENTAS -------------------------------------
+--=============================================================================================
+create table ESTADOS_VENTAS(
+	Estado            numeric(1)		not null, 
+	Descripcion		  varchar(255)		not null
+)
+GO
+ALTER TABLE ESTADOS_VENTAS ADD PRIMARY KEY(Estado)
+PRINT 'SE CREÓ CORRECTAMENTE LA TABLA ESTADOS_VENTAS.'
 GO
 --=============================================================================================
 ------------------------------------ TABLE VENTAS ---------------------------------------------
@@ -107,23 +124,25 @@ create table VENTAS(
 	ID_Venta      numeric(30) identity not null,
 	Cantidad      numeric(10)          not null,
 	Importe       numeric(10,2)        not null, 
-	sino_correcta numeric(1)           not null, -- 0:Incorrecta 1:Correcta.	
+	Estado		  numeric(1)           not null, 
 	Fecha         datetime             not null,
 	Hora          varchar(8)           not null
 )
 GO
 ALTER TABLE VENTAS ADD PRIMARY KEY(ID_Venta)
+ALTER TABLE VENTAS ADD CONSTRAINT FK_Estado_VENTAS
+	FOREIGN KEY(Estado) REFERENCES ESTADOS_VENTAS(Estado)
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA VENTAS.'
 GO
 --=============================================================================================
 ------------------------------------ TABLE ARTICULOS_VENTAS -------------------------------
 --=============================================================================================
 create table ARTICULOS_VENTAS(
-	ID_Venta          numeric(30)           not null, 
-	ID_Item_Venta	    numeric(20)			  not null,
-	ID_Articulo       numeric(20)		      not null, 
-	Cantidad	        numeric(10)           not null,
-	Precio_Venta      numeric(10,2)         not null  --Agrego el precio para que quede registrado a que precio se vendió el articulo ese día, ya que mañana ese artículo puede cambiar.
+	ID_Venta          numeric(30)	not null, 
+	ID_Item_Venta	  numeric(20)	not null,
+	ID_Articulo       numeric(20)	not null, 
+	Cantidad	      numeric(10)	not null,
+	Precio_Venta      numeric(10,2)	not null  --Agrego el precio para que quede registrado a que precio se vendió el articulo ese día, ya que mañana ese artículo puede cambiar.
 )
 GO
 ALTER TABLE ARTICULOS_VENTAS ADD PRIMARY KEY(ID_Venta,ID_Item_Venta)
@@ -187,7 +206,7 @@ GO
 ------------------------------------ TABLE CAJA -----------------------------------------------
 --=============================================================================================
 create table CAJA(
-	Fecha		        datetime		 not null,
+	Fecha		    datetime      not null,
 	Caja_Inicial    numeric(10,2) not null,
 	Caja_Final	    numeric(10,2) not null,
 	Importe_Total   numeric(10,2) not null,
@@ -196,9 +215,15 @@ GO
 ALTER TABLE CAJA ADD PRIMARY KEY(Fecha)
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA CAJA.'
 GO
-
-
-
+--=============================================================================================
+------------------------------------ TABLE PARAMETROS_GENERALES -------------------------------
+--=============================================================================================
+create table PARAMETROS_GENERALES(
+	Estado_Caja	numeric(1) not null
+)
+GO
+PRINT 'SE CREÓ CORRECTAMENTE LA TABLA PARAMETROS_GENERALES.'
+GO
 
 COMMIT
 
