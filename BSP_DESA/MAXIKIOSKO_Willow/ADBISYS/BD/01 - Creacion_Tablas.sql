@@ -39,9 +39,6 @@ Go
 If Exists ( Select 1 From sysobjects Where Name = 'ESTADOS_VENTAS' )
   Drop Table ESTADOS_VENTAS
 Go
-If Exists ( Select 1 From sysobjects Where Name = 'TMP_MOVIMIENTOS_CAJA' )
-  Drop Table TMP_MOVIMIENTOS_CAJA
-Go
 If Exists ( Select 1 From sysobjects Where Name = 'MOVIMIENTOS_CAJA' )
   Drop Table MOVIMIENTOS_CAJA
 Go
@@ -59,7 +56,8 @@ create table USUARIOS(
 	ID_User			int identity not null,
 	Username		varchar(255) not null,
 	Pass			varchar(255) not null,
-	sino_bloqueado	numeric(1) not null,
+	Descripcion		varchar(255) not null,
+	sino_bloqueado	numeric(1)   not null, -- 1: bloqueado.
 	)
 ALTER TABLE USUARIOS ADD PRIMARY KEY(ID_User)
 GO
@@ -173,30 +171,15 @@ ALTER TABLE PROVEEDORES ADD CONSTRAINT FK_RUBRO_PROVEEDORES
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA PROVEEDORES.'
 GO
 --=============================================================================================
------------------------------------- TABLE TMP_MOVIMIENTOS_CAJA -------------------------------
---=============================================================================================
-create table TMP_MOVIMIENTOS_CAJA(
-	ID_Movimiento   int identity  not null,
-	Ingreso_Salida  numeric(1)    not null, -- 0:Ingreso 1:Salida
-	Descripcion	    varchar(255)  not null,	
-	Valor		        numeric(10,2) not null,
-	Fecha		        DATETIME      not null,
-	Hora		        varchar(8)    not null, 						 
-)
-GO
-ALTER TABLE TMP_MOVIMIENTOS_CAJA ADD PRIMARY KEY(ID_Movimiento)
-PRINT 'SE CREÓ CORRECTAMENTE LA TABLA TMP_MOVIMIENTOS_CAJA.'
-GO
---=============================================================================================
 ------------------------------------ TABLE MOVIMIENTOS_CAJA -----------------------------------
 --=============================================================================================
 create table MOVIMIENTOS_CAJA(
-	ID_Movimiento  int			 not null,
-	Ingreso_Salida numeric(1)    not null, -- 0:Ingreso 1:Salida.
-	Descripcion    varchar(255)  not null,	
-	Valor          numeric(10,2) not null,
-	Fecha          DATETIME      not null,
-	Hora           varchar(8)    not null, 						 
+	ID_Movimiento  numeric(30) identity	not null,
+	Ingreso_Salida numeric(1)    		not null, -- 0:Ingreso 1:Salida.
+	Descripcion    varchar(255)  		not null,	
+	Valor          numeric(10,2) 		not null,
+	Fecha          DATETIME      		not null,
+	Hora           varchar(8)    		not null, 						 
 )
 GO
 ALTER TABLE MOVIMIENTOS_CAJA ADD PRIMARY KEY(ID_Movimiento)
@@ -223,6 +206,15 @@ create table PARAMETROS_GENERALES(
 )
 GO
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA PARAMETROS_GENERALES.'
+GO
+-- =====================================================================================
+-- ============================== Administrador General ================================
+-- =============== Password: w23e (encriptada con el algoritmo SHA256) =================
+-- =====================================================================================
+DELETE FROM USUARIOS WHERE USERNAME = 'ADMIN'
+INSERT INTO USUARIOS(Username,Pass,Descripcion,sino_bloqueado)
+	VALUES ('admin', 'E6-B8-70-50-BF-CB-81-43-FC-B8-DB-01-70-A4-DC-9E-D0-0D-90-4D-DD-3E-2A-4A-D1-B1-E8-DC-0F-DC-9B-E7','Administrador General','0')
+PRINT 'SE CREÓ CORRECTAMENTE EL USUARIO ADMIN.'
 GO
 
 COMMIT
