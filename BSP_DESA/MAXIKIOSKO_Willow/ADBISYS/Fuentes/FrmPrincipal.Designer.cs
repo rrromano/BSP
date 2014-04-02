@@ -31,13 +31,28 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             this.StripPrincipal = new System.Windows.Forms.MenuStrip();
-            this.articulosTS = new System.Windows.Forms.ToolStripMenuItem();
             this.ventasTS = new System.Windows.Forms.ToolStripMenuItem();
+            this.nuevaVentaTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.ventaErroneaTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.cargarVentaErróneaTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.confVentaErroneaTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.ventasDelDíaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.articulosTS = new System.Windows.Forms.ToolStripMenuItem();
+            this.modifArticuloTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.actPrecioArticuloTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.cajaTS = new System.Windows.Forms.ToolStripMenuItem();
+            this.iniciarCajaTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.modificarCajaTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.visualizarCajaTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.finalizarTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.proveedoresTS = new System.Windows.Forms.ToolStripMenuItem();
+            this.modifProveedoresTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.rubrosTS = new System.Windows.Forms.ToolStripMenuItem();
+            this.modifRubrosTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.reportesTS = new System.Windows.Forms.ToolStripMenuItem();
             this.ingresarTS = new System.Windows.Forms.ToolStripMenuItem();
+            this.iniciarSesiónTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.cerrarSesiónTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaTS = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeWillowTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeBSPTSMI = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,21 +65,6 @@
             this.maquinaTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.horaTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.iniciarCajaTSMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.modificarCajaTSMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.finalizarTSMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.iniciarSesiónTSMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.cerrarSesiónTSMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.visualizarCajaTSMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.modifArticuloTSMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.actPrecioArticuloTSMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.modifProveedoresTSMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.modifRubrosTSMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.nuevaVentaTSMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.ventaErroneaTSMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.cargarVentaErróneaTSMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.confVentaErroneaTSMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.ventasDelDíaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StripPrincipal.SuspendLayout();
             this.statusStripPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -90,6 +90,50 @@
             this.StripPrincipal.TabIndex = 0;
             this.StripPrincipal.Text = "menuStrip1";
             // 
+            // ventasTS
+            // 
+            this.ventasTS.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nuevaVentaTSMI,
+            this.ventaErroneaTSMI,
+            this.ventasDelDíaToolStripMenuItem});
+            this.ventasTS.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ventasTS.Name = "ventasTS";
+            this.ventasTS.Size = new System.Drawing.Size(86, 27);
+            this.ventasTS.Text = "&Ventas";
+            // 
+            // nuevaVentaTSMI
+            // 
+            this.nuevaVentaTSMI.Name = "nuevaVentaTSMI";
+            this.nuevaVentaTSMI.Size = new System.Drawing.Size(235, 28);
+            this.nuevaVentaTSMI.Text = "Nueva Venta";
+            // 
+            // ventaErroneaTSMI
+            // 
+            this.ventaErroneaTSMI.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cargarVentaErróneaTSMI,
+            this.confVentaErroneaTSMI});
+            this.ventaErroneaTSMI.Name = "ventaErroneaTSMI";
+            this.ventaErroneaTSMI.Size = new System.Drawing.Size(235, 28);
+            this.ventaErroneaTSMI.Text = "Ventas Erróneas";
+            // 
+            // cargarVentaErróneaTSMI
+            // 
+            this.cargarVentaErróneaTSMI.Name = "cargarVentaErróneaTSMI";
+            this.cargarVentaErróneaTSMI.Size = new System.Drawing.Size(326, 28);
+            this.cargarVentaErróneaTSMI.Text = "Cargar Venta Errónea";
+            // 
+            // confVentaErroneaTSMI
+            // 
+            this.confVentaErroneaTSMI.Name = "confVentaErroneaTSMI";
+            this.confVentaErroneaTSMI.Size = new System.Drawing.Size(326, 28);
+            this.confVentaErroneaTSMI.Text = "Confirmar / Desconfirmar";
+            // 
+            // ventasDelDíaToolStripMenuItem
+            // 
+            this.ventasDelDíaToolStripMenuItem.Name = "ventasDelDíaToolStripMenuItem";
+            this.ventasDelDíaToolStripMenuItem.Size = new System.Drawing.Size(235, 28);
+            this.ventasDelDíaToolStripMenuItem.Text = "Ventas del Día";
+            // 
             // articulosTS
             // 
             this.articulosTS.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -101,16 +145,17 @@
             this.articulosTS.Text = "&Artículos";
             this.articulosTS.Click += new System.EventHandler(this.articulosTS_Click);
             // 
-            // ventasTS
+            // modifArticuloTSMI
             // 
-            this.ventasTS.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nuevaVentaTSMI,
-            this.ventaErroneaTSMI,
-            this.ventasDelDíaToolStripMenuItem});
-            this.ventasTS.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ventasTS.Name = "ventasTS";
-            this.ventasTS.Size = new System.Drawing.Size(86, 27);
-            this.ventasTS.Text = "&Ventas";
+            this.modifArticuloTSMI.Name = "modifArticuloTSMI";
+            this.modifArticuloTSMI.Size = new System.Drawing.Size(311, 28);
+            this.modifArticuloTSMI.Text = "Agregar / Modificar";
+            // 
+            // actPrecioArticuloTSMI
+            // 
+            this.actPrecioArticuloTSMI.Name = "actPrecioArticuloTSMI";
+            this.actPrecioArticuloTSMI.Size = new System.Drawing.Size(311, 28);
+            this.actPrecioArticuloTSMI.Text = "Actualización de Precios";
             // 
             // cajaTS
             // 
@@ -124,6 +169,31 @@
             this.cajaTS.Size = new System.Drawing.Size(64, 27);
             this.cajaTS.Text = "&Caja";
             // 
+            // iniciarCajaTSMI
+            // 
+            this.iniciarCajaTSMI.Name = "iniciarCajaTSMI";
+            this.iniciarCajaTSMI.Size = new System.Drawing.Size(175, 28);
+            this.iniciarCajaTSMI.Text = "Iniciar";
+            this.iniciarCajaTSMI.Click += new System.EventHandler(this.iniciarCajaTSMI_Click);
+            // 
+            // modificarCajaTSMI
+            // 
+            this.modificarCajaTSMI.Name = "modificarCajaTSMI";
+            this.modificarCajaTSMI.Size = new System.Drawing.Size(175, 28);
+            this.modificarCajaTSMI.Text = "Modificar ";
+            // 
+            // visualizarCajaTSMI
+            // 
+            this.visualizarCajaTSMI.Name = "visualizarCajaTSMI";
+            this.visualizarCajaTSMI.Size = new System.Drawing.Size(175, 28);
+            this.visualizarCajaTSMI.Text = "Visualizar";
+            // 
+            // finalizarTSMI
+            // 
+            this.finalizarTSMI.Name = "finalizarTSMI";
+            this.finalizarTSMI.Size = new System.Drawing.Size(175, 28);
+            this.finalizarTSMI.Text = "Finalizar";
+            // 
             // proveedoresTS
             // 
             this.proveedoresTS.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -133,6 +203,12 @@
             this.proveedoresTS.Size = new System.Drawing.Size(139, 27);
             this.proveedoresTS.Text = "&Proveedores";
             // 
+            // modifProveedoresTSMI
+            // 
+            this.modifProveedoresTSMI.Name = "modifProveedoresTSMI";
+            this.modifProveedoresTSMI.Size = new System.Drawing.Size(266, 28);
+            this.modifProveedoresTSMI.Text = "Agregar / Modificar";
+            // 
             // rubrosTS
             // 
             this.rubrosTS.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -141,6 +217,12 @@
             this.rubrosTS.Name = "rubrosTS";
             this.rubrosTS.Size = new System.Drawing.Size(89, 27);
             this.rubrosTS.Text = "R&ubros";
+            // 
+            // modifRubrosTSMI
+            // 
+            this.modifRubrosTSMI.Name = "modifRubrosTSMI";
+            this.modifRubrosTSMI.Size = new System.Drawing.Size(266, 28);
+            this.modifRubrosTSMI.Text = "Agregar / Modificar";
             // 
             // reportesTS
             // 
@@ -158,6 +240,18 @@
             this.ingresarTS.Name = "ingresarTS";
             this.ingresarTS.Size = new System.Drawing.Size(102, 27);
             this.ingresarTS.Text = "&Ingresar";
+            // 
+            // iniciarSesiónTSMI
+            // 
+            this.iniciarSesiónTSMI.Name = "iniciarSesiónTSMI";
+            this.iniciarSesiónTSMI.Size = new System.Drawing.Size(212, 28);
+            this.iniciarSesiónTSMI.Text = "Iniciar Sesión";
+            // 
+            // cerrarSesiónTSMI
+            // 
+            this.cerrarSesiónTSMI.Name = "cerrarSesiónTSMI";
+            this.cerrarSesiónTSMI.Size = new System.Drawing.Size(212, 28);
+            this.cerrarSesiónTSMI.Text = "Cerrar Sesión";
             // 
             // ayudaTS
             // 
@@ -193,7 +287,7 @@
             // salirTSMI
             // 
             this.salirTSMI.Name = "salirTSMI";
-            this.salirTSMI.Size = new System.Drawing.Size(152, 28);
+            this.salirTSMI.Size = new System.Drawing.Size(124, 28);
             this.salirTSMI.Text = "Salir";
             this.salirTSMI.Click += new System.EventHandler(this.salirTSMI_Click);
             // 
@@ -233,7 +327,7 @@
             // 
             this.vacioTSS.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
             this.vacioTSS.Name = "vacioTSS";
-            this.vacioTSS.Size = new System.Drawing.Size(1368, 29);
+            this.vacioTSS.Size = new System.Drawing.Size(1337, 29);
             this.vacioTSS.Spring = true;
             this.vacioTSS.Text = "Vacio";
             // 
@@ -254,100 +348,6 @@
             // timer
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
-            // 
-            // iniciarCajaTSMI
-            // 
-            this.iniciarCajaTSMI.Name = "iniciarCajaTSMI";
-            this.iniciarCajaTSMI.Size = new System.Drawing.Size(175, 28);
-            this.iniciarCajaTSMI.Text = "Iniciar";
-            this.iniciarCajaTSMI.Click += new System.EventHandler(this.iniciarCajaTSMI_Click);
-            // 
-            // modificarCajaTSMI
-            // 
-            this.modificarCajaTSMI.Name = "modificarCajaTSMI";
-            this.modificarCajaTSMI.Size = new System.Drawing.Size(175, 28);
-            this.modificarCajaTSMI.Text = "Modificar ";
-            // 
-            // finalizarTSMI
-            // 
-            this.finalizarTSMI.Name = "finalizarTSMI";
-            this.finalizarTSMI.Size = new System.Drawing.Size(175, 28);
-            this.finalizarTSMI.Text = "Finalizar";
-            // 
-            // iniciarSesiónTSMI
-            // 
-            this.iniciarSesiónTSMI.Name = "iniciarSesiónTSMI";
-            this.iniciarSesiónTSMI.Size = new System.Drawing.Size(212, 28);
-            this.iniciarSesiónTSMI.Text = "Iniciar Sesión";
-            // 
-            // cerrarSesiónTSMI
-            // 
-            this.cerrarSesiónTSMI.Name = "cerrarSesiónTSMI";
-            this.cerrarSesiónTSMI.Size = new System.Drawing.Size(212, 28);
-            this.cerrarSesiónTSMI.Text = "Cerrar Sesión";
-            // 
-            // visualizarCajaTSMI
-            // 
-            this.visualizarCajaTSMI.Name = "visualizarCajaTSMI";
-            this.visualizarCajaTSMI.Size = new System.Drawing.Size(175, 28);
-            this.visualizarCajaTSMI.Text = "Visualizar";
-            // 
-            // modifArticuloTSMI
-            // 
-            this.modifArticuloTSMI.Name = "modifArticuloTSMI";
-            this.modifArticuloTSMI.Size = new System.Drawing.Size(311, 28);
-            this.modifArticuloTSMI.Text = "Agregar / Modificar";
-            // 
-            // actPrecioArticuloTSMI
-            // 
-            this.actPrecioArticuloTSMI.Name = "actPrecioArticuloTSMI";
-            this.actPrecioArticuloTSMI.Size = new System.Drawing.Size(311, 28);
-            this.actPrecioArticuloTSMI.Text = "Actualización de Precios";
-            // 
-            // modifProveedoresTSMI
-            // 
-            this.modifProveedoresTSMI.Name = "modifProveedoresTSMI";
-            this.modifProveedoresTSMI.Size = new System.Drawing.Size(266, 28);
-            this.modifProveedoresTSMI.Text = "Agregar / Modificar";
-            // 
-            // modifRubrosTSMI
-            // 
-            this.modifRubrosTSMI.Name = "modifRubrosTSMI";
-            this.modifRubrosTSMI.Size = new System.Drawing.Size(266, 28);
-            this.modifRubrosTSMI.Text = "Agregar / Modificar";
-            // 
-            // nuevaVentaTSMI
-            // 
-            this.nuevaVentaTSMI.Name = "nuevaVentaTSMI";
-            this.nuevaVentaTSMI.Size = new System.Drawing.Size(235, 28);
-            this.nuevaVentaTSMI.Text = "Nueva Venta";
-            // 
-            // ventaErroneaTSMI
-            // 
-            this.ventaErroneaTSMI.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cargarVentaErróneaTSMI,
-            this.confVentaErroneaTSMI});
-            this.ventaErroneaTSMI.Name = "ventaErroneaTSMI";
-            this.ventaErroneaTSMI.Size = new System.Drawing.Size(235, 28);
-            this.ventaErroneaTSMI.Text = "Ventas Erróneas";
-            // 
-            // cargarVentaErróneaTSMI
-            // 
-            this.cargarVentaErróneaTSMI.Name = "cargarVentaErróneaTSMI";
-            this.cargarVentaErróneaTSMI.Size = new System.Drawing.Size(326, 28);
-            this.cargarVentaErróneaTSMI.Text = "Cargar Venta Errónea";
-            // 
-            // confVentaErroneaTSMI
-            // 
-            this.confVentaErroneaTSMI.Name = "confVentaErroneaTSMI";
-            this.confVentaErroneaTSMI.Size = new System.Drawing.Size(326, 28);
-            this.confVentaErroneaTSMI.Text = "Confirmar / Desconfirmar";
-            // 
-            // ventasDelDíaToolStripMenuItem
-            // 
-            this.ventasDelDíaToolStripMenuItem.Name = "ventasDelDíaToolStripMenuItem";
-            this.ventasDelDíaToolStripMenuItem.Size = new System.Drawing.Size(235, 28);
-            this.ventasDelDíaToolStripMenuItem.Text = "Ventas del Día";
             // 
             // FrmPrincipal
             // 
