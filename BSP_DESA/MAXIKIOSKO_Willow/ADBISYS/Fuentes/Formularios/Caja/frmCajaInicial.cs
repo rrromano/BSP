@@ -10,7 +10,7 @@ using ADBISYS.Conexion;
 using ADBISYS.Entidades;
 using ADBISYS.FuncionesGenerales;
 
-namespace ADBISYS.Formularios
+namespace ADBISYS.Formularios.Caja
 {
     public partial class frmCajaInicial : Form
     {

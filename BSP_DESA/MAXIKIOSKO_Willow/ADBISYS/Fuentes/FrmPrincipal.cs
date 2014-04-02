@@ -6,7 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using ADBISYS.Formularios;
+using ADBISYS.Formularios.Ingresar;
+using ADBISYS.Formularios.Caja;
 
 // RR 2014-03-22: Comienzo del sistema ADBISYS.
 
@@ -62,5 +63,18 @@ namespace ADBISYS
         {
             mostrarFormularioCajaInicial();
         }
+
+        private void mostrarFormularioIniciarSesion()
+        {
+            frmIniciarSesion iniciarSesion = new frmIniciarSesion();
+            iniciarSesion.ShowDialog();
+        }
+
+        private void iniciarSesiónTSMI_Click(object sender, EventArgs e)
+        {
+            mostrarFormularioIniciarSesion();
+        }
+
+
     }
 }

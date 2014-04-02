@@ -248,6 +248,7 @@
             this.iniciarSesiónTSMI.Name = "iniciarSesiónTSMI";
             this.iniciarSesiónTSMI.Size = new System.Drawing.Size(271, 28);
             this.iniciarSesiónTSMI.Text = "Iniciar Sesión";
+            this.iniciarSesiónTSMI.Click += new System.EventHandler(this.iniciarSesiónTSMI_Click);
             // 
             // cerrarSesiónTSMI
             // 

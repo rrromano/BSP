@@ -57,6 +57,12 @@
     <Compile Include="Formularios\Caja\frmCajaInicial.Designer.cs">
       <DependentUpon>frmCajaInicial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Ingresar\frmIniciarSesion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Ingresar\frmIniciarSesion.Designer.cs">
+      <DependentUpon>frmIniciarSesion.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +74,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Formularios\Caja\frmCajaInicial.resx">
       <DependentUpon>frmCajaInicial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Ingresar\frmIniciarSesion.resx">
+      <DependentUpon>frmIniciarSesion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
@@ -94,7 +103,6 @@
   <ItemGroup>
     <Folder Include="Formularios\Articulos\" />
     <Folder Include="Formularios\Ayuda\" />
-    <Folder Include="Formularios\Ingresar\" />
     <Folder Include="Formularios\Proveedores\" />
     <Folder Include="Formularios\Reportes\" />
     <Folder Include="Formularios\Rubros\" />
