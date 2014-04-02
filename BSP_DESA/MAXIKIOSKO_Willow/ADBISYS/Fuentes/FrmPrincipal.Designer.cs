@@ -65,6 +65,7 @@
             this.maquinaTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.horaTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.adminUsuarioTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.StripPrincipal.SuspendLayout();
             this.statusStripPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -235,6 +236,7 @@
             // 
             this.ingresarTS.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.iniciarSesiónTSMI,
+            this.adminUsuarioTSMI,
             this.cerrarSesiónTSMI});
             this.ingresarTS.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ingresarTS.Name = "ingresarTS";
@@ -244,13 +246,13 @@
             // iniciarSesiónTSMI
             // 
             this.iniciarSesiónTSMI.Name = "iniciarSesiónTSMI";
-            this.iniciarSesiónTSMI.Size = new System.Drawing.Size(212, 28);
+            this.iniciarSesiónTSMI.Size = new System.Drawing.Size(271, 28);
             this.iniciarSesiónTSMI.Text = "Iniciar Sesión";
             // 
             // cerrarSesiónTSMI
             // 
             this.cerrarSesiónTSMI.Name = "cerrarSesiónTSMI";
-            this.cerrarSesiónTSMI.Size = new System.Drawing.Size(212, 28);
+            this.cerrarSesiónTSMI.Size = new System.Drawing.Size(271, 28);
             this.cerrarSesiónTSMI.Text = "Cerrar Sesión";
             // 
             // ayudaTS
@@ -327,7 +329,7 @@
             // 
             this.vacioTSS.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
             this.vacioTSS.Name = "vacioTSS";
-            this.vacioTSS.Size = new System.Drawing.Size(1337, 29);
+            this.vacioTSS.Size = new System.Drawing.Size(1368, 29);
             this.vacioTSS.Spring = true;
             this.vacioTSS.Text = "Vacio";
             // 
@@ -348,6 +350,12 @@
             // timer
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // adminUsuarioTSMI
+            // 
+            this.adminUsuarioTSMI.Name = "adminUsuarioTSMI";
+            this.adminUsuarioTSMI.Size = new System.Drawing.Size(271, 28);
+            this.adminUsuarioTSMI.Text = "Administrar Usuario";
             // 
             // FrmPrincipal
             // 
@@ -412,6 +420,7 @@
         private System.Windows.Forms.ToolStripMenuItem cargarVentaErróneaTSMI;
         private System.Windows.Forms.ToolStripMenuItem confVentaErroneaTSMI;
         private System.Windows.Forms.ToolStripMenuItem ventasDelDíaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem adminUsuarioTSMI;
 
 
 
