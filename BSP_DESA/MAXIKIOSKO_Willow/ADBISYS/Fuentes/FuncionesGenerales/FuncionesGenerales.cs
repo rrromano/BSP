@@ -16,25 +16,61 @@ namespace ADBISYS.FuncionesGenerales
     {
         ConectarBD conexion = new ConectarBD();
         DataSet dataSet = new DataSet();
-        string query;
+        String query;
         public string mensajeErrorCatch = "No se puede realizar la accion pedida. Por favor, intente más tarde.";
+
+        public DateTime appFechaSistema()
+        {
+            try
+            {
+                String result = "";
+                String Dia = System.DateTime.Now.Day.ToString();
+                String Mes = System.DateTime.Now.Month.ToString();
+                String Anio = System.DateTime.Now.Year.ToString();
+
+                switch (Dia.Length) { case 1: result = result + "0" + Dia; break; default: result = result + Dia; break; }
+
+                result = result + "/";
+
+                switch (Mes.Length) { case 1: result = result + "0" + Mes; break; default: result = result + Mes; break; }
+
+                result = result + "/";
+
+                result = result + Anio;
+
+
+                return DateTime.Parse(result);
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] -  [" + e.Message.ToString() + "]");
+            }
+        }
 
         public string fcSql(string cadena, string tipoDato)
         {
-            switch (tipoDato)
+            try
             {
-                case "String":
-                    cadena = "'" + cadena + "'";
-                    break;
-                case "Integer":
-                    break;
-                case "DateTime":
-                    cadena = "'" + cadena + "'";
-                    break;
-                default:
-                    break;
+                switch (tipoDato)
+                {
+                    case "String":
+                        cadena = "'" + cadena + "'";
+                        break;
+                    case "Integer":
+                        break;
+                    case "DateTime":
+                        cadena = "'" + cadena + "'";
+                        break;
+                    default:
+                        break;
+                }
+                return cadena;
             }
-            return cadena;
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] -  [" + e.Message.ToString() + "]");
+            }
+
         }
 
         public ComboBox cargarComboBox(string tipo, ComboBox comboBox)
@@ -99,10 +135,18 @@ namespace ADBISYS.FuncionesGenerales
 
         public string darFormatoFecha(string fechaTextBox)
         {
-            //Metodo para dar formato a la fecha
-            string[] fecha = fechaTextBox.Split('/');
-            string fechaCompra = fecha[1] + "/" + fecha[0] + "/" + fecha[2];
-            return fechaCompra;
+            try
+            {
+                //Metodo para dar formato a la fecha
+                string[] fecha = fechaTextBox.Split('/');
+                string fechaResult = fecha[1] + "/" + fecha[0] + "/" + fecha[2];
+                return fechaResult;
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] -  [" + e.Message.ToString() + "]");
+            }
+
         }
 
         public DataGridView agregarBotones(DataGridView dataGridView, string tipo)
@@ -215,13 +259,20 @@ namespace ADBISYS.FuncionesGenerales
 
         public DataGridView cargarDataGridView(DataGridView dataGridView, string tipo, string query)
         {
-            //Metodo para cargar los datagridview
-            dataSet.Reset();
-            dataSet = conexion.ejecutarQuerySelect(query);
-            dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView.DataSource = dataSet.Tables[0];
-            dataGridView = agregarBotones(dataGridView, tipo);
-            return dataGridView;
+            try
+            {
+                //Metodo para cargar los datagridview
+                dataSet.Reset();
+                dataSet = conexion.ejecutarQuerySelect(query);
+                dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dataGridView.DataSource = dataSet.Tables[0];
+                dataGridView = agregarBotones(dataGridView, tipo);
+                return dataGridView;
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] -  [" + e.Message.ToString() + "]");
+            }
         }
 
 
@@ -243,75 +294,134 @@ namespace ADBISYS.FuncionesGenerales
 
         public string ComputeHash(string input)
         {
-            byte[] inputBytes = Encoding.UTF8.GetBytes(input);
-            byte[] result;
-            SHA256 shaM = new SHA256Managed();
-            result = shaM.ComputeHash(inputBytes);
-            return BitConverter.ToString(result);
+            try
+            {
+                byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+                byte[] result;
+                SHA256 shaM = new SHA256Managed();
+                result = shaM.ComputeHash(inputBytes);
+                return BitConverter.ToString(result);
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] -  [" + e.Message.ToString() + "]");
+            }
+
         }
 
         public void keyPressAlfanumerico(KeyPressEventArgs e)
         {
-            if (Char.IsDigit(e.KeyChar))
+            try
             {
-                e.Handled = false;
+                if (Char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else if (Char.IsLetter(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else if (e.KeyChar != (char)Keys.Back)
+                {
+                    MessageBox.Show("Solo se permiten letras y números en dicho campo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    e.Handled = true;
+                }
             }
-            else if (Char.IsLetter(e.KeyChar))
+            catch (Exception r)
             {
-                e.Handled = false;
-            }
-            else if (e.KeyChar != (char)Keys.Back)
-            {
-                MessageBox.Show("Solo se permiten letras y números en dicho campo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                e.Handled = true;
+                throw new System.ArgumentException("[Error] -  [" + r.Message.ToString() + "]");
             }
 
         }
 
         public void keyPressLetras(KeyPressEventArgs e)
         {
-            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            try
             {
-                MessageBox.Show("Solo se permiten letras en dicho campo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                e.Handled = true;
-                return;
+                if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+                {
+                    MessageBox.Show("Solo se permiten letras en dicho campo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    e.Handled = true;
+                    return;
+                }
+            }
+            catch (Exception r)
+            {
+                throw new System.ArgumentException("[Error] -  [" + r.Message.ToString() + "]");
             }
         }
 
         public void keyPressNumeros(KeyPressEventArgs e)
         {
-            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            try
             {
-                MessageBox.Show("Solo se permiten números en dicho campo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                e.Handled = true;
-                return;
+                if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+                {
+                    //MessageBox.Show("Solo se permiten números en dicho campo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    e.Handled = true;
+                    return;
+                }
+            }
+            catch (Exception r)
+            {
+                throw new System.ArgumentException("[Error] -  [" + r.Message.ToString() + "]");
+            }
+        }
+
+        public void keyPressNumerosDecimales(KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+                {
+                    if (!(e.KeyChar.ToString() == ".")) 
+                    e.Handled = true;
+                    return;
+                }
+            }
+            catch (Exception r)
+            {
+                throw new System.ArgumentException("[Error] -  [" + r.Message.ToString() + "]");
             }
         }
 
         public void keyPressNoEscribe(KeyPressEventArgs e)
         {
-            if (char.IsNumber(e.KeyChar))
+            try
             {
-                e.Handled = true;
+                if (char.IsNumber(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+                else if (char.IsNumber(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
-            else if (char.IsNumber(e.KeyChar))
+            catch (Exception r)
             {
-                e.Handled = false;
-            }
-            else
-            {
-                e.Handled = true;
+                throw new System.ArgumentException("[Error] -  [" + r.Message.ToString() + "]");
             }
         }
 
         public void keyPressSinEspacios(KeyPressEventArgs e)
         {
-            if (char.IsWhiteSpace(e.KeyChar))
+            try
             {
-                e.Handled = true;
-                return;
+                if (char.IsWhiteSpace(e.KeyChar))
+                {
+                    e.Handled = true;
+                    return;
+                }
             }
-
+            catch (Exception r)
+            {
+                throw new System.ArgumentException("[Error] -  [" + r.Message.ToString() + "]");
+            }
         }
     }
 }

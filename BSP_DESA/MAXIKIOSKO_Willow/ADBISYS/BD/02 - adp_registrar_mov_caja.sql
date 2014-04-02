@@ -13,6 +13,6 @@ Create procedure adp_registrar_mov_caja ( @Ingreso_Salida numeric(1),
                                         ) 
 as
 
-INSERT INTO TMP_MOVIMIENTOS_CAJA (Ingreso_Salida, Descripcion, Valor, Fecha, Hora)
+INSERT INTO MOVIMIENTOS_CAJA (Ingreso_Salida, Descripcion, Valor, Fecha, Hora)
 VALUES (@Ingreso_Salida, @Descripcion, @Valor, @Fecha, @Hora)
 go

@@ -46,7 +46,7 @@ namespace ADBISYS.Entidades
                 DataSet dataSet = new DataSet();
                 string ssQL;
 
-                ssQL = "SELECT ISNULL(MAX(FECHA),'19000101') FechaCajaAbierta FROM TMP_MOVIMIENTOS_CAJA ";
+                ssQL = "SELECT ISNULL(MAX(FECHA),'19000101') FechaCajaAbierta FROM MOVIMIENTOS_CAJA ";
                 dataSet.Reset();
                 dataSet = con.ejecutarQuerySelect(ssQL);
 
@@ -55,11 +55,11 @@ namespace ADBISYS.Entidades
                     throw new System.ArgumentException("No se pudo obtener la última fecha de caja abierta. Consulte con el administrador.", "Estado del sistema");
                 }
 
-                return DateTime.Parse(dataSet.Tables[0].Columns["FechaCajaAbierta"].ToString());
+                return DateTime.Parse(dataSet.Tables[0].Rows[0]["FechaCajaAbierta"].ToString());
             }
             catch (Exception e)
             {
-                throw;
+                throw new System.ArgumentException("[Error] -  [" + e.Message.ToString() + "]");
             }
         }
 
@@ -86,7 +86,7 @@ namespace ADBISYS.Entidades
             }
             catch (Exception e)
             {
-                throw;
+                throw new System.ArgumentException("[Error] -  [" + e.Message.ToString() + "]");
             }
 
         }

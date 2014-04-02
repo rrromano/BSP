@@ -43,23 +43,29 @@ namespace ADBISYS.Conexion
 
         public void conectar() //Metodo para abrir la conexion
         {
-            string data_source = getPropertyFromConfigFile("Data_Source=");
-            string initial_catalog = getPropertyFromConfigFile("Initial_catalog=");
-            string user_id = getPropertyFromConfigFile("User_id=");
-            string password = getPropertyFromConfigFile("Password=");
-            string connect_timeout = getPropertyFromConfigFile("Connect_Timeout=");
+            try
+            {
+                string data_source = getPropertyFromConfigFile("Data_Source=");
+                string initial_catalog = getPropertyFromConfigFile("Initial_catalog=");
+                string user_id = getPropertyFromConfigFile("User_id=");
+                string password = getPropertyFromConfigFile("Password=");
+                string connect_timeout = getPropertyFromConfigFile("Connect_Timeout=");
 
-            string stringConexion = "Data Source=" + data_source;
-            stringConexion = stringConexion + ";initial catalog=" + initial_catalog;
-            stringConexion = stringConexion + "; user id =" + user_id;
-            stringConexion = stringConexion + ";password=" + password;
-            stringConexion = stringConexion + ";Connect Timeout=" + connect_timeout;
+                string stringConexion = "Data Source=" + data_source;
+                stringConexion = stringConexion + ";initial catalog=" + initial_catalog;
+                stringConexion = stringConexion + "; user id =" + user_id;
+                stringConexion = stringConexion + ";password=" + password;
+                stringConexion = stringConexion + ";Connect Timeout=" + connect_timeout;
 
-            conexion = new SqlConnection(stringConexion);
-            conexion.Open();
+                conexion = new SqlConnection(stringConexion);
+                conexion.Open();
+            }
+            catch (Exception r)
+            {
+                Console.Write("Error -> " + r.Message.ToString());
+                throw new System.ArgumentException("[Error] -  [" + r.Message.ToString() + "]");
+            }
 
-            //conexion = new SqlConnection("Data Source=.\\SQLSERVER2008;initial catalog = GD1C2013; user id = gd; password = gd2013;Connect Timeout=120");
-            //conexion.Open();
         }
 
         public void cerrar() //Metodo para cerrar la conexion
@@ -92,6 +98,7 @@ namespace ADBISYS.Conexion
             catch (Exception e)
             {
                 Console.Write("Error -> " + e.Message.ToString());
+                throw new System.ArgumentException("[Error] -  [" + e.Message.ToString() + "]");
             }
             finally
             {
@@ -122,6 +129,7 @@ namespace ADBISYS.Conexion
             catch (Exception ex)
             {
                 Console.Write("Error: " + ex.Message);
+                throw new System.ArgumentException("[Error] -  [" + ex.Message.ToString() + "]");
             }
             dispose();
             return resultado; //regresamos el resultado
@@ -138,6 +146,7 @@ namespace ADBISYS.Conexion
             catch (Exception e)
             {
                 Console.Write("Error -> " + e.Message.ToString());
+                throw new System.ArgumentException("[Error] -  [" + e.Message.ToString() + "]");
             }
             finally
             {
