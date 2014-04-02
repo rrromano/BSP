@@ -51,10 +51,10 @@
     <Compile Include="Conexion\ConectarBD.cs" />
     <Compile Include="Entidades\ArticuloVenta.cs" />
     <Compile Include="Entidades\Ventas.cs" />
-    <Compile Include="Formularios\frmCajaInicial.cs">
+    <Compile Include="Formularios\Caja\frmCajaInicial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\frmCajaInicial.Designer.cs">
+    <Compile Include="Formularios\Caja\frmCajaInicial.Designer.cs">
       <DependentUpon>frmCajaInicial.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmPrincipal.cs">
@@ -66,7 +66,7 @@
     <Compile Include="FuncionesGenerales\FuncionesGenerales.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Formularios\frmCajaInicial.resx">
+    <EmbeddedResource Include="Formularios\Caja\frmCajaInicial.resx">
       <DependentUpon>frmCajaInicial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPrincipal.resx">
@@ -90,6 +90,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Formularios\Articulos\" />
+    <Folder Include="Formularios\Ayuda\" />
+    <Folder Include="Formularios\Ingresar\" />
+    <Folder Include="Formularios\Proveedores\" />
+    <Folder Include="Formularios\Reportes\" />
+    <Folder Include="Formularios\Rubros\" />
+    <Folder Include="Formularios\Ventas\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
