@@ -28,7 +28,6 @@ namespace ADBISYS
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
             IniciarPrograma(); // RR 2014-03-22.
-            mostrarFormularioCajaInicial();
         }
 
         private void IniciarPrograma()
@@ -57,6 +56,11 @@ namespace ADBISYS
         {
             Conexion.ConectarBD conect = new ADBISYS.Conexion.ConectarBD();
             conect.conectar();
+        }
+
+        private void iniciarCajaTSMI_Click(object sender, EventArgs e)
+        {
+            mostrarFormularioCajaInicial();
         }
     }
 }
