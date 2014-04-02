@@ -72,15 +72,55 @@ namespace ADBISYS
 
         private void iniciarSesiónTSMI_Click(object sender, EventArgs e)
         {
-            mostrarFormularioIniciarSesion();
+            if (Properties.Settings.Default.UsuarioLogueado == "")
+            {
+                mostrarFormularioIniciarSesion(); 
+            }
+            else
+            {
+                MessageBox.Show("Ya existe una sesión iniciada.", "Inicio de Sesión.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
         }
 
         private void FrmPrincipal_Activated(object sender, EventArgs e)
         {
             if (Properties.Settings.Default.UsuarioLogueado != "")
             {
-                usuarioTSS.Text = Properties.Settings.Default.UsuarioLogueado;
+                usuarioTSS.Text = "Usuario: " + Properties.Settings.Default.UsuarioLogueado;
             }
+        }
+
+        private void cerrarSesiónTSMI_Click(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.UsuarioLogueado == "")
+            {
+                MessageBox.Show("Aún no ha iniciado sesión.", "Cerrar Sesión.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            else
+            {
+                if (MessageBox.Show("¿Está seguro que desea cerrar sesión?", "Cerrar Sesión.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    Properties.Settings.Default.UsuarioLogueado = "";
+                    usuarioTSS.Text = "Usuario Desconectado";
+                }
+                else
+                {
+                    return;
+                }
+            }
+        }
+
+        private void adminUsuarioTSMI_Click(object sender, EventArgs e)
+        {
+            mostrarFormularioAdministrarUser();
+        }
+
+        private void mostrarFormularioAdministrarUser()
+        {
+            frmAdministrarUsuario administrarUsuario = new frmAdministrarUsuario();
+            administrarUsuario.ShowDialog();
         }
 
 

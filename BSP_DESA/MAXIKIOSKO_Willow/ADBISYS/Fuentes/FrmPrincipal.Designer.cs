@@ -52,6 +52,7 @@
             this.reportesTS = new System.Windows.Forms.ToolStripMenuItem();
             this.ingresarTS = new System.Windows.Forms.ToolStripMenuItem();
             this.iniciarSesiónTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.adminUsuarioTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesiónTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaTS = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeWillowTSMI = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,7 +66,6 @@
             this.maquinaTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.horaTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.adminUsuarioTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.StripPrincipal.SuspendLayout();
             this.statusStripPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -250,11 +250,19 @@
             this.iniciarSesiónTSMI.Text = "Iniciar Sesión";
             this.iniciarSesiónTSMI.Click += new System.EventHandler(this.iniciarSesiónTSMI_Click);
             // 
+            // adminUsuarioTSMI
+            // 
+            this.adminUsuarioTSMI.Name = "adminUsuarioTSMI";
+            this.adminUsuarioTSMI.Size = new System.Drawing.Size(271, 28);
+            this.adminUsuarioTSMI.Text = "Administrar Usuario";
+            this.adminUsuarioTSMI.Click += new System.EventHandler(this.adminUsuarioTSMI_Click);
+            // 
             // cerrarSesiónTSMI
             // 
             this.cerrarSesiónTSMI.Name = "cerrarSesiónTSMI";
             this.cerrarSesiónTSMI.Size = new System.Drawing.Size(271, 28);
             this.cerrarSesiónTSMI.Text = "Cerrar Sesión";
+            this.cerrarSesiónTSMI.Click += new System.EventHandler(this.cerrarSesiónTSMI_Click);
             // 
             // ayudaTS
             // 
@@ -351,12 +359,6 @@
             // timer
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
-            // 
-            // adminUsuarioTSMI
-            // 
-            this.adminUsuarioTSMI.Name = "adminUsuarioTSMI";
-            this.adminUsuarioTSMI.Size = new System.Drawing.Size(271, 28);
-            this.adminUsuarioTSMI.Text = "Administrar Usuario";
             // 
             // FrmPrincipal
             // 

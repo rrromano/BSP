@@ -70,13 +70,14 @@ namespace ADBISYS.Formularios.Ingresar
         private bool ValidoUsuario()
         {
             hPassword = fg.ComputeHash(txtContrasenia.Text);
-            cadenaSql = "SELECT * FROM USUARIOS WHERE USERNAME = " + fg.fcSql(txtUsuario.Text, "String");
-            cadenaSql = cadenaSql + " AND PASS = " + fg.fcSql(hPassword, "String");
+            cadenaSql = "EXEC adp_buscar_usuario";
+            cadenaSql = cadenaSql + " @user = " + fg.fcSql(txtUsuario.Text, "String");
+            cadenaSql = cadenaSql + ",@Pass = " + fg.fcSql(hPassword, "String");
 
             ds = objConect.ejecutarQuerySelect(cadenaSql);
             if (ds.Tables[0].Rows.Count == 0)
             {
-                MessageBox.Show("Usuario o Contraseña inválidos, intente nuevamente.", "Error al iniciar sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Usuario o Contraseña inválidos, intente nuevamente.", "Error al iniciar sesión", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtUsuario.Focus();
                 return false;
             }
