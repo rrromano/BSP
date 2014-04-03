@@ -328,8 +328,10 @@
             // 
             // usuarioTSS
             // 
+            this.usuarioTSS.BackColor = System.Drawing.Color.White;
             this.usuarioTSS.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
             this.usuarioTSS.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usuarioTSS.ForeColor = System.Drawing.Color.Black;
             this.usuarioTSS.Name = "usuarioTSS";
             this.usuarioTSS.Size = new System.Drawing.Size(215, 29);
             this.usuarioTSS.Text = "Usuario Desconectado";

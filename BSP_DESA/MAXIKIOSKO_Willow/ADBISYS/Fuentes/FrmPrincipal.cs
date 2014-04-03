@@ -88,6 +88,8 @@ namespace ADBISYS
             if (Properties.Settings.Default.UsuarioLogueado != "")
             {
                 usuarioTSS.Text = "Usuario: " + Properties.Settings.Default.UsuarioLogueado;
+                usuarioTSS.BackColor = Color.Black;
+                usuarioTSS.ForeColor = Color.Yellow;
             }
         }
 
@@ -104,6 +106,8 @@ namespace ADBISYS
                 {
                     Properties.Settings.Default.UsuarioLogueado = "";
                     usuarioTSS.Text = "Usuario Desconectado";
+                    usuarioTSS.BackColor = Color.White;
+                    usuarioTSS.ForeColor = Color.Black;
                 }
                 else
                 {
@@ -114,7 +118,15 @@ namespace ADBISYS
 
         private void adminUsuarioTSMI_Click(object sender, EventArgs e)
         {
-            mostrarFormularioAdministrarUser();
+            if (Properties.Settings.Default.UsuarioLogueado == "")
+            {
+                MessageBox.Show("Debe iniciar sesión.", "Administrar Usuario.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            else
+            {
+                mostrarFormularioAdministrarUser();
+            }
         }
 
         private void mostrarFormularioAdministrarUser()

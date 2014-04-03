@@ -53,7 +53,7 @@ namespace ADBISYS.Conexion
 
                 string stringConexion = "Data Source=" + data_source;
                 stringConexion = stringConexion + ";initial catalog=" + initial_catalog;
-                stringConexion = stringConexion + "; user id =" + user_id;
+                stringConexion = stringConexion + ";user id =" + user_id;
                 stringConexion = stringConexion + ";password=" + password;
                 stringConexion = stringConexion + ";Connect Timeout=" + connect_timeout;
 
