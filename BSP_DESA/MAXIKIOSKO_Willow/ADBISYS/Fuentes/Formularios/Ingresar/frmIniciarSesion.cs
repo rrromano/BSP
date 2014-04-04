@@ -18,6 +18,13 @@ namespace ADBISYS.Formularios.Ingresar
         DataSet ds = new DataSet();
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
         string cadenaSql, hPassword, descripcionUsuario = "";
+        private string Usuario; //FU 2014-04-04
+
+        public string m_Usuario //FU 2014-04-04
+        {
+            get { return Usuario; }
+            set { Usuario = value; }
+        }
 
         public frmIniciarSesion()
         {
@@ -61,7 +68,8 @@ namespace ADBISYS.Formularios.Ingresar
         {
             if (validoCampos() && ValidoUsuario())
             {
-                Properties.Settings.Default.UsuarioLogueado = descripcionUsuario; //Se asigna a la propieda el usuario Logueado. Esta "Variable" vive en toda la ejecución del programa
+                //Properties.Settings.Default.UsuarioLogueado = descripcionUsuario; //Se asigna a la propieda el usuario Logueado. Esta "Variable" vive en toda la ejecución del programa
+                m_Usuario = descripcionUsuario; //FU 2014-04-04
                 this.Hide();
             }
             

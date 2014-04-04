@@ -68,6 +68,14 @@ namespace ADBISYS
         {
             frmIniciarSesion iniciarSesion = new frmIniciarSesion();
             iniciarSesion.ShowDialog();
+
+            //FU 2014-04-04
+            if (iniciarSesion.m_Usuario != "")
+            {
+                usuarioTSS.Text = "Usuario: " + iniciarSesion.m_Usuario;
+                usuarioTSS.BackColor = Color.Black;
+                usuarioTSS.ForeColor = Color.Yellow;
+            }
         }
 
         private void iniciarSesiónTSMI_Click(object sender, EventArgs e)
@@ -83,15 +91,15 @@ namespace ADBISYS
             }
         }
 
-        private void FrmPrincipal_Activated(object sender, EventArgs e)
-        {
-            if (Properties.Settings.Default.UsuarioLogueado != "")
-            {
-                usuarioTSS.Text = "Usuario: " + Properties.Settings.Default.UsuarioLogueado;
-                usuarioTSS.BackColor = Color.Black;
-                usuarioTSS.ForeColor = Color.Yellow;
-            }
-        }
+        //private void FrmPrincipal_Activated(object sender, EventArgs e)
+        //{
+        //    if (Properties.Settings.Default.UsuarioLogueado != "")
+        //    {
+        //        usuarioTSS.Text = "Usuario: " + Properties.Settings.Default.UsuarioLogueado;
+        //        usuarioTSS.BackColor = Color.Black;
+        //        usuarioTSS.ForeColor = Color.Yellow;
+        //    }
+        //}
 
         private void cerrarSesiónTSMI_Click(object sender, EventArgs e)
         {
