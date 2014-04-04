@@ -34,6 +34,8 @@
             this.lblContraseniaNueva = new System.Windows.Forms.Label();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtContraRepe = new System.Windows.Forms.TextBox();
+            this.lblContraRepe = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.txtContraNueva = new System.Windows.Forms.TextBox();
@@ -41,8 +43,6 @@
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblContraRepe = new System.Windows.Forms.Label();
-            this.txtContraRepe = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -112,6 +112,28 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             // 
+            // txtContraRepe
+            // 
+            this.txtContraRepe.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtContraRepe.Location = new System.Drawing.Point(220, 161);
+            this.txtContraRepe.MaxLength = 255;
+            this.txtContraRepe.Name = "txtContraRepe";
+            this.txtContraRepe.Size = new System.Drawing.Size(244, 29);
+            this.txtContraRepe.TabIndex = 5;
+            this.txtContraRepe.UseSystemPasswordChar = true;
+            this.txtContraRepe.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContraRepe_KeyPress);
+            // 
+            // lblContraRepe
+            // 
+            this.lblContraRepe.AutoSize = true;
+            this.lblContraRepe.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblContraRepe.Location = new System.Drawing.Point(21, 164);
+            this.lblContraRepe.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblContraRepe.Name = "lblContraRepe";
+            this.lblContraRepe.Size = new System.Drawing.Size(192, 23);
+            this.lblContraRepe.TabIndex = 7;
+            this.lblContraRepe.Text = "Repetir Contraseña";
+            // 
             // btnAceptar
             // 
             this.btnAceptar.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -121,6 +143,7 @@
             this.btnAceptar.TabIndex = 6;
             this.btnAceptar.Text = "&Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // btnCancelar
             // 
@@ -142,6 +165,7 @@
             this.txtContraNueva.Size = new System.Drawing.Size(244, 29);
             this.txtContraNueva.TabIndex = 4;
             this.txtContraNueva.UseSystemPasswordChar = true;
+            this.txtContraNueva.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContraNueva_KeyPress);
             // 
             // txtContraActual
             // 
@@ -152,6 +176,7 @@
             this.txtContraActual.Size = new System.Drawing.Size(244, 29);
             this.txtContraActual.TabIndex = 3;
             this.txtContraActual.UseSystemPasswordChar = true;
+            this.txtContraActual.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContraActual_KeyPress);
             // 
             // txtDescripcion
             // 
@@ -181,27 +206,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(146, 142);
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
-            // 
-            // lblContraRepe
-            // 
-            this.lblContraRepe.AutoSize = true;
-            this.lblContraRepe.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblContraRepe.Location = new System.Drawing.Point(21, 164);
-            this.lblContraRepe.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblContraRepe.Name = "lblContraRepe";
-            this.lblContraRepe.Size = new System.Drawing.Size(192, 23);
-            this.lblContraRepe.TabIndex = 7;
-            this.lblContraRepe.Text = "Repetir Contraseña";
-            // 
-            // txtContraRepe
-            // 
-            this.txtContraRepe.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContraRepe.Location = new System.Drawing.Point(220, 161);
-            this.txtContraRepe.MaxLength = 255;
-            this.txtContraRepe.Name = "txtContraRepe";
-            this.txtContraRepe.Size = new System.Drawing.Size(244, 29);
-            this.txtContraRepe.TabIndex = 5;
-            this.txtContraRepe.UseSystemPasswordChar = true;
             // 
             // frmAdministrarUsuario
             // 

@@ -16,6 +16,7 @@ namespace ADBISYS
     public partial class FrmPrincipal : Form
     {
         frmIniciarSesion iniciarSesion = new frmIniciarSesion(); //FU 2014-04-04 Hago público el inicio de sesión ya que para controlar si está o no conectado debe haber una sola instancia
+        public string user = "";
 
         public FrmPrincipal()
         {
@@ -68,19 +69,9 @@ namespace ADBISYS
 
         private void iniciarSesiónTSMI_Click(object sender, EventArgs e)
         {
-
-            frmIniciarSesion iniciarSesion = new frmIniciarSesion();
-
-            if (iniciarSesion.m_Usuario == "")
+            if (Properties.Settings.Default.UsuarioLogueado == "")
             {
-                iniciarSesion.ShowDialog();
-
-                if (iniciarSesion.m_Usuario != "")
-                {
-                    usuarioTSS.Text = "Usuario: " + iniciarSesion.m_Usuario;
-                    usuarioTSS.BackColor = Color.Black;
-                    usuarioTSS.ForeColor = Color.Yellow;
-                }
+                mostrarFormularioIniciarSesion();
             }
             else
             {
@@ -89,21 +80,19 @@ namespace ADBISYS
             }
         }
 
-        //private void FrmPrincipal_Activated(object sender, EventArgs e)
-        //{
-        //    if (Properties.Settings.Default.UsuarioLogueado != "")
-        //    {
-        //        usuarioTSS.Text = "Usuario: " + Properties.Settings.Default.UsuarioLogueado;
-        //        usuarioTSS.BackColor = Color.Black;
-        //        usuarioTSS.ForeColor = Color.Yellow;
-        //    }
-        //}
+        private void FrmPrincipal_Activated(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.UsuarioLogueado != "")
+            {
+                usuarioTSS.Text = "Usuario: " + Properties.Settings.Default.UsuarioLogueado;
+                usuarioTSS.BackColor = Color.Black;
+                usuarioTSS.ForeColor = Color.Yellow;
+            }
+        }
 
         private void cerrarSesiónTSMI_Click(object sender, EventArgs e)
         {
-            //if (Properties.Settings.Default.UsuarioLogueado == "")
-
-            if (iniciarSesion.m_Usuario == "")
+            if (Properties.Settings.Default.UsuarioLogueado == "")
             {
                 MessageBox.Show("Aún no ha iniciado sesión.", "Cerrar Sesión.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -112,8 +101,7 @@ namespace ADBISYS
             {
                 if (MessageBox.Show("¿Está seguro que desea cerrar sesión?", "Cerrar Sesión.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    //Properties.Settings.Default.UsuarioLogueado = ""; //FU 2014-04-04
-                    iniciarSesion.m_Usuario = ""; //FU 2014-04-04
+                    Properties.Settings.Default.UsuarioLogueado = "";
                     usuarioTSS.Text = "Usuario Desconectado";
                     usuarioTSS.BackColor = Color.White;
                     usuarioTSS.ForeColor = Color.Black;
@@ -144,6 +132,10 @@ namespace ADBISYS
             administrarUsuario.ShowDialog();
         }
 
-
+        private void mostrarFormularioIniciarSesion()
+        {
+            frmIniciarSesion iniciarSesion = new frmIniciarSesion();
+            iniciarSesion.ShowDialog();
+        }
     }
 }
