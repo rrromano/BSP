@@ -279,12 +279,14 @@
             this.acercaDeWillowTSMI.Name = "acercaDeWillowTSMI";
             this.acercaDeWillowTSMI.Size = new System.Drawing.Size(245, 28);
             this.acercaDeWillowTSMI.Text = "Acerca de Willow";
+            this.acercaDeWillowTSMI.Click += new System.EventHandler(this.acercaDeWillowTSMI_Click);
             // 
             // acercaDeBSPTSMI
             // 
             this.acercaDeBSPTSMI.Name = "acercaDeBSPTSMI";
             this.acercaDeBSPTSMI.Size = new System.Drawing.Size(245, 28);
             this.acercaDeBSPTSMI.Text = "Acerca de BSP";
+            this.acercaDeBSPTSMI.Click += new System.EventHandler(this.acercaDeBSPTSMI_Click);
             // 
             // salidaTS
             // 
@@ -376,7 +378,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.Name = "FrmPrincipal";
-            this.Text = "Maxikosko WILLOW - BSP - Brother\'s System\'s Programmer\'s - ADBISYS 1.0";
+            this.Text = "Maxikosko WILLOW - BSP - Brothers Systems Programmers - ADBISYS 1.0";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmPrincipal_Load);
             this.Activated += new System.EventHandler(this.FrmPrincipal_Activated);

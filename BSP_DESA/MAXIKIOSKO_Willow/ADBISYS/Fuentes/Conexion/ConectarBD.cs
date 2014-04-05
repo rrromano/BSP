@@ -63,7 +63,7 @@ namespace ADBISYS.Conexion
             catch (Exception r)
             {
                 Console.Write("Error -> " + r.Message.ToString());
-                throw new System.ArgumentException("[Error] -  [" + r.Message.ToString() + "]");
+                throw new System.ArgumentException("[Error] - [" + r.Message.ToString() + "]");
             }
 
         }
@@ -98,7 +98,7 @@ namespace ADBISYS.Conexion
             catch (Exception e)
             {
                 Console.Write("Error -> " + e.Message.ToString());
-                throw new System.ArgumentException("[Error] -  [" + e.Message.ToString() + "]");
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
             }
             finally
             {
@@ -129,7 +129,7 @@ namespace ADBISYS.Conexion
             catch (Exception ex)
             {
                 Console.Write("Error: " + ex.Message);
-                throw new System.ArgumentException("[Error] -  [" + ex.Message.ToString() + "]");
+                throw new System.ArgumentException("[Error] - [" + ex.Message.ToString() + "]");
             }
             dispose();
             return resultado; //regresamos el resultado
@@ -146,7 +146,7 @@ namespace ADBISYS.Conexion
             catch (Exception e)
             {
                 Console.Write("Error -> " + e.Message.ToString());
-                throw new System.ArgumentException("[Error] -  [" + e.Message.ToString() + "]");
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
             }
             finally
             {

@@ -4,7 +4,7 @@ If Exists ( Select 1 From SysObjects Where Name = 'adp_info_usuario')
   Drop Procedure adp_info_usuario
 Go 
 
--- SP QUE BUSCA USUARIO.
+-- SP QUE TRAE LA INFORMACIÓN DEL USUARIO.
 Create procedure adp_info_usuario (@user varchar(255))
 as
 

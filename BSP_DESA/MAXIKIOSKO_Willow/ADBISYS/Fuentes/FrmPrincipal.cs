@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using ADBISYS.Formularios.Ingresar;
 using ADBISYS.Formularios.Caja;
+using ADBISYS.Formularios.Ayuda;
 
 // RR 2014-03-22: Comienzo del sistema ADBISYS.
 
@@ -136,6 +137,28 @@ namespace ADBISYS
         {
             frmIniciarSesion iniciarSesion = new frmIniciarSesion();
             iniciarSesion.ShowDialog();
+        }
+
+        private void acercaDeWillowTSMI_Click(object sender, EventArgs e)
+        {
+            mostrarFormularioAcercaDeWillow();
+        }
+
+        private void mostrarFormularioAcercaDeWillow()
+        {
+            frmAcercaDeWillow acercaDeWillow = new frmAcercaDeWillow();
+            acercaDeWillow.ShowDialog();
+        }
+
+        private void mostrarFormularioAcercaDeBSP()
+        {
+            frmAcercaDeBSP acercaDeBSP = new frmAcercaDeBSP();
+            acercaDeBSP.ShowDialog();
+        }
+
+        private void acercaDeBSPTSMI_Click(object sender, EventArgs e)
+        {
+            mostrarFormularioAcercaDeBSP();
         }
     }
 }

@@ -36,16 +36,24 @@ namespace ADBISYS.Formularios.Ingresar
 
         private void cargarInfoUser()
         {
-            cadenaSql = "EXEC adp_info_usuario @user = 'admin'";
-            ds = objConect.ejecutarQuerySelect(cadenaSql);
+             try
+             {
+                cadenaSql = "EXEC adp_info_usuario @user = 'admin'";
+                ds = objConect.ejecutarQuerySelect(cadenaSql);
 
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                txtUsuario.Text = ds.Tables[0].Rows[0]["Username"].ToString();
-                txtDescripcion.Text = ds.Tables[0].Rows[0]["Descripcion"].ToString();
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    txtUsuario.Text = ds.Tables[0].Rows[0]["Username"].ToString();
+                    txtDescripcion.Text = ds.Tables[0].Rows[0]["Descripcion"].ToString();
+                }
+                else 
+                {
+                    return;
+                }
             }
-            else 
+            catch (Exception e)
             {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -60,6 +68,8 @@ namespace ADBISYS.Formularios.Ingresar
         {
             if (validoCamposVacios()) return;
             if (validoContraseniaActual()) return;
+            if (validoContraseniaNueva()) return;
+            actualizarUsuario();
 
         }
 
@@ -96,20 +106,60 @@ namespace ADBISYS.Formularios.Ingresar
         }
 
         private bool validoContraseniaActual()
-        {
-            hPassword = fg.ComputeHash(txtContraActual.Text);
-            cadenaSql = "EXEC adp_buscar_usuario";
-            cadenaSql = cadenaSql + " @user = " + fg.fcSql(txtUsuario.Text, "String");
-            cadenaSql = cadenaSql + ",@Pass = " + fg.fcSql(hPassword, "String");
-
-            ds = objConect.ejecutarQuerySelect(cadenaSql);
-            if (ds.Tables[0].Rows.Count == 0)
+        {   
+            try
             {
-                MessageBox.Show("La Contraseña Actual es incorrecta.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                hPassword = fg.ComputeHash(txtContraActual.Text);
+                cadenaSql = "EXEC adp_buscar_usuario";
+                cadenaSql = cadenaSql + " @user = " + fg.fcSql(txtUsuario.Text, "String");
+                cadenaSql = cadenaSql + ",@Pass = " + fg.fcSql(hPassword, "String");
+
+                ds = objConect.ejecutarQuerySelect(cadenaSql);
+                if (ds.Tables[0].Rows.Count == 0)
+                {
+                    MessageBox.Show("La Contraseña Actual es incorrecta.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    txtUsuario.Focus();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
+            }
+        }
+
+        private bool validoContraseniaNueva()
+        {
+            if (txtContraNueva.Text != txtContraRepe.Text)
+            {
+                MessageBox.Show("La contraseña escrita en el cuadro Contraseña Actual no coincide con la escrita en el cuadro Repetir Contraseña.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtUsuario.Focus();
                 return true;
             }
             return false;
+        }
+
+        private void actualizarUsuario()
+        {
+            try
+            {
+                hPassword = fg.ComputeHash(txtContraNueva.Text);
+                cadenaSql = "EXEC adp_actualiza_usuario";
+                cadenaSql = cadenaSql + " @user = " + fg.fcSql(txtUsuario.Text, "String");
+                cadenaSql = cadenaSql + ",@Desccripcion = " + fg.fcSql(txtDescripcion.Text, "String");
+                cadenaSql = cadenaSql + ",@Password = " + fg.fcSql(hPassword, "String");
+
+                objConect.ejecutarQuery(cadenaSql);
+                Properties.Settings.Default.UsuarioLogueado = txtDescripcion.Text;
+                this.Hide();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
 
         private void txtContraActual_KeyPress(object sender, KeyPressEventArgs e)
@@ -126,5 +176,7 @@ namespace ADBISYS.Formularios.Ingresar
         {
             fg.keyPressSinEspacios(e);
         }
+
+
     }
 }

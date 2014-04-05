@@ -69,21 +69,29 @@ namespace ADBISYS.Formularios.Ingresar
 
         private bool ValidoUsuario()
         {
-            hPassword = fg.ComputeHash(txtContrasenia.Text);
-            cadenaSql = "EXEC adp_buscar_usuario";
-            cadenaSql = cadenaSql + " @user = " + fg.fcSql(txtUsuario.Text, "String");
-            cadenaSql = cadenaSql + ",@Pass = " + fg.fcSql(hPassword, "String");
-
-            ds = objConect.ejecutarQuerySelect(cadenaSql);
-            if (ds.Tables[0].Rows.Count == 0)
+            try
             {
-                MessageBox.Show("Usuario o Contraseña inválidos, intente nuevamente.", "Error al iniciar sesión.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtUsuario.Focus();
+                hPassword = fg.ComputeHash(txtContrasenia.Text);
+                cadenaSql = "EXEC adp_buscar_usuario";
+                cadenaSql = cadenaSql + " @user = " + fg.fcSql(txtUsuario.Text, "String");
+                cadenaSql = cadenaSql + ",@Pass = " + fg.fcSql(hPassword, "String");
+
+                ds = objConect.ejecutarQuerySelect(cadenaSql);
+                if (ds.Tables[0].Rows.Count == 0)
+                {
+                    MessageBox.Show("Usuario o Contraseña inválidos, intente nuevamente.", "Error al iniciar sesión.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtUsuario.Focus();
+                    return false;
+                }
+
+                descripcionUsuario = ds.Tables[0].Rows[0]["Descripcion"].ToString();
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
-            descripcionUsuario = ds.Tables[0].Rows[0]["Descripcion"].ToString();
-            return true;
         }
     }
 }
