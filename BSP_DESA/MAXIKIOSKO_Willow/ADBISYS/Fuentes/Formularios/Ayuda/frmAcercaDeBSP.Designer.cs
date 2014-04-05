@@ -37,6 +37,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -73,6 +75,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.btnAceptar);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
@@ -115,9 +119,9 @@
             this.label4.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(45, 385);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(525, 23);
+            this.label4.Size = new System.Drawing.Size(231, 23);
             this.label4.TabIndex = 4;
-            this.label4.Text = "URRUTIA, FEDERICO - TEL: (011) 15-31175559";
+            this.label4.Text = "URRUTIA, FEDERICO";
             // 
             // label3
             // 
@@ -125,9 +129,29 @@
             this.label3.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(45, 341);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(524, 23);
+            this.label3.Size = new System.Drawing.Size(237, 23);
             this.label3.TabIndex = 3;
-            this.label3.Text = "ROMANO, RODRIGO  - TEL: (011) 15-30915999";
+            this.label3.Text = "ROMANO, RODRIGO  ";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(272, 341);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(304, 23);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "- TEL: (011) 15-30915999.";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(272, 385);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(304, 23);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "- TEL: (011) 15-31175559.";
             // 
             // frmAcercaDeBSP
             // 
@@ -161,5 +185,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
     }
 }

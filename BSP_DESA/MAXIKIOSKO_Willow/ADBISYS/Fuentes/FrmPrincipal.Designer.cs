@@ -209,6 +209,7 @@
             this.modifProveedoresTSMI.Name = "modifProveedoresTSMI";
             this.modifProveedoresTSMI.Size = new System.Drawing.Size(266, 28);
             this.modifProveedoresTSMI.Text = "Agregar / Modificar";
+            this.modifProveedoresTSMI.Click += new System.EventHandler(this.modifProveedoresTSMI_Click);
             // 
             // rubrosTS
             // 

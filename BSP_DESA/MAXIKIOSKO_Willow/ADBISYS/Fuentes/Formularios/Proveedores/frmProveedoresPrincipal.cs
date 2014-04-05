@@ -7,18 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace ADBISYS.Formularios.Ayuda
+namespace ADBISYS.Formularios.Proveedores
 {
-    public partial class frmAcercaDeWillow : Form
+    public partial class frmProveedoresPrincipal : Form
     {
-        public frmAcercaDeWillow()
+        public frmProveedoresPrincipal()
         {
             InitializeComponent();
-        }
-
-        private void btnAceptar_Click(object sender, EventArgs e)
-        {
-            this.Hide();
         }
     }
 }

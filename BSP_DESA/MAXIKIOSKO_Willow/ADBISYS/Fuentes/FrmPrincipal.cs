@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using ADBISYS.Formularios.Ingresar;
 using ADBISYS.Formularios.Caja;
 using ADBISYS.Formularios.Ayuda;
+using ADBISYS.Formularios.Proveedores;
 
 // RR 2014-03-22: Comienzo del sistema ADBISYS.
 
@@ -159,6 +160,17 @@ namespace ADBISYS
         private void acercaDeBSPTSMI_Click(object sender, EventArgs e)
         {
             mostrarFormularioAcercaDeBSP();
+        }
+
+        private void modifProveedoresTSMI_Click(object sender, EventArgs e)
+        {
+            mostrarFormularioProveedores();
+        }
+
+        private void mostrarFormularioProveedores()
+        {
+            frmProveedoresPrincipal proveedores = new frmProveedoresPrincipal();
+            proveedores.Show(); // RR: Se hace un punto Show en lugar de ShowDialog, para que me permita utilizar otras funcionalidades, dejando este formulario abierto.
         }
     }
 }
