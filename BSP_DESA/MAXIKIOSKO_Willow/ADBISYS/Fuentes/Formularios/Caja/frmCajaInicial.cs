@@ -83,8 +83,8 @@ namespace ADBISYS.Formularios.Caja
                 String sSQL;
 
                 sSQL = "exec adp_registrar_mov_caja ";
-                sSQL = sSQL + " @Ingreso_Salida = 1";
-                sSQL = sSQL + " , @Descripcion = 'Apertura de caja del día " + System.DateTime.Now.Date.ToString() + "'";
+                sSQL = sSQL + " @Tipo_Movimiento = 1";
+                sSQL = sSQL + " , @Descripcion = 'Apertura de caja del día " + fg.appFechaSistema().ToString() +"'";
                 sSQL = sSQL + " , @Valor = '" + txtCajaInicial.Text + "'";
                 sSQL = sSQL + " , @fecha = '" + fg.appFechaSistema().ToString() + "'";
                 sSQL = sSQL + " , @hora = '" + hora.ToString().Substring(0,8) + "'";

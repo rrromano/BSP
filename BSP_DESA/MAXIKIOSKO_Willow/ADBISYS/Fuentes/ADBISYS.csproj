@@ -70,6 +70,12 @@
     <Compile Include="Formularios\Caja\frmCajaInicial.Designer.cs">
       <DependentUpon>frmCajaInicial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Caja\frmVisualizarCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Caja\frmVisualizarCaja.Designer.cs">
+      <DependentUpon>frmVisualizarCaja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Ingresar\frmAdministrarUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Caja\frmCajaInicial.resx">
       <DependentUpon>frmCajaInicial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Caja\frmVisualizarCaja.resx">
+      <DependentUpon>frmVisualizarCaja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Ingresar\frmAdministrarUsuario.resx">
       <DependentUpon>frmAdministrarUsuario.cs</DependentUpon>

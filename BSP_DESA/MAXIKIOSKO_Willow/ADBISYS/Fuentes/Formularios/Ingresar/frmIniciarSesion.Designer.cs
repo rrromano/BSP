@@ -95,7 +95,7 @@
             this.txtContrasenia.Location = new System.Drawing.Point(172, 73);
             this.txtContrasenia.MaxLength = 255;
             this.txtContrasenia.Name = "txtContrasenia";
-            this.txtContrasenia.Size = new System.Drawing.Size(198, 29);
+            this.txtContrasenia.Size = new System.Drawing.Size(198, 25);
             this.txtContrasenia.TabIndex = 2;
             this.txtContrasenia.UseSystemPasswordChar = true;
             this.txtContrasenia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContraseña_KeyPress);
@@ -106,7 +106,7 @@
             this.txtUsuario.Location = new System.Drawing.Point(172, 29);
             this.txtUsuario.MaxLength = 255;
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(198, 29);
+            this.txtUsuario.Size = new System.Drawing.Size(198, 25);
             this.txtUsuario.TabIndex = 1;
             this.txtUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUsuario_KeyPress);
             // 
@@ -116,7 +116,7 @@
             this.lblContraseña.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblContraseña.Location = new System.Drawing.Point(35, 78);
             this.lblContraseña.Name = "lblContraseña";
-            this.lblContraseña.Size = new System.Drawing.Size(117, 23);
+            this.lblContraseña.Size = new System.Drawing.Size(94, 18);
             this.lblContraseña.TabIndex = 1;
             this.lblContraseña.Text = "Contraseña";
             // 
@@ -126,13 +126,13 @@
             this.lblUsuario.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsuario.Location = new System.Drawing.Point(35, 32);
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(83, 23);
+            this.lblUsuario.Size = new System.Drawing.Size(64, 18);
             this.lblUsuario.TabIndex = 0;
             this.lblUsuario.Text = "Usuario";
             // 
             // frmIniciarSesion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(589, 225);
             this.Controls.Add(this.groupBox1);

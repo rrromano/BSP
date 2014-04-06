@@ -63,6 +63,113 @@ namespace ADBISYS.Entidades
             }
         }
 
+        public DataSet obtenerMovimientosCaja(DateTime fecha) 
+        {
+            try
+            {
+                ConectarBD con = new ConectarBD();
+                DataSet Ds = new DataSet();
+
+                String sSQL = "";
+                sSQL = "EXEC dbo.ObtenerMovimientosCaja ";
+                sSQL = sSQL + " @fecha_mov = '" + fecha + "'";
+                Ds.Reset();
+                Ds = con.ejecutarQuerySelect(sSQL);
+
+                return Ds;
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] -  [" + e.Message.ToString() + "]");
+            }
+
+        }
+
+        public Double obtenerImporteCajaActual(DateTime fecha)
+        {
+            try
+            {
+                ConectarBD con = new ConectarBD();
+                DataSet Ds = new DataSet();
+                Double importe = 0.00;
+                String sSQL = "";
+
+                sSQL = "EXEC dbo.ObtenerImporteCajaActual ";
+                sSQL = sSQL + " @fecha_mov = '" + fecha + "'";
+                Ds.Reset();
+                Ds = con.ejecutarQuerySelect(sSQL);
+
+                if (Ds.Tables[0].Rows.Count > 0)
+                {
+                    importe = Double.Parse(Ds.Tables[0].Rows[0]["TOTAL"].ToString());
+                }
+
+                return importe;
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] -  [" + e.Message.ToString() + "]");
+            }
+        }
+
+        public Double obtenerCajaActual (DateTime fecha)
+        {
+            try
+            {
+                ConectarBD con = new ConectarBD();
+                DataSet Ds = new DataSet();
+                Double importe = 0.00;
+                String sSQL = "";
+
+                sSQL = "EXEC dbo.ObtenerCajaActual";
+                sSQL = sSQL + " @fecha_mov = '" + fecha + "'";
+                Ds.Reset();
+                Ds = con.ejecutarQuerySelect(sSQL);
+
+                if (Ds.Tables[0].Rows.Count > 0)
+                {
+                    importe = Double.Parse(Ds.Tables[0].Rows[0]["TOTAL"].ToString());
+                }
+
+                return importe;
+
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] -  [" + e.Message.ToString() + "]");
+            }
+
+        }
+
+        public Double obtenerTotalesDia (DateTime fecha, int TipoMovimiento)
+        {
+            try
+            {
+                ConectarBD con = new ConectarBD();
+                DataSet Ds = new DataSet();
+                Double importe = 0.00;
+                String sSQL = "";
+
+                sSQL = "EXEC dbo.ObtenerTotales ";
+                sSQL = sSQL + " @fecha_mov = '" + fecha + "'";
+                sSQL = sSQL + " @TipoMovimiento = " + TipoMovimiento;
+                Ds.Reset();
+                Ds = con.ejecutarQuerySelect(sSQL);
+
+                if (Ds.Tables[0].Rows.Count > 0)
+                {
+                    importe = Double.Parse(Ds.Tables[0].Rows[0]["TOTAL"].ToString());
+                }
+
+                return importe;
+
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] -  [" + e.Message.ToString() + "]");
+            }
+
+        }
 
         public int obtenerEstado()
         {

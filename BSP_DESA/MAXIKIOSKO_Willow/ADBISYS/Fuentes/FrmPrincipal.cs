@@ -172,5 +172,11 @@ namespace ADBISYS
             frmProveedoresPrincipal proveedores = new frmProveedoresPrincipal();
             proveedores.Show(); // RR: Se hace un punto Show en lugar de ShowDialog, para que me permita utilizar otras funcionalidades, dejando este formulario abierto.
         }
+
+        private void visualizarCajaTSMI_Click(object sender, EventArgs e)
+        {
+            frmVisualizarCaja verCaja = new frmVisualizarCaja();
+            verCaja.Show();
+        }
     }
 }

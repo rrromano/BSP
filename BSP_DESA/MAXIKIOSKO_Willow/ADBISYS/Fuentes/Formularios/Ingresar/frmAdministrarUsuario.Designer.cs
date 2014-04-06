@@ -54,7 +54,7 @@
             this.lblUsuario.Location = new System.Drawing.Point(21, 23);
             this.lblUsuario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(83, 23);
+            this.lblUsuario.Size = new System.Drawing.Size(64, 18);
             this.lblUsuario.TabIndex = 0;
             this.lblUsuario.Text = "Usuario";
             // 
@@ -65,7 +65,7 @@
             this.lblContraseniaActual.Location = new System.Drawing.Point(21, 70);
             this.lblContraseniaActual.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblContraseniaActual.Name = "lblContraseniaActual";
-            this.lblContraseniaActual.Size = new System.Drawing.Size(183, 23);
+            this.lblContraseniaActual.Size = new System.Drawing.Size(144, 18);
             this.lblContraseniaActual.TabIndex = 1;
             this.lblContraseniaActual.Text = "Contraseña Actual";
             // 
@@ -76,7 +76,7 @@
             this.lblContraseniaNueva.Location = new System.Drawing.Point(21, 117);
             this.lblContraseniaNueva.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblContraseniaNueva.Name = "lblContraseniaNueva";
-            this.lblContraseniaNueva.Size = new System.Drawing.Size(183, 23);
+            this.lblContraseniaNueva.Size = new System.Drawing.Size(146, 18);
             this.lblContraseniaNueva.TabIndex = 2;
             this.lblContraseniaNueva.Text = "Contraseña Nueva";
             // 
@@ -87,7 +87,7 @@
             this.lblDescripcion.Location = new System.Drawing.Point(234, 24);
             this.lblDescripcion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(122, 23);
+            this.lblDescripcion.Size = new System.Drawing.Size(92, 18);
             this.lblDescripcion.TabIndex = 3;
             this.lblDescripcion.Text = "Descripción";
             // 
@@ -118,7 +118,7 @@
             this.txtContraRepe.Location = new System.Drawing.Point(220, 161);
             this.txtContraRepe.MaxLength = 255;
             this.txtContraRepe.Name = "txtContraRepe";
-            this.txtContraRepe.Size = new System.Drawing.Size(244, 29);
+            this.txtContraRepe.Size = new System.Drawing.Size(244, 25);
             this.txtContraRepe.TabIndex = 5;
             this.txtContraRepe.UseSystemPasswordChar = true;
             this.txtContraRepe.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContraRepe_KeyPress);
@@ -130,7 +130,7 @@
             this.lblContraRepe.Location = new System.Drawing.Point(21, 164);
             this.lblContraRepe.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblContraRepe.Name = "lblContraRepe";
-            this.lblContraRepe.Size = new System.Drawing.Size(192, 23);
+            this.lblContraRepe.Size = new System.Drawing.Size(151, 18);
             this.lblContraRepe.TabIndex = 7;
             this.lblContraRepe.Text = "Repetir Contraseña";
             // 
@@ -166,7 +166,7 @@
             this.txtContraNueva.Location = new System.Drawing.Point(220, 114);
             this.txtContraNueva.MaxLength = 255;
             this.txtContraNueva.Name = "txtContraNueva";
-            this.txtContraNueva.Size = new System.Drawing.Size(244, 29);
+            this.txtContraNueva.Size = new System.Drawing.Size(244, 25);
             this.txtContraNueva.TabIndex = 4;
             this.txtContraNueva.UseSystemPasswordChar = true;
             this.txtContraNueva.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContraNueva_KeyPress);
@@ -177,7 +177,7 @@
             this.txtContraActual.Location = new System.Drawing.Point(220, 67);
             this.txtContraActual.MaxLength = 255;
             this.txtContraActual.Name = "txtContraActual";
-            this.txtContraActual.Size = new System.Drawing.Size(244, 29);
+            this.txtContraActual.Size = new System.Drawing.Size(244, 25);
             this.txtContraActual.TabIndex = 3;
             this.txtContraActual.UseSystemPasswordChar = true;
             this.txtContraActual.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContraActual_KeyPress);
@@ -188,7 +188,7 @@
             this.txtDescripcion.Location = new System.Drawing.Point(360, 21);
             this.txtDescripcion.MaxLength = 255;
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(294, 29);
+            this.txtDescripcion.Size = new System.Drawing.Size(294, 25);
             this.txtDescripcion.TabIndex = 2;
             // 
             // txtUsuario
@@ -198,7 +198,7 @@
             this.txtUsuario.Location = new System.Drawing.Point(109, 21);
             this.txtUsuario.MaxLength = 255;
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(112, 29);
+            this.txtUsuario.Size = new System.Drawing.Size(112, 25);
             this.txtUsuario.TabIndex = 1;
             // 
             // pictureBox1
@@ -213,7 +213,7 @@
             // 
             // frmAdministrarUsuario
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(721, 296);
             this.Controls.Add(this.groupBox1);
