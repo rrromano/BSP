@@ -65,6 +65,274 @@ Go
 /*
 (Sólo AdintaR) Copia las sucursales a Centros de Costo 
 */
+Use WIADBISYS
+Go 
+If Exists ( Select 1 From SysObjects Where Name = 'sp_helptextfb')
+  Drop Procedure sp_helptextfb
+Go 
+create procedure [dbo].[sp_helptextfb] --- cualquier duda consultar sp_helptext ( the original!! )
+@n_1552_objname nvarchar(776),
+@s_200_bp varchar(200) = '', --pk
+@i_10_cl int = 1            --pk
+as
+/*************************************************************************************************************/
+/*                                                                                                           */
+/* ojo: si el stored tiene comentarios previos , los va a perder!!!!!!!                                      */
+/*                                                                                                           */
+/*************************************************************************************************************/
+set nocount on
+declare @dbname sysname
+,@blankspaceadded     int
+,@basepos             int
+,@currentpos          int
+,@textlength          int 
+,@addonlen            int
+,@lfcr                int --lengths of line feed carriage return
+,@definedlength       int
+,@syscomtext          nvarchar(4000)
+,@line                nvarchar(255)
+,@flag                int
+,@blinea              varchar(300)--pk
+,@imprimio            bit         --pk
+,@nlinea              int         --pk
+,@ultlinea            int         --pk
+if @i_10_cl < -1
+  set @i_10_cl = -1
+if @s_200_bp = ''            --pk
+  select @imprimio = 1 --pk
+else                   --pk
+  select @imprimio = 0 --pk
+select @nlinea = 0
+if isnumeric(@s_200_bp) = 1
+  select @ultlinea = convert(int,@s_200_bp)
+else if @i_10_cl < 0
+  select @ultlinea = 0
+else
+  select @ultlinea = - @i_10_cl
+select @definedlength = 255
+select @blankspaceadded = 0 
+select @lfcr = 2
+select @flag = 0
+declare syscomcursor  cursor local forward_only read_only for
+  select text
+    from syscomments
+   where id = object_id(@n_1552_objname)
+     and encrypted = 0
+order by number, colid
+open syscomcursor
+fetch next from syscomcursor into @syscomtext
+while @@fetch_status >= 0
+begin
+  select  @basepos  = 1
+  select  @currentpos = 1
+  select  @textlength     = len(@syscomtext)
+            while @currentpos  != 0
+              begin
+                --looking for end of line followed by carriage return
+                select @currentpos =   charindex(char(13)+char(10), @syscomtext, @basepos)
+                  
+                --if carriage return found
+                if @currentpos != 0
+                  begin
+                    while (isnull(len(@line),0) + @blankspaceadded + @currentpos-@basepos + @lfcr) > @definedlength
+                      begin
+                        select @addonlen = @definedlength-(isnull(len(@line),0) + @blankspaceadded)
+                        if @flag != 0
+                          begin
+                            set @blinea = isnull(@line, N'') + isnull(substring(@syscomtext, @basepos, @addonlen), N'')--pk
+                            if @s_200_bp <> '' --pk esto es para que no pierda tiempo al pedo
+                              begin                                                   --pk
+                                set @nlinea = @nlinea + 1
+                                if isnumeric(@s_200_bp) = 0 and charindex(@s_200_bp,@blinea) <> 0 --pk
+                                  begin
+                                    print convert(char(6),@nlinea) + '=> ' + @blinea
+                                    set @ultlinea = @nlinea
+                                    set @imprimio = 1
+                                  end
+                                else
+                                  begin
+                                    if @i_10_cl < 0 or (@ultlinea > 0 and @ultlinea + @i_10_cl > @nlinea and @ultlinea <= @nlinea)
+                                      print convert(char(6),@nlinea) + ' - ' + @blinea
+                                  end 
+                              end --pk
+                            else
+                              begin
+                     print @blinea 
+                              end
+                          end
+                        else
+                          begin
+                            set @blinea = substring( isnull(@line, N'') + isnull(substring(@syscomtext, @basepos, @addonlen), N'') , charindex ( 'create' , isnull(@line, N'') + isnull(substring(@syscomtext, @basepos, @addonlen), N'') ) , @definedlength )
+
+
+
+                            if @s_200_bp <> '' --pk esto es para que no pierda tiempo al pedo
+                              begin                                                   --pk
+                                set @nlinea = @nlinea + 1
+                                if isnumeric(@s_200_bp) = 0 and charindex(@s_200_bp,@blinea) <> 0 --pk
+                                  begin
+                                    print convert(char(6),@nlinea) + '=> ' + @blinea
+                                    set @ultlinea = @nlinea
+                                    set @imprimio = 1
+                                  end
+                                else
+                                  begin
+                                    if @i_10_cl < 0 or (@ultlinea > 0 and @ultlinea + @i_10_cl > @nlinea and @ultlinea <= @nlinea)
+                                      print convert(char(6),@nlinea) + ' - ' + @blinea
+                                  end 
+                              end                                                     --pk
+                            else
+                              begin
+                                print @blinea
+                              end
+                            set @flag = 1
+                          end
+                        select @line = null
+                             , @basepos = @basepos + @addonlen
+                             , @blankspaceadded = 0
+                      end
+                    if @flag != 0
+                      select @line    = isnull(@line, N'') + isnull(substring(@syscomtext, @basepos, @currentpos-@basepos + @lfcr), N'')
+                    else
+                      begin
+                        select @line = isnull(@line, N'') + isnull(substring(@syscomtext, @basepos, @currentpos-@basepos + @lfcr), N'')
+                        select @line = substring( @line , charindex( 'create' , @line ) , @definedlength )
+                        set @flag = 1
+                      end
+                    select @basepos = @currentpos+2
+                    set @blinea = @line
+                    if @s_200_bp <> '' --pk esto es para que no pierda tiempo al pedo
+                      begin                                                   --pk
+                        set @nlinea = @nlinea + 1
+                        if isnumeric(@s_200_bp) = 0 and charindex(@s_200_bp,@blinea) <> 0 --pk
+                          begin
+                            print convert(char(6),@nlinea) + '=> ' + @blinea
+                            set @ultlinea = @nlinea
+                            set @imprimio = 1
+                          end
+                        else
+                          begin
+                            if @i_10_cl < 0 or (@ultlinea > 0 and @ultlinea + @i_10_cl > @nlinea and @ultlinea <= @nlinea)
+                              print convert(char(6),@nlinea) + ' - ' + @blinea
+                          end 
+                      end                                                     --pk
+                    else
+                      begin
+                        print @blinea
+                      end
+                    select @line    = null
+                  end
+                else --else carriage return not found
+                  begin
+                    if @basepos < @textlength
+                      begin
+                        while (isnull(len(@line),0) + @blankspaceadded + @textlength-@basepos+1 ) > @definedlength
+                          begin
+ select @addonlen = @definedlength - (isnull(len(@line),0)  + @blankspaceadded )
+                            if @flag != 0
+                             begin
+                                set @blinea = isnull(@line, N'') + isnull(substring(@syscomtext, @basepos, @addonlen), N'')
+                                if @s_200_bp <> '' --pk esto es para que no pierda tiempo al pedo
+                                  begin                                                   --pk
+                                    set @nlinea = @nlinea + 1
+                                    if isnumeric(@s_200_bp) = 0 and charindex(@s_200_bp,@blinea) <> 0 --pk
+                                      begin
+                                        print convert(char(6),@nlinea) + '=> ' + @blinea
+                                        set @ultlinea = @nlinea
+                                        set @imprimio = 1
+                                      end
+                                    else
+                                      begin
+                                        if @i_10_cl < 0 or (@ultlinea > 0 and @ultlinea + @i_10_cl > @nlinea and @ultlinea <= @nlinea)
+                                          print convert(char(6),@nlinea) + ' - ' + @blinea
+                                      end 
+                                  end                                                     --pk
+                                else
+                                  begin
+                                    print @blinea
+                                  end
+                              end
+                            else
+                              begin
+                                set @blinea = substring( isnull(@line, N'') + isnull(substring(@syscomtext, @basepos, @addonlen), N'') , charindex( 'create' , isnull(@line, N'') + isnull(substring(@syscomtext, @basepos, @addonlen), N'') ) , @definedlength
+
+
+
+
+)                        
+                                if @s_200_bp <> '' --pk esto es para que no pierda tiempo al pedo
+                                  begin                                                   --pk
+                                    set @nlinea = @nlinea + 1
+                                    if isnumeric(@s_200_bp) = 0 and charindex(@s_200_bp,@blinea) <> 0 --pk
+                                      begin
+                                        print convert(char(6),@nlinea) + '=> ' + @blinea
+                                        set @ultlinea = @nlinea
+                                        set @imprimio = 1
+                                      end
+                                    else
+                                      begin
+                                        if @i_10_cl < 0 or (@ultlinea > 0 and @ultlinea + @i_10_cl > @nlinea and @ultlinea <= @nlinea)
+                                          print convert(char(6),@nlinea) + ' - ' + @blinea
+                                      end 
+                                  end                                                     --pk
+                                else
+                                  begin
+                                    print @blinea
+                                  end
+                                set @flag = 1
+                              end
+                              select @line = null
+                                 , @basepos = @basepos + @addonlen
+                                 , @blankspaceadded = 0
+                          end
+                          select @line = isnull(@line, N'') + isnull(substring(@syscomtext, @basepos, @textlength-@basepos+1 ), N'')
+                          if charindex(' ', @syscomtext, @textlength+1 ) > 0
+                            begin
+                              select @line = @line + ' '
+                                   , @blankspaceadded = 1
+                            end
+                          break
+ end
+                  end
+  end
+  fetch next from syscomcursor into @syscomtext
+end 
+if @line is not null
+  begin
+    set @blinea = @line
+    if @s_200_bp <> '' --pk esto es para que no pierda tiempo al pedo
+      begin                                                   --pk
+        set @nlinea = @nlinea + 1
+        if isnumeric(@s_200_bp) = 0 and charindex(@s_200_bp,@blinea) <> 0 --pk
+          begin
+            print convert(char(6),@nlinea) + '=> ' + @blinea
+            set @ultlinea = @nlinea
+            set @imprimio = 1
+          end
+        else
+          begin
+            if @i_10_cl < 0 or (@ultlinea > 0 and @ultlinea + @i_10_cl > @nlinea and @ultlinea <= @nlinea)
+            print convert(char(6),@nlinea) + ' - ' + @blinea
+          end 
+      end                                                     --pk
+    else
+      begin
+    print @blinea
+      end
+  end
+if @s_200_bp = '' print 'g' + 'o'
+if @imprimio = 0 and isnumeric(@s_200_bp) = 0
+  print '(no se encontraron lineas que contengan la palabra buscada)'
+if @s_200_bp <> ''
+  begin
+    print '_____________________________________'
+    print 'cantidad total de lineas: ' + convert(varchar(6),@nlinea)
+    print ''
+  end
+close  syscomcursor
+deallocate  syscomcursor
+return (0) -- sp_helptext
+go
 
 Go 
 If Exists ( Select 1 From SysObjects Where Name = 'ArmaCCosto')
@@ -3375,6 +3643,275 @@ Go
 /******************************************************************************************************/
 
 Go 
+
+If Exists ( Select 1 From SysObjects Where Name = 'sp_whoMAll')
+  Drop Procedure sp_whoMAll
+Go 
+CREATE PROCEDURE sp_whoMAll  --- 1995/11/03 10:16
+--    @S_200_loginame     sysname = NULL
+      @S_200_loginame     varchar(200) = '%',
+      @S_2000_campos       varchar(2000) = 'A.*',
+      @N_1_muestroyo    numeric(1) = 0
+as
+/*************************************************************************************************************
+**        Este SP es como el Sp_WhoM , pero muestra absolutamente todos los sps.                              
+**        (13/08/2001)                                                                                        
+**                                                                                   Fernando                 
+**                                                                                   Benavides                
+**************************************************************************************************************/
+/*************************************************************************************************************
+** Parametros:                                                                                                
+**   @S_200_loginame : Una palabra a buscar en cualquiera de los campos que devuelve el Stored                      
+**               Funciones Especiales : Active = 'Not Sleeping'                                               
+**               Local / Remote : 'Host_Name()' / 'Not Host_Name()'                                           
+**               Act Db : 'db_name()'                                                                         
+**               --> Si @S_200_loginame = 'Not %'; Busca que los campos sean diferentes a @S_200_loginame - 'Not'         
+**                                                                                                            
+**   @S_2000_campos   : Campos que debe devolver el Stored ( El Default son Todos )                                  
+**               Deben escribirse precedidos de una a y un punto y separados por comas                        
+**                                                                                                            
+**   @N_1_muestroyo: Determina si el stored muestra el proceso desde el cual esta siendo invocado                 
+**               O sea , si se muestra a si mismo.  ( El Default es No )                                      
+**                                                                                                            
+**                                                                                   Fernando                 
+**                                                                                   Benavides                
+**************************************************************************************************************/
+set nocount on
+declare
+    @retcode         int
+declare
+    @sidlow         varbinary(85)
+   ,@sidhigh        varbinary(85)
+   ,@sid1           varbinary(85)
+   ,@spidlow         int
+   ,@spidhigh        int
+declare
+    @charMaxLenLoginName      varchar(6)
+   ,@charMaxLenUserName       varchar(6) --FB: 2001-05-21
+   ,@charMaxLenDBName         varchar(6)
+   ,@charMaxLenCPUTime        varchar(10)
+   ,@charMaxLenDiskIO         varchar(10)
+   ,@charMaxLenHostName       varchar(10)
+   ,@charMaxLenProgramName    varchar(10)
+   ,@charMaxLenLastBatch      varchar(10)
+   ,@charMaxLenCommand        varchar(10)
+declare
+    @charsidlow               varchar(85)
+   ,@charsidhigh              varchar(85)
+   ,@charspidlow              varchar(11)
+   ,@charspidhigh             varchar(11)
+declare
+    @Not                      varchar(3),
+    @sMuestroYo               varchar(20)
+--------
+--Campos:
+Set @S_2000_campos = LTrim( RTrim( @S_2000_campos ) )
+If len(@S_2000_campos) < 3
+  Begin
+    Print 'CUIDADO: @S_2000_campos demasiado corto'
+    Set @S_2000_campos = 'A.*'
+  End
+If @S_2000_campos <> 'A.*'
+  Begin
+    If CharIndex(' ', @S_2000_campos , 0 ) > 0 Or CharIndex(',' , @S_2000_campos , 0 ) > 0
+      Begin
+        Exec sp_whom_vcampos @S_2000_campos output
+      End
+    Else
+      Begin
+        If Left(@S_2000_campos,2) <> 'A.'
+          Begin
+            Print 'CUIDADO: Los nombres de los campos deben empezar con A.'
+            Set @S_2000_campos = 'A.*'
+          End
+      End
+  End
+--------
+--MuestroYo:
+Select @sMuestroYo = Case
+                       When @N_1_muestroyo = 0 Then ' and Spid != @@Spid '
+                       Else ''
+                     End
+--Funciones Especiales:
+If @S_200_loginame = 'Active'           Select @S_200_loginame = 'not sleeping'
+If @S_200_loginame = 'Not Active'       Select @S_200_loginame = 'sleeping'
+If @S_200_loginame = 'Local'            Select @S_200_loginame = host_name()
+If @S_200_loginame = 'Not Local'        Select @S_200_loginame = 'not ' + host_name()
+If @S_200_loginame = 'Remote'           Select @S_200_loginame = 'not ' + host_name()
+If @S_200_loginame = 'Not Remote'       Select @S_200_loginame = host_name()
+If @S_200_loginame = 'Act db'           Select @S_200_loginame = db_name()
+If @S_200_loginame = 'Not Act db'       Select @S_200_loginame = 'not ' + db_name()
+If @S_200_loginame like 'N%S%/%N%C'     Select @S_200_loginame = 'N S / N C'
+If @S_200_loginame like 'Not N%S%/%N%C' Select @S_200_loginame = 'Not N S / N C'
+--Si Loginame es 'Not %' ==> !=
+If Len(@S_200_loginame) > 4 And @S_200_loginame like 'Not %'
+  Begin
+    Select @Not      = 'Not'
+    Select @S_200_loginame = SubString( @S_200_loginame , 5 , 100 )
+  End
+Else
+  Select @Not = ''
+select
+    @retcode         = 0      -- 0=good ,1=bad.
+--------defaults
+select @sidlow = convert(varbinary(85), (replicate(char(0), 85)))
+select @sidhigh = convert(varbinary(85), (replicate(char(1), 85)))
+select
+    @spidlow         = 0
+   ,@spidhigh        = 32767
+--------------------  Capture consistent sysprocesses.  -------------------
+SELECT
+  spid
+ ,status
+ ,sid
+ ,hostname
+ ,program_name
+ ,cmd
+ ,cpu
+ ,physical_io
+ ,blocked
+ ,dbid
+ ,convert(sysname, rtrim(loginame))
+        as loginname
+ ,nt_username as username --FB: 2001-05-21
+ ,spid as 'spid_sort'
+ ,  substring( convert(varchar,last_batch,111) ,6  ,5 ) + ' '
+  + substring( convert(varchar,last_batch,113) ,13 ,8 )
+       as 'last_batch_char'
+      INTO    #tb1_sysprocesses
+      from master.dbo.sysprocesses   (nolock)
+--------Prepare to dynamically optimize column widths.
+Select
+    @charsidlow     = convert(varchar(85),@sidlow)
+   ,@charsidhigh    = convert(varchar(85),@sidhigh)
+   ,@charspidlow     = convert(varchar,@spidlow)
+   ,@charspidhigh    = convert(varchar,@spidhigh)
+SELECT
+             @charMaxLenLoginName =
+                  convert( varchar
+                          ,isnull( max( datalength(loginname)) ,5)
+                         )
+            ,@charMaxLenUserName =                                  --FB: 2001-05-21
+                  convert( varchar                                  --FB: 2001-05-21
+                          ,isnull( max( datalength(username)) ,5)   --FB: 2001-05-21
+                         )                                          --FB: 2001-05-21
+            ,@charMaxLenDBName    =
+                  convert( varchar
+                          ,isnull( max( datalength( convert(varchar,db_name(dbid)))) ,6)
+                         )
+            ,@charMaxLenCPUTime   =
+                  convert( varchar
+                          ,isnull( max( datalength( convert(varchar,cpu))) ,7)
+                         )
+            ,@charMaxLenDiskIO    =
+                  convert( varchar
+                          ,isnull( max( datalength( convert(varchar,physical_io))) ,6)
+                         )
+            ,@charMaxLenCommand  =
+                  convert( varchar
+                          ,isnull( max( datalength( convert(varchar,cmd))) ,7)
+                         )
+  ,@charMaxLenHostName  =
+                  convert( varchar
+                          ,isnull( max( datalength( convert(varchar,hostname))) ,8)
+                         )
+            ,@charMaxLenProgramName =
+                  convert( varchar
+                          ,isnull( max( datalength( convert(varchar,program_name))) ,11)
+                         )
+            ,@charMaxLenLastBatch =
+                  convert( varchar
+                          ,isnull( max( datalength( convert(varchar,last_batch_char))) ,9)
+                         )
+      from
+             #tb1_sysprocesses
+      where
+             spid >= @spidlow
+      and    spid <= @spidhigh
+--------Output the report.
+/***   This is the area that was modified by MFrank the most.  Exclusion for system processes included, and datalengths were modified. */
+EXECUTE(
+'
+-- (Lo dejo como est .  FB) SET nocount off
+SELECT ' + @S_2000_campos + ' From (
+SELECT
+             SPID          = Right( ''    '' + convert(varchar(5),spid) , 4 )
+            ,ProgramName   = IsNull( NullIf( substring(program_name,1,' + @charMaxLenProgramName + ') , '''' ) , ''N S / N C'' )
+            ,Status        =
+                  CASE lower(status)
+                     When ''sleeping'' Then CONVERT(Varchar(10),lower(status))
+                     Else                   CONVERT(VARCHAR(10),upper(status))
+                  END
+            ,HostName      =
+                  CASE hostname
+                     When Null  Then ''  .''
+                     When '' '' Then ''  .''
+                     Else    CONVERT(Varchar(10),substring(hostname,1,' + @charMaxLenHostName + '))
+                  END
+            ,BlkBy         =
+                  CASE               isnull(convert(char(5),blocked),''0'')
+                     When ''0'' Then ''  .''
+                     Else            isnull(convert(char(5),blocked),''0'')
+                  END
+            ,DBName        = substring(db_name(dbid),1,' + @charMaxLenDBName + ')
+            ,Command       = substring(cmd,1,' + @charMaxLenCommand + ')
+            ,Usuario       = CONVERT(Varchar(10),substring(username,1,' + @charMaxLenUserName + '))
+            ,DiskIO        = substring(convert(varchar,physical_io),1,' + @charMaxLenDiskIO + ')
+            ,Login         = CONVERT(Varchar(10),substring(loginname,1,' + @charMaxLenLoginName + '))
+            ,LastBatch     = substring(last_batch_char,1,' + @charMaxLenLastBatch + ')
+            ,CPUTime       = substring(convert(varchar,cpu),1,' + @charMaxLenCPUTime + ')
+            ,SPID_Right    = convert(char(5),spid)  --Handy extra for right-scrolling users.
+      from
+             #tb1_sysprocesses  --Usually DB qualification is needed in exec().
+      where
+             spid >= ' + @charspidlow  + '
+      and    spid <= ' + @charspidhigh + '
+-- POR PARAMETRO ----------------------------------------------------------------------------------------------
+      And ' + @Not + ' (
+               Right( ''    '' + convert(varchar(5),spid) , 4 )                         like ''' + @S_200_loginame + '''
+           Or  IsNull( NullIf( substring(program_name,1,' + @charMaxLenProgramName + ') , '''' ) , ''N S / N C'' )
+                                                                                        like ''' + @S_200_loginame + '''
+           Or  CASE lower(status)
+                 When ''sleeping'' Then CONVERT(Varchar(10),lower(status))
+                 Else                   CONVERT(VARCHAR(10),upper(status))
+               END                                                                      like ''' + @S_200_loginame + '''
+           Or CASE hostname
+                When Null  Then ''  .''
+                When '' '' Then ''  .''
+                Else    CONVERT(Varchar(10),substring(hostname,1,' + @charMaxLenHostName + '))
+              END                                                                       like ''' + @S_200_loginame + '''
+           Or CASE               isnull(convert(char(5),blocked),''0'')
+                When ''0'' Then ''  .''
+                Else            isnull(convert(char(5),blocked),''0'')
+              END                                                                       like ''' + @S_200_loginame + '''
+           Or substring(db_name(dbid),1,' + @charMaxLenDBName + ')                      like ''' + @S_200_loginame + '''
+           Or substring(cmd,1,' + @charMaxLenCommand + ')                               like ''' + @S_200_loginame + '''
+           Or substring(convert(varchar,physical_io),1,' + @charMaxLenDiskIO + ')       like ''' + @S_200_loginame + '''
+           Or CONVERT(Varchar(10),substring(loginname,1,' + @charMaxLenLoginName + '))  like ''' + @S_200_loginame + '''
+           Or CONVERT(Varchar(10),substring(username,1,' + @charMaxLenUserName + '))    like ''' + @S_200_loginame + '''
+          )
+-- POR PARAMETRO ---------------------------------------------------------------------------------------------- 
+'
++
+@sMuestroYo
++
+'
+) A
+    Order by spid
+-- (Lo dejo como est .  FB) SET nocount on'
+)
+/*****AKUNDONE: removed from where-clause in above EXEC sqlstr
+             sid >= ' + @charsidlow  + '
+      and    sid <= ' + @charsidhigh + '
+      and
+**************/
+LABEL_86RETURN:
+if (object_id('tempdb..#tb1_sysprocesses') is not null)
+            drop table #tb1_sysprocesses
+return @retcode -- sp_who2
+Go
+
+
 If Exists ( Select 1 From SysObjects Where Name = 'sp_whoM')
   Drop Procedure sp_whoM
 Go 
@@ -3675,274 +4212,8 @@ Go
 /******************************************************************************************************/
 
 Go 
-If Exists ( Select 1 From SysObjects Where Name = 'sp_whoMAll')
-  Drop Procedure sp_whoMAll
-Go 
-CREATE PROCEDURE sp_whoMAll  --- 1995/11/03 10:16
---    @S_200_loginame     sysname = NULL
-      @S_200_loginame     varchar(200) = '%',
-      @S_2000_campos       varchar(2000) = 'A.*',
-      @N_1_muestroyo    numeric(1) = 0
-as
-/*************************************************************************************************************
-**        Este SP es como el Sp_WhoM , pero muestra absolutamente todos los sps.                              
-**        (13/08/2001)                                                                                        
-**                                                                                   Fernando                 
-**                                                                                   Benavides                
-**************************************************************************************************************/
-/*************************************************************************************************************
-** Parametros:                                                                                                
-**   @S_200_loginame : Una palabra a buscar en cualquiera de los campos que devuelve el Stored                      
-**               Funciones Especiales : Active = 'Not Sleeping'                                               
-**               Local / Remote : 'Host_Name()' / 'Not Host_Name()'                                           
-**               Act Db : 'db_name()'                                                                         
-**               --> Si @S_200_loginame = 'Not %'; Busca que los campos sean diferentes a @S_200_loginame - 'Not'         
-**                                                                                                            
-**   @S_2000_campos   : Campos que debe devolver el Stored ( El Default son Todos )                                  
-**               Deben escribirse precedidos de una a y un punto y separados por comas                        
-**                                                                                                            
-**   @N_1_muestroyo: Determina si el stored muestra el proceso desde el cual esta siendo invocado                 
-**               O sea , si se muestra a si mismo.  ( El Default es No )                                      
-**                                                                                                            
-**                                                                                   Fernando                 
-**                                                                                   Benavides                
-**************************************************************************************************************/
-set nocount on
-declare
-    @retcode         int
-declare
-    @sidlow         varbinary(85)
-   ,@sidhigh        varbinary(85)
-   ,@sid1           varbinary(85)
-   ,@spidlow         int
-   ,@spidhigh        int
-declare
-    @charMaxLenLoginName      varchar(6)
-   ,@charMaxLenUserName       varchar(6) --FB: 2001-05-21
-   ,@charMaxLenDBName         varchar(6)
-   ,@charMaxLenCPUTime        varchar(10)
-   ,@charMaxLenDiskIO         varchar(10)
-   ,@charMaxLenHostName       varchar(10)
-   ,@charMaxLenProgramName    varchar(10)
-   ,@charMaxLenLastBatch      varchar(10)
-   ,@charMaxLenCommand        varchar(10)
-declare
-    @charsidlow               varchar(85)
-   ,@charsidhigh              varchar(85)
-   ,@charspidlow              varchar(11)
-   ,@charspidhigh             varchar(11)
-declare
-    @Not                      varchar(3),
-    @sMuestroYo               varchar(20)
---------
---Campos:
-Set @S_2000_campos = LTrim( RTrim( @S_2000_campos ) )
-If len(@S_2000_campos) < 3
-  Begin
-    Print 'CUIDADO: @S_2000_campos demasiado corto'
-    Set @S_2000_campos = 'A.*'
-  End
-If @S_2000_campos <> 'A.*'
-  Begin
-    If CharIndex(' ', @S_2000_campos , 0 ) > 0 Or CharIndex(',' , @S_2000_campos , 0 ) > 0
-      Begin
-        Exec sp_whom_vcampos @S_2000_campos output
-      End
-    Else
-      Begin
-        If Left(@S_2000_campos,2) <> 'A.'
-          Begin
-            Print 'CUIDADO: Los nombres de los campos deben empezar con A.'
-            Set @S_2000_campos = 'A.*'
-          End
-      End
-  End
---------
---MuestroYo:
-Select @sMuestroYo = Case
-                       When @N_1_muestroyo = 0 Then ' and Spid != @@Spid '
-                       Else ''
-                     End
---Funciones Especiales:
-If @S_200_loginame = 'Active'           Select @S_200_loginame = 'not sleeping'
-If @S_200_loginame = 'Not Active'       Select @S_200_loginame = 'sleeping'
-If @S_200_loginame = 'Local'            Select @S_200_loginame = host_name()
-If @S_200_loginame = 'Not Local'        Select @S_200_loginame = 'not ' + host_name()
-If @S_200_loginame = 'Remote'           Select @S_200_loginame = 'not ' + host_name()
-If @S_200_loginame = 'Not Remote'       Select @S_200_loginame = host_name()
-If @S_200_loginame = 'Act db'           Select @S_200_loginame = db_name()
-If @S_200_loginame = 'Not Act db'       Select @S_200_loginame = 'not ' + db_name()
-If @S_200_loginame like 'N%S%/%N%C'     Select @S_200_loginame = 'N S / N C'
-If @S_200_loginame like 'Not N%S%/%N%C' Select @S_200_loginame = 'Not N S / N C'
---Si Loginame es 'Not %' ==> !=
-If Len(@S_200_loginame) > 4 And @S_200_loginame like 'Not %'
-  Begin
-    Select @Not      = 'Not'
-    Select @S_200_loginame = SubString( @S_200_loginame , 5 , 100 )
-  End
-Else
-  Select @Not = ''
-select
-    @retcode         = 0      -- 0=good ,1=bad.
---------defaults
-select @sidlow = convert(varbinary(85), (replicate(char(0), 85)))
-select @sidhigh = convert(varbinary(85), (replicate(char(1), 85)))
-select
-    @spidlow         = 0
-   ,@spidhigh        = 32767
---------------------  Capture consistent sysprocesses.  -------------------
-SELECT
-  spid
- ,status
- ,sid
- ,hostname
- ,program_name
- ,cmd
- ,cpu
- ,physical_io
- ,blocked
- ,dbid
- ,convert(sysname, rtrim(loginame))
-        as loginname
- ,nt_username as username --FB: 2001-05-21
- ,spid as 'spid_sort'
- ,  substring( convert(varchar,last_batch,111) ,6  ,5 ) + ' '
-  + substring( convert(varchar,last_batch,113) ,13 ,8 )
-       as 'last_batch_char'
-      INTO    #tb1_sysprocesses
-      from master.dbo.sysprocesses   (nolock)
---------Prepare to dynamically optimize column widths.
-Select
-    @charsidlow     = convert(varchar(85),@sidlow)
-   ,@charsidhigh    = convert(varchar(85),@sidhigh)
-   ,@charspidlow     = convert(varchar,@spidlow)
-   ,@charspidhigh    = convert(varchar,@spidhigh)
-SELECT
-             @charMaxLenLoginName =
-                  convert( varchar
-                          ,isnull( max( datalength(loginname)) ,5)
-                         )
-            ,@charMaxLenUserName =                                  --FB: 2001-05-21
-                  convert( varchar                                  --FB: 2001-05-21
-                          ,isnull( max( datalength(username)) ,5)   --FB: 2001-05-21
-                         )                                          --FB: 2001-05-21
-            ,@charMaxLenDBName    =
-                  convert( varchar
-                          ,isnull( max( datalength( convert(varchar,db_name(dbid)))) ,6)
-                         )
-            ,@charMaxLenCPUTime   =
-                  convert( varchar
-                          ,isnull( max( datalength( convert(varchar,cpu))) ,7)
-                         )
-            ,@charMaxLenDiskIO    =
-                  convert( varchar
-                          ,isnull( max( datalength( convert(varchar,physical_io))) ,6)
-                         )
-            ,@charMaxLenCommand  =
-                  convert( varchar
-                          ,isnull( max( datalength( convert(varchar,cmd))) ,7)
-                         )
-  ,@charMaxLenHostName  =
-                  convert( varchar
-                          ,isnull( max( datalength( convert(varchar,hostname))) ,8)
-                         )
-            ,@charMaxLenProgramName =
-                  convert( varchar
-                          ,isnull( max( datalength( convert(varchar,program_name))) ,11)
-                         )
-            ,@charMaxLenLastBatch =
-                  convert( varchar
-                          ,isnull( max( datalength( convert(varchar,last_batch_char))) ,9)
-                         )
-      from
-             #tb1_sysprocesses
-      where
-             spid >= @spidlow
-      and    spid <= @spidhigh
---------Output the report.
-/***   This is the area that was modified by MFrank the most.  Exclusion for system processes included, and datalengths were modified. */
-EXECUTE(
-'
--- (Lo dejo como est .  FB) SET nocount off
-SELECT ' + @S_2000_campos + ' From (
-SELECT
-             SPID          = Right( ''    '' + convert(varchar(5),spid) , 4 )
-            ,ProgramName   = IsNull( NullIf( substring(program_name,1,' + @charMaxLenProgramName + ') , '''' ) , ''N S / N C'' )
-            ,Status        =
-                  CASE lower(status)
-                     When ''sleeping'' Then CONVERT(Varchar(10),lower(status))
-                     Else                   CONVERT(VARCHAR(10),upper(status))
-                  END
-            ,HostName      =
-                  CASE hostname
-                     When Null  Then ''  .''
-                     When '' '' Then ''  .''
-                     Else    CONVERT(Varchar(10),substring(hostname,1,' + @charMaxLenHostName + '))
-                  END
-            ,BlkBy         =
-                  CASE               isnull(convert(char(5),blocked),''0'')
-                     When ''0'' Then ''  .''
-                     Else            isnull(convert(char(5),blocked),''0'')
-                  END
-            ,DBName        = substring(db_name(dbid),1,' + @charMaxLenDBName + ')
-            ,Command       = substring(cmd,1,' + @charMaxLenCommand + ')
-            ,Usuario       = CONVERT(Varchar(10),substring(username,1,' + @charMaxLenUserName + '))
-            ,DiskIO        = substring(convert(varchar,physical_io),1,' + @charMaxLenDiskIO + ')
-            ,Login         = CONVERT(Varchar(10),substring(loginname,1,' + @charMaxLenLoginName + '))
-            ,LastBatch     = substring(last_batch_char,1,' + @charMaxLenLastBatch + ')
-            ,CPUTime       = substring(convert(varchar,cpu),1,' + @charMaxLenCPUTime + ')
-            ,SPID_Right    = convert(char(5),spid)  --Handy extra for right-scrolling users.
-      from
-             #tb1_sysprocesses  --Usually DB qualification is needed in exec().
-      where
-             spid >= ' + @charspidlow  + '
-      and    spid <= ' + @charspidhigh + '
--- POR PARAMETRO ----------------------------------------------------------------------------------------------
-      And ' + @Not + ' (
-               Right( ''    '' + convert(varchar(5),spid) , 4 )                         like ''' + @S_200_loginame + '''
-           Or  IsNull( NullIf( substring(program_name,1,' + @charMaxLenProgramName + ') , '''' ) , ''N S / N C'' )
-                                                                                        like ''' + @S_200_loginame + '''
-           Or  CASE lower(status)
-                 When ''sleeping'' Then CONVERT(Varchar(10),lower(status))
-                 Else                   CONVERT(VARCHAR(10),upper(status))
-               END                                                                      like ''' + @S_200_loginame + '''
-           Or CASE hostname
-                When Null  Then ''  .''
-                When '' '' Then ''  .''
-                Else    CONVERT(Varchar(10),substring(hostname,1,' + @charMaxLenHostName + '))
-              END                                                                       like ''' + @S_200_loginame + '''
-           Or CASE               isnull(convert(char(5),blocked),''0'')
-                When ''0'' Then ''  .''
-                Else            isnull(convert(char(5),blocked),''0'')
-              END                                                                       like ''' + @S_200_loginame + '''
-           Or substring(db_name(dbid),1,' + @charMaxLenDBName + ')                      like ''' + @S_200_loginame + '''
-           Or substring(cmd,1,' + @charMaxLenCommand + ')                               like ''' + @S_200_loginame + '''
-           Or substring(convert(varchar,physical_io),1,' + @charMaxLenDiskIO + ')       like ''' + @S_200_loginame + '''
-           Or CONVERT(Varchar(10),substring(loginname,1,' + @charMaxLenLoginName + '))  like ''' + @S_200_loginame + '''
-           Or CONVERT(Varchar(10),substring(username,1,' + @charMaxLenUserName + '))    like ''' + @S_200_loginame + '''
-          )
--- POR PARAMETRO ---------------------------------------------------------------------------------------------- 
-'
-+
-@sMuestroYo
-+
-'
-) A
-    Order by spid
--- (Lo dejo como est .  FB) SET nocount on'
-)
-/*****AKUNDONE: removed from where-clause in above EXEC sqlstr
-             sid >= ' + @charsidlow  + '
-      and    sid <= ' + @charsidhigh + '
-      and
-**************/
-LABEL_86RETURN:
-if (object_id('tempdb..#tb1_sysprocesses') is not null)
-            drop table #tb1_sysprocesses
-return @retcode -- sp_who2
-Go
 
-Use ITAdintar
+Use WIAdbisys
 Go 
 If Exists ( Select 1 From SysObjects Where Name = 'sp_val_as_cpo_cpo')
   Drop Procedure sp_val_as_cpo_cpo
