@@ -166,8 +166,8 @@ GO
 --=============================================================================================
 create table PROVEEDORES(
 	ID_Proveedor int identity not null,
-	Rubro        int		      not null,
-	Nombre       varchar(255) null    ,
+	Rubro        int		  not null,
+	Nombre       varchar(255) not null,
 	Contacto     varchar(255) null    ,
 	Direccion    varchar(255) null    ,
 	Localidad    varchar(255) null    ,

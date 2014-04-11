@@ -340,7 +340,6 @@ namespace ADBISYS.FuncionesGenerales
             {
                 if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
                 {
-                    MessageBox.Show("Solo se permiten letras en dicho campo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     e.Handled = true;
                     return;
                 }
@@ -357,7 +356,6 @@ namespace ADBISYS.FuncionesGenerales
             {
                 if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
                 {
-                    //MessageBox.Show("Solo se permiten números en dicho campo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     e.Handled = true;
                     return;
                 }
