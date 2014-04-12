@@ -36,8 +36,8 @@ namespace ADBISYS.Formularios.Rubros
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (validoCampos()) return;
-            if (verificarRubroExistente()) return;
+            if (!(validoCampos())) return;
+            if (!(verificarRubroExistente())) return;
             altaDeRubro();
         }
 
@@ -47,9 +47,9 @@ namespace ADBISYS.Formularios.Rubros
             {
                 MessageBox.Show("El campo Descripción es obligatorio.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtDescripcion.Focus();
-                return true;
+                return false;
             }
-            return false;
+            return true;
         }
 
         private void altaDeRubro()
@@ -104,7 +104,7 @@ namespace ADBISYS.Formularios.Rubros
         {
             try
             {
-                cadenaSql = "EXEC adp_verifico_rubro_existente @Rubro_Descricion" + fg.fcSql(txtDescripcion.Text, "String");
+                cadenaSql = "EXEC adp_verifico_rubro_existente @Rubro_Descripcion = " + fg.fcSql(txtDescripcion.Text, "String");
                 ds = objConect.ejecutarQuerySelect(cadenaSql);
 
                 if (ds.Tables[0].Rows.Count > 0)
@@ -113,11 +113,11 @@ namespace ADBISYS.Formularios.Rubros
                     {
                         MessageBox.Show("El rubro " + txtDescripcion.Text + " ya existe.", "Alta de Rubro.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         txtDescripcion.Focus();
-                        return true;
+                        return false;
                     }
                     else
                     {
-                        return false;
+                        return true;
                     }
                 }
                 else
