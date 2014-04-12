@@ -57,7 +57,7 @@ namespace ADBISYS.Formularios.Rubros
                 usuario = Properties.Settings.Default.UsuarioLogueado.ToString();
 
                 cadenaSql = "EXEC adp_nuevo_rubro";
-                cadenaSql = cadenaSql + " @Desccripcion = " + fg.fcSql(txtDescripcion.Text, "String");
+                cadenaSql = cadenaSql + " @Descripcion = " + fg.fcSql(txtDescripcion.Text, "String");
                 cadenaSql = cadenaSql + ",@Login = " + fg.fcSql(usuario, "String");
 
                 objConect.ejecutarQuery(cadenaSql);

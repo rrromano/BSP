@@ -91,7 +91,7 @@ namespace ADBISYS.Formularios.Proveedores
 
                 foreach (DataRow dataRow in ds.Tables[0].Rows)
                 {
-                    cboRubro.Items.Add(dataRow[1]);
+                    cboRubro.Items.Add(dataRow["DESCRIPCION"]);
                 }
                 cboRubro.Text = rubroAnterior;
             }
@@ -152,12 +152,16 @@ namespace ADBISYS.Formularios.Proveedores
                 usuario = Properties.Settings.Default.UsuarioLogueado.ToString();
 
                 cadenaSql = "EXEC adp_nuevo_proveedor";
-                cadenaSql = cadenaSql + " @Rubro = " + fg.fcSql(cboRubro.Text, "String");
-                cadenaSql = cadenaSql + ",@Nombre = " + fg.fcSql(txtNombre.Text, "String");
-                cadenaSql = cadenaSql + ",@Contacto = " + fg.fcSql(txtContacto.Text, "String");
-                cadenaSql = cadenaSql + ",@Direccion = " + fg.fcSql(txtDireccion.Text, "String");
-                cadenaSql = cadenaSql + ",@Localidad = " + fg.fcSql(txtLocalidad.Text, "String");
-                cadenaSql = cadenaSql + ",@Provincia = " + fg.fcSql(txtProvincia.Text, "String");
+                cadenaSql = cadenaSql + " @Proveedor_IdRubro = " + fg.fcSql(cboRubro.Text, "String");
+                cadenaSql = cadenaSql + ",@Proveedor_Nombre = " + fg.fcSql(txtNombre.Text, "String");
+                if (txtContacto.Text != "")
+                { cadenaSql = cadenaSql + ",@Proveedor_Contacto = " + fg.fcSql(txtContacto.Text, "String"); }
+                if (txtDireccion.Text != "")
+                { cadenaSql = cadenaSql + ",@Proveedor_Direccion = " + fg.fcSql(txtDireccion.Text, "String"); }
+                if (txtLocalidad.Text != "")
+                { cadenaSql = cadenaSql + ",@Proveedor_Localidad = " + fg.fcSql(txtLocalidad.Text, "String"); }
+                if (txtProvincia.Text != "")
+                { cadenaSql = cadenaSql + ",@Proveedor_Provincia = " + fg.fcSql(txtProvincia.Text, "String"); }
                 if (txtTelefono.Text != "")
                 { cadenaSql = cadenaSql + ",@Telefono = " + txtTelefono.Text; }
                 if (txtCuit.Text != "")

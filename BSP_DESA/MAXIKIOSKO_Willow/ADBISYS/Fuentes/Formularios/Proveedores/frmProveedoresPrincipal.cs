@@ -47,5 +47,15 @@ namespace ADBISYS.Formularios.Proveedores
             frmNuevoProveedor nuevoProveedor = new frmNuevoProveedor();
             nuevoProveedor.ShowDialog();
         }
+
+        private void frmProveedoresPrincipal_Activated(object sender, EventArgs e)
+        {
+            llenaGrilla();
+        }
+
+        private void llenarGrilla()
+        {
+ 
+        }
     }
 }

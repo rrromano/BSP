@@ -164,7 +164,19 @@ namespace ADBISYS
 
         private void modifProveedoresTSMI_Click(object sender, EventArgs e)
         {
-            mostrarFormularioProveedores();
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmProveedoresPrincipal);
+
+            if (frm != null)
+            {
+                //si la instancia existe la pongo en primer plano
+                MessageBox.Show("El formulario de Proveedores ya se encuentra abierto.", "Proveedores.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                mostrarFormularioProveedores();
+            }
         }
 
         private void mostrarFormularioProveedores()
