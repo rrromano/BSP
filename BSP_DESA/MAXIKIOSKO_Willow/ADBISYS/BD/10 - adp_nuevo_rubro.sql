@@ -5,8 +5,8 @@ If Exists ( Select 1 From SysObjects Where Name = 'adp_nuevo_rubro')
 Go 
 
 -- SP QUE INSERTA UN NUEVO RUBRO.
-Create procedure adp_nuevo_rubro (@DESCRIPCION	VARCHAR(255),
-																	@LOGIN				VARCHAR(255))
+Create procedure adp_nuevo_rubro (@RUBRO_DESCRIPCION	VARCHAR(255),
+																	@RUBRO_LOGIN				VARCHAR(255) = NULL)
 as
 
 BEGIN TRY
@@ -17,9 +17,9 @@ BEGIN TRY
 											FECHA_MODIF,
 											LOGIN_MODIF,
 											TERM_MODIF) 
-	VALUES (UPPER(@DESCRIPCION), 
+	VALUES (UPPER(@RUBRO_DESCRIPCION), 
 					GETDATE(), 
-					@LOGIN, 
+					@RUBRO_LOGIN, 
 					HOST_NAME())
 	
 	SET NOCOUNT OFF

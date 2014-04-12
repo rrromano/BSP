@@ -33,16 +33,16 @@ BEGIN TRY
 													 LOGIN_MODIF,
 													 TERM_MODIF	)
 													 
-	VALUES (@Proveedor_IdRubro  ,	
-					@Proveedor_Nombre	  ,	
-					@Proveedor_Contacto ,	
-					@Proveedor_Direccion,
-					@Proveedor_Localidad,
-					@Proveedor_Provincia,
-					@Proveedor_Telefono	,
-					@Proveedor_Cuit			,
-					GETDATE()						,
-					@Proveedor_Login		,
+	VALUES (@Proveedor_IdRubro					,	
+					UPPER(@Proveedor_Nombre	  )	,	
+					UPPER(@Proveedor_Contacto )	,	
+					UPPER(@Proveedor_Direccion)	,	
+					UPPER(@Proveedor_Localidad)	,
+					UPPER(@Proveedor_Provincia)	,
+					@Proveedor_Telefono					,
+					@Proveedor_Cuit							,
+					GETDATE()										,
+					@Proveedor_Login						,
 					HOST_NAME()					)	
 
 	SET NOCOUNT OFF
