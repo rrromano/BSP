@@ -235,7 +235,6 @@
             this.Name = "frmProveedoresPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Proveedores";
-            this.Activated += new System.EventHandler(this.frmProveedoresPrincipal_Activated);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProveedores)).EndInit();
             this.menuStrip1.ResumeLayout(false);

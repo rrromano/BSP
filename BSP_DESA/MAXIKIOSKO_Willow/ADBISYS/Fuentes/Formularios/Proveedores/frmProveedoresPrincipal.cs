@@ -48,14 +48,14 @@ namespace ADBISYS.Formularios.Proveedores
             nuevoProveedor.ShowDialog();
         }
 
-        private void frmProveedoresPrincipal_Activated(object sender, EventArgs e)
-        {
-            llenaGrilla();
-        }
+        //private void frmProveedoresPrincipal_Activated(object sender, EventArgs e)
+        //{
+        //    llenaGrilla();
+        //}
 
-        private void llenarGrilla()
-        {
+        //private void llenarGrilla()
+        //{
  
-        }
+        //}
     }
 }

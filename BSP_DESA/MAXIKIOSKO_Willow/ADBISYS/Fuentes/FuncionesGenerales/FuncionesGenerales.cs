@@ -418,7 +418,19 @@ namespace ADBISYS.FuncionesGenerales
             }
             catch (Exception r)
             {
-                throw new System.ArgumentException("[Error] -  [" + r.Message.ToString() + "]");
+                throw new System.ArgumentException("[Error] - [" + r.Message.ToString() + "]");
+            }
+        }
+
+        public char keyPressMayusculas(KeyPressEventArgs e)
+        {
+            try
+            {
+                return char.Parse(e.KeyChar.ToString().ToUpper());
+            }
+            catch (Exception r)
+            {
+                throw new System.ArgumentException("[Error] - [" + r.Message.ToString() + "]");
             }
         }
     }

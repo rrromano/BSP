@@ -19,6 +19,7 @@ namespace ADBISYS.Formularios.Proveedores
         DataSet ds = new DataSet();
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
         string cadenaSql, rubroAnterior,usuario = "";
+        Dictionary<int, string> rubros = new Dictionary<int, string>();
 
         public frmNuevoProveedor()
         {
@@ -86,12 +87,15 @@ namespace ADBISYS.Formularios.Proveedores
             {
                 rubroAnterior = cboRubro.Text;
                 cboRubro.Items.Clear();
+                rubros.Clear();
+
                 cadenaSql = "EXEC adp_info_rubros";
                 ds = objConect.ejecutarQuerySelect(cadenaSql);
 
                 foreach (DataRow dataRow in ds.Tables[0].Rows)
                 {
                     cboRubro.Items.Add(dataRow["DESCRIPCION"]);
+                    rubros.Add(int.Parse(dataRow["ID_RUBRO"].ToString()), dataRow["DESCRIPCION"].ToString());
                 }
                 cboRubro.Text = rubroAnterior;
             }
@@ -152,7 +156,7 @@ namespace ADBISYS.Formularios.Proveedores
                 usuario = Properties.Settings.Default.UsuarioLogueado.ToString();
 
                 cadenaSql = "EXEC adp_nuevo_proveedor";
-                cadenaSql = cadenaSql + " @Proveedor_IdRubro = " + fg.fcSql(cboRubro.Text, "String");
+                cadenaSql = cadenaSql + " @Proveedor_IdRubro = " + obtenerIdRubro().ToString();
                 cadenaSql = cadenaSql + ",@Proveedor_Nombre = " + fg.fcSql(txtNombre.Text, "String");
                 if (txtContacto.Text != "")
                 { cadenaSql = cadenaSql + ",@Proveedor_Contacto = " + fg.fcSql(txtContacto.Text, "String"); }
@@ -163,10 +167,11 @@ namespace ADBISYS.Formularios.Proveedores
                 if (txtProvincia.Text != "")
                 { cadenaSql = cadenaSql + ",@Proveedor_Provincia = " + fg.fcSql(txtProvincia.Text, "String"); }
                 if (txtTelefono.Text != "")
-                { cadenaSql = cadenaSql + ",@Telefono = " + txtTelefono.Text; }
+                { cadenaSql = cadenaSql + ",@Proveedor_@Telefono = " + txtTelefono.Text; }
                 if (txtCuit.Text != "")
-                { cadenaSql = cadenaSql + ",@Cuit = " + txtCuit.Text; }
-                cadenaSql = cadenaSql + ",@Login = " + fg.fcSql(usuario, "String");
+                { cadenaSql = cadenaSql + ",@Proveedor_@Cuit = " + txtCuit.Text; }
+                if (usuario != "")
+                { cadenaSql = cadenaSql + ",@Proveedor_@Login = " + fg.fcSql(usuario, "String"); }
 
                 objConect.ejecutarQuery(cadenaSql);
                 this.Hide();
@@ -176,6 +181,52 @@ namespace ADBISYS.Formularios.Proveedores
                 MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+        }
+
+        private int obtenerIdRubro()
+        {
+            try
+            {
+                foreach (KeyValuePair<int, string> rubro in rubros)
+                {
+                    if (cboRubro.Text == rubro.Value)
+                    {
+                        return (rubro.Key);
+                    }
+                }
+                return 0;
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 9;
+            }
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = fg.keyPressMayusculas(e);
+        }
+
+        private void txtContacto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = fg.keyPressMayusculas(e);
+        }
+
+        private void txtDireccion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = fg.keyPressMayusculas(e);
+        }
+
+        private void txtLocalidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = fg.keyPressMayusculas(e);
+        }
+
+        private void txtProvincia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = fg.keyPressMayusculas(e);
         }
     }
 }

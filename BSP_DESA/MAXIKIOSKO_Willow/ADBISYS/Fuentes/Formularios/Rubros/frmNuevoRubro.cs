@@ -31,11 +31,13 @@ namespace ADBISYS.Formularios.Rubros
         private void txtDescripcion_KeyPress(object sender, KeyPressEventArgs e)
         {
             fg.keyPressLetras(e);
+            e.KeyChar = fg.keyPressMayusculas(e);
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             if (validoCampos()) return;
+            if (verificarRubroExistente()) return;
             altaDeRubro();
         }
 
@@ -57,8 +59,8 @@ namespace ADBISYS.Formularios.Rubros
                 usuario = Properties.Settings.Default.UsuarioLogueado.ToString();
 
                 cadenaSql = "EXEC adp_nuevo_rubro";
-                cadenaSql = cadenaSql + " @Descripcion = " + fg.fcSql(txtDescripcion.Text, "String");
-                cadenaSql = cadenaSql + ",@Login = " + fg.fcSql(usuario, "String");
+                cadenaSql = cadenaSql + " @Rubro_Descripcion = " + fg.fcSql(txtDescripcion.Text, "String");
+                cadenaSql = cadenaSql + ",@Rubro_Login = " + fg.fcSql(usuario, "String");
 
                 objConect.ejecutarQuery(cadenaSql);
                 this.Hide();
@@ -95,6 +97,38 @@ namespace ADBISYS.Formularios.Rubros
             {
                 MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
+            }
+        }
+
+        private bool verificarRubroExistente()
+        {
+            try
+            {
+                cadenaSql = "EXEC adp_verifico_rubro_existente @Rubro_Descricion" + fg.fcSql(txtDescripcion.Text, "String");
+                ds = objConect.ejecutarQuerySelect(cadenaSql);
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    if (int.Parse(ds.Tables[0].Rows[0]["RESULTADO"].ToString()) == 1)
+                    {
+                        MessageBox.Show("El rubro " + txtDescripcion.Text + " ya existe.", "Alta de Rubro.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        txtDescripcion.Focus();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
     }
