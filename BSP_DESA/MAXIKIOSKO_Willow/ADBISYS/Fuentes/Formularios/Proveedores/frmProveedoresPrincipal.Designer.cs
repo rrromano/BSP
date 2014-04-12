@@ -36,7 +36,7 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
-            this.dgvProveedores = new System.Windows.Forms.DataGridView();
+            this.grdProveedores = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,7 +47,7 @@
             this.salidaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProveedores)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdProveedores)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,7 +59,7 @@
             this.groupBox1.Controls.Add(this.btnEliminar);
             this.groupBox1.Controls.Add(this.btnModificar);
             this.groupBox1.Controls.Add(this.btnNuevo);
-            this.groupBox1.Controls.Add(this.dgvProveedores);
+            this.groupBox1.Controls.Add(this.grdProveedores);
             this.groupBox1.Location = new System.Drawing.Point(16, 28);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1462, 755);
@@ -140,15 +140,15 @@
             this.btnNuevo.UseVisualStyleBackColor = true;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
-            // dgvProveedores
+            // grdProveedores
             // 
-            this.dgvProveedores.BackgroundColor = System.Drawing.Color.White;
-            this.dgvProveedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProveedores.Location = new System.Drawing.Point(18, 103);
-            this.dgvProveedores.Name = "dgvProveedores";
-            this.dgvProveedores.RowTemplate.Height = 24;
-            this.dgvProveedores.Size = new System.Drawing.Size(1424, 631);
-            this.dgvProveedores.TabIndex = 0;
+            this.grdProveedores.BackgroundColor = System.Drawing.Color.White;
+            this.grdProveedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdProveedores.Location = new System.Drawing.Point(18, 103);
+            this.grdProveedores.Name = "grdProveedores";
+            this.grdProveedores.RowTemplate.Height = 24;
+            this.grdProveedores.Size = new System.Drawing.Size(1424, 631);
+            this.grdProveedores.TabIndex = 0;
             // 
             // menuStrip1
             // 
@@ -235,8 +235,9 @@
             this.Name = "frmProveedoresPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Proveedores";
+            this.Activated += new System.EventHandler(this.frmProveedoresPrincipal_Activated);
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProveedores)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdProveedores)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -247,7 +248,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dgvProveedores;
+        private System.Windows.Forms.DataGridView grdProveedores;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnNuevo;
         private System.Windows.Forms.Button btnEliminar;

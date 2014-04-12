@@ -167,11 +167,11 @@ namespace ADBISYS.Formularios.Proveedores
                 if (txtProvincia.Text != "")
                 { cadenaSql = cadenaSql + ",@Proveedor_Provincia = " + fg.fcSql(txtProvincia.Text, "String"); }
                 if (txtTelefono.Text != "")
-                { cadenaSql = cadenaSql + ",@Proveedor_@Telefono = " + txtTelefono.Text; }
+                { cadenaSql = cadenaSql + ",@Proveedor_Telefono = " + txtTelefono.Text; }
                 if (txtCuit.Text != "")
-                { cadenaSql = cadenaSql + ",@Proveedor_@Cuit = " + txtCuit.Text; }
+                { cadenaSql = cadenaSql + ",@Proveedor_Cuit = " + txtCuit.Text; }
                 if (usuario != "")
-                { cadenaSql = cadenaSql + ",@Proveedor_@Login = " + fg.fcSql(usuario, "String"); }
+                { cadenaSql = cadenaSql + ",@Proveedor_Login = " + fg.fcSql(usuario, "String"); }
 
                 objConect.ejecutarQuery(cadenaSql);
                 this.Hide();

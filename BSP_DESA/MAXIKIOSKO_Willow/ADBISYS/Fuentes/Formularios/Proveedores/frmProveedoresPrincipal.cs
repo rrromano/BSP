@@ -16,6 +16,7 @@ namespace ADBISYS.Formularios.Proveedores
         ConectarBD objConect = new ConectarBD();
         DataSet ds = new DataSet();
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
+        string cadenaSql = "";
 
         public frmProveedoresPrincipal()
         {
@@ -24,12 +25,12 @@ namespace ADBISYS.Formularios.Proveedores
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -48,14 +49,33 @@ namespace ADBISYS.Formularios.Proveedores
             nuevoProveedor.ShowDialog();
         }
 
-        //private void frmProveedoresPrincipal_Activated(object sender, EventArgs e)
-        //{
-        //    llenaGrilla();
-        //}
+        private void frmProveedoresPrincipal_Activated(object sender, EventArgs e)
+        {
+            llenarGrilla();
+            grdProveedores = fg.formatoGrilla(grdProveedores, 1);
+        }
 
-        //private void llenarGrilla()
-        //{
- 
-        //}
+        private void llenarGrilla()
+        {
+            try
+            {
+                cadenaSql = "EXEC adp_obtener_proveedores";
+                ds = objConect.ejecutarQuerySelect(cadenaSql);
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    grdProveedores.DataSource = ds.Tables[0];
+                }
+                else
+                {
+                    return;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
     }
 }

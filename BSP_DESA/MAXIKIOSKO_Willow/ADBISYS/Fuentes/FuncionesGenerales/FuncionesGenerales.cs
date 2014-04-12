@@ -83,6 +83,7 @@ namespace ADBISYS.FuncionesGenerales
             Grilla.BackgroundColor = Color.White;
             Grilla.Font = new Font("Verdana",11);
 
+            Grilla.ReadOnly = true;
             Grilla.RowHeadersVisible = false;
             Grilla.MultiSelect = false;
             Grilla.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
