@@ -46,7 +46,7 @@ namespace ADBISYS.Entidades
                 DataSet dataSet = new DataSet();
                 string ssQL;
 
-                ssQL = "SELECT ISNULL(MAX(FECHA),'19000101') FechaCajaAbierta FROM MOVIMIENTOS_CAJA ";
+                ssQL = "exec adp_obtener_ultimaFechaCajaAbierta";
                 dataSet.Reset();
                 dataSet = con.ejecutarQuerySelect(ssQL);
 
@@ -71,8 +71,7 @@ namespace ADBISYS.Entidades
                 DataSet Ds = new DataSet();
 
                 String sSQL = "";
-                sSQL = "EXEC dbo.ObtenerMovimientosCaja ";
-                sSQL = sSQL + " @fecha_mov = '" + fecha + "'";
+                sSQL = "EXEC dbo.ObtenerMovimientosCaja @fecha_mov = '" + fecha + "'";
                 Ds.Reset();
                 Ds = con.ejecutarQuerySelect(sSQL);
 

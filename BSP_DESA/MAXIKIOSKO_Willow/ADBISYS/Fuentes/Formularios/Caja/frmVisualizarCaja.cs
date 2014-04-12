@@ -14,9 +14,10 @@ namespace ADBISYS.Formularios.Caja
     {
         public frmVisualizarCaja()
         {
+            FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
             InitializeComponent();
             llenarGrillaMovimientosCaja();
-            calcularTotalesCaja();
+            grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 1);
         }
 
         private void llenarGrillaMovimientosCaja()
@@ -27,16 +28,9 @@ namespace ADBISYS.Formularios.Caja
                 Entidades.Caja caja = new Entidades.Caja();
                 DataSet Ds = new DataSet();
 
-                grdMovsCaja.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 Ds.Reset();
                 Ds = caja.obtenerMovimientosCaja(fg.appFechaSistema());
                 grdMovsCaja.DataSource = Ds.Tables[0];
-
-                ajustarColumnaGrilla(grdMovsCaja, 0, 60);
-                ajustarColumnaGrilla(grdMovsCaja, 1, 50);
-                ajustarColumnaGrilla(grdMovsCaja, 2, 110);
-                ajustarColumnaGrilla(grdMovsCaja, 3, 290);
-                ajustarColumnaGrilla(grdMovsCaja, 4, 95);
 
             }
             catch (Exception e)

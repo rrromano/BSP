@@ -73,16 +73,55 @@ namespace ADBISYS.FuncionesGenerales
 
         }
 
-        public ComboBox cargarComboBox(string tipo, ComboBox comboBox)
+        public DataGridView formatoGrilla(DataGridView Grilla, int Formato)
+        {
+            Grilla.AllowUserToAddRows = false;
+            Grilla.AllowUserToDeleteRows = false;
+            Grilla.AllowUserToOrderColumns = false;
+            Grilla.AllowUserToResizeColumns = false;
+            Grilla.AllowUserToResizeRows = false;
+            Grilla.BackgroundColor = Color.White;
+            Grilla.Font = new Font("Verdana",11);
+
+            Grilla.RowHeadersVisible = false;
+            Grilla.MultiSelect = false;
+            Grilla.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+
+            for(int i=0;i < Grilla.Columns.Count;i++)
+            {
+                //Grilla.Columns["Priority"].SortMode = DataGridViewColumnSortMode.NotSortable;
+                Grilla.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+            
+
+            switch (Formato)
+            {
+                case 1:
+                    Grilla.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+                    break;
+                case 2:
+                    Grilla.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    break;
+                default:
+                    Grilla.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                    break;
+            }
+
+            return Grilla;
+        }
+
+        public ComboBox cargarComboBox(String QuerySQL, ComboBox comboBox , String columna)
         {
             //Metodo para cargar combo box
             comboBox = vaciarComboBox(comboBox);
             dataSet.Reset();
-            dataSet = conexion.ejecutarQuerySelect(tipo);
-            foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+            dataSet = conexion.ejecutarQuerySelect(QuerySQL);
+            foreach (DataRow dataRow in dataSet.Tables[columna].Rows)
             {
-                comboBox.Items.Add(dataRow[0]);
+                comboBox.Items.Add(dataRow[columna]);
             }
+
             return comboBox;
         }
         private ComboBox vaciarComboBox(ComboBox comboBox)
