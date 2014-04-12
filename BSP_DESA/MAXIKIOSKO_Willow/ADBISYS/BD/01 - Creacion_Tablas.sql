@@ -166,7 +166,7 @@ GO
 --=============================================================================================
 create table PROVEEDORES(
 	ID_Proveedor int identity not null,
-	Rubro        int		  not null,
+	ID_Rubro     int		  not null,
 	Nombre       varchar(255) not null,
 	Contacto     varchar(255) null    ,
 	Direccion    varchar(255) null    ,
@@ -180,8 +180,8 @@ create table PROVEEDORES(
 )
 GO
 ALTER TABLE PROVEEDORES ADD PRIMARY KEY(ID_Proveedor)
-ALTER TABLE PROVEEDORES ADD CONSTRAINT FK_RUBRO_PROVEEDORES 
-	FOREIGN KEY(Rubro) REFERENCES RUBROS(ID_Rubro)
+ALTER TABLE PROVEEDORES ADD CONSTRAINT FK_ID_RUBRO_PROVEEDORES 
+	FOREIGN KEY(ID_Rubro) REFERENCES RUBROS(ID_Rubro)
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA PROVEEDORES.'
 GO
 --=============================================================================================

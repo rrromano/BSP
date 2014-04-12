@@ -5,17 +5,39 @@ If Exists ( Select 1 From SysObjects Where Name = 'ObtenerMovimientosCaja')
 Go 
 
 -- SP PARA OBTENER LOS MOVIMIENTOS DE LA CAJA DEL DÍA @FECHA_MOV
-Create procedure dbo.ObtenerMovimientosCaja (@fecha_mov datetime)
+Create procedure dbo.ObtenerMovimientosCaja (@FECHA_MOV datetime)
 as
 
-SELECT  
-        CONVERT(VARCHAR,Fecha,112) 'FECHA',
-        CONVERT(VARCHAR,HORA,8) 'HORA',
-        CASE WHEN B.Ingreso_Salida = 1 THEN 'INGRESO' ELSE 'SALIDA' END AS 'INGRESO/SALIDA',
-        UPPER(A.Descripcion) AS 'MOVIMIENTO',
-        valor AS 'VALOR'
-FROM MOVIMIENTOS_CAJA A
-INNER JOIN TIPOMOVIMIENTO_CAJA B ON (A.ID_TipoMovimiento = B.ID_TipoMovimiento)
-WHERE Fecha = @fecha_mov
-		  
+
+BEGIN TRY
+
+	SET NOCOUNT ON
+	
+	SELECT  CONVERT(VARCHAR,A.FECHA,112)		'FECHA'					,
+					CONVERT(VARCHAR,A.HORA,8)				'HORA'					,
+					CASE B.INGRESO_SALIDA 
+						WHEN 1 THEN 'INGRESO' 
+						ELSE 'SALIDA' 
+					END AS													'INGRESO/SALIDA',
+					UPPER(A.DESCRIPCION)						'MOVIMIENTO'		,
+					VALOR														'VALOR'
+	FROM MOVIMIENTOS_CAJA A
+	INNER JOIN TIPOMOVIMIENTO_CAJA B ON (A.ID_TIPOMOVIMIENTO = B.ID_TIPOMOVIMIENTO)
+	WHERE FECHA = @FECHA_MOV
+
+	SET NOCOUNT OFF
+	
+END TRY
+
+BEGIN CATCH
+  SET NOCOUNT OFF
+  PRINT 'ACTUALIZACION CANCELADA POR ERROR'
+  SELECT ERROR_NUMBER()     'ERROR_NUMBER' , 
+         ERROR_MESSAGE()    'ERROR_MESSAGE', 
+         ERROR_LINE()       'ERROR_LINE', 
+         ERROR_PROCEDURE()  'ERROR_PROCEDURE', 
+         ERROR_SEVERITY ()  'ERROR_SEVERITY',   
+         ERROR_STATE()      'ERROR_STATE'
+END CATCH	
+
 go

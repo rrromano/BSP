@@ -1,3 +1,23 @@
+/*****************************************************************************************************/
+Use WIADBISYS
+Go 
+If Exists ( Select 1 From SysObjects Where Name = 's')
+  Drop Procedure s
+Go 
+create procedure [dbo].s --- cualquier duda consultar sp_helptext ( the original!! )
+@tabla varchar(60) = null
+as
+
+if @tabla is null
+  BEGIN
+    print 'Se requiere el parámetro @tabla'
+    return
+  END
+
+exec ('select * from ' + @tabla)
+
+GO
+
 USE WIADBISYS
 GO
 

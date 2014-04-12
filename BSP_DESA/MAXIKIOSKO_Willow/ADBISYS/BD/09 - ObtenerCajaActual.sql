@@ -4,11 +4,31 @@ If Exists ( Select 1 From SysObjects Where Name = 'ObtenerCajaActual')
   Drop Procedure dbo.ObtenerCajaActual
 Go 
 
-Create procedure dbo.ObtenerCajaActual (@fecha_mov datetime)
+Create procedure dbo.ObtenerCajaActual (@FECHA_MOV DATETIME)
 as
 
-SELECT SUM(Importe_Total) AS 'TOTAL'
-FROM CAJA
-WHERE Fecha = @fecha_mov
-		  
+
+BEGIN TRY
+
+	SET NOCOUNT ON
+	
+	SELECT SUM(IMPORTE_TOTAL) AS 'TOTAL'
+	FROM CAJA
+	WHERE FECHA = @FECHA_MOV
+
+	SET NOCOUNT OFF
+	
+END TRY
+
+BEGIN CATCH
+  SET NOCOUNT OFF
+  PRINT 'ACTUALIZACION CANCELADA POR ERROR'
+  SELECT ERROR_NUMBER()     'ERROR_NUMBER' , 
+         ERROR_MESSAGE()    'ERROR_MESSAGE', 
+         ERROR_LINE()       'ERROR_LINE', 
+         ERROR_PROCEDURE()  'ERROR_PROCEDURE', 
+         ERROR_SEVERITY ()  'ERROR_SEVERITY',   
+         ERROR_STATE()      'ERROR_STATE'
+END CATCH
+ 
 go
