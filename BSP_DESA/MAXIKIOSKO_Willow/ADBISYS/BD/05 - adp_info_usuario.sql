@@ -5,8 +5,29 @@ If Exists ( Select 1 From SysObjects Where Name = 'adp_info_usuario')
 Go 
 
 -- SP QUE TRAE LA INFORMACIÓN DEL USUARIO.
-Create procedure adp_info_usuario (@user varchar(255))
+Create procedure adp_info_usuario (@USER VARCHAR(255))
 as
 
-SELECT * FROM USUARIOS WHERE Username = @user
+BEGIN TRY
+
+	SET NOCOUNT ON
+
+	SELECT * 
+	FROM USUARIOS 
+	WHERE USERNAME = @USER
+
+	SET NOCOUNT OFF
+	
+END TRY
+
+BEGIN CATCH
+  SET NOCOUNT OFF
+  PRINT 'ACTUALIZACION CANCELADA POR ERROR'
+  SELECT ERROR_NUMBER()     'ERROR_NUMBER' , 
+         ERROR_MESSAGE()    'ERROR_MESSAGE', 
+         ERROR_LINE()       'ERROR_LINE', 
+         ERROR_PROCEDURE()  'ERROR_PROCEDURE', 
+         ERROR_SEVERITY ()  'ERROR_SEVERITY',   
+         ERROR_STATE()      'ERROR_STATE'
+END CATCH
 go
