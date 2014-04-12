@@ -49,9 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexion\ConectarBD.cs" />
-    <Compile Include="Entidades\ArticuloVenta.cs" />
     <Compile Include="Entidades\Caja.cs" />
-    <Compile Include="Entidades\Ventas.cs" />
     <Compile Include="Formularios\Ayuda\frmAcercaDeBSP.cs">
       <SubType>Form</SubType>
     </Compile>

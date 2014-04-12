@@ -78,7 +78,7 @@ namespace ADBISYS.FuncionesGenerales
             //Metodo para cargar combo box
             comboBox = vaciarComboBox(comboBox);
             dataSet.Reset();
-            dataSet = conexion.ejecutarQuerySelect(query);
+            dataSet = conexion.ejecutarQuerySelect(tipo);
             foreach (DataRow dataRow in dataSet.Tables[0].Rows)
             {
                 comboBox.Items.Add(dataRow[0]);

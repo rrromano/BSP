@@ -63,7 +63,7 @@
             this.txtCodigo.Location = new System.Drawing.Point(152, 33);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(217, 29);
-            this.txtCodigo.TabIndex = 2;
+            this.txtCodigo.TabIndex = 1;
             // 
             // txtDescripcion
             // 
@@ -71,7 +71,7 @@
             this.txtDescripcion.MaxLength = 255;
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(217, 29);
-            this.txtDescripcion.TabIndex = 1;
+            this.txtDescripcion.TabIndex = 2;
             this.txtDescripcion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescripcion_KeyPress);
             // 
             // btnCancelar
@@ -81,7 +81,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(28, 147);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(156, 67);
-            this.btnCancelar.TabIndex = 3;
+            this.btnCancelar.TabIndex = 4;
             this.btnCancelar.Text = "&Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -94,7 +94,7 @@
             this.btnAceptar.Location = new System.Drawing.Point(213, 147);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(156, 67);
-            this.btnAceptar.TabIndex = 2;
+            this.btnAceptar.TabIndex = 3;
             this.btnAceptar.Text = "&Aceptar";
             this.btnAceptar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAceptar.UseVisualStyleBackColor = true;

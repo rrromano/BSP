@@ -59,7 +59,7 @@ namespace ADBISYS.Entidades
             }
             catch (Exception e)
             {
-                throw new System.ArgumentException("[Error] -  [" + e.Message.ToString() + "]");
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
             }
         }
 
@@ -80,7 +80,7 @@ namespace ADBISYS.Entidades
             }
             catch (Exception e)
             {
-                throw new System.ArgumentException("[Error] -  [" + e.Message.ToString() + "]");
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
             }
 
         }
@@ -108,7 +108,7 @@ namespace ADBISYS.Entidades
             }
             catch (Exception e)
             {
-                throw new System.ArgumentException("[Error] -  [" + e.Message.ToString() + "]");
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
             }
         }
 
@@ -136,7 +136,7 @@ namespace ADBISYS.Entidades
             }
             catch (Exception e)
             {
-                throw new System.ArgumentException("[Error] -  [" + e.Message.ToString() + "]");
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
             }
 
         }
@@ -166,7 +166,7 @@ namespace ADBISYS.Entidades
             }
             catch (Exception e)
             {
-                throw new System.ArgumentException("[Error] -  [" + e.Message.ToString() + "]");
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
             }
 
         }
@@ -193,7 +193,7 @@ namespace ADBISYS.Entidades
             }
             catch (Exception e)
             {
-                throw new System.ArgumentException("[Error] -  [" + e.Message.ToString() + "]");
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
             }
 
         }
