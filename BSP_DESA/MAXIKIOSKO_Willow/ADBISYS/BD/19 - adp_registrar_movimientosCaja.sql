@@ -1,15 +1,13 @@
 Use WIADBISYS
 Go 
-If Exists ( Select 1 From SysObjects Where Name = 'adp_registrar_mov_caja')
-  Drop Procedure adp_registrar_mov_caja
+If Exists ( Select 1 From SysObjects Where Name = 'adp_registrar_movimientosCaja')
+  Drop Procedure adp_registrar_movimientosCaja
 Go 
 
--- SP QUE REGISTRA CADA MOVIMIENTO DE LA CAJA.
-Create procedure adp_registrar_mov_caja ( @Tipo_Movimiento numeric(2), 
-                                          @Valor           numeric(10,2), 
-                                          @fecha           datetime, 
-                                          @hora            varchar(8)
-                                        ) 
+-- SP QUE REGISTRAN LOS MOVIMIENTOS PARAMETRIZADOS DE LA CAJA
+Create procedure adp_registrar_movimientosCaja (	@fecha           datetime, 
+																									@hora            varchar(8)
+																								) 
 as
 
 BEGIN TRY
@@ -20,10 +18,11 @@ BEGIN TRY
                                 Valor, 
                                 Fecha, 
                                 Hora)
-  VALUES (@Tipo_Movimiento, 
-          @Valor, 
+	SELECT	Id_TipoMovimiento,
+					0.00,
           @Fecha, 
-          @Hora)
+          @Hora
+	FROM TIPOMOVIMIENTO_CAJA
           
   PRINT 'FIN ACTUALIZACIÓN OK'
   SET NOCOUNT OFF

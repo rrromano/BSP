@@ -172,7 +172,7 @@ create table PROVEEDORES(
 	Direccion    varchar(255) null    ,
 	Localidad    varchar(255) null    ,
 	Provincia    varchar(255) null    ,
-	Telefono     numeric(20)  null    ,
+	Telefono     varchar(20)  null    ,
 	Cuit         numeric(11)  null	  ,
 	fecha_modif  datetime     null,
 	login_modif  varchar(255) null,
@@ -197,7 +197,7 @@ create table TIPOMOVIMIENTO_CAJA(
 )
 GO
 ALTER TABLE TIPOMOVIMIENTO_CAJA ADD PRIMARY KEY(ID_TipoMovimiento)
-PRINT 'SE CREÓ CORRECTAMENTE LA TABLA MOVIMIENTOS_CAJA.'
+PRINT 'SE CREÓ CORRECTAMENTE LA TABLA TIPOMOVIMIENTO_CAJA.'
 GO
 --=============================================================================================
 ------------------------------------ TABLE MOVIMIENTOS_CAJA -----------------------------------
@@ -206,7 +206,6 @@ create table MOVIMIENTOS_CAJA(
 	ID_Movimiento     numeric(30) identity	not null,
 	--Ingreso_Salida numeric(1)    		not null, -- 0:Ingreso 1:Salida. FU 2014-04-05 Este campo ahora va en la nueva tabla TIPOMOVIMIENTO_CAJA
 	ID_TipoMovimiento numeric(2)        not null,
-	Descripcion       varchar(255)  		not null,	
 	Valor             numeric(10,2) 		not null,
 	Fecha             DATETIME      		not null,
 	Hora              varchar(8)    		not null, 						 
