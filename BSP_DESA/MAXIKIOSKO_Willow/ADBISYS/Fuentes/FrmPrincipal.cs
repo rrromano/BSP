@@ -190,5 +190,11 @@ namespace ADBISYS
             frmVisualizarCaja verCaja = new frmVisualizarCaja();
             verCaja.Show();
         }
+
+        private void finalizarTSMI_Click(object sender, EventArgs e)
+        {
+            frmCerrarCaja cerrarCaja = new frmCerrarCaja();
+            cerrarCaja.ShowDialog();
+        }
     }
 }

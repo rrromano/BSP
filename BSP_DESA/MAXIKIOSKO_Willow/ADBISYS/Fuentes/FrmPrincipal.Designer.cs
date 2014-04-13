@@ -87,7 +87,7 @@
             this.StripPrincipal.Location = new System.Drawing.Point(0, 0);
             this.StripPrincipal.Name = "StripPrincipal";
             this.StripPrincipal.Padding = new System.Windows.Forms.Padding(11, 4, 0, 4);
-            this.StripPrincipal.Size = new System.Drawing.Size(1916, 30);
+            this.StripPrincipal.Size = new System.Drawing.Size(1916, 35);
             this.StripPrincipal.TabIndex = 0;
             this.StripPrincipal.Text = "menuStrip1";
             // 
@@ -99,13 +99,13 @@
             this.ventasDelDíaToolStripMenuItem});
             this.ventasTS.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ventasTS.Name = "ventasTS";
-            this.ventasTS.Size = new System.Drawing.Size(71, 22);
+            this.ventasTS.Size = new System.Drawing.Size(86, 27);
             this.ventasTS.Text = "&Ventas";
             // 
             // nuevaVentaTSMI
             // 
             this.nuevaVentaTSMI.Name = "nuevaVentaTSMI";
-            this.nuevaVentaTSMI.Size = new System.Drawing.Size(198, 22);
+            this.nuevaVentaTSMI.Size = new System.Drawing.Size(235, 28);
             this.nuevaVentaTSMI.Text = "Nueva Venta";
             // 
             // ventaErroneaTSMI
@@ -114,25 +114,25 @@
             this.cargarVentaErróneaTSMI,
             this.confVentaErroneaTSMI});
             this.ventaErroneaTSMI.Name = "ventaErroneaTSMI";
-            this.ventaErroneaTSMI.Size = new System.Drawing.Size(198, 22);
+            this.ventaErroneaTSMI.Size = new System.Drawing.Size(235, 28);
             this.ventaErroneaTSMI.Text = "Ventas Erróneas";
             // 
             // cargarVentaErróneaTSMI
             // 
             this.cargarVentaErróneaTSMI.Name = "cargarVentaErróneaTSMI";
-            this.cargarVentaErróneaTSMI.Size = new System.Drawing.Size(266, 22);
+            this.cargarVentaErróneaTSMI.Size = new System.Drawing.Size(326, 28);
             this.cargarVentaErróneaTSMI.Text = "Cargar Venta Errónea";
             // 
             // confVentaErroneaTSMI
             // 
             this.confVentaErroneaTSMI.Name = "confVentaErroneaTSMI";
-            this.confVentaErroneaTSMI.Size = new System.Drawing.Size(266, 22);
+            this.confVentaErroneaTSMI.Size = new System.Drawing.Size(326, 28);
             this.confVentaErroneaTSMI.Text = "Confirmar / Desconfirmar";
             // 
             // ventasDelDíaToolStripMenuItem
             // 
             this.ventasDelDíaToolStripMenuItem.Name = "ventasDelDíaToolStripMenuItem";
-            this.ventasDelDíaToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.ventasDelDíaToolStripMenuItem.Size = new System.Drawing.Size(235, 28);
             this.ventasDelDíaToolStripMenuItem.Text = "Ventas del Día";
             // 
             // articulosTS
@@ -142,20 +142,20 @@
             this.actPrecioArticuloTSMI});
             this.articulosTS.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.articulosTS.Name = "articulosTS";
-            this.articulosTS.Size = new System.Drawing.Size(83, 22);
+            this.articulosTS.Size = new System.Drawing.Size(106, 27);
             this.articulosTS.Text = "&Artículos";
             this.articulosTS.Click += new System.EventHandler(this.articulosTS_Click);
             // 
             // modifArticuloTSMI
             // 
             this.modifArticuloTSMI.Name = "modifArticuloTSMI";
-            this.modifArticuloTSMI.Size = new System.Drawing.Size(253, 22);
+            this.modifArticuloTSMI.Size = new System.Drawing.Size(311, 28);
             this.modifArticuloTSMI.Text = "Agregar / Modificar";
             // 
             // actPrecioArticuloTSMI
             // 
             this.actPrecioArticuloTSMI.Name = "actPrecioArticuloTSMI";
-            this.actPrecioArticuloTSMI.Size = new System.Drawing.Size(253, 22);
+            this.actPrecioArticuloTSMI.Size = new System.Drawing.Size(311, 28);
             this.actPrecioArticuloTSMI.Text = "Actualización de Precios";
             // 
             // cajaTS
@@ -167,34 +167,35 @@
             this.finalizarTSMI});
             this.cajaTS.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cajaTS.Name = "cajaTS";
-            this.cajaTS.Size = new System.Drawing.Size(54, 22);
+            this.cajaTS.Size = new System.Drawing.Size(64, 27);
             this.cajaTS.Text = "&Caja";
             // 
             // iniciarCajaTSMI
             // 
             this.iniciarCajaTSMI.Name = "iniciarCajaTSMI";
-            this.iniciarCajaTSMI.Size = new System.Drawing.Size(152, 22);
+            this.iniciarCajaTSMI.Size = new System.Drawing.Size(175, 28);
             this.iniciarCajaTSMI.Text = "Iniciar";
             this.iniciarCajaTSMI.Click += new System.EventHandler(this.iniciarCajaTSMI_Click);
             // 
             // modificarCajaTSMI
             // 
             this.modificarCajaTSMI.Name = "modificarCajaTSMI";
-            this.modificarCajaTSMI.Size = new System.Drawing.Size(152, 22);
+            this.modificarCajaTSMI.Size = new System.Drawing.Size(175, 28);
             this.modificarCajaTSMI.Text = "Modificar ";
             // 
             // visualizarCajaTSMI
             // 
             this.visualizarCajaTSMI.Name = "visualizarCajaTSMI";
-            this.visualizarCajaTSMI.Size = new System.Drawing.Size(152, 22);
+            this.visualizarCajaTSMI.Size = new System.Drawing.Size(175, 28);
             this.visualizarCajaTSMI.Text = "Visualizar";
             this.visualizarCajaTSMI.Click += new System.EventHandler(this.visualizarCajaTSMI_Click);
             // 
             // finalizarTSMI
             // 
             this.finalizarTSMI.Name = "finalizarTSMI";
-            this.finalizarTSMI.Size = new System.Drawing.Size(152, 22);
+            this.finalizarTSMI.Size = new System.Drawing.Size(175, 28);
             this.finalizarTSMI.Text = "Finalizar";
+            this.finalizarTSMI.Click += new System.EventHandler(this.finalizarTSMI_Click);
             // 
             // proveedoresTS
             // 
@@ -202,13 +203,13 @@
             this.modifProveedoresTSMI});
             this.proveedoresTS.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.proveedoresTS.Name = "proveedoresTS";
-            this.proveedoresTS.Size = new System.Drawing.Size(114, 22);
+            this.proveedoresTS.Size = new System.Drawing.Size(139, 27);
             this.proveedoresTS.Text = "&Proveedores";
             // 
             // modifProveedoresTSMI
             // 
             this.modifProveedoresTSMI.Name = "modifProveedoresTSMI";
-            this.modifProveedoresTSMI.Size = new System.Drawing.Size(217, 22);
+            this.modifProveedoresTSMI.Size = new System.Drawing.Size(266, 28);
             this.modifProveedoresTSMI.Text = "Agregar / Modificar";
             this.modifProveedoresTSMI.Click += new System.EventHandler(this.modifProveedoresTSMI_Click);
             // 
@@ -218,20 +219,20 @@
             this.modifRubrosTSMI});
             this.rubrosTS.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rubrosTS.Name = "rubrosTS";
-            this.rubrosTS.Size = new System.Drawing.Size(72, 22);
+            this.rubrosTS.Size = new System.Drawing.Size(89, 27);
             this.rubrosTS.Text = "R&ubros";
             // 
             // modifRubrosTSMI
             // 
             this.modifRubrosTSMI.Name = "modifRubrosTSMI";
-            this.modifRubrosTSMI.Size = new System.Drawing.Size(217, 22);
+            this.modifRubrosTSMI.Size = new System.Drawing.Size(266, 28);
             this.modifRubrosTSMI.Text = "Agregar / Modificar";
             // 
             // reportesTS
             // 
             this.reportesTS.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reportesTS.Name = "reportesTS";
-            this.reportesTS.Size = new System.Drawing.Size(87, 22);
+            this.reportesTS.Size = new System.Drawing.Size(106, 27);
             this.reportesTS.Text = "&Reportes";
             // 
             // ingresarTS
@@ -242,27 +243,27 @@
             this.cerrarSesiónTSMI});
             this.ingresarTS.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ingresarTS.Name = "ingresarTS";
-            this.ingresarTS.Size = new System.Drawing.Size(81, 22);
+            this.ingresarTS.Size = new System.Drawing.Size(102, 27);
             this.ingresarTS.Text = "&Ingresar";
             // 
             // iniciarSesiónTSMI
             // 
             this.iniciarSesiónTSMI.Name = "iniciarSesiónTSMI";
-            this.iniciarSesiónTSMI.Size = new System.Drawing.Size(221, 22);
+            this.iniciarSesiónTSMI.Size = new System.Drawing.Size(271, 28);
             this.iniciarSesiónTSMI.Text = "Iniciar Sesión";
             this.iniciarSesiónTSMI.Click += new System.EventHandler(this.iniciarSesiónTSMI_Click);
             // 
             // adminUsuarioTSMI
             // 
             this.adminUsuarioTSMI.Name = "adminUsuarioTSMI";
-            this.adminUsuarioTSMI.Size = new System.Drawing.Size(221, 22);
+            this.adminUsuarioTSMI.Size = new System.Drawing.Size(271, 28);
             this.adminUsuarioTSMI.Text = "Administrar Usuario";
             this.adminUsuarioTSMI.Click += new System.EventHandler(this.adminUsuarioTSMI_Click);
             // 
             // cerrarSesiónTSMI
             // 
             this.cerrarSesiónTSMI.Name = "cerrarSesiónTSMI";
-            this.cerrarSesiónTSMI.Size = new System.Drawing.Size(221, 22);
+            this.cerrarSesiónTSMI.Size = new System.Drawing.Size(271, 28);
             this.cerrarSesiónTSMI.Text = "Cerrar Sesión";
             this.cerrarSesiónTSMI.Click += new System.EventHandler(this.cerrarSesiónTSMI_Click);
             // 
@@ -273,20 +274,20 @@
             this.acercaDeBSPTSMI});
             this.ayudaTS.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ayudaTS.Name = "ayudaTS";
-            this.ayudaTS.Size = new System.Drawing.Size(66, 22);
+            this.ayudaTS.Size = new System.Drawing.Size(81, 27);
             this.ayudaTS.Text = "A&yuda";
             // 
             // acercaDeWillowTSMI
             // 
             this.acercaDeWillowTSMI.Name = "acercaDeWillowTSMI";
-            this.acercaDeWillowTSMI.Size = new System.Drawing.Size(201, 22);
+            this.acercaDeWillowTSMI.Size = new System.Drawing.Size(245, 28);
             this.acercaDeWillowTSMI.Text = "Acerca de Willow";
             this.acercaDeWillowTSMI.Click += new System.EventHandler(this.acercaDeWillowTSMI_Click);
             // 
             // acercaDeBSPTSMI
             // 
             this.acercaDeBSPTSMI.Name = "acercaDeBSPTSMI";
-            this.acercaDeBSPTSMI.Size = new System.Drawing.Size(201, 22);
+            this.acercaDeBSPTSMI.Size = new System.Drawing.Size(245, 28);
             this.acercaDeBSPTSMI.Text = "Acerca de BSP";
             this.acercaDeBSPTSMI.Click += new System.EventHandler(this.acercaDeBSPTSMI_Click);
             // 
@@ -296,13 +297,13 @@
             this.salirTSMI});
             this.salidaTS.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.salidaTS.Name = "salidaTS";
-            this.salidaTS.Size = new System.Drawing.Size(63, 22);
+            this.salidaTS.Size = new System.Drawing.Size(81, 27);
             this.salidaTS.Text = "&Salida";
             // 
             // salirTSMI
             // 
             this.salirTSMI.Name = "salirTSMI";
-            this.salirTSMI.Size = new System.Drawing.Size(107, 22);
+            this.salirTSMI.Size = new System.Drawing.Size(124, 28);
             this.salirTSMI.Text = "Salir";
             this.salirTSMI.Click += new System.EventHandler(this.salirTSMI_Click);
             // 
@@ -316,10 +317,10 @@
             this.vacioTSS,
             this.maquinaTSS,
             this.horaTSS});
-            this.statusStripPrincipal.Location = new System.Drawing.Point(0, 644);
+            this.statusStripPrincipal.Location = new System.Drawing.Point(0, 639);
             this.statusStripPrincipal.Name = "statusStripPrincipal";
             this.statusStripPrincipal.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStripPrincipal.Size = new System.Drawing.Size(1916, 29);
+            this.statusStripPrincipal.Size = new System.Drawing.Size(1916, 34);
             this.statusStripPrincipal.TabIndex = 1;
             this.statusStripPrincipal.Text = "statusStrip1";
             // 
@@ -327,7 +328,7 @@
             // 
             this.fechaTSS.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
             this.fechaTSS.Name = "fechaTSS";
-            this.fechaTSS.Size = new System.Drawing.Size(51, 24);
+            this.fechaTSS.Size = new System.Drawing.Size(65, 29);
             this.fechaTSS.Text = "Fecha";
             // 
             // usuarioTSS
@@ -337,14 +338,14 @@
             this.usuarioTSS.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usuarioTSS.ForeColor = System.Drawing.Color.Black;
             this.usuarioTSS.Name = "usuarioTSS";
-            this.usuarioTSS.Size = new System.Drawing.Size(169, 24);
+            this.usuarioTSS.Size = new System.Drawing.Size(215, 29);
             this.usuarioTSS.Text = "Usuario Desconectado";
             // 
             // vacioTSS
             // 
             this.vacioTSS.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
             this.vacioTSS.Name = "vacioTSS";
-            this.vacioTSS.Size = new System.Drawing.Size(1479, 24);
+            this.vacioTSS.Size = new System.Drawing.Size(1368, 29);
             this.vacioTSS.Spring = true;
             this.vacioTSS.Text = "Vacio";
             // 
@@ -352,14 +353,14 @@
             // 
             this.maquinaTSS.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
             this.maquinaTSS.Name = "maquinaTSS";
-            this.maquinaTSS.Size = new System.Drawing.Size(151, 24);
+            this.maquinaTSS.Size = new System.Drawing.Size(191, 29);
             this.maquinaTSS.Text = "Nombre de Máquina";
             // 
             // horaTSS
             // 
             this.horaTSS.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
             this.horaTSS.Name = "horaTSS";
-            this.horaTSS.Size = new System.Drawing.Size(46, 24);
+            this.horaTSS.Size = new System.Drawing.Size(57, 29);
             this.horaTSS.Text = "Hora";
             // 
             // timer
@@ -368,7 +369,7 @@
             // 
             // FrmPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));

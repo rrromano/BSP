@@ -78,24 +78,9 @@ namespace ADBISYS.Formularios.Caja
         {
             try
             {
-                TimeSpan hora = System.DateTime.Now.TimeOfDay;
-                ConectarBD con = new ConectarBD();
-                String sSQL;
-
-                sSQL = "exec adp_registrar_mov_caja ";
-                sSQL = sSQL + " @Tipo_Movimiento = 1";
-                sSQL = sSQL + " , @Descripcion = 'Apertura de caja del día " + fg.appFechaSistema().ToString() +"'";
-                sSQL = sSQL + " , @Valor = '" + txtCajaInicial.Text + "'";
-                sSQL = sSQL + " , @fecha = '" + fg.appFechaSistema().ToString() + "'";
-                sSQL = sSQL + " , @hora = '" + hora.ToString().Substring(0,8) + "'";
-
-                con.ejecutarQuery(sSQL);
-                
-
-                sSQL = "exec adp_actualizar_estado_global ";
-                sSQL = sSQL + "   @estado = 1";
-                con.ejecutarQuery(sSQL);
-
+                registrarMovimientosInicialesCaja();
+                modificarCajaInicial();
+                fg.modificarEstadoGlobalSistema(1);
                 this.Hide();
             }
             catch (Exception e)
@@ -105,6 +90,50 @@ namespace ADBISYS.Formularios.Caja
  
         }
 
+        private void modificarCajaInicial()
+        {
+            DateTime Dia = fg.appFechaSistema();
+            MovimientoCaja movCaja = new MovimientoCaja();
+            movCaja.modificarCajaInicial(Dia, Double.Parse(txtCajaInicial.Text));
+        }
+
+        private void registrarMovimientosInicialesCaja()
+        {
+            try 
+            {
+                TimeSpan hora = System.DateTime.Now.TimeOfDay;
+                MovimientoCaja movCaja = new MovimientoCaja();
+                DateTime Dia = fg.appFechaSistema();
+                String Hora = hora.ToString().Substring(0, 8);
+                Double ImporteCajaInicial = double.Parse(txtCajaInicial.Text);
+
+                movCaja.registrarMovimientosCaja(Dia, Hora);
+                 
+                //Descripcion =  "Apertura de caja del día " + fg.appFechaSistema().ToString();
+                //movCaja.registrarMovimientoCaja(1, Descripcion, ImporteCajaInicial, Dia, Hora);
+
+                //Descripcion = "COMPRA";
+                //movCaja.registrarMovimientoCaja(2, Descripcion, 0.00, Dia, Hora);
+
+                //Descripcion = "VENTA";
+                //movCaja.registrarMovimientoCaja(3, Descripcion, 0.00, Dia, Hora);
+
+                //Descripcion = "OTROS GASTOS";
+                //movCaja.registrarMovimientoCaja(4, Descripcion, 0.00, Dia, Hora);
+
+                //Descripcion = "OTROS INGRESOS";
+                //movCaja.registrarMovimientoCaja(5, Descripcion, 0.00, Dia, Hora);
+
+                //Descripcion = "RETIROS";
+                //movCaja.registrarMovimientoCaja(6, Descripcion, 0.00, Dia, Hora);
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -112,9 +141,8 @@ namespace ADBISYS.Formularios.Caja
 
         private void txtCajaInicial_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //fg.keyPressNumerosDecimales(e);
-            fg.keyPressNumeros(e);
+            fg.keyPressNumerosDecimales(e, txtCajaInicial);
+            //fg.keyPressNumeros(e);
         }
-
     }
 }

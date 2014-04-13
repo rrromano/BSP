@@ -14,10 +14,7 @@ namespace ADBISYS.Formularios.Caja
     {
         public frmVisualizarCaja()
         {
-            FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
             InitializeComponent();
-            llenarGrillaMovimientosCaja();
-            grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 1);
         }
 
         private void llenarGrillaMovimientosCaja()
@@ -30,8 +27,7 @@ namespace ADBISYS.Formularios.Caja
 
                 Ds.Reset();
                 Ds = caja.obtenerMovimientosCaja(fg.appFechaSistema());
-                grdMovsCaja.DataSource = Ds.Tables[0];
-
+                if (Ds.Tables[0].Rows.Count > 0) grdMovsCaja.DataSource = Ds.Tables[0];
             }
             catch (Exception e)
             {
@@ -76,6 +72,14 @@ namespace ADBISYS.Formularios.Caja
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void frmVisualizarCaja_Activated(object sender, EventArgs e)
+        {
+            FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
+            llenarGrillaMovimientosCaja();
+            calcularTotalesCaja();
+            grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 1);
         }
     }
 }

@@ -19,6 +19,22 @@ namespace ADBISYS.FuncionesGenerales
         String query;
         public string mensajeErrorCatch = "No se puede realizar la accion pedida. Por favor, intente más tarde.";
 
+        public void modificarEstadoGlobalSistema(Int32 EstadoNuevo)
+        {
+            try
+            {
+                ConectarBD con = new ConectarBD();
+                String sSQL;
+
+                sSQL = "exec adp_actualizar_estado_global @estado = " + EstadoNuevo.ToString();
+                con.ejecutarQuery(sSQL);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         public DateTime appFechaSistema()
         {
             try
@@ -51,14 +67,17 @@ namespace ADBISYS.FuncionesGenerales
         {
             try
             {
-                switch (tipoDato)
+                switch (tipoDato.ToUpper())
                 {
-                    case "String":
+                    case "STRING":
                         cadena = "'" + cadena + "'";
                         break;
-                    case "Integer":
+                    case  "DOUBLE":
+                        cadena = "'" + cadena + "'";
                         break;
-                    case "DateTime":
+                    case "INTEGER":
+                        break;
+                    case "DATETIME":
                         cadena = "'" + cadena + "'";
                         break;
                     default:
@@ -132,47 +151,6 @@ namespace ADBISYS.FuncionesGenerales
             return comboBox;
         }
 
-        public CheckedListBox cargarCheckedListBox(string tipo, CheckedListBox checkedListBox, string rol)
-        {
-
-            query = "SELECT DISTINCT ";
-
-            if (tipo == "ITEM_FUNCIONALIDAD")
-            {
-                query += "Nombre";
-            }
-
-            query += " FROM [LOS_MEJORES].[" + tipo + "]";
-            dataSet.Reset();
-            checkedListBox.Items.Clear();
-            dataSet = conexion.ejecutarQuerySelect(query);
-
-            foreach (DataRow dataRow in dataSet.Tables[0].Rows)
-            {
-                checkedListBox.Items.Add(dataRow[0].ToString());
-            }
-
-            query = "SELECT * FROM LOS_MEJORES.FUNCIONALIDAD FN";
-            query = query + " INNER JOIN LOS_MEJORES.ITEM_FUNCIONALIDAD IFN ON (FN.ID_FUNCIONALIDAD = IFN.ID_FUNCIONALIDAD)";
-            query = query + " INNER JOIN LOS_MEJORES.ROL ROL ON (ROL.ID_ROL = FN.ID_ROL)";
-            query = query + " WHERE ROL.NOMBRE = " + "'" + rol + "'";
-
-            dataSet.Reset();
-            dataSet = conexion.ejecutarQuerySelect(query);
-
-            for (int i = 0; i < checkedListBox.Items.Count; i++)
-            {
-                for (int j = 0; j < dataSet.Tables[0].Rows.Count; j++)
-                {
-                    if (checkedListBox.Items[i].ToString() == dataSet.Tables[0].Rows[j][4].ToString())
-                    {
-                        checkedListBox.SetItemChecked(i, true);
-                    }
-                }
-            }
-            return checkedListBox;
-        }
-
         public string darFormatoFecha(string fechaTextBox)
         {
             try
@@ -189,115 +167,7 @@ namespace ADBISYS.FuncionesGenerales
 
         }
 
-        public DataGridView agregarBotones(DataGridView dataGridView, string tipo)
-        {
-            //Metodo para agregar botones a los datagridview
-
-            if (tipo == "Modificar")
-            {
-                DataGridViewButtonColumn botonModificar = new DataGridViewButtonColumn();
-                botonModificar.HeaderText = "Modificar";
-                botonModificar.Text = "Modificar";
-                botonModificar.Name = "botonModificar";
-                botonModificar.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                botonModificar.FlatStyle = FlatStyle.Standard;
-                botonModificar.DisplayIndex = dataGridView.Columns.Count;
-                botonModificar.CellTemplate.Style.BackColor = Color.Honeydew;
-                botonModificar.UseColumnTextForButtonValue = true;
-                if (dataGridView.Columns["botonModificar"] == null)
-                {
-                    dataGridView.Columns.Add(botonModificar);
-                }
-                else
-                {
-                    dataGridView.Columns.Remove(dataGridView.Columns["botonModificar"]);
-                    dataGridView.Columns.Add(botonModificar);
-                }
-
-                DataGridViewCheckBoxColumn Seleccionar = new DataGridViewCheckBoxColumn();
-                Seleccionar.HeaderText = "Seleccionar";
-                Seleccionar.Name = "Seleccionar";
-                Seleccionar.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                Seleccionar.FlatStyle = FlatStyle.Standard;
-                Seleccionar.DisplayIndex = dataGridView.Columns.Count;
-                Seleccionar.CellTemplate.Style.BackColor = Color.Honeydew;
-                if (dataGridView.Columns["Seleccionar"] == null)
-                {
-                    dataGridView.Columns.Add(Seleccionar);
-                }
-                else
-                {
-                    dataGridView.Columns.Remove(dataGridView.Columns["Seleccionar"]);
-                    dataGridView.Columns.Add(Seleccionar);
-                }
-                return dataGridView;
-            }
-
-            if (tipo == "Seleccionar")
-            {
-                DataGridViewCheckBoxColumn Seleccionar = new DataGridViewCheckBoxColumn();
-                Seleccionar.HeaderText = "Seleccionar";
-                Seleccionar.Name = "Seleccionar";
-                Seleccionar.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                Seleccionar.FlatStyle = FlatStyle.Standard;
-                Seleccionar.DisplayIndex = dataGridView.Columns.Count;
-                Seleccionar.CellTemplate.Style.BackColor = Color.Honeydew;
-                if (dataGridView.Columns["Seleccionar"] == null)
-                {
-                    dataGridView.Columns.Add(Seleccionar);
-                }
-                else
-                {
-                    dataGridView.Columns.Remove(dataGridView.Columns["Seleccionar"]);
-                    dataGridView.Columns.Add(Seleccionar);
-
-                }
-                return dataGridView;
-            }
-
-            if (tipo == "Cantidad")
-            {
-                DataGridViewButtonColumn botonCantidad = new DataGridViewButtonColumn();
-                botonCantidad.HeaderText = "Cantidad";
-                botonCantidad.Text = "Cantidad";
-                botonCantidad.Name = "botonCantidad";
-                botonCantidad.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                botonCantidad.FlatStyle = FlatStyle.Standard;
-                botonCantidad.DisplayIndex = dataGridView.Columns.Count;
-                botonCantidad.CellTemplate.Style.BackColor = Color.Honeydew;
-                botonCantidad.UseColumnTextForButtonValue = true;
-                if (dataGridView.Columns["botonCantidad"] == null)
-                {
-                    dataGridView.Columns.Add(botonCantidad);
-                }
-                else
-                {
-                    dataGridView.Columns.Remove(dataGridView.Columns["botonCantidad"]);
-                    dataGridView.Columns.Add(botonCantidad);
-                }
-                DataGridViewCheckBoxColumn Seleccionar = new DataGridViewCheckBoxColumn();
-                Seleccionar.HeaderText = "Seleccionar";
-                Seleccionar.Name = "Seleccionar";
-                Seleccionar.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                Seleccionar.FlatStyle = FlatStyle.Standard;
-                Seleccionar.DisplayIndex = dataGridView.Columns.Count;
-                Seleccionar.CellTemplate.Style.BackColor = Color.Honeydew;
-                if (dataGridView.Columns["Seleccionar"] == null)
-                {
-                    dataGridView.Columns.Add(Seleccionar);
-                }
-                else
-                {
-                    dataGridView.Columns.Remove(dataGridView.Columns["Seleccionar"]);
-                    dataGridView.Columns.Add(Seleccionar);
-                }
-                return dataGridView;
-            }
-            return dataGridView;
-        }
-
-
-        public DataGridView cargarDataGridView(DataGridView dataGridView, string tipo, string query)
+        public DataGridView cargarDataGridView(DataGridView dataGridView, string query)
         {
             try
             {
@@ -306,7 +176,6 @@ namespace ADBISYS.FuncionesGenerales
                 dataSet = conexion.ejecutarQuerySelect(query);
                 dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dataGridView.DataSource = dataSet.Tables[0];
-                dataGridView = agregarBotones(dataGridView, tipo);
                 return dataGridView;
             }
             catch (Exception e)
@@ -406,16 +275,38 @@ namespace ADBISYS.FuncionesGenerales
             }
         }
 
-        public void keyPressNumerosDecimales(KeyPressEventArgs e)
+        public void keyPressNumerosDecimales(KeyPressEventArgs e, TextBox textBox)
         {
             try
             {
-                if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+                if (e.KeyChar == 8)
                 {
-                    if (!(e.KeyChar.ToString() == ".")) 
-                    e.Handled = true;
+                    e.Handled = false;
                     return;
                 }
+
+
+                bool IsDec = false;
+                int nroDec = 0;
+
+                for (int i = 0; i < textBox.Text.Length; i++)
+                {
+                    if (textBox.Text[i] == '.')
+                        IsDec = true;
+
+                    if (IsDec && nroDec++ >= 2)
+                    {
+                        e.Handled = true;
+                        return;
+                    }
+                }
+
+                if (e.KeyChar >= 48 && e.KeyChar <= 57)
+                    e.Handled = false;
+                else if (e.KeyChar == 46)
+                    e.Handled = (IsDec) ? true : false;
+                else
+                    e.Handled = true;
             }
             catch (Exception r)
             {

@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Conexion\ConectarBD.cs" />
     <Compile Include="Entidades\Caja.cs" />
+    <Compile Include="Entidades\MovimientoCaja.cs" />
     <Compile Include="Formularios\Ayuda\frmAcercaDeBSP.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +68,12 @@
     </Compile>
     <Compile Include="Formularios\Caja\frmCajaInicial.Designer.cs">
       <DependentUpon>frmCajaInicial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Caja\frmCerrarCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Caja\frmCerrarCaja.Designer.cs">
+      <DependentUpon>frmCerrarCaja.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Caja\frmVisualizarCaja.cs">
       <SubType>Form</SubType>
@@ -127,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Caja\frmCajaInicial.resx">
       <DependentUpon>frmCajaInicial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Caja\frmCerrarCaja.resx">
+      <DependentUpon>frmCerrarCaja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Caja\frmVisualizarCaja.resx">
       <DependentUpon>frmVisualizarCaja.cs</DependentUpon>
