@@ -77,5 +77,63 @@ namespace ADBISYS.Formularios.Proveedores
                 return;
             }
         }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if(notFilaSeleccionada()) return;
+            mostrarFormularioModificarProveedor();
+        }
+
+        private void mostrarFormularioModificarProveedor()
+        {
+
+            int filaSeleccionada = grdProveedores.SelectedRows[0].Index;
+
+            frmModificarProveedor modificarProveedor = new frmModificarProveedor();
+            modificarProveedor.proveedor_codigo      = grdProveedores.Rows[filaSeleccionada].Cells["CÓDIGO"].Value.ToString();
+            modificarProveedor.proveedor_rubro       = grdProveedores.Rows[filaSeleccionada].Cells["RUBRO"].Value.ToString();
+            modificarProveedor.proveedor_nombre      = grdProveedores.Rows[filaSeleccionada].Cells["NOMBRE"].Value.ToString();
+            modificarProveedor.proveedor_contacto    = grdProveedores.Rows[filaSeleccionada].Cells["CONTACTO"].Value.ToString();
+            modificarProveedor.proveedor_direccion   = grdProveedores.Rows[filaSeleccionada].Cells["DIRECCIÓN"].Value.ToString();
+            modificarProveedor.proveedor_localidad   = grdProveedores.Rows[filaSeleccionada].Cells["LOCALIDAD"].Value.ToString();
+            modificarProveedor.proveedor_provincia   = grdProveedores.Rows[filaSeleccionada].Cells["PROVINCIA"].Value.ToString();
+            modificarProveedor.proveedor_telefono    = grdProveedores.Rows[filaSeleccionada].Cells["TELÉFONO"].Value.ToString();
+            modificarProveedor.proveedor_cuit        = grdProveedores.Rows[filaSeleccionada].Cells["CUIT"].Value.ToString();
+
+            modificarProveedor.ShowDialog();
+            
+        }
+
+        private bool notFilaSeleccionada()
+        {
+            try
+            {
+                if (grdProveedores.SelectedRows.Count != 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar un Proveedor.", "Modificar Proveedor.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btnModificar.Focus();
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
+            }
+        }
+
+        private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mostrarFormularioModificarProveedor();
+        }
+
+        private void grdProveedores_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            mostrarFormularioModificarProveedor();
+        }
     }
 }

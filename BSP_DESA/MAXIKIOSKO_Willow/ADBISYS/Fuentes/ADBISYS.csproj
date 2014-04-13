@@ -86,6 +86,12 @@
     <Compile Include="Formularios\Ingresar\frmIniciarSesion.Designer.cs">
       <DependentUpon>frmIniciarSesion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Proveedores\frmModificarProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Proveedores\frmModificarProveedor.Designer.cs">
+      <DependentUpon>frmModificarProveedor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Proveedores\frmNuevoProveedor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Ingresar\frmIniciarSesion.resx">
       <DependentUpon>frmIniciarSesion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Proveedores\frmModificarProveedor.resx">
+      <DependentUpon>frmModificarProveedor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Proveedores\frmNuevoProveedor.resx">
       <DependentUpon>frmNuevoProveedor.cs</DependentUpon>

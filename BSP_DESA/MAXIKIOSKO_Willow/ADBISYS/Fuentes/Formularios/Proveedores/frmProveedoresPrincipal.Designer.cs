@@ -126,6 +126,7 @@
             this.btnModificar.Text = "&Modificar";
             this.btnModificar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnNuevo
             // 
@@ -148,7 +149,8 @@
             this.grdProveedores.Name = "grdProveedores";
             this.grdProveedores.RowTemplate.Height = 24;
             this.grdProveedores.Size = new System.Drawing.Size(1424, 631);
-            this.grdProveedores.TabIndex = 0;
+            this.grdProveedores.TabIndex = 7;
+            this.grdProveedores.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProveedores_CellContentDoubleClick);
             // 
             // menuStrip1
             // 
@@ -187,6 +189,7 @@
             this.modificarToolStripMenuItem.Name = "modificarToolStripMenuItem";
             this.modificarToolStripMenuItem.Size = new System.Drawing.Size(168, 28);
             this.modificarToolStripMenuItem.Text = "Modificar";
+            this.modificarToolStripMenuItem.Click += new System.EventHandler(this.modificarToolStripMenuItem_Click);
             // 
             // eliminarToolStripMenuItem
             // 

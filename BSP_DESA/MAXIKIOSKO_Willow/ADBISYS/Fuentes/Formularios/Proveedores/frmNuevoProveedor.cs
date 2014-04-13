@@ -122,7 +122,6 @@ namespace ADBISYS.Formularios.Proveedores
             txtTelefono.Text = "";
             txtCuit.Text = "";
             cboRubro.Focus();
-
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
