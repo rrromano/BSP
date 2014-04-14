@@ -18,11 +18,10 @@ namespace ADBISYS.Formularios.Proveedores
         DataSet ds = new DataSet();
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
         string cadenaSql, rubroAnterior, usuario = "";
-        public string proveedor_codigo, proveedor_rubro,
-               proveedor_nombre, proveedor_contacto,
-               proveedor_direccion, proveedor_localidad,
-               proveedor_provincia, proveedor_telefono,
-               proveedor_cuit = "";
+        public string   proveedor_codigo,    proveedor_rubro,proveedor_nombre, proveedor_contacto,
+                        proveedor_direccion, proveedor_localidad,
+                        proveedor_provincia, proveedor_telefono,
+                        proveedor_cuit = "";
 
         Dictionary<int, string> rubros = new Dictionary<int, string>();
 
