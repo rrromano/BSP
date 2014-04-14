@@ -51,8 +51,8 @@ namespace ADBISYS.Formularios.Proveedores
 
         private void frmProveedoresPrincipal_Activated(object sender, EventArgs e)
         {
-            llenarGrilla();
-            grdProveedores = fg.formatoGrilla(grdProveedores, 1);
+                llenarGrilla();
+                grdProveedores = fg.formatoGrilla(grdProveedores, 1);
         }
 
         private void llenarGrilla()
@@ -128,6 +128,7 @@ namespace ADBISYS.Formularios.Proveedores
 
         private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (notFilaSeleccionada()) return;
             mostrarFormularioModificarProveedor();
         }
 
@@ -135,5 +136,45 @@ namespace ADBISYS.Formularios.Proveedores
         {
             mostrarFormularioModificarProveedor();
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            eliminarProveedor();
+        }
+
+        private void eliminarProveedor()
+        {
+            if (notFilaSeleccionada()) return;
+            int filaSeleccionada = grdProveedores.SelectedRows[0].Index;
+            string nombre_Proveedor = grdProveedores.Rows[filaSeleccionada].Cells["NOMBRE"].Value.ToString();
+            string id_Proveedor = grdProveedores.Rows[filaSeleccionada].Cells["CÓDIGO"].Value.ToString();
+
+            if (MessageBox.Show("¿Está seguro que desea eliminar el Proveedor " + nombre_Proveedor + "?", "Eliminar Proveedor.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    cadenaSql = "EXEC adp_eliminar_proveedor @Id_Proveedor = " + id_Proveedor;
+                    objConect.ejecutarQuery(cadenaSql);
+
+                    cadenaSql = "EXEC adp_reseteoCampoIdentity_proveedores";
+                    objConect.ejecutarQuery(cadenaSql);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            eliminarProveedor();
+        }
+
     }
 }
