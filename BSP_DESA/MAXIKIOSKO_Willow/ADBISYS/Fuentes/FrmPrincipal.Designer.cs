@@ -40,6 +40,7 @@
             this.articulosTS = new System.Windows.Forms.ToolStripMenuItem();
             this.modifArticuloTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.actPrecioArticuloTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.comprasTS = new System.Windows.Forms.ToolStripMenuItem();
             this.cajaTS = new System.Windows.Forms.ToolStripMenuItem();
             this.iniciarCajaTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarCajaTSMI = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,6 +78,7 @@
             this.StripPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ventasTS,
             this.articulosTS,
+            this.comprasTS,
             this.cajaTS,
             this.proveedoresTS,
             this.rubrosTS,
@@ -157,6 +159,13 @@
             this.actPrecioArticuloTSMI.Name = "actPrecioArticuloTSMI";
             this.actPrecioArticuloTSMI.Size = new System.Drawing.Size(311, 28);
             this.actPrecioArticuloTSMI.Text = "Actualización de Precios";
+            // 
+            // comprasTS
+            // 
+            this.comprasTS.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comprasTS.Name = "comprasTS";
+            this.comprasTS.Size = new System.Drawing.Size(106, 27);
+            this.comprasTS.Text = "C&ompras";
             // 
             // cajaTS
             // 
@@ -432,6 +441,7 @@
         private System.Windows.Forms.ToolStripMenuItem confVentaErroneaTSMI;
         private System.Windows.Forms.ToolStripMenuItem ventasDelDíaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem adminUsuarioTSMI;
+        private System.Windows.Forms.ToolStripMenuItem comprasTS;
 
 
 

@@ -12,14 +12,14 @@ BEGIN TRY
 
 	SET NOCOUNT ON
 	
-	SELECT UPPER(ID_Proveedor)  AS CODIGO,
+	SELECT UPPER(ID_Proveedor)  AS CÓDIGO,
 				 UPPER(Nombre)				AS NOMBRE,
 				 UPPER(B.DESCRIPCION) AS RUBRO ,
 				 UPPER(Contacto)			AS CONTACTO,
-				 UPPER(Direccion)		  AS DIRECCION,
+				 UPPER(Direccion)		  AS DIRECCIÓN,
 				 UPPER(Localidad)		  AS LOCALIDAD,
 				 UPPER(Provincia)		  AS PROVINCIA,
-				 UPPER(Telefono)			AS TELEFONO,
+				 UPPER(Telefono)			AS TELÉFONO,
 				 UPPER(Cuit)					AS CUIT,
 				 convert(varchar,A.fecha_modif,120) AS FECHA_MODIF,
 				 UPPER(A.login_modif) AS LOGIN_MODIF,

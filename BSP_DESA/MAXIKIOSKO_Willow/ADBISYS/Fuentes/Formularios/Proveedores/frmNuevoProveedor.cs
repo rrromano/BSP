@@ -138,6 +138,8 @@ namespace ADBISYS.Formularios.Proveedores
                 cadenaSql = "EXEC adp_verificoExistencia_proveedor";
                 cadenaSql = cadenaSql + " @Id_Rubro = " + obtenerIdRubro().ToString();
                 cadenaSql = cadenaSql + ",@Nombre = " + fg.fcSql(txtNombre.Text, "String");
+                cadenaSql = cadenaSql + ",@Id_Proveedor = " + fg.fcSql(txtCodigo.Text, "String");
+                
                 objConect.ejecutarQuerySelect(cadenaSql);
 
                 if (ds.Tables[0].Rows.Count > 0)

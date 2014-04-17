@@ -170,6 +170,7 @@ namespace ADBISYS
             {
                 //si la instancia existe la pongo en primer plano
                 MessageBox.Show("El formulario de Proveedores ya se encuentra abierto.", "Proveedores.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                frm.WindowState = FormWindowState.Normal;
                 frm.BringToFront();
                 return;
             }

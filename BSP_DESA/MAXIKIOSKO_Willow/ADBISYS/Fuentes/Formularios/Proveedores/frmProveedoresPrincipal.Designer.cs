@@ -102,6 +102,7 @@
             this.btnBuscar.Text = "&Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // btnEliminar
             // 
@@ -152,6 +153,7 @@
             this.grdProveedores.Size = new System.Drawing.Size(1424, 631);
             this.grdProveedores.TabIndex = 7;
             this.grdProveedores.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProveedores_CellContentDoubleClick);
+            this.grdProveedores.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.grdProveedores_KeyPress);
             // 
             // menuStrip1
             // 
@@ -204,6 +206,7 @@
             this.buscarToolStripMenuItem.Name = "buscarToolStripMenuItem";
             this.buscarToolStripMenuItem.Size = new System.Drawing.Size(168, 28);
             this.buscarToolStripMenuItem.Text = "Buscar";
+            this.buscarToolStripMenuItem.Click += new System.EventHandler(this.buscarToolStripMenuItem_Click);
             // 
             // ordenarToolStripMenuItem
             // 

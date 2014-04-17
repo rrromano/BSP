@@ -6,7 +6,8 @@ Go
 
 -- SP QUE VERIFICA EXISTENCIA DE UN PROVEEDOR.
 
-Create procedure adp_verificoExistencia_proveedor (@Id_Rubro INT, 
+Create procedure adp_verificoExistencia_proveedor (@Id_Proveedor INT,
+																									 @Id_Rubro INT, 
 																									 @Nombre	 VARCHAR(255))
 as
 
@@ -14,7 +15,7 @@ BEGIN TRY
   SET NOCOUNT ON
   PRINT 'INICIO ACTUALIZACIÓN'
   
-	select 1 from PROVEEDORES where ID_Rubro = @Id_Rubro and Nombre = @Nombre
+	select 1 from PROVEEDORES where ID_Rubro = @Id_Rubro and Nombre = @Nombre and ID_Proveedor <> @Id_Proveedor
 
   PRINT 'FIN ACTUALIZACIÓN OK'
   SET NOCOUNT OFF

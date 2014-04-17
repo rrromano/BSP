@@ -102,7 +102,37 @@ namespace ADBISYS.Formularios.Proveedores
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             if (validoCampos()) return;
+            if (validoExistenciaProveedor()) return;
             modificarProveedor();
+        }
+
+        private bool validoExistenciaProveedor()
+        {
+            try
+            {
+                cadenaSql = "EXEC adp_verificoExistencia_proveedor";
+                cadenaSql = cadenaSql + " @Id_Rubro = " + obtenerIdRubro().ToString();
+                cadenaSql = cadenaSql + ",@Nombre = " + fg.fcSql(txtNombre.Text, "String");
+                cadenaSql = cadenaSql + ",@Id_Proveedor = " + fg.fcSql(txtCodigo.Text, "String");
+
+                objConect.ejecutarQuerySelect(cadenaSql);
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    MessageBox.Show("Ya existe un proveedor con Nombre: " + txtNombre.Text + " y Rubro: " + cboRubro.Text + ".", "Alta de Proveedor.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cboRubro.Focus();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
+            }
         }
 
         private void modificarProveedor()

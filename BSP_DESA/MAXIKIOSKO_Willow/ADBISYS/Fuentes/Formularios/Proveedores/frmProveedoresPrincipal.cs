@@ -18,6 +18,7 @@ namespace ADBISYS.Formularios.Proveedores
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
         string cadenaSql = "";
         int filaSeleccionada = 0;
+        public string campoBusqueda, textoBusqueda = "";
 
         public frmProveedoresPrincipal()
         {
@@ -54,8 +55,8 @@ namespace ADBISYS.Formularios.Proveedores
         {
             llenarGrilla();
             grdProveedores = fg.formatoGrilla(grdProveedores, 1);
-            if ((filaSeleccionada != 0) && (filaSeleccionada <= grdProveedores.Rows.Count - 1)) 
-                grdProveedores.Rows[filaSeleccionada].Selected = true;
+            //if ((filaSeleccionada != 0) && (filaSeleccionada <= grdProveedores.Rows.Count - 1)) 
+            //    grdProveedores.Rows[filaSeleccionada].Selected = true;
         }
 
         private void llenarGrilla()
@@ -70,6 +71,15 @@ namespace ADBISYS.Formularios.Proveedores
                     grdProveedores.DataSource = ds.Tables[0];
                 }
 
+                if ((filaSeleccionada != 0) && (filaSeleccionada <= grdProveedores.Rows.Count - 1))
+                {
+                    grdProveedores.Rows[filaSeleccionada].Selected = true;
+                }
+
+                if (grdProveedores.Rows.Count == 0)
+                {
+                    grdProveedores.DataSource = null;
+                }
             }
             catch (Exception e)
             {
@@ -92,14 +102,14 @@ namespace ADBISYS.Formularios.Proveedores
             filaSeleccionada = grdProveedores.SelectedRows[0].Index;
 
             frmModificarProveedor modificarProveedor = new frmModificarProveedor();
-            modificarProveedor.proveedor_codigo      = grdProveedores.Rows[filaSeleccionada].Cells["CODIGO"].Value.ToString();
+            modificarProveedor.proveedor_codigo      = grdProveedores.Rows[filaSeleccionada].Cells["CÓDIGO"].Value.ToString();
             modificarProveedor.proveedor_rubro       = grdProveedores.Rows[filaSeleccionada].Cells["RUBRO"].Value.ToString();
             modificarProveedor.proveedor_nombre      = grdProveedores.Rows[filaSeleccionada].Cells["NOMBRE"].Value.ToString();
             modificarProveedor.proveedor_contacto    = grdProveedores.Rows[filaSeleccionada].Cells["CONTACTO"].Value.ToString();
-            modificarProveedor.proveedor_direccion   = grdProveedores.Rows[filaSeleccionada].Cells["DIRECCION"].Value.ToString();
+            modificarProveedor.proveedor_direccion   = grdProveedores.Rows[filaSeleccionada].Cells["DIRECCIÓN"].Value.ToString();
             modificarProveedor.proveedor_localidad   = grdProveedores.Rows[filaSeleccionada].Cells["LOCALIDAD"].Value.ToString();
             modificarProveedor.proveedor_provincia   = grdProveedores.Rows[filaSeleccionada].Cells["PROVINCIA"].Value.ToString();
-            modificarProveedor.proveedor_telefono    = grdProveedores.Rows[filaSeleccionada].Cells["TELEFONO"].Value.ToString();
+            modificarProveedor.proveedor_telefono    = grdProveedores.Rows[filaSeleccionada].Cells["TELÉFONO"].Value.ToString();
             modificarProveedor.proveedor_cuit        = grdProveedores.Rows[filaSeleccionada].Cells["CUIT"].Value.ToString();
 
             modificarProveedor.ShowDialog();
@@ -116,7 +126,7 @@ namespace ADBISYS.Formularios.Proveedores
                 }
                 else
                 {
-                    MessageBox.Show("Debe seleccionar un Proveedor.", "Modificar Proveedor.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Debe seleccionar un Proveedor.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     btnModificar.Focus();
                     return true;
                 }
@@ -151,9 +161,9 @@ namespace ADBISYS.Formularios.Proveedores
             //int filaSeleccionada = grdProveedores.SelectedRows[0].Index;
             filaSeleccionada = grdProveedores.SelectedRows[0].Index;
             string nombre_Proveedor = grdProveedores.Rows[filaSeleccionada].Cells["NOMBRE"].Value.ToString();
-            string id_Proveedor = grdProveedores.Rows[filaSeleccionada].Cells["CODIGO"].Value.ToString();
+            string id_Proveedor = grdProveedores.Rows[filaSeleccionada].Cells["CÓDIGO"].Value.ToString();
 
-            if (MessageBox.Show("¿Está seguro que desea eliminar el Proveedor " + nombre_Proveedor + "?", "Eliminar Proveedor.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("¿Está seguro que desea eliminar el Proveedor " + id_Proveedor + "-" + nombre_Proveedor + "?", "Eliminar Proveedor.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 try
                 {
@@ -174,6 +184,32 @@ namespace ADBISYS.Formularios.Proveedores
         private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             eliminarProveedor();
+            llenarGrilla();
+        }
+
+        private void grdProveedores_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                if (notFilaSeleccionada()) return;
+                mostrarFormularioModificarProveedor();
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            mostrarFormularioBusquedaProveedor();
+        }
+
+        private void mostrarFormularioBusquedaProveedor()
+        {
+            frmBusquedaProveedor buscarProveedor = new frmBusquedaProveedor();
+            buscarProveedor.ShowDialog();
+        }
+
+        private void buscarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mostrarFormularioBusquedaProveedor();
         }
 
     }
