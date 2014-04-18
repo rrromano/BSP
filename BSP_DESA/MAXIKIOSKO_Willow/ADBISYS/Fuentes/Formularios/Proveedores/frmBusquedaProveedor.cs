@@ -17,7 +17,7 @@ namespace ADBISYS.Formularios.Proveedores
         DataSet ds = new DataSet();
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
         string cadenaSql,campoAnt,textoAnt = "";
-        public string campo, texto = "";
+        public string campoBusqueda, textoBusqueda = "";
 
         public frmBusquedaProveedor()
         {
@@ -39,6 +39,7 @@ namespace ADBISYS.Formularios.Proveedores
         {
             try
             {
+                string campoSelec = cboCampo.Text;
                 cboCampo.Items.Clear();
 
                 cadenaSql = "EXEC adp_cboBusqueda_proveedores";
@@ -48,6 +49,8 @@ namespace ADBISYS.Formularios.Proveedores
                 {
                     cboCampo.Items.Add(dataRow["CAMPO"]);
                 }
+
+                cboCampo.Text = campoSelec;
             }
             catch (Exception e)
             {
@@ -65,7 +68,9 @@ namespace ADBISYS.Formularios.Proveedores
         {
             //RR 2014-04-17
             if (validoCampos()) return;
-            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmProveedoresPrincipal);
+            campoBusqueda = cboCampo.Text;
+            textoBusqueda = txtTexto.Text;
+            this.Hide();
         }
 
         private bool validoCampos()

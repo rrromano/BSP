@@ -18,7 +18,6 @@ namespace ADBISYS.Formularios.Proveedores
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
         string cadenaSql = "";
         int filaSeleccionada = 0;
-        public string campoBusqueda, textoBusqueda = "";
 
         public frmProveedoresPrincipal()
         {
