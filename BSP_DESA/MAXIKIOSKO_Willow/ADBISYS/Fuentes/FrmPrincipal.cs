@@ -169,7 +169,7 @@ namespace ADBISYS
             if (frm != null)
             {
                 //si la instancia existe la pongo en primer plano
-                MessageBox.Show("El formulario de Proveedores ya se encuentra abierto.", "Proveedores.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("El formulario de Proveedores ya se encuentra abierto.", "Proveedores.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 frm.WindowState = FormWindowState.Normal;
                 frm.BringToFront();
                 return;
@@ -196,6 +196,37 @@ namespace ADBISYS
         {
             frmCerrarCaja cerrarCaja = new frmCerrarCaja();
             cerrarCaja.ShowDialog();
+        }
+
+        private void modificarCajaTSMI_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmCaja);
+
+                if (frm != null)
+                {
+                    //si la instancia existe la pongo en primer plano
+                    frm.WindowState = FormWindowState.Normal;
+                    frm.BringToFront();
+                    return;
+                }
+                else
+                {
+                    mostrarFormularioCaja();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void mostrarFormularioCaja()
+        {
+            frmCaja MovsCaja = new frmCaja();
+            MovsCaja.Show();
         }
     }
 }

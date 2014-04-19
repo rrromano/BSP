@@ -78,8 +78,8 @@ namespace ADBISYS.Formularios.Caja
         {
             FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
             llenarGrillaMovimientosCaja();
-            calcularTotalesCaja();
-            grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 1);
+            //calcularTotalesCaja();
+            grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 2);
         }
     }
 }

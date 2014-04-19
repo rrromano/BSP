@@ -191,6 +191,7 @@
             this.modificarCajaTSMI.Name = "modificarCajaTSMI";
             this.modificarCajaTSMI.Size = new System.Drawing.Size(175, 28);
             this.modificarCajaTSMI.Text = "Modificar ";
+            this.modificarCajaTSMI.Click += new System.EventHandler(this.modificarCajaTSMI_Click);
             // 
             // visualizarCajaTSMI
             // 

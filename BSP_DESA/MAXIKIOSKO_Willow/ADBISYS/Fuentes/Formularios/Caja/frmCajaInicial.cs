@@ -94,7 +94,7 @@ namespace ADBISYS.Formularios.Caja
         {
             DateTime Dia = fg.appFechaSistema();
             MovimientoCaja movCaja = new MovimientoCaja();
-            movCaja.modificarCajaInicial(Dia, Double.Parse(txtCajaInicial.Text));
+            movCaja.modificarCajaInicial(Dia, txtCajaInicial.Text);
         }
 
         private void registrarMovimientosInicialesCaja()
