@@ -63,6 +63,12 @@
     <Compile Include="Formularios\Ayuda\frmAcercaDeWillow.Designer.cs">
       <DependentUpon>frmAcercaDeWillow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Caja\frmCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Caja\frmCaja.Designer.cs">
+      <DependentUpon>frmCaja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Caja\frmCajaInicial.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +80,18 @@
     </Compile>
     <Compile Include="Formularios\Caja\frmCerrarCaja.Designer.cs">
       <DependentUpon>frmCerrarCaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Caja\frmModificarMovimientoCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Caja\frmModificarMovimientoCaja.Designer.cs">
+      <DependentUpon>frmModificarMovimientoCaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Caja\frmNuevoMovimientoCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Caja\frmNuevoMovimientoCaja.Designer.cs">
+      <DependentUpon>frmNuevoMovimientoCaja.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Caja\frmVisualizarCaja.cs">
       <SubType>Form</SubType>
@@ -138,11 +156,20 @@
     <EmbeddedResource Include="Formularios\Ayuda\frmAcercaDeWillow.resx">
       <DependentUpon>frmAcercaDeWillow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Caja\frmCaja.resx">
+      <DependentUpon>frmCaja.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Caja\frmCajaInicial.resx">
       <DependentUpon>frmCajaInicial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Caja\frmCerrarCaja.resx">
       <DependentUpon>frmCerrarCaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Caja\frmModificarMovimientoCaja.resx">
+      <DependentUpon>frmModificarMovimientoCaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Caja\frmNuevoMovimientoCaja.resx">
+      <DependentUpon>frmNuevoMovimientoCaja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Caja\frmVisualizarCaja.resx">
       <DependentUpon>frmVisualizarCaja.cs</DependentUpon>

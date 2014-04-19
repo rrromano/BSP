@@ -47,7 +47,7 @@ namespace ADBISYS.Entidades
             set { hora = value; }
         }
 
-        public void modificarCajaInicial(DateTime Fecha,  Double Valor)
+        public void modificarCajaInicial(DateTime Fecha,  String Valor)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace ADBISYS.Entidades
 
                 sSQL = "exec adp_modificarCajaInicial ";
                 sSQL = sSQL + " @fecha = " + fg.fcSql(Fecha.ToString(), "DATETIME");
-                sSQL = sSQL + " ,@Valor = " + fg.fcSql(Valor.ToString(), "DOUBLE");
+                sSQL = sSQL + " ,@Valor = " + fg.fcSql(Valor, "DOUBLE");
                 con.ejecutarQuery(sSQL);
             }
             catch (Exception e)
