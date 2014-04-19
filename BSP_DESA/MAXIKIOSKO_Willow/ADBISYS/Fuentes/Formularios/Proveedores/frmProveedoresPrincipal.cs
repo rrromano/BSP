@@ -18,6 +18,8 @@ namespace ADBISYS.Formularios.Proveedores
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
         string cadenaSql = "";
         int filaSeleccionada = 0;
+        Boolean EstoyBuscando;
+        DataSet ResultadoBusqueda = new DataSet();
 
         public frmProveedoresPrincipal()
         {
@@ -37,6 +39,8 @@ namespace ADBISYS.Formularios.Proveedores
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             mostrarFormularioNuevoProveedor();
+            llenarGrilla(); 
+            grdProveedores = fg.formatoGrilla(grdProveedores, 1); 
         }
 
         private void nuevoToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -50,24 +54,31 @@ namespace ADBISYS.Formularios.Proveedores
             nuevoProveedor.ShowDialog();
         }
 
-        private void frmProveedoresPrincipal_Activated(object sender, EventArgs e)
-        {
-            llenarGrilla();
-            grdProveedores = fg.formatoGrilla(grdProveedores, 1);
-            //if ((filaSeleccionada != 0) && (filaSeleccionada <= grdProveedores.Rows.Count - 1)) 
-            //    grdProveedores.Rows[filaSeleccionada].Selected = true;
-        }
-
         private void llenarGrilla()
         {
             try
             {
-                cadenaSql = "EXEC adp_obtener_proveedores";
-                ds = objConect.ejecutarQuerySelect(cadenaSql);
-
-                if (ds.Tables[0].Rows.Count > 0)
+                if (EstoyBuscando == false)
                 {
-                    grdProveedores.DataSource = ds.Tables[0];
+                    cadenaSql = "EXEC adp_obtener_proveedores";
+                    ds = objConect.ejecutarQuerySelect(cadenaSql);
+
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        grdProveedores.DataSource = ds.Tables[0];
+                    }
+                }
+                else
+                {
+                    if (ResultadoBusqueda.Tables[0].Rows.Count != 0)
+                    {
+                        grdProveedores.DataSource = ResultadoBusqueda.Tables[0];
+                    }
+                    else
+                    {
+                        MessageBox.Show("No trajo resultados el RS");
+                    }
+                    
                 }
 
                 if ((filaSeleccionada != 0) && (filaSeleccionada <= grdProveedores.Rows.Count - 1))
@@ -91,12 +102,12 @@ namespace ADBISYS.Formularios.Proveedores
         {
             if(notFilaSeleccionada()) return;
             mostrarFormularioModificarProveedor();
+            llenarGrilla(); 
+            grdProveedores = fg.formatoGrilla(grdProveedores, 1); 
         }
 
         private void mostrarFormularioModificarProveedor()
         {
-
-            //int filaSeleccionada = grdProveedores.SelectedRows[0].Index;
 
             filaSeleccionada = grdProveedores.SelectedRows[0].Index;
 
@@ -151,13 +162,13 @@ namespace ADBISYS.Formularios.Proveedores
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             eliminarProveedor();
-            llenarGrilla();
+            llenarGrilla(); 
+            grdProveedores = fg.formatoGrilla(grdProveedores, 1); 
         }
 
         private void eliminarProveedor()
         {
             if (notFilaSeleccionada()) return;
-            //int filaSeleccionada = grdProveedores.SelectedRows[0].Index;
             filaSeleccionada = grdProveedores.SelectedRows[0].Index;
             string nombre_Proveedor = grdProveedores.Rows[filaSeleccionada].Cells["NOMBRE"].Value.ToString();
             string id_Proveedor = grdProveedores.Rows[filaSeleccionada].Cells["CÓDIGO"].Value.ToString();
@@ -198,17 +209,34 @@ namespace ADBISYS.Formularios.Proveedores
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             mostrarFormularioBusquedaProveedor();
+            llenarGrilla(); 
+            grdProveedores = fg.formatoGrilla(grdProveedores, 1); 
         }
 
         private void mostrarFormularioBusquedaProveedor()
         {
             frmBusquedaProveedor buscarProveedor = new frmBusquedaProveedor();
             buscarProveedor.ShowDialog();
+            ResultadoBusqueda = buscarProveedor.busquedaProveedores;
+            EstoyBuscando = buscarProveedor.estoyBuscando;
+            return;
         }
 
         private void buscarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mostrarFormularioBusquedaProveedor();
+        }
+
+        private void btnOrdenar_Click(object sender, EventArgs e)
+        {
+            llenarGrilla(); 
+            grdProveedores = fg.formatoGrilla(grdProveedores, 1); 
+        }
+
+        private void frmProveedoresPrincipal_Load(object sender, EventArgs e)
+        {
+            llenarGrilla(); 
+            grdProveedores = fg.formatoGrilla(grdProveedores, 1); 
         }
 
     }

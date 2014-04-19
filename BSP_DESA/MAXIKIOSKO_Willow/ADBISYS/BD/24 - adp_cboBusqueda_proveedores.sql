@@ -16,11 +16,12 @@ BEGIN TRY
 	SELECT case when c.name = 'ID_Proveedor' then 'CÓDIGO'
 							when c.name = 'ID_Rubro' then 'RUBRO'
 							when c.name = 'Direccion' then 'DIRECCIÓN'
+							when c.name = 'Telefono' then 'TELÉFONO'
 							else upper(c.name)
 				 end as CAMPO
 	FROM sys.columns c JOIN sys.tables t
 	ON c.object_id = t.object_id
-	WHERE t.name = 'PROVEEDORES'
+	WHERE t.name = 'PROVEEDORES' and c.name not in ('fecha_modif', 'login_modif', 'term_modif')
 
   PRINT 'FIN ACTUALIZACIÓN OK'
   SET NOCOUNT OFF

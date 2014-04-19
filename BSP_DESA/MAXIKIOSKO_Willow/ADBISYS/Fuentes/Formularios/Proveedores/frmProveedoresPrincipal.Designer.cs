@@ -90,6 +90,7 @@
             this.btnOrdenar.Text = "&Ordenar";
             this.btnOrdenar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnOrdenar.UseVisualStyleBackColor = true;
+            this.btnOrdenar.Click += new System.EventHandler(this.btnOrdenar_Click);
             // 
             // btnBuscar
             // 
@@ -243,7 +244,7 @@
             this.Name = "frmProveedoresPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Proveedores";
-            this.Activated += new System.EventHandler(this.frmProveedoresPrincipal_Activated);
+            this.Load += new System.EventHandler(this.frmProveedoresPrincipal_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdProveedores)).EndInit();
             this.menuStrip1.ResumeLayout(false);

@@ -11,7 +11,7 @@ Create procedure adp_nuevo_proveedor (@Proveedor_IdRubro		varchar(255) ,
 																			@Proveedor_Direccion	varchar(255) = null,
 																			@Proveedor_Localidad	varchar(255) = null,
 																			@Proveedor_Provincia	varchar(255) = null,
-																			@Proveedor_Telefono		numeric(20)	 = null,
+																			@Proveedor_Telefono		varchar(20)	 = null,
 																			@Proveedor_Cuit				numeric(20)	 = null,
 																			@Proveedor_Login			varchar(255) = null)
 as
