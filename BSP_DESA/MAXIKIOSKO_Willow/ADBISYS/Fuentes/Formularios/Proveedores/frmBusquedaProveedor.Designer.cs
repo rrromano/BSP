@@ -61,7 +61,7 @@
             this.chkBusqueda.Location = new System.Drawing.Point(24, 124);
             this.chkBusqueda.Name = "chkBusqueda";
             this.chkBusqueda.Size = new System.Drawing.Size(246, 28);
-            this.chkBusqueda.TabIndex = 6;
+            this.chkBusqueda.TabIndex = 3;
             this.chkBusqueda.Text = "Quitar Filtro de Búsqueda";
             this.chkBusqueda.UseVisualStyleBackColor = true;
             this.chkBusqueda.CheckedChanged += new System.EventHandler(this.chkBusqueda_CheckedChanged);
@@ -83,7 +83,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(24, 169);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(208, 67);
-            this.btnCancelar.TabIndex = 4;
+            this.btnCancelar.TabIndex = 5;
             this.btnCancelar.Text = "&Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -96,7 +96,7 @@
             this.btnAceptar.Location = new System.Drawing.Point(252, 169);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(208, 67);
-            this.btnAceptar.TabIndex = 3;
+            this.btnAceptar.TabIndex = 4;
             this.btnAceptar.Text = "&Aceptar";
             this.btnAceptar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAceptar.UseVisualStyleBackColor = true;

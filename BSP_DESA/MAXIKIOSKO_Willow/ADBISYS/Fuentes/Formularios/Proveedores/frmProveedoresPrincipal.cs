@@ -16,10 +16,10 @@ namespace ADBISYS.Formularios.Proveedores
         ConectarBD objConect = new ConectarBD();
         DataSet ds = new DataSet();
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
-        string cadenaSql = "";
+        string cadenaSql, campoAnterior, textoAnterior = "";
         int filaSeleccionada = 0;
         Boolean EstoyBuscando;
-        DataSet ResultadoBusqueda = new DataSet();
+        Dictionary<string, string> campos_tabla = new Dictionary<string, string>();
 
         public frmProveedoresPrincipal()
         {
@@ -70,13 +70,15 @@ namespace ADBISYS.Formularios.Proveedores
                 }
                 else
                 {
-                    if (ResultadoBusqueda.Tables[0].Rows.Count != 0)
+                    cadenaSql = "EXEC adp_busqueda_proveedores";
+                    cadenaSql = cadenaSql + " @tabla = " + fg.fcSql("PROVEEDORES","String");
+                    cadenaSql = cadenaSql + ",@campo_tabla = " + fg.fcSql(obtenerCampoTabla().ToString(),"String");
+                    cadenaSql = cadenaSql + ",@texto = " + fg.fcSql(textoAnterior, "String");
+
+                    ds = objConect.ejecutarQuerySelect(cadenaSql);
+                    if (ds.Tables[0].Rows.Count > 0)
                     {
-                        grdProveedores.DataSource = ResultadoBusqueda.Tables[0];
-                    }
-                    else
-                    {
-                        MessageBox.Show("No trajo resultados el RS");
+                        grdProveedores.DataSource = ds.Tables[0];
                     }
                     
                 }
@@ -197,15 +199,6 @@ namespace ADBISYS.Formularios.Proveedores
             llenarGrilla();
         }
 
-        private void grdProveedores_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Return)
-            {
-                if (notFilaSeleccionada()) return;
-                mostrarFormularioModificarProveedor();
-            }
-        }
-
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             mostrarFormularioBusquedaProveedor();
@@ -216,15 +209,22 @@ namespace ADBISYS.Formularios.Proveedores
         private void mostrarFormularioBusquedaProveedor()
         {
             frmBusquedaProveedor buscarProveedor = new frmBusquedaProveedor();
+            buscarProveedor.campo = campoAnterior;
+            buscarProveedor.texto = textoAnterior;
+            buscarProveedor.estoyBuscando = EstoyBuscando;
             buscarProveedor.ShowDialog();
-            ResultadoBusqueda = buscarProveedor.busquedaProveedores;
             EstoyBuscando = buscarProveedor.estoyBuscando;
+            campoAnterior = buscarProveedor.campo;
+            textoAnterior = buscarProveedor.texto;
+            campos_tabla = buscarProveedor.campos_tabla;
             return;
         }
 
         private void buscarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mostrarFormularioBusquedaProveedor();
+            llenarGrilla();
+            grdProveedores = fg.formatoGrilla(grdProveedores, 1); 
         }
 
         private void btnOrdenar_Click(object sender, EventArgs e)
@@ -237,6 +237,37 @@ namespace ADBISYS.Formularios.Proveedores
         {
             llenarGrilla(); 
             grdProveedores = fg.formatoGrilla(grdProveedores, 1); 
+        }
+
+        private object obtenerCampoTabla()
+        {
+            try
+            {
+                foreach (KeyValuePair<string, string> campo in campos_tabla)
+                {
+                    if (campoAnterior == campo.Value)
+                    {
+                        return (campo.Key);
+                    }
+                }
+                return "ok";
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return "error";
+            }
+        }
+
+        private void grdProveedores_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) 
+            {
+                if (notFilaSeleccionada()) return;
+                mostrarFormularioModificarProveedor();
+                e.SuppressKeyPress = true;
+            }
         }
 
     }

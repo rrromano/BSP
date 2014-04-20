@@ -16,10 +16,9 @@ namespace ADBISYS.Formularios.Proveedores
         ConectarBD objConect = new ConectarBD();
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
         string cadenaSql,campoAnt,textoAnt = "";
-        public DataSet busquedaProveedores = new DataSet(); 
         public bool estoyBuscando;
-        Dictionary<string, string> campos_tabla = new Dictionary<string, string>();
-        DataGridView dgAux = new DataGridView();
+        public string campo, texto;
+        public Dictionary<string, string> campos_tabla = new Dictionary<string, string>();
 
         public frmBusquedaProveedor()
         {
@@ -87,6 +86,8 @@ namespace ADBISYS.Formularios.Proveedores
             if (chkBusqueda.Checked == true)
             {
                 estoyBuscando = false;
+                campo = "";
+                texto = "";
                 this.Close();
             }
             else
@@ -101,7 +102,7 @@ namespace ADBISYS.Formularios.Proveedores
             try
             {
                 DataSet Ds = new DataSet();
-                cadenaSql = "EXEC adp_busqueda_general";
+                cadenaSql = "EXEC adp_busqueda_proveedores";
                 cadenaSql = cadenaSql + " @tabla = " + fg.fcSql("PROVEEDORES","String");
                 cadenaSql = cadenaSql + ",@campo_tabla = " + fg.fcSql(obtenerCampoTabla().ToString(),"String");
                 cadenaSql = cadenaSql + ",@texto = " + fg.fcSql(txtTexto.Text, "String");
@@ -111,8 +112,10 @@ namespace ADBISYS.Formularios.Proveedores
 
                 if (Ds.Tables[0].Rows.Count > 0)
                 {
-                    busquedaProveedores = Ds;
+                    //busquedaProveedores = Ds;
                     estoyBuscando = true;
+                    campo = cboCampo.Text;
+                    texto = txtTexto.Text;
                     this.Close();                    
                 }
                 else
@@ -193,6 +196,8 @@ namespace ADBISYS.Formularios.Proveedores
         {
             cargarComboCampo(); 
             chkBusqueda.Checked = false;
+            cboCampo.Text = campo;
+            txtTexto.Text = texto;
         }
 
     }

@@ -154,7 +154,7 @@
             this.grdProveedores.Size = new System.Drawing.Size(1424, 631);
             this.grdProveedores.TabIndex = 7;
             this.grdProveedores.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProveedores_CellContentDoubleClick);
-            this.grdProveedores.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.grdProveedores_KeyPress);
+            this.grdProveedores.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdProveedores_KeyDown);
             // 
             // menuStrip1
             // 
