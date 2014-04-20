@@ -44,7 +44,6 @@ namespace ADBISYS.Formularios.Caja
             try 
 	        {	
                 Entidades.Caja caja = new Entidades.Caja();
-                String sSQL = "EXEC ObtenerMovimientosCaja @FECHA_MOV = " + fg.appFechaSistema();
                 DataSet Ds = new DataSet();
                 
                 Ds.Reset();
@@ -136,7 +135,8 @@ namespace ADBISYS.Formularios.Caja
 
         private void nuevoMovimientoCaja()
         {
-            MessageBox.Show("Falta Implementar");
+            frmNuevoMovimientoCaja nuevoMov = new frmNuevoMovimientoCaja();
+            nuevoMov.ShowDialog();
         }
 
         private void modificarMovimientoCaja()
