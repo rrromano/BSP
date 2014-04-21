@@ -102,6 +102,7 @@ namespace ADBISYS.FuncionesGenerales
             Grilla.BackgroundColor = Color.White;
             Grilla.Font = new Font("Verdana",11);
 
+            Grilla.StandardTab = true;
             Grilla.ReadOnly = true;
             Grilla.RowHeadersVisible = false;
             Grilla.MultiSelect = false;

@@ -82,16 +82,6 @@ namespace ADBISYS
             }
         }
 
-        private void FrmPrincipal_Activated(object sender, EventArgs e)
-        {
-            if (Properties.Settings.Default.UsuarioLogueado != "")
-            {
-                usuarioTSS.Text = "Usuario: " + Properties.Settings.Default.UsuarioLogueado;
-                usuarioTSS.BackColor = Color.Black;
-                usuarioTSS.ForeColor = Color.Yellow;
-            }
-        }
-
         private void cerrarSesiónTSMI_Click(object sender, EventArgs e)
         {
             if (Properties.Settings.Default.UsuarioLogueado == "")
@@ -132,12 +122,24 @@ namespace ADBISYS
         {
             frmAdministrarUsuario administrarUsuario = new frmAdministrarUsuario();
             administrarUsuario.ShowDialog();
+            if (Properties.Settings.Default.UsuarioLogueado != "")
+            {
+                usuarioTSS.Text = "Usuario: " + Properties.Settings.Default.UsuarioLogueado;
+                usuarioTSS.BackColor = Color.Black;
+                usuarioTSS.ForeColor = Color.Yellow;
+            }
         }
 
         private void mostrarFormularioIniciarSesion()
         {
             frmIniciarSesion iniciarSesion = new frmIniciarSesion();
             iniciarSesion.ShowDialog();
+            if (Properties.Settings.Default.UsuarioLogueado != "")
+            {
+                usuarioTSS.Text = "Usuario: " + Properties.Settings.Default.UsuarioLogueado;
+                usuarioTSS.BackColor = Color.Black;
+                usuarioTSS.ForeColor = Color.Yellow;
+            }
         }
 
         private void acercaDeWillowTSMI_Click(object sender, EventArgs e)

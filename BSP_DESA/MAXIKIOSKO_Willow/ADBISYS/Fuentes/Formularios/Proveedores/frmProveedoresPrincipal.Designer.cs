@@ -155,6 +155,7 @@
             this.grdProveedores.TabIndex = 7;
             this.grdProveedores.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProveedores_CellContentDoubleClick);
             this.grdProveedores.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdProveedores_KeyDown);
+            this.grdProveedores.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.grdProveedores_KeyPress);
             // 
             // menuStrip1
             // 
@@ -257,7 +258,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView grdProveedores;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnNuevo;
         private System.Windows.Forms.Button btnEliminar;
@@ -273,5 +273,6 @@
         private System.Windows.Forms.ToolStripMenuItem eliminarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem buscarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ordenarToolStripMenuItem;
+        private System.Windows.Forms.DataGridView grdProveedores;
     }
 }
