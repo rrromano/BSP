@@ -1,6 +1,6 @@
 ﻿namespace ADBISYS.Formularios.Proveedores
 {
-    partial class frmBusquedaProveedor
+    partial class frmOrdenarProveedor
     {
         /// <summary>
         /// Variable del diseñador requerida.
@@ -28,64 +28,72 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBusquedaProveedor));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOrdenarProveedor));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chkBusqueda = new System.Windows.Forms.CheckBox();
-            this.txtTexto = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rbtnAscendente = new System.Windows.Forms.RadioButton();
+            this.rbtnDescendente = new System.Windows.Forms.RadioButton();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cboCampo = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.chkBusqueda);
-            this.groupBox1.Controls.Add(this.txtTexto);
+            this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.btnCancelar);
             this.groupBox1.Controls.Add(this.btnAceptar);
-            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.cboCampo);
-            this.groupBox1.Location = new System.Drawing.Point(22, 12);
+            this.groupBox1.Location = new System.Drawing.Point(22, 11);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(505, 263);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.Size = new System.Drawing.Size(505, 234);
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
-            // chkBusqueda
+            // groupBox2
             // 
-            this.chkBusqueda.AutoSize = true;
-            this.chkBusqueda.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkBusqueda.Location = new System.Drawing.Point(24, 124);
-            this.chkBusqueda.Name = "chkBusqueda";
-            this.chkBusqueda.Size = new System.Drawing.Size(278, 27);
-            this.chkBusqueda.TabIndex = 3;
-            this.chkBusqueda.Text = "Quitar Filtro de Búsqueda";
-            this.chkBusqueda.UseVisualStyleBackColor = true;
-            this.chkBusqueda.CheckedChanged += new System.EventHandler(this.chkBusqueda_CheckedChanged);
+            this.groupBox2.Controls.Add(this.rbtnAscendente);
+            this.groupBox2.Controls.Add(this.rbtnDescendente);
+            this.groupBox2.Location = new System.Drawing.Point(24, 66);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(457, 57);
+            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabStop = false;
             // 
-            // txtTexto
+            // rbtnAscendente
             // 
-            this.txtTexto.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTexto.Location = new System.Drawing.Point(235, 75);
-            this.txtTexto.MaxLength = 255;
-            this.txtTexto.Name = "txtTexto";
-            this.txtTexto.Size = new System.Drawing.Size(246, 29);
-            this.txtTexto.TabIndex = 2;
-            this.txtTexto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
+            this.rbtnAscendente.AutoSize = true;
+            this.rbtnAscendente.Location = new System.Drawing.Point(83, 20);
+            this.rbtnAscendente.Name = "rbtnAscendente";
+            this.rbtnAscendente.Size = new System.Drawing.Size(140, 27);
+            this.rbtnAscendente.TabIndex = 3;
+            this.rbtnAscendente.TabStop = true;
+            this.rbtnAscendente.Text = "Ascendente";
+            this.rbtnAscendente.UseVisualStyleBackColor = true;
+            // 
+            // rbtnDescendente
+            // 
+            this.rbtnDescendente.AutoSize = true;
+            this.rbtnDescendente.Location = new System.Drawing.Point(229, 20);
+            this.rbtnDescendente.Name = "rbtnDescendente";
+            this.rbtnDescendente.Size = new System.Drawing.Size(153, 27);
+            this.rbtnDescendente.TabIndex = 4;
+            this.rbtnDescendente.TabStop = true;
+            this.rbtnDescendente.Text = "Descendente";
+            this.rbtnDescendente.UseVisualStyleBackColor = true;
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCancelar.Location = new System.Drawing.Point(24, 169);
+            this.btnCancelar.Location = new System.Drawing.Point(24, 141);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(224, 67);
-            this.btnCancelar.TabIndex = 5;
+            this.btnCancelar.TabIndex = 6;
             this.btnCancelar.Text = "&Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -93,33 +101,22 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptar.Image")));
             this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnAceptar.Location = new System.Drawing.Point(257, 169);
+            this.btnAceptar.Location = new System.Drawing.Point(259, 141);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(224, 67);
-            this.btnAceptar.TabIndex = 4;
+            this.btnAceptar.Size = new System.Drawing.Size(222, 67);
+            this.btnAceptar.TabIndex = 5;
             this.btnAceptar.Text = "&Aceptar";
             this.btnAceptar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(20, 78);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(151, 23);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Texto a buscar";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(20, 32);
+            this.label1.Location = new System.Drawing.Point(20, 33);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(206, 23);
             this.label1.TabIndex = 4;
@@ -130,29 +127,31 @@
             this.cboCampo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCampo.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCampo.FormattingEnabled = true;
-            this.cboCampo.Location = new System.Drawing.Point(235, 29);
+            this.cboCampo.Location = new System.Drawing.Point(235, 30);
             this.cboCampo.Name = "cboCampo";
             this.cboCampo.Size = new System.Drawing.Size(246, 30);
             this.cboCampo.TabIndex = 1;
             // 
-            // frmBusquedaProveedor
+            // frmOrdenarProveedor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(549, 297);
+            this.ClientSize = new System.Drawing.Size(549, 269);
             this.Controls.Add(this.groupBox1);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmBusquedaProveedor";
+            this.Name = "frmOrdenarProveedor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Búsqueda de Proveedor";
-            this.Load += new System.EventHandler(this.frmBusquedaProveedor_Load);
+            this.Text = "Ordenar Proveedores";
+            this.Load += new System.EventHandler(this.frmOrdenarProveedor_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -160,12 +159,13 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboCampo;
-        private System.Windows.Forms.Button btnAceptar;
-        private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.TextBox txtTexto;
-        private System.Windows.Forms.CheckBox chkBusqueda;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton rbtnAscendente;
+        private System.Windows.Forms.RadioButton rbtnDescendente;
+
     }
 }

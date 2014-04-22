@@ -46,6 +46,7 @@
             this.ordenarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salidaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lbFiltroBusqueda = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdProveedores)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -53,6 +54,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lbFiltroBusqueda);
             this.groupBox1.Controls.Add(this.btnSalir);
             this.groupBox1.Controls.Add(this.btnOrdenar);
             this.groupBox1.Controls.Add(this.btnBuscar);
@@ -62,7 +64,7 @@
             this.groupBox1.Controls.Add(this.grdProveedores);
             this.groupBox1.Location = new System.Drawing.Point(16, 28);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1462, 755);
+            this.groupBox1.Size = new System.Drawing.Size(1462, 770);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -155,7 +157,6 @@
             this.grdProveedores.TabIndex = 7;
             this.grdProveedores.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProveedores_CellContentDoubleClick);
             this.grdProveedores.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdProveedores_KeyDown);
-            this.grdProveedores.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.grdProveedores_KeyPress);
             // 
             // menuStrip1
             // 
@@ -231,11 +232,20 @@
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
+            // lbFiltroBusqueda
+            // 
+            this.lbFiltroBusqueda.AutoSize = true;
+            this.lbFiltroBusqueda.Location = new System.Drawing.Point(14, 740);
+            this.lbFiltroBusqueda.Name = "lbFiltroBusqueda";
+            this.lbFiltroBusqueda.Size = new System.Drawing.Size(279, 23);
+            this.lbFiltroBusqueda.TabIndex = 8;
+            this.lbFiltroBusqueda.Text = "SIN FILTRO DE BÚSQUEDA.";
+            // 
             // frmProveedoresPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1495, 800);
+            this.ClientSize = new System.Drawing.Size(1495, 815);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -247,6 +257,7 @@
             this.Text = "Proveedores";
             this.Load += new System.EventHandler(this.frmProveedoresPrincipal_Load);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdProveedores)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -274,5 +285,6 @@
         private System.Windows.Forms.ToolStripMenuItem buscarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ordenarToolStripMenuItem;
         private System.Windows.Forms.DataGridView grdProveedores;
+        private System.Windows.Forms.Label lbFiltroBusqueda;
     }
 }

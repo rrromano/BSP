@@ -39,13 +39,15 @@ namespace ADBISYS.Formularios.Proveedores
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            mostrarFormularioNuevoProveedor();
-            llenarGrilla(); 
-            grdProveedores = fg.formatoGrilla(grdProveedores, 1);
-            grdProveedores.Focus();
+            nuevoProveedor();
         }
 
         private void nuevoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            nuevoProveedor();
+        }
+
+        private void nuevoProveedor()
         {
             mostrarFormularioNuevoProveedor();
             llenarGrilla();
@@ -108,9 +110,14 @@ namespace ADBISYS.Formularios.Proveedores
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            if(notFilaSeleccionada()) return;
+            modificarProveedor();
+        }
+
+        private void modificarProveedor()
+        {
+            if (notFilaSeleccionada()) return;
             mostrarFormularioModificarProveedor();
-            llenarGrilla(); 
+            llenarGrilla();
             grdProveedores = fg.formatoGrilla(grdProveedores, 1);
             grdProveedores.Focus();
         }
@@ -133,8 +140,7 @@ namespace ADBISYS.Formularios.Proveedores
             modificarProveedor.proveedor_telefono    = grdProveedores.Rows[filaSeleccionada].Cells["TELÉFONO"].Value.ToString();
             modificarProveedor.proveedor_cuit        = grdProveedores.Rows[filaSeleccionada].Cells["CUIT"].Value.ToString();
 
-            modificarProveedor.ShowDialog();
-            
+            modificarProveedor.ShowDialog();            
         }
 
         private bool notFilaSeleccionada()
@@ -161,28 +167,24 @@ namespace ADBISYS.Formularios.Proveedores
 
         private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (notFilaSeleccionada()) return;
-            mostrarFormularioModificarProveedor();
-            llenarGrilla();
-            grdProveedores = fg.formatoGrilla(grdProveedores, 1);
-            grdProveedores.Focus();
+            modificarProveedor();
         }
 
         private void grdProveedores_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (notFilaSeleccionada()) return;
-            mostrarFormularioModificarProveedor();
-            llenarGrilla();
-            grdProveedores = fg.formatoGrilla(grdProveedores, 1);
-            grdProveedores.Focus();
+            modificarProveedor();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+            eliminoProveedor();
+        }
+
+        private void eliminoProveedor()
+        {
             eliminarProveedor();
-            llenarGrilla(); 
+            llenarGrilla();
             grdProveedores = fg.formatoGrilla(grdProveedores, 1);
-            grdProveedores.Focus();
         }
 
         private void eliminarProveedor()
@@ -203,6 +205,7 @@ namespace ADBISYS.Formularios.Proveedores
 
                     cadenaSql = "EXEC adp_reseteoCampoIdentity_proveedores";
                     objConect.ejecutarQuery(cadenaSql);
+                    grdProveedores.Focus();
                 }
                 catch (Exception e)
                 {
@@ -210,20 +213,26 @@ namespace ADBISYS.Formularios.Proveedores
                     return;
                 }
             }
+            else
+            {
+                btnEliminar.Focus();
+            }
         }
 
         private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            eliminarProveedor();
-            llenarGrilla();
-            grdProveedores = fg.formatoGrilla(grdProveedores, 1);
-            grdProveedores.Focus();
+            eliminoProveedor();
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            buscarProveedor();
+        }
+
+        private void buscarProveedor()
+        {
             mostrarFormularioBusquedaProveedor();
-            llenarGrilla(); 
+            llenarGrilla();
             grdProveedores = fg.formatoGrilla(grdProveedores, 1);
             grdProveedores.Focus();
         }
@@ -239,21 +248,46 @@ namespace ADBISYS.Formularios.Proveedores
             campoAnterior = buscarProveedor.campo;
             textoAnterior = buscarProveedor.texto;
             campos_tabla = buscarProveedor.campos_tabla;
+            actualizarLabelFiltroBusqueda();
             return;
+        }
+
+        private void actualizarLabelFiltroBusqueda()
+        {
+            if (EstoyBuscando == true)
+            {
+                lbFiltroBusqueda.Text = "FILTRO DE BÚSQUEDA --> CAMPO: " + campoAnterior + ", TEXTO: " + textoAnterior + ".";
+            }
+            else
+            {
+                lbFiltroBusqueda.Text = "SIN FILTRO DE BÚSQUEDA.";
+            }
         }
 
         private void buscarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mostrarFormularioBusquedaProveedor();
-            llenarGrilla();
-            grdProveedores = fg.formatoGrilla(grdProveedores, 1);
-            grdProveedores.Focus();
+            buscarProveedor();
         }
 
         private void btnOrdenar_Click(object sender, EventArgs e)
         {
-            //llenarGrilla(); 
-            //grdProveedores = fg.formatoGrilla(grdProveedores, 1); 
+            mostrarFormularioOrdenarProveedor();
+        }
+
+        private void mostrarFormularioOrdenarProveedor()
+        {
+            frmOrdenarProveedor ordenarProveedores = new frmOrdenarProveedor();
+            ordenarProveedores.ShowDialog();
+            DataGridViewColumn columna = grdProveedores.Columns[ordenarProveedores.campo];
+            if (ordenarProveedores.Ascendente == true)
+            {
+                grdProveedores.Sort(columna, ListSortDirection.Ascending);
+            }
+            if (ordenarProveedores.Ascendente == false)
+            {
+                grdProveedores.Sort(columna, ListSortDirection.Descending);
+            }
+
         }
 
         private void frmProveedoresPrincipal_Load(object sender, EventArgs e)
@@ -288,24 +322,8 @@ namespace ADBISYS.Formularios.Proveedores
             if (e.KeyCode == Keys.Return)
             {
                 e.SuppressKeyPress = true;
-                if (notFilaSeleccionada()) return;
-                mostrarFormularioModificarProveedor();
-                llenarGrilla();
-                grdProveedores = fg.formatoGrilla(grdProveedores, 1);
-                grdProveedores.Focus();
+                modificarProveedor();
             }
-        }
-
-        private void grdProveedores_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Delete)
-            {
-                eliminarProveedor();
-                llenarGrilla();
-                grdProveedores = fg.formatoGrilla(grdProveedores, 1);
-                grdProveedores.Focus();   
-            }
-
         }
     }
 }

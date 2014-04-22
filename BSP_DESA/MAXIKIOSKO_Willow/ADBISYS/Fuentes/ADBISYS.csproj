@@ -129,6 +129,12 @@
     <Compile Include="Formularios\Proveedores\frmNuevoProveedor.Designer.cs">
       <DependentUpon>frmNuevoProveedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Proveedores\frmOrdenarProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Proveedores\frmOrdenarProveedor.Designer.cs">
+      <DependentUpon>frmOrdenarProveedor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Proveedores\frmProveedoresPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Proveedores\frmNuevoProveedor.resx">
       <DependentUpon>frmNuevoProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Proveedores\frmOrdenarProveedor.resx">
+      <DependentUpon>frmOrdenarProveedor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Proveedores\frmProveedoresPrincipal.resx">
       <DependentUpon>frmProveedoresPrincipal.cs</DependentUpon>

@@ -14,6 +14,7 @@ namespace ADBISYS.Formularios.Proveedores
     public partial class frmBusquedaProveedor : Form
     {
         ConectarBD objConect = new ConectarBD();
+        DataSet Ds = new DataSet();
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
         string cadenaSql,campoAnt,textoAnt = "";
         public bool estoyBuscando;
@@ -34,16 +35,15 @@ namespace ADBISYS.Formularios.Proveedores
         {
             try
             {
-                DataSet ds = new DataSet();
                 string campoSelec = cboCampo.Text;
                 cboCampo.Items.Clear();
                 campos_tabla.Clear();
 
                 cadenaSql = "EXEC adp_cboBusqueda_proveedores";
-                ds.Reset();
-                ds = objConect.ejecutarQuerySelect(cadenaSql);
+                Ds.Reset();
+                Ds = objConect.ejecutarQuerySelect(cadenaSql);
 
-                foreach (DataRow dataRow in ds.Tables[0].Rows)
+                foreach (DataRow dataRow in Ds.Tables[0].Rows)
                 {
                     cboCampo.Items.Add(dataRow["CAMPO"]);
 
@@ -101,7 +101,6 @@ namespace ADBISYS.Formularios.Proveedores
         {
             try
             {
-                DataSet Ds = new DataSet();
                 cadenaSql = "EXEC adp_busqueda_proveedores";
                 cadenaSql = cadenaSql + " @tabla = " + fg.fcSql("PROVEEDORES","String");
                 cadenaSql = cadenaSql + ",@campo_tabla = " + fg.fcSql(obtenerCampoTabla().ToString(),"String");
