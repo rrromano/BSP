@@ -16,10 +16,11 @@ namespace ADBISYS.Formularios.Proveedores
         ConectarBD objConect = new ConectarBD();
         DataSet ds = new DataSet();
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
-        string cadenaSql, campoAnterior, textoAnterior = "";
+        string cadenaSql, campoAnterior, textoAnterior, campoOrdenamiento = "";
         int filaSeleccionada = 0;
         int celdaSeleccionada = 0;
         Boolean EstoyBuscando;
+        Boolean ordenamiento = true;
         Dictionary<string, string> campos_tabla = new Dictionary<string, string>();
 
         public frmProveedoresPrincipal()
@@ -92,7 +93,6 @@ namespace ADBISYS.Formularios.Proveedores
 
                 if ((filaSeleccionada != 0) && (filaSeleccionada <= grdProveedores.Rows.Count - 1))
                 {
-                    //grdProveedores.Rows[filaSeleccionada].Selected = true;
                     grdProveedores[celdaSeleccionada, filaSeleccionada].Selected = true;
                 }
 
@@ -115,17 +115,24 @@ namespace ADBISYS.Formularios.Proveedores
 
         private void modificarProveedor()
         {
-            if (notFilaSeleccionada()) return;
-            mostrarFormularioModificarProveedor();
-            llenarGrilla();
-            grdProveedores = fg.formatoGrilla(grdProveedores, 1);
-            grdProveedores.Focus();
+            if (grdProveedores.DataSource != null)
+            {
+                if (notFilaSeleccionada()) return;
+                mostrarFormularioModificarProveedor();
+                llenarGrilla();
+                grdProveedores = fg.formatoGrilla(grdProveedores, 1);
+                grdProveedores.Focus();
+            }
+            else
+            {
+                MessageBox.Show("No existen Proveedores.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnModificar.Focus();
+            }
         }
 
         private void mostrarFormularioModificarProveedor()
         {
 
-            //filaSeleccionada = grdProveedores.SelectedRows[0].Index;
             celdaSeleccionada = grdProveedores.CurrentCellAddress.X;
             filaSeleccionada = grdProveedores.CurrentCellAddress.Y;
 
@@ -154,7 +161,6 @@ namespace ADBISYS.Formularios.Proveedores
                 else
                 {
                     MessageBox.Show("Debe seleccionar un Proveedor.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    btnModificar.Focus();
                     return true;
                 }
             }
@@ -182,15 +188,22 @@ namespace ADBISYS.Formularios.Proveedores
 
         private void eliminoProveedor()
         {
-            eliminarProveedor();
-            llenarGrilla();
-            grdProveedores = fg.formatoGrilla(grdProveedores, 1);
+            if (grdProveedores.DataSource != null)
+            {
+                if (notFilaSeleccionada()) return;
+                eliminarProveedor();
+                llenarGrilla();
+                grdProveedores = fg.formatoGrilla(grdProveedores, 1);
+                btnEliminar.Focus();
+            }
+            else
+            {
+                MessageBox.Show("No existen Proveedores.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void eliminarProveedor()
         {
-            if (notFilaSeleccionada()) return;
-            //filaSeleccionada = grdProveedores.SelectedRows[0].Index;
             celdaSeleccionada = grdProveedores.CurrentCellAddress.X;
             filaSeleccionada = grdProveedores.CurrentCellAddress.Y;
             string nombre_Proveedor = grdProveedores.Rows[filaSeleccionada].Cells["NOMBRE"].Value.ToString();
@@ -231,10 +244,18 @@ namespace ADBISYS.Formularios.Proveedores
 
         private void buscarProveedor()
         {
-            mostrarFormularioBusquedaProveedor();
-            llenarGrilla();
-            grdProveedores = fg.formatoGrilla(grdProveedores, 1);
-            grdProveedores.Focus();
+            if (grdProveedores.DataSource != null)
+            {
+                mostrarFormularioBusquedaProveedor();
+                llenarGrilla();
+                grdProveedores = fg.formatoGrilla(grdProveedores, 1);
+                grdProveedores.Focus();
+            }
+            else
+            {
+                MessageBox.Show("No existen Proveedores.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnBuscar.Focus();
+            }
         }
 
         private void mostrarFormularioBusquedaProveedor()
@@ -271,21 +292,42 @@ namespace ADBISYS.Formularios.Proveedores
 
         private void btnOrdenar_Click(object sender, EventArgs e)
         {
-            mostrarFormularioOrdenarProveedor();
+            ordenamientoProveedor();
+        }
+
+        private void ordenamientoProveedor()
+        {    
+            if (grdProveedores.DataSource != null)
+            {
+                mostrarFormularioOrdenarProveedor();
+                grdProveedores.Focus();
+            }
+            else
+            {
+                MessageBox.Show("No existen Proveedores.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnOrdenar.Focus();
+            }
         }
 
         private void mostrarFormularioOrdenarProveedor()
         {
             frmOrdenarProveedor ordenarProveedores = new frmOrdenarProveedor();
+            ordenarProveedores.Ascendente = ordenamiento;
+            ordenarProveedores.campo = campoOrdenamiento;
             ordenarProveedores.ShowDialog();
-            DataGridViewColumn columna = grdProveedores.Columns[ordenarProveedores.campo];
-            if (ordenarProveedores.Ascendente == true)
+            campoOrdenamiento = ordenarProveedores.campo;
+            ordenamiento = ordenarProveedores.Ascendente;
+            DataGridViewColumn columna = grdProveedores.Columns[campoOrdenamiento];
+            if (campoOrdenamiento != "")
             {
-                grdProveedores.Sort(columna, ListSortDirection.Ascending);
-            }
-            if (ordenarProveedores.Ascendente == false)
-            {
-                grdProveedores.Sort(columna, ListSortDirection.Descending);
+                if (ordenamiento == true)
+                {
+                    grdProveedores.Sort(columna, ListSortDirection.Ascending);
+                }
+                if (ordenamiento == false)
+                {
+                    grdProveedores.Sort(columna, ListSortDirection.Descending);
+                }
             }
 
         }
@@ -324,6 +366,11 @@ namespace ADBISYS.Formularios.Proveedores
                 e.SuppressKeyPress = true;
                 modificarProveedor();
             }
+        }
+
+        private void ordenarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ordenamientoProveedor();
         }
     }
 }

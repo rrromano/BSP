@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProveedoresPrincipal));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lbFiltroBusqueda = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnOrdenar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
@@ -46,7 +47,6 @@
             this.ordenarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salidaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lbFiltroBusqueda = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdProveedores)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -67,6 +67,15 @@
             this.groupBox1.Size = new System.Drawing.Size(1462, 770);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // lbFiltroBusqueda
+            // 
+            this.lbFiltroBusqueda.AutoSize = true;
+            this.lbFiltroBusqueda.Location = new System.Drawing.Point(14, 740);
+            this.lbFiltroBusqueda.Name = "lbFiltroBusqueda";
+            this.lbFiltroBusqueda.Size = new System.Drawing.Size(279, 23);
+            this.lbFiltroBusqueda.TabIndex = 8;
+            this.lbFiltroBusqueda.Text = "SIN FILTRO DE BÚSQUEDA.";
             // 
             // btnSalir
             // 
@@ -216,6 +225,7 @@
             this.ordenarToolStripMenuItem.Name = "ordenarToolStripMenuItem";
             this.ordenarToolStripMenuItem.Size = new System.Drawing.Size(168, 28);
             this.ordenarToolStripMenuItem.Text = "Ordenar";
+            this.ordenarToolStripMenuItem.Click += new System.EventHandler(this.ordenarToolStripMenuItem_Click);
             // 
             // salidaToolStripMenuItem
             // 
@@ -231,15 +241,6 @@
             this.salirToolStripMenuItem.Size = new System.Drawing.Size(124, 28);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
-            // 
-            // lbFiltroBusqueda
-            // 
-            this.lbFiltroBusqueda.AutoSize = true;
-            this.lbFiltroBusqueda.Location = new System.Drawing.Point(14, 740);
-            this.lbFiltroBusqueda.Name = "lbFiltroBusqueda";
-            this.lbFiltroBusqueda.Size = new System.Drawing.Size(279, 23);
-            this.lbFiltroBusqueda.TabIndex = 8;
-            this.lbFiltroBusqueda.Text = "SIN FILTRO DE BÚSQUEDA.";
             // 
             // frmProveedoresPrincipal
             // 

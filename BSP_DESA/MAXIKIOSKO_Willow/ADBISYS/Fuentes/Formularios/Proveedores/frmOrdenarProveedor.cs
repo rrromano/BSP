@@ -26,15 +26,30 @@ namespace ADBISYS.Formularios.Proveedores
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            campo = "CÓDIGO";
-            Ascendente = true;
             this.Hide();
         }
 
         private void frmOrdenarProveedor_Load(object sender, EventArgs e)
         {
             cargarComboCampo();
-            rbtnAscendente.Checked = true;
+
+            if (campo != "")
+            {
+                cboCampo.Text = campo;
+            }
+            else
+            {
+                cboCampo.Text = "CÓDIGO";
+            }
+
+            if (Ascendente == true)
+            {
+                rbtnAscendente.Checked = true;
+            }
+            else
+            {
+                rbtnDescendente.Checked = true;
+            }
         }
 
         private void cargarComboCampo()
@@ -71,7 +86,7 @@ namespace ADBISYS.Formularios.Proveedores
             {
                 Ascendente = true;
             }
-            if (rbtnAscendente.Checked == true)
+            if (rbtnDescendente.Checked == true)
             {
                 Ascendente = false;
             }
