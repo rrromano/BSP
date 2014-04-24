@@ -38,14 +38,21 @@ namespace ADBISYS
 
         private void IniciarPrograma()
         {
-            // RR 2014-03-22 [INICIO]: Inicializa el programa y las propiedades de los diferentes controles.
-            this.Location = Screen.PrimaryScreen.WorkingArea.Location;
-            this.Size = Screen.PrimaryScreen.WorkingArea.Size;
-            fechaTSS.Text = DateTime.Today.ToString("D"); 
-            timer.Start();
-            vacioTSS.Text = "";
-            maquinaTSS.Text = Environment.MachineName;
-            // RR 2014-03-22 [FIN]: Inicializa el programa y las propiedades de los diferentes controles.
+            try
+            {
+                // RR 2014-03-22 [INICIO]: Inicializa el programa y las propiedades de los diferentes controles.
+                this.Location = Screen.PrimaryScreen.WorkingArea.Location;
+                this.Size = Screen.PrimaryScreen.WorkingArea.Size;
+                fechaTSS.Text = DateTime.Today.ToString("D");
+                timer.Start();
+                vacioTSS.Text = "";
+                maquinaTSS.Text = Environment.MachineName;
+                // RR 2014-03-22 [FIN]: Inicializa el programa y las propiedades de los diferentes controles.
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void salirTSMI_Click(object sender, EventArgs e)
@@ -71,14 +78,21 @@ namespace ADBISYS
 
         private void iniciarSesiónTSMI_Click(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.UsuarioLogueado == "")
+            try
             {
-                mostrarFormularioIniciarSesion();
+                if (Properties.Settings.Default.UsuarioLogueado == "")
+                {
+                    mostrarFormularioIniciarSesion();
+                }
+                else
+                {
+                    MessageBox.Show("Ya existe una sesión iniciada.", "Inicio de Sesión.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Ya existe una sesión iniciada.", "Inicio de Sesión.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
