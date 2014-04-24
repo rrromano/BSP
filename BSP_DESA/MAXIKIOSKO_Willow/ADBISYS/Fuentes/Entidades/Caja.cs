@@ -69,9 +69,10 @@ namespace ADBISYS.Entidades
             {
                 ConectarBD con = new ConectarBD();
                 DataSet Ds = new DataSet();
+                FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
 
                 String sSQL = "";
-                sSQL = "EXEC dbo.adp_ObtenerMovimientosCaja @fecha_mov = '" + fecha + "'";
+                sSQL = "EXEC dbo.adp_ObtenerMovimientosCaja @fecha_mov = " + fg.fcSql(fecha.ToString(),"DATETIME");
                 Ds.Reset();
                 Ds = con.ejecutarQuerySelect(sSQL);
 
@@ -88,13 +89,14 @@ namespace ADBISYS.Entidades
         {
             try
             {
+                FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
                 ConectarBD con = new ConectarBD();
                 DataSet Ds = new DataSet();
                 Double importe = 0.00;
                 String sSQL = "";
 
                 sSQL = "EXEC dbo.ObtenerImporteCajaActual ";
-                sSQL = sSQL + " @fecha_mov = '" + fecha + "'";
+                sSQL = sSQL + " @fecha_mov = " + fg.fcSql(fecha.ToString(), "DATETIME");
                 Ds.Reset();
                 Ds = con.ejecutarQuerySelect(sSQL);
 
@@ -115,13 +117,14 @@ namespace ADBISYS.Entidades
         {
             try
             {
+                FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
                 ConectarBD con = new ConectarBD();
                 DataSet Ds = new DataSet();
                 Double importe = 0.00;
                 String sSQL = "";
 
                 sSQL = "EXEC dbo.adp_ObtenerCajaActual";
-                sSQL = sSQL + " @fecha_mov = '" + fecha + "'";
+                sSQL = sSQL + " @fecha_mov = " + fg.fcSql(fecha.ToString(), "DATETIME");
                 Ds.Reset();
                 Ds = con.ejecutarQuerySelect(sSQL);
 
@@ -144,13 +147,14 @@ namespace ADBISYS.Entidades
         {
             try
             {
+                FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
                 ConectarBD con = new ConectarBD();
                 DataSet Ds = new DataSet();
                 Double importe = 0.00;
                 String sSQL = "";
 
                 sSQL = "EXEC dbo.adp_ObtenerTotales ";
-                sSQL = sSQL + " @fecha_mov = '" + fecha + "'";
+                sSQL = sSQL + " @fecha_mov = " + fg.fcSql(fecha.ToString(), "DATETIME");
                 sSQL = sSQL + " ,@TipoMovimiento = " + TipoMovimiento;
                 Ds.Reset();
                 Ds = con.ejecutarQuerySelect(sSQL);

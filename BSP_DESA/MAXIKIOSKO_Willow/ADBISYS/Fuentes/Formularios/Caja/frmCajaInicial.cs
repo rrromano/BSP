@@ -105,27 +105,8 @@ namespace ADBISYS.Formularios.Caja
                 MovimientoCaja movCaja = new MovimientoCaja();
                 DateTime Dia = fg.appFechaSistema();
                 String Hora = hora.ToString().Substring(0, 8);
-                Double ImporteCajaInicial = double.Parse(txtCajaInicial.Text);
 
                 movCaja.registrarMovimientosCaja(Dia, Hora);
-                 
-                //Descripcion =  "Apertura de caja del día " + fg.appFechaSistema().ToString();
-                //movCaja.registrarMovimientoCaja(1, Descripcion, ImporteCajaInicial, Dia, Hora);
-
-                //Descripcion = "COMPRA";
-                //movCaja.registrarMovimientoCaja(2, Descripcion, 0.00, Dia, Hora);
-
-                //Descripcion = "VENTA";
-                //movCaja.registrarMovimientoCaja(3, Descripcion, 0.00, Dia, Hora);
-
-                //Descripcion = "OTROS GASTOS";
-                //movCaja.registrarMovimientoCaja(4, Descripcion, 0.00, Dia, Hora);
-
-                //Descripcion = "OTROS INGRESOS";
-                //movCaja.registrarMovimientoCaja(5, Descripcion, 0.00, Dia, Hora);
-
-                //Descripcion = "RETIROS";
-                //movCaja.registrarMovimientoCaja(6, Descripcion, 0.00, Dia, Hora);
 
             }
             catch (Exception e)

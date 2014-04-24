@@ -62,7 +62,7 @@ namespace ADBISYS.Entidades
             }
             catch (Exception e)
             {
-                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+                throw new System.ArgumentException(e.Message.ToString());
             }
 
         }
@@ -82,7 +82,7 @@ namespace ADBISYS.Entidades
             }
             catch (Exception e)
             {
-                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+                throw new System.ArgumentException(e.Message.ToString());
             }
 
 
@@ -97,17 +97,17 @@ namespace ADBISYS.Entidades
                 String sSQL;
 
                 sSQL = "exec adp_registrar_mov_caja ";
-                sSQL = sSQL + "     @Tipo_Movimiento = " + fg.fcSql(tipoMovimiento.ToString(), "STRING");
-                sSQL = sSQL + " ,   @Descripcion     = " + fg.fcSql(descripcion, "STRING");
-                sSQL = sSQL + " ,   @Valor           = " + fg.fcSql(valor.ToString(), "DOUBLE");
-                sSQL = sSQL + " ,   @fecha           = " + fg.fcSql(fecha.ToString(), "DATETIME");
-                sSQL = sSQL + " ,   @hora            = " + fg.fcSql(hora, "STRING");
+                sSQL = sSQL + "  @Tipo_Movimiento = " + fg.fcSql(tipoMovimiento.ToString(), "STRING");
+                sSQL = sSQL + " ,@Descripcion     = " + fg.fcSql(descripcion, "STRING");
+                sSQL = sSQL + " ,@Valor           = " + fg.fcSql(valor.ToString(), "DOUBLE");
+                sSQL = sSQL + " ,@fecha           = " + fg.fcSql(fecha.ToString(), "DATETIME");
+                sSQL = sSQL + " ,@hora            = " + fg.fcSql(hora, "STRING");
 
                 con.ejecutarQuery(sSQL);
             }
             catch (Exception e)
             {
-                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+                throw new System.ArgumentException(e.Message.ToString());
             }
 
         }

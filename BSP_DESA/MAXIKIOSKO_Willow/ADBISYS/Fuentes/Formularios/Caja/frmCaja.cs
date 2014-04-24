@@ -30,32 +30,13 @@ namespace ADBISYS.Formularios.Caja
             try
             {
                 llenarGrillaMovimientosCaja();
-                grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 1);
-                cargarTotales();
+                grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 2);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
-        }
-
-        private void cargarTotales()
-        {
-            try
-            {
-                Entidades.Caja caja = new Entidades.Caja();
-                txtCajaInicial.Text = caja.obtenerTotalesDia(fg.appFechaSistema(), 1).ToString();
-                txtTotalCompras.Text = caja.obtenerTotalesDia(fg.appFechaSistema(), 2).ToString();
-                txtTotalVentas.Text = caja.obtenerTotalesDia(fg.appFechaSistema(), 3).ToString();
-                txtGastos.Text = caja.obtenerTotalesDia(fg.appFechaSistema(), 4).ToString();
-                txtIngresos.Text = caja.obtenerTotalesDia(fg.appFechaSistema(), 5).ToString();
-                txtRetiros.Text = caja.obtenerTotalesDia(fg.appFechaSistema(), 6).ToString();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void llenarGrillaMovimientosCaja()

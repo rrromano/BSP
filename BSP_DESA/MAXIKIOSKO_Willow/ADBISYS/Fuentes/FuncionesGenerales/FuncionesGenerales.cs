@@ -75,7 +75,6 @@ namespace ADBISYS.FuncionesGenerales
 
                 result = result + Anio;
 
-
                 return DateTime.Parse(result);
             }
             catch (Exception e)
@@ -99,7 +98,16 @@ namespace ADBISYS.FuncionesGenerales
                     case "INTEGER":
                         break;
                     case "DATETIME":
-                        cadena = "'" + cadena + "'";
+                        String result = "";
+                        String Dia = DateTime.Parse(cadena).Day.ToString();
+                        String Mes = DateTime.Parse(cadena).Month.ToString();
+                        String Anio = DateTime.Parse(cadena).Year.ToString();
+                        
+                        result = result + Anio;
+                        switch (Mes.Length) { case 1: result = result + "0" + Mes; break; default: result = result + Mes; break; }
+                        switch (Dia.Length) { case 1: result = result + "0" + Dia; break; default: result = result + Dia; break; }
+                        
+                        cadena = "'" + result + "'";
                         break;
                     default:
                         break;
