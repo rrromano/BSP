@@ -236,10 +236,11 @@ GO
 ------------------------------------ TABLE PARAMETROS_GENERALES -------------------------------
 --=============================================================================================
 create table PARAMETROS_GENERALES(
-	Estado_Caja	numeric(1) not null,
-	fecha_modif datetime      null,
-	login_modif varchar(255)  null,
-	term_modif  varchar(255)  null
+	Fecha_Sistema datetime			NOT NULL,
+	Estado_Caja		numeric(1)		NOT NULL,
+	fecha_modif		datetime      NULL,
+	login_modif		varchar(255)  NULL,
+	term_modif		varchar(255)  NULL
 )
 GO
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA PARAMETROS_GENERALES.'
@@ -253,8 +254,9 @@ INSERT INTO USUARIOS(Username,Pass,Descripcion,sino_bloqueado)
 	VALUES ('admin', 'E6-B8-70-50-BF-CB-81-43-FC-B8-DB-01-70-A4-DC-9E-D0-0D-90-4D-DD-3E-2A-4A-D1-B1-E8-DC-0F-DC-9B-E7','Administrador General','0')
 PRINT 'SE CREÓ CORRECTAMENTE EL USUARIO ADMIN.'
 
-INSERT INTO PARAMETROS_GENERALES (Estado_Caja,fecha_modif,login_modif,term_modif) VALUES (0, GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO PARAMETROS_GENERALES (Fecha_Sistema, Estado_Caja,fecha_modif,login_modif,term_modif) VALUES (GETDATE(), 0, GETDATE(), 'BSP', HOST_NAME())
 
+INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, fecha_modif, login_modif, term_modif) VALUES (0, 'CIERRE CAJA', 0, GETDATE(), 'BSP', HOST_NAME())
 INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, fecha_modif, login_modif, term_modif) VALUES (1,'INICIO CAJA', 1, GETDATE(), 'BSP', HOST_NAME())
 INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, fecha_modif, login_modif, term_modif) VALUES (2,'COMPRA', 0, GETDATE(), 'BSP', HOST_NAME())
 INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, fecha_modif, login_modif, term_modif) VALUES (3,'VENTA', 1, GETDATE(), 'BSP', HOST_NAME())

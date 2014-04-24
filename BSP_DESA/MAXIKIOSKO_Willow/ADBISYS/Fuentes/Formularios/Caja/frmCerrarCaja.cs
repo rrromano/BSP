@@ -30,7 +30,7 @@ namespace ADBISYS.Formularios.Caja
                 String Descripcion = "";
 
                 Descripcion = "Cierre de caja del día " + fg.appFechaSistema().ToString();
-                movCaja.registrarMovimientoCaja(1, Descripcion, 0.00, Dia, Hora);
+                movCaja.registrarMovimientoCaja(0, Descripcion, 0.00, Dia, Hora);
                 fg.modificarEstadoGlobalSistema(0);
                 MessageBox.Show("Se realizó el cierre de caja Correctamente.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

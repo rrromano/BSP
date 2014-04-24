@@ -117,7 +117,7 @@ namespace ADBISYS.Formularios.Caja
                 TimeSpan hora = System.DateTime.Now.TimeOfDay;
                 String Hora = hora.ToString().Substring(0, 8);
 
-                String CadenaSql = "EXEC adp_nuevo_movCaja";
+                String CadenaSql = "EXEC adp_nuevo_TipoMovCaja";
                 CadenaSql = CadenaSql + " @TIPOMOVCAJA_ID       = " + txtCodigo.Text.ToString() ;
                 CadenaSql = CadenaSql + " ,@TIPOMOVCAJA_DESC    = " + fg.fcSql(txtTipoMovimiento.Text, "STRING");
                 CadenaSql = CadenaSql + " ,@TIPOMOVCAJA_FECHA   = " + fg.fcSql(fg.appFechaSistema().ToString(), "STRING");

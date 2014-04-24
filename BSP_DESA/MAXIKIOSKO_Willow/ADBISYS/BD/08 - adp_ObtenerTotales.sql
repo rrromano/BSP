@@ -1,17 +1,17 @@
 Use WIADBISYS
 Go 
-If Exists ( Select 1 From SysObjects Where Name = 'ObtenerTotales')
-  Drop Procedure dbo.ObtenerTotales
+If Exists ( Select 1 From SysObjects Where Name = 'adp_ObtenerTotales')
+  Drop Procedure dbo.adp_ObtenerTotales
 Go 
 
-Create procedure dbo.ObtenerTotales (@FECHA_MOV DATETIME, @TIPOMOVIMIENTO INT)
+Create procedure dbo.adp_ObtenerTotales (@FECHA_MOV DATETIME, @TIPOMOVIMIENTO INT)
 as
 
 BEGIN TRY
 
 	SET NOCOUNT ON
 	
-	SELECT SUM(A.VALOR) AS 'TOTAL'
+	SELECT A.VALOR AS 'TOTAL'
 	FROM MOVIMIENTOS_CAJA A
 	INNER JOIN TIPOMOVIMIENTO_CAJA B ON (A.ID_TIPOMOVIMIENTO = B.ID_TIPOMOVIMIENTO)
 	WHERE 1 = 1

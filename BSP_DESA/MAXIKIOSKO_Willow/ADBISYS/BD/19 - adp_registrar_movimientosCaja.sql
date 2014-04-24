@@ -23,6 +23,7 @@ BEGIN TRY
           @Fecha, 
           @Hora
 	FROM TIPOMOVIMIENTO_CAJA
+	WHERE ID_TipoMovimiento != 0 --NO INSERTO EL CIERRE DE CAJA
           
   PRINT 'FIN ACTUALIZACIÓN OK'
   SET NOCOUNT OFF

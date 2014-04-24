@@ -84,61 +84,89 @@ namespace ADBISYS
 
         private void cerrarSesiónTSMI_Click(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.UsuarioLogueado == "")
+            try
             {
-                MessageBox.Show("Aún no ha iniciado sesión.", "Cerrar Sesión.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            else
-            {
-                if (MessageBox.Show("¿Está seguro que desea cerrar sesión?", "Cerrar Sesión.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (Properties.Settings.Default.UsuarioLogueado == "")
                 {
-                    Properties.Settings.Default.UsuarioLogueado = "";
-                    usuarioTSS.Text = "Usuario Desconectado";
-                    usuarioTSS.BackColor = Color.White;
-                    usuarioTSS.ForeColor = Color.Black;
+                    MessageBox.Show("Aún no ha iniciado sesión.", "Cerrar Sesión.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
                 else
                 {
-                    return;
+                    if (MessageBox.Show("¿Está seguro que desea cerrar sesión?", "Cerrar Sesión.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        Properties.Settings.Default.UsuarioLogueado = "";
+                        usuarioTSS.Text = "Usuario Desconectado";
+                        usuarioTSS.BackColor = Color.White;
+                        usuarioTSS.ForeColor = Color.Black;
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void adminUsuarioTSMI_Click(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.UsuarioLogueado == "")
+            try
             {
-                MessageBox.Show("Debe iniciar sesión.", "Administrar Usuario.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                if (Properties.Settings.Default.UsuarioLogueado == "")
+                {
+                    MessageBox.Show("Debe iniciar sesión.", "Administrar Usuario.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    mostrarFormularioAdministrarUser();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                mostrarFormularioAdministrarUser();
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void mostrarFormularioAdministrarUser()
         {
-            frmAdministrarUsuario administrarUsuario = new frmAdministrarUsuario();
-            administrarUsuario.ShowDialog();
-            if (Properties.Settings.Default.UsuarioLogueado != "")
+            try
             {
-                usuarioTSS.Text = "Usuario: " + Properties.Settings.Default.UsuarioLogueado;
-                usuarioTSS.BackColor = Color.Black;
-                usuarioTSS.ForeColor = Color.Yellow;
+                frmAdministrarUsuario administrarUsuario = new frmAdministrarUsuario();
+                administrarUsuario.ShowDialog();
+                if (Properties.Settings.Default.UsuarioLogueado != "")
+                {
+                    usuarioTSS.Text = "Usuario: " + Properties.Settings.Default.UsuarioLogueado;
+                    usuarioTSS.BackColor = Color.Black;
+                    usuarioTSS.ForeColor = Color.Yellow;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void mostrarFormularioIniciarSesion()
         {
-            frmIniciarSesion iniciarSesion = new frmIniciarSesion();
-            iniciarSesion.ShowDialog();
-            if (Properties.Settings.Default.UsuarioLogueado != "")
+            try
             {
-                usuarioTSS.Text = "Usuario: " + Properties.Settings.Default.UsuarioLogueado;
-                usuarioTSS.BackColor = Color.Black;
-                usuarioTSS.ForeColor = Color.Yellow;
+                frmIniciarSesion iniciarSesion = new frmIniciarSesion();
+                iniciarSesion.ShowDialog();
+                if (Properties.Settings.Default.UsuarioLogueado != "")
+                {
+                    usuarioTSS.Text = "Usuario: " + Properties.Settings.Default.UsuarioLogueado;
+                    usuarioTSS.BackColor = Color.Black;
+                    usuarioTSS.ForeColor = Color.Yellow;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -166,19 +194,26 @@ namespace ADBISYS
 
         private void modifProveedoresTSMI_Click(object sender, EventArgs e)
         {
-            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmProveedoresPrincipal);
+            try
+            {
+                Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmProveedoresPrincipal);
 
-            if (frm != null)
-            {
-                //si la instancia existe la pongo en primer plano
-                //MessageBox.Show("El formulario de Proveedores ya se encuentra abierto.", "Proveedores.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                frm.WindowState = FormWindowState.Normal;
-                frm.BringToFront();
-                return;
+                if (frm != null)
+                {
+                    //si la instancia existe la pongo en primer plano
+                    //MessageBox.Show("El formulario de Proveedores ya se encuentra abierto.", "Proveedores.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    frm.WindowState = FormWindowState.Normal;
+                    frm.BringToFront();
+                    return;
+                }
+                else
+                {
+                    mostrarFormularioProveedores();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                mostrarFormularioProveedores();
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -196,14 +231,24 @@ namespace ADBISYS
 
         private void finalizarTSMI_Click(object sender, EventArgs e)
         {
-            frmCerrarCaja cerrarCaja = new frmCerrarCaja();
-            cerrarCaja.ShowDialog();
+            try
+            {
+                if (!(cajaIniciada())) { return; }
+                frmCerrarCaja cerrarCaja = new frmCerrarCaja();
+                cerrarCaja.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void modificarCajaTSMI_Click(object sender, EventArgs e)
         {
             try
             {
+                if (!(cajaIniciada())) { return; }
+
                 Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmCaja);
 
                 if (frm != null)
@@ -223,6 +268,29 @@ namespace ADBISYS
                 MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private bool cajaIniciada()
+        {
+            try
+            {
+                //Estado de la caja: [0 no está iniciada] / [1 está iniciada]
+                Entidades.Caja caj = new ADBISYS.Entidades.Caja();
+                if (caj.obtenerEstado() == 0) 
+                {
+                    MessageBox.Show("Aún no se ha iniciado la caja del día de hoy.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return false; 
+                } 
+                else 
+                { 
+                    return true; 
+                } 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
 
         private void mostrarFormularioCaja()

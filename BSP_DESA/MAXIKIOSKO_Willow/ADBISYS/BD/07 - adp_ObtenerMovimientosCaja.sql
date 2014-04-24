@@ -1,11 +1,11 @@
 Use WIADBISYS
 Go 
-If Exists ( Select 1 From SysObjects Where Name = 'ObtenerMovimientosCaja')
-  Drop Procedure dbo.ObtenerMovimientosCaja
+If Exists ( Select 1 From SysObjects Where Name = 'adp_ObtenerMovimientosCaja')
+  Drop Procedure dbo.adp_ObtenerMovimientosCaja
 Go 
 
 -- SP PARA OBTENER LOS MOVIMIENTOS DE LA CAJA DEL DÍA @FECHA_MOV
-Create procedure dbo.ObtenerMovimientosCaja (@FECHA_MOV datetime)
+Create procedure dbo.adp_ObtenerMovimientosCaja (@FECHA_MOV datetime)
 as
 
 

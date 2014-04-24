@@ -71,7 +71,7 @@ namespace ADBISYS.Entidades
                 DataSet Ds = new DataSet();
 
                 String sSQL = "";
-                sSQL = "EXEC dbo.ObtenerMovimientosCaja @fecha_mov = '" + fecha + "'";
+                sSQL = "EXEC dbo.adp_ObtenerMovimientosCaja @fecha_mov = '" + fecha + "'";
                 Ds.Reset();
                 Ds = con.ejecutarQuerySelect(sSQL);
 
@@ -120,7 +120,7 @@ namespace ADBISYS.Entidades
                 Double importe = 0.00;
                 String sSQL = "";
 
-                sSQL = "EXEC dbo.ObtenerCajaActual";
+                sSQL = "EXEC dbo.adp_ObtenerCajaActual";
                 sSQL = sSQL + " @fecha_mov = '" + fecha + "'";
                 Ds.Reset();
                 Ds = con.ejecutarQuerySelect(sSQL);
@@ -149,9 +149,9 @@ namespace ADBISYS.Entidades
                 Double importe = 0.00;
                 String sSQL = "";
 
-                sSQL = "EXEC dbo.ObtenerTotales ";
+                sSQL = "EXEC dbo.adp_ObtenerTotales ";
                 sSQL = sSQL + " @fecha_mov = '" + fecha + "'";
-                sSQL = sSQL + " @TipoMovimiento = " + TipoMovimiento;
+                sSQL = sSQL + " ,@TipoMovimiento = " + TipoMovimiento;
                 Ds.Reset();
                 Ds = con.ejecutarQuerySelect(sSQL);
 

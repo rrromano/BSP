@@ -1,10 +1,10 @@
 Use WIADBISYS
 Go 
-If Exists ( Select 1 From SysObjects Where Name = 'ObtenerCajaActual')
-  Drop Procedure dbo.ObtenerCajaActual
+If Exists ( Select 1 From SysObjects Where Name = 'adp_ObtenerCajaActual')
+  Drop Procedure dbo.adp_ObtenerCajaActual
 Go 
 
-Create procedure dbo.ObtenerCajaActual (@FECHA_MOV DATETIME)
+Create procedure dbo.adp_ObtenerCajaActual (@FECHA_MOV DATETIME)
 as
 
 
@@ -12,7 +12,9 @@ BEGIN TRY
 
 	SET NOCOUNT ON
 	
-	SELECT SUM(IMPORTE_TOTAL) AS 'TOTAL'
+	SELECT	CAJA_INICIAL	AS 'INICIAL', 
+					CAJA_FINAL		AS 'FINAL',
+					IMPORTE_TOTAL AS 'TOTAL'
 	FROM CAJA
 	WHERE FECHA = @FECHA_MOV
 
