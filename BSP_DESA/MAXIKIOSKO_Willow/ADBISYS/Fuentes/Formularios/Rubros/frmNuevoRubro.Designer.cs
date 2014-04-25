@@ -129,7 +129,7 @@
             this.Name = "frmNuevoRubro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Alta de Rubro";
-            this.Activated += new System.EventHandler(this.frmNuevoRubro_Activated);
+            this.Load += new System.EventHandler(this.frmNuevoRubro_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

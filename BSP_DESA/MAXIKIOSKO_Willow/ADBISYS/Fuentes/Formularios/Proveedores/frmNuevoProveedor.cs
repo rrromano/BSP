@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using ADBISYS.FuncionesGenerales;
 using ADBISYS.Conexion;
 using ADBISYS.Formularios.Rubros;
+using ADBISYS.Entidades;
 
 
 namespace ADBISYS.Formularios.Proveedores
@@ -20,7 +21,7 @@ namespace ADBISYS.Formularios.Proveedores
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
         string cadenaSql, rubroAnterior,usuario = "";
         Dictionary<int, string> rubros = new Dictionary<int, string>();
-
+        
         public frmNuevoProveedor()
         {
             InitializeComponent();
@@ -62,8 +63,8 @@ namespace ADBISYS.Formularios.Proveedores
         {
             try
             {
-                cadenaSql = "EXEC adp_maximo_proveedor";
-                ds = objConect.ejecutarQuerySelect(cadenaSql);
+                Entidades.Proveedores entProveedores = new ADBISYS.Entidades.Proveedores();
+                ds = entProveedores.obtenerMaximoProveedor();
 
                 if (ds.Tables[0].Rows.Count > 0)
                 {
@@ -89,8 +90,8 @@ namespace ADBISYS.Formularios.Proveedores
                 cboRubro.Items.Clear();
                 rubros.Clear();
 
-                cadenaSql = "EXEC adp_info_rubros";
-                ds = objConect.ejecutarQuerySelect(cadenaSql);
+                Entidades.Proveedores entProveedores = new ADBISYS.Entidades.Proveedores();
+                ds = entProveedores.obtenerInfoRubros();
 
                 foreach (DataRow dataRow in ds.Tables[0].Rows)
                 {
@@ -140,7 +141,7 @@ namespace ADBISYS.Formularios.Proveedores
                 cadenaSql = cadenaSql + ",@Nombre = " + fg.fcSql(txtNombre.Text, "String");
                 cadenaSql = cadenaSql + ",@Id_Proveedor = " + fg.fcSql(txtCodigo.Text, "String");
                 
-                objConect.ejecutarQuerySelect(cadenaSql);
+                ds = objConect.ejecutarQuerySelect(cadenaSql);
 
                 if (ds.Tables[0].Rows.Count > 0)
                 {

@@ -237,6 +237,7 @@
             this.modifRubrosTSMI.Name = "modifRubrosTSMI";
             this.modifRubrosTSMI.Size = new System.Drawing.Size(266, 28);
             this.modifRubrosTSMI.Text = "Agregar / Modificar";
+            this.modifRubrosTSMI.Click += new System.EventHandler(this.modifRubrosTSMI_Click);
             // 
             // reportesTS
             // 

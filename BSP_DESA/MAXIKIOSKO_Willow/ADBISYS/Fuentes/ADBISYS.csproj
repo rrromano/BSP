@@ -51,6 +51,8 @@
     <Compile Include="Conexion\ConectarBD.cs" />
     <Compile Include="Entidades\Caja.cs" />
     <Compile Include="Entidades\MovimientoCaja.cs" />
+    <Compile Include="Entidades\Proveedores.cs" />
+    <Compile Include="Entidades\Rubros.cs" />
     <Compile Include="Formularios\Ayuda\frmAcercaDeBSP.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +149,12 @@
     <Compile Include="Formularios\Rubros\frmNuevoRubro.Designer.cs">
       <DependentUpon>frmNuevoRubro.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Rubros\frmRubrosPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Rubros\frmRubrosPrincipal.Designer.cs">
+      <DependentUpon>frmRubrosPrincipal.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -203,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Rubros\frmNuevoRubro.resx">
       <DependentUpon>frmNuevoRubro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Rubros\frmRubrosPrincipal.resx">
+      <DependentUpon>frmRubrosPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>

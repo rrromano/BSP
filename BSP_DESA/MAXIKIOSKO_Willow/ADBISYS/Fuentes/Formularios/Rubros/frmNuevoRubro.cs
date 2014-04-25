@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using ADBISYS.FuncionesGenerales;
 using ADBISYS.Conexion;
+using ADBISYS.Entidades;
 
 namespace ADBISYS.Formularios.Rubros
 {
@@ -16,7 +17,7 @@ namespace ADBISYS.Formularios.Rubros
         ConectarBD objConect = new ConectarBD();
         DataSet ds = new DataSet();
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
-        string cadenaSql,usuario = "";
+        string cadenaSql = "";
 
         public frmNuevoRubro()
         {
@@ -56,13 +57,8 @@ namespace ADBISYS.Formularios.Rubros
         {
             try
             {
-                usuario = Properties.Settings.Default.UsuarioLogueado.ToString();
-
-                cadenaSql = "EXEC adp_nuevo_rubro";
-                cadenaSql = cadenaSql + " @Rubro_Descripcion = " + fg.fcSql(txtDescripcion.Text, "String");
-                cadenaSql = cadenaSql + ",@Rubro_Login = " + fg.fcSql(usuario, "String");
-
-                objConect.ejecutarQuery(cadenaSql);
+                Entidades.Rubros entRubros = new ADBISYS.Entidades.Rubros();
+                entRubros.nuevoRubro(txtDescripcion.Text);
                 this.Hide();
             }
             catch (Exception e)
@@ -72,7 +68,7 @@ namespace ADBISYS.Formularios.Rubros
             }
         }
 
-        private void frmNuevoRubro_Activated(object sender, EventArgs e)
+        private void frmNuevoRubro_Load(object sender, EventArgs e)
         {
             cargarCodigoRubro();
         }
@@ -81,8 +77,8 @@ namespace ADBISYS.Formularios.Rubros
         {
             try
             {
-                cadenaSql = "EXEC adp_maximo_rubro";
-                ds = objConect.ejecutarQuerySelect(cadenaSql);
+                Entidades.Rubros entRubros = new ADBISYS.Entidades.Rubros();
+                ds = entRubros.obtenerMaximoRubro();
 
                 if (ds.Tables[0].Rows.Count > 0)
                 {
@@ -104,8 +100,8 @@ namespace ADBISYS.Formularios.Rubros
         {
             try
             {
-                cadenaSql = "EXEC adp_verifico_rubro_existente @Rubro_Descripcion = " + fg.fcSql(txtDescripcion.Text, "String");
-                ds = objConect.ejecutarQuerySelect(cadenaSql);
+                Entidades.Rubros entRubros = new ADBISYS.Entidades.Rubros();
+                ds = entRubros.verificarRubro(txtDescripcion.Text);
 
                 if (ds.Tables[0].Rows.Count > 0)
                 {

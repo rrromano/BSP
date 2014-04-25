@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using ADBISYS.FuncionesGenerales;
 using ADBISYS.Conexion;
+using ADBISYS.Entidades;
 
 namespace ADBISYS.Formularios.Proveedores
 {
@@ -39,9 +40,8 @@ namespace ADBISYS.Formularios.Proveedores
                 cboCampo.Items.Clear();
                 campos_tabla.Clear();
 
-                cadenaSql = "EXEC adp_cboBusqueda_proveedores";
-                Ds.Reset();
-                Ds = objConect.ejecutarQuerySelect(cadenaSql);
+                Entidades.Proveedores entProveedores = new ADBISYS.Entidades.Proveedores();
+                Ds = entProveedores.obtenerCamposProveedores();
 
                 foreach (DataRow dataRow in Ds.Tables[0].Rows)
                 {
@@ -111,7 +111,6 @@ namespace ADBISYS.Formularios.Proveedores
 
                 if (Ds.Tables[0].Rows.Count > 0)
                 {
-                    //busquedaProveedores = Ds;
                     estoyBuscando = true;
                     campo = cboCampo.Text;
                     texto = txtTexto.Text;

@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using ADBISYS.Formularios.Proveedores;
 using ADBISYS.Conexion;
+using ADBISYS.Entidades;
 
 namespace ADBISYS.Formularios.Proveedores
 {
@@ -68,12 +69,16 @@ namespace ADBISYS.Formularios.Proveedores
             {
                 if (EstoyBuscando == false)
                 {
-                    cadenaSql = "EXEC adp_obtener_proveedores";
-                    ds = objConect.ejecutarQuerySelect(cadenaSql);
+                    Entidades.Proveedores entProveedores = new ADBISYS.Entidades.Proveedores();
+                    ds = entProveedores.obtenerProveedores();
 
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         grdProveedores.DataSource = ds.Tables[0];
+                    }
+                    else
+                    {
+                        grdProveedores.DataSource = null;
                     }
                 }
                 else
@@ -94,11 +99,6 @@ namespace ADBISYS.Formularios.Proveedores
                 if ((filaSeleccionada != 0) && (filaSeleccionada <= grdProveedores.Rows.Count - 1))
                 {
                     grdProveedores[celdaSeleccionada, filaSeleccionada].Selected = true;
-                }
-
-                if (grdProveedores.Rows.Count == 0)
-                {
-                    grdProveedores.DataSource = null;
                 }
             }
             catch (Exception e)
@@ -213,11 +213,8 @@ namespace ADBISYS.Formularios.Proveedores
             {
                 try
                 {
-                    cadenaSql = "EXEC adp_eliminar_proveedor @Id_Proveedor = " + id_Proveedor;
-                    objConect.ejecutarQuery(cadenaSql);
-
-                    cadenaSql = "EXEC adp_reseteoCampoIdentity_proveedores";
-                    objConect.ejecutarQuery(cadenaSql);
+                    Entidades.Proveedores entProveedores = new ADBISYS.Entidades.Proveedores();
+                    entProveedores.eliminarProveedor(id_Proveedor);
                     grdProveedores.Focus();
                 }
                 catch (Exception e)
@@ -244,7 +241,9 @@ namespace ADBISYS.Formularios.Proveedores
 
         private void buscarProveedor()
         {
-            if (grdProveedores.DataSource != null)
+            Entidades.Proveedores entProveedores = new ADBISYS.Entidades.Proveedores();
+            ds = entProveedores.obtenerProveedores();
+            if(ds.Tables[0].Rows.Count > 0)
             {
                 mostrarFormularioBusquedaProveedor();
                 llenarGrilla();

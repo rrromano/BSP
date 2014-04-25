@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using ADBISYS.FuncionesGenerales;
 using ADBISYS.Conexion;
+using ADBISYS.Entidades;
 
 namespace ADBISYS.Formularios.Proveedores
 {
@@ -18,7 +19,7 @@ namespace ADBISYS.Formularios.Proveedores
         string cadenaSql = "";
         public string campo;
         public bool Ascendente = true;
-
+        
         public frmOrdenarProveedor()
         {
             InitializeComponent();
@@ -60,9 +61,8 @@ namespace ADBISYS.Formularios.Proveedores
                 string campoSelec = cboCampo.Text;
                 cboCampo.Items.Clear();
 
-                cadenaSql = "EXEC adp_cboBusqueda_proveedores";
-                ds.Reset();
-                ds = objConect.ejecutarQuerySelect(cadenaSql);
+                Entidades.Proveedores entProveedores = new ADBISYS.Entidades.Proveedores();
+                ds = entProveedores.obtenerCamposProveedores();
 
                 foreach (DataRow dataRow in ds.Tables[0].Rows)
                 {

@@ -10,6 +10,7 @@ using ADBISYS.Formularios.Ingresar;
 using ADBISYS.Formularios.Caja;
 using ADBISYS.Formularios.Ayuda;
 using ADBISYS.Formularios.Proveedores;
+using ADBISYS.Formularios.Rubros;
 
 // RR 2014-03-22: Comienzo del sistema ADBISYS.
 
@@ -214,8 +215,6 @@ namespace ADBISYS
 
                 if (frm != null)
                 {
-                    //si la instancia existe la pongo en primer plano
-                    //MessageBox.Show("El formulario de Proveedores ya se encuentra abierto.", "Proveedores.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     frm.WindowState = FormWindowState.Normal;
                     frm.BringToFront();
                     return;
@@ -267,7 +266,6 @@ namespace ADBISYS
 
                 if (frm != null)
                 {
-                    //si la instancia existe la pongo en primer plano
                     frm.WindowState = FormWindowState.Normal;
                     frm.BringToFront();
                     return;
@@ -312,5 +310,35 @@ namespace ADBISYS
             frmCaja MovsCaja = new frmCaja();
             MovsCaja.Show();
         }
+
+        private void modifRubrosTSMI_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmRubrosPrincipal);
+
+                if (frm != null)
+                {
+                    frm.WindowState = FormWindowState.Normal;
+                    frm.BringToFront();
+                    return;
+                }
+                else
+                {
+                    mostrarFormularioRubros();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void mostrarFormularioRubros()
+        {
+            frmRubrosPrincipal rubros = new frmRubrosPrincipal();
+            rubros.Show();
+        }
+
     }
 }
