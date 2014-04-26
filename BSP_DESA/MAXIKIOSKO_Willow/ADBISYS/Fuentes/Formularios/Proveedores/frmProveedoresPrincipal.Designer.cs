@@ -47,6 +47,7 @@
             this.ordenarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salidaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdProveedores)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -64,14 +65,14 @@
             this.groupBox1.Controls.Add(this.grdProveedores);
             this.groupBox1.Location = new System.Drawing.Point(16, 28);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1462, 770);
+            this.groupBox1.Size = new System.Drawing.Size(1250, 642);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
             // lbFiltroBusqueda
             // 
             this.lbFiltroBusqueda.AutoSize = true;
-            this.lbFiltroBusqueda.Location = new System.Drawing.Point(14, 740);
+            this.lbFiltroBusqueda.Location = new System.Drawing.Point(14, 613);
             this.lbFiltroBusqueda.Name = "lbFiltroBusqueda";
             this.lbFiltroBusqueda.Size = new System.Drawing.Size(279, 23);
             this.lbFiltroBusqueda.TabIndex = 8;
@@ -81,9 +82,9 @@
             // 
             this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
             this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSalir.Location = new System.Drawing.Point(798, 28);
+            this.btnSalir.Location = new System.Drawing.Point(1033, 28);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(150, 69);
+            this.btnSalir.Size = new System.Drawing.Size(197, 69);
             this.btnSalir.TabIndex = 6;
             this.btnSalir.Text = "&Salir";
             this.btnSalir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -94,9 +95,9 @@
             // 
             this.btnOrdenar.Image = ((System.Drawing.Image)(resources.GetObject("btnOrdenar.Image")));
             this.btnOrdenar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnOrdenar.Location = new System.Drawing.Point(642, 28);
+            this.btnOrdenar.Location = new System.Drawing.Point(830, 28);
             this.btnOrdenar.Name = "btnOrdenar";
-            this.btnOrdenar.Size = new System.Drawing.Size(150, 69);
+            this.btnOrdenar.Size = new System.Drawing.Size(197, 69);
             this.btnOrdenar.TabIndex = 5;
             this.btnOrdenar.Text = "&Ordenar";
             this.btnOrdenar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -107,9 +108,9 @@
             // 
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnBuscar.Location = new System.Drawing.Point(486, 28);
+            this.btnBuscar.Location = new System.Drawing.Point(627, 28);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(150, 69);
+            this.btnBuscar.Size = new System.Drawing.Size(197, 69);
             this.btnBuscar.TabIndex = 4;
             this.btnBuscar.Text = "&Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -120,9 +121,9 @@
             // 
             this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnEliminar.Location = new System.Drawing.Point(330, 28);
+            this.btnEliminar.Location = new System.Drawing.Point(424, 28);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(150, 69);
+            this.btnEliminar.Size = new System.Drawing.Size(197, 69);
             this.btnEliminar.TabIndex = 3;
             this.btnEliminar.Text = "&Eliminar";
             this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -133,9 +134,9 @@
             // 
             this.btnModificar.Image = ((System.Drawing.Image)(resources.GetObject("btnModificar.Image")));
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnModificar.Location = new System.Drawing.Point(174, 28);
+            this.btnModificar.Location = new System.Drawing.Point(221, 28);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(150, 69);
+            this.btnModificar.Size = new System.Drawing.Size(197, 69);
             this.btnModificar.TabIndex = 2;
             this.btnModificar.Text = "&Modificar";
             this.btnModificar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -148,7 +149,7 @@
             this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnNuevo.Location = new System.Drawing.Point(18, 28);
             this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(150, 69);
+            this.btnNuevo.Size = new System.Drawing.Size(197, 69);
             this.btnNuevo.TabIndex = 1;
             this.btnNuevo.Text = "&Nuevo";
             this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -162,7 +163,7 @@
             this.grdProveedores.Location = new System.Drawing.Point(18, 103);
             this.grdProveedores.Name = "grdProveedores";
             this.grdProveedores.RowTemplate.Height = 24;
-            this.grdProveedores.Size = new System.Drawing.Size(1424, 631);
+            this.grdProveedores.Size = new System.Drawing.Size(1212, 505);
             this.grdProveedores.TabIndex = 7;
             this.grdProveedores.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProveedores_CellContentDoubleClick);
             this.grdProveedores.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdProveedores_KeyDown);
@@ -176,7 +177,7 @@
             this.salidaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1495, 31);
+            this.menuStrip1.Size = new System.Drawing.Size(1283, 31);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -187,7 +188,8 @@
             this.modificarToolStripMenuItem,
             this.eliminarToolStripMenuItem,
             this.buscarToolStripMenuItem,
-            this.ordenarToolStripMenuItem});
+            this.ordenarToolStripMenuItem,
+            this.aToolStripMenuItem});
             this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
             this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(139, 27);
             this.nuevoToolStripMenuItem.Text = "&Proveedores";
@@ -242,11 +244,17 @@
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
+            // aToolStripMenuItem
+            // 
+            this.aToolStripMenuItem.Name = "aToolStripMenuItem";
+            this.aToolStripMenuItem.Size = new System.Drawing.Size(174, 28);
+            this.aToolStripMenuItem.Text = "&Actualizar";
+            // 
             // frmProveedoresPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1495, 815);
+            this.ClientSize = new System.Drawing.Size(1283, 687);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -287,5 +295,6 @@
         private System.Windows.Forms.ToolStripMenuItem ordenarToolStripMenuItem;
         private System.Windows.Forms.DataGridView grdProveedores;
         private System.Windows.Forms.Label lbFiltroBusqueda;
+        private System.Windows.Forms.ToolStripMenuItem aToolStripMenuItem;
     }
 }

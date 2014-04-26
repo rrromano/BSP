@@ -17,7 +17,6 @@ namespace ADBISYS.Formularios.Rubros
         ConectarBD objConect = new ConectarBD();
         DataSet ds = new DataSet();
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
-        string cadenaSql = "";
 
         public frmNuevoRubro()
         {
@@ -101,7 +100,7 @@ namespace ADBISYS.Formularios.Rubros
             try
             {
                 Entidades.Rubros entRubros = new ADBISYS.Entidades.Rubros();
-                ds = entRubros.verificarRubro(txtDescripcion.Text);
+                ds = entRubros.verificarRubro(txtCodigo.Text ,txtDescripcion.Text);
 
                 if (ds.Tables[0].Rows.Count > 0)
                 {

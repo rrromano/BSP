@@ -20,7 +20,7 @@ namespace ADBISYS.Formularios.Proveedores
         string cadenaSql, campoAnterior, textoAnterior, campoOrdenamiento = "";
         int filaSeleccionada = 0;
         int celdaSeleccionada = 0;
-        Boolean EstoyBuscando;
+        Boolean EstoyBuscando =false;
         Boolean ordenamiento = true;
         Dictionary<string, string> campos_tabla = new Dictionary<string, string>();
 
@@ -59,6 +59,8 @@ namespace ADBISYS.Formularios.Proveedores
 
         private void mostrarFormularioNuevoProveedor()
         {
+            celdaSeleccionada = grdProveedores.CurrentCellAddress.X;
+            filaSeleccionada = grdProveedores.CurrentCellAddress.Y;
             frmNuevoProveedor nuevoProveedor = new frmNuevoProveedor();
             nuevoProveedor.ShowDialog();
         }
@@ -96,7 +98,7 @@ namespace ADBISYS.Formularios.Proveedores
                     
                 }
 
-                if ((filaSeleccionada != 0) && (filaSeleccionada <= grdProveedores.Rows.Count - 1))
+                if ((filaSeleccionada > 0) && (celdaSeleccionada > 0) && (filaSeleccionada <= grdProveedores.Rows.Count - 1))
                 {
                     grdProveedores[celdaSeleccionada, filaSeleccionada].Selected = true;
                 }
@@ -328,7 +330,6 @@ namespace ADBISYS.Formularios.Proveedores
                     grdProveedores.Sort(columna, ListSortDirection.Descending);
                 }
             }
-
         }
 
         private void frmProveedoresPrincipal_Load(object sender, EventArgs e)
