@@ -5,22 +5,36 @@ using System.Text;
 using ADBISYS.Conexion;
 using ADBISYS.Entidades;
 using ADBISYS.FuncionesGenerales;
+using System.Data;
 
 namespace ADBISYS.Entidades
 {
-    class MovimientoCaja
+    public class MovimientoCaja
     {
-
-        private Int32 tipoMovimiento;
+        private Int32 Id;
+        private Int32 Id_tipoMovimiento;
         private String descripcion;
         private Double valor;
         private DateTime fecha;
         private String hora;
+        private Int32 entradaSalida; //1 Ingreso - 0 Salida
 
-        public int m_tipoMovimiento
+        public Int32 m_Id 
         {
-            get { return tipoMovimiento; }
-            set { tipoMovimiento = value; }
+            get { return Id;  }
+            set { Id = value; }
+        }
+
+        public Int32 m_entradaSalida
+        {
+            get { return entradaSalida; }
+            set { entradaSalida = value; }
+        }
+
+        public Int32 m_Id_tipoMovimiento
+        {
+            get { return Id_tipoMovimiento; }
+            set { Id_tipoMovimiento = value; }
         }
 
         public String m_descripcion
@@ -110,6 +124,39 @@ namespace ADBISYS.Entidades
                 throw new System.ArgumentException(e.Message.ToString());
             }
 
+        }
+
+        internal int ObtenerId_TipoMovimiento(int Id_Movimiento)
+        {
+            try
+            {
+                FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
+                ConectarBD con = new ConectarBD();
+                DataSet Ds = new DataSet();
+                String sSQL;
+                int ID;
+
+                sSQL = "exec dbo.adp_obtenerId_TipoMovimientoCaja ";
+                sSQL = sSQL + "  @ID_Movimiento = " + Id_Movimiento;
+
+                Ds.Reset();
+                Ds = con.ejecutarQuerySelect(sSQL);
+
+                if (Ds.Tables[0].Rows.Count > 0)
+                {
+                    ID = int.Parse(Ds.Tables[0].Rows[0]["ID_TipoMovimiento"].ToString());
+                }
+                else
+                {
+                    throw new System.ArgumentException("Error al intentar obtener el ID tipo Movimiento Caja");
+                }
+
+                return ID;
+            }
+            catch (Exception ex)
+            {
+                throw new System.ArgumentException(ex.Message.ToString());
+            }
         }
     }
 }

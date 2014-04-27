@@ -51,3 +51,8 @@ C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Re
 C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Release\ADBISYS.Formularios.Caja.frmModificarMovimientoCaja.resources
 C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Release\ADBISYS.Formularios.Caja.frmNuevoMovimientoCaja.resources
 C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Release\ADBISYS.Formularios.Proveedores.frmOrdenarProveedor.resources
+C:\Users\Federico\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Release\ADBISYS.Formularios.Proveedores.frmOrdenarProveedor.resources
+C:\Users\Federico\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Release\ADBISYS.Formularios.Rubros.frmBusquedaRubro.resources
+C:\Users\Federico\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Release\ADBISYS.Formularios.Rubros.frmModificarRubro.resources
+C:\Users\Federico\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Release\ADBISYS.Formularios.Rubros.frmOrdenarRubros.resources
+C:\Users\Federico\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Release\ADBISYS.Formularios.Rubros.frmRubrosPrincipal.resources

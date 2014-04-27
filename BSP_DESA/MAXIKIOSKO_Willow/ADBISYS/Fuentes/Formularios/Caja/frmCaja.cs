@@ -8,12 +8,16 @@ using System.Text;
 using System.Windows.Forms;
 using ADBISYS.FuncionesGenerales;
 using ADBISYS.Conexion;
+using ADBISYS.Formularios.Caja;
+using ADBISYS.Entidades;
 
 namespace ADBISYS.Formularios.Caja
 {
     public partial class frmCaja : Form
     {
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
+        int celdaSeleccionada = 0;
+        int filaSeleccionada = 0;
 
         public frmCaja()
         {
@@ -141,7 +145,7 @@ namespace ADBISYS.Formularios.Caja
 
         private void modificarMovimientoCaja()
         {
-            MessageBox.Show("Falta Implementar");
+            modificarMovCaja();
         }
 
         private void eliminarMovimientoCaja()
@@ -156,12 +160,68 @@ namespace ADBISYS.Formularios.Caja
 
         private void grdMovsCaja_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            modificarTipoMovCaja();
+            modificarMovCaja();
         }
 
-        private void modificarTipoMovCaja()
+        private void modificarMovCaja()
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (notFilaSeleccionada()) return;
+                mostrarFormularioModificarTipoMovimientoCaja();
+                llenarGrillaMovimientosCaja();
+                grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 1);
+                grdMovsCaja.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void mostrarFormularioModificarTipoMovimientoCaja()
+        {
+            try
+            {
+                celdaSeleccionada = grdMovsCaja.CurrentCellAddress.X;
+                filaSeleccionada  = grdMovsCaja.CurrentCellAddress.Y;
+
+                MovimientoCaja movCaja = new MovimientoCaja();
+                movCaja.m_Id = Int32.Parse(grdMovsCaja.Rows[filaSeleccionada].Cells["CODIGO"].Value.ToString());
+                movCaja.m_descripcion = grdMovsCaja.Rows[filaSeleccionada].Cells["MOVIMIENTO"].Value.ToString();
+                movCaja.m_valor = Double.Parse(grdMovsCaja.Rows[filaSeleccionada].Cells["VALOR"].Value.ToString());
+
+                if (grdMovsCaja.Rows[filaSeleccionada].Cells["INGRESO/SALIDA"].Value.ToString() == "INGRESO")
+                {
+                    movCaja.m_entradaSalida = 1;
+                }
+                else
+                {
+                    movCaja.m_entradaSalida = 0;
+                }
+                
+
+                frmModificarMovimientoCaja modifCaja = new frmModificarMovimientoCaja(movCaja);
+                modifCaja.ShowDialog(); 
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private bool notFilaSeleccionada()
+        {
+            try
+            {
+                if (grdMovsCaja.SelectedRows.Count != 0){return false;}
+                else{MessageBox.Show("Debe seleccionar un Movimiento de Caja.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);return true;}
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
+            }
         }
 
     }

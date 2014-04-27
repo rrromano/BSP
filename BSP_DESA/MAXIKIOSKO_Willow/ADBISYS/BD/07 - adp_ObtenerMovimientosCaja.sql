@@ -1,7 +1,7 @@
 Use WIADBISYS
 Go 
 If Exists ( Select 1 From SysObjects Where Name = 'adp_ObtenerMovimientosCaja')
-  Drop Procedure dbo.adp_ObtenerMovimientosCaja
+  Drop Procedure adp_ObtenerMovimientosCaja
 Go 
 
 -- SP PARA OBTENER LOS MOVIMIENTOS DE LA CAJA DEL DÍA @FECHA_MOV
@@ -13,7 +13,8 @@ BEGIN TRY
 
 	SET NOCOUNT ON
 	
-	SELECT  CONVERT(VARCHAR,A.FECHA,112)		'FECHA'					,
+	SELECT  ID_Movimiento										'CODIGO'				,
+					CONVERT(VARCHAR,A.FECHA,112)		'FECHA'					,
 					CONVERT(VARCHAR,A.HORA,8)				'HORA'					,
 					CASE B.INGRESO_SALIDA 
 						WHEN 1 THEN 'INGRESO' 
