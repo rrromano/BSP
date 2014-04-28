@@ -178,20 +178,20 @@ namespace ADBISYS.Entidades
         {
             try
             {
-                ConectarBD con = new ConectarBD();
-                DataSet dataSet = new DataSet();
+                ConectarBD Conex = new ConectarBD();
+                DataSet Ds = new DataSet();
                 string ssQL;
 
                 ssQL = "SELECT Estado_Caja FROM PARAMETROS_GENERALES";
-                dataSet.Reset();
-                dataSet = con.ejecutarQuerySelect(ssQL);
+                Ds.Reset();
+                Ds = Conex.ejecutarQuerySelect(ssQL);
 
-                if (dataSet.Tables[0].Rows.Count == 0)
+                if (Ds.Tables[0].Rows.Count == 0)
                 {
                     throw new System.ArgumentException("No se pudo obtener el estado actual del Sistema. Consulte con el administrador.", "Estado del sistema");
                 }
 
-                return int.Parse(dataSet.Tables[0].Rows[0]["Estado_Caja"].ToString());
+                return int.Parse(Ds.Tables[0].Rows[0]["Estado_Caja"].ToString());
 
             }
             catch (Exception e)
@@ -201,6 +201,20 @@ namespace ADBISYS.Entidades
 
         }
 
+        internal void eliminarMovCaja(Int32 Id_MovCaja)
+        {
+            try
+            {
+                FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
+                ConectarBD Conex = new ConectarBD();
 
+                String sSQL = "EXEC dbo.adp_eliminarMovCaja @Id_MovimientoCaja = " + Id_MovCaja;
+                Conex.ejecutarQuery(sSQL);
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+        }
     }
 }

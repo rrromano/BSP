@@ -51,6 +51,7 @@
     <Compile Include="Conexion\ConectarBD.cs" />
     <Compile Include="Entidades\Caja.cs" />
     <Compile Include="Entidades\MovimientoCaja.cs" />
+    <Compile Include="Entidades\ParametrosGenerales.cs" />
     <Compile Include="Entidades\Proveedores.cs" />
     <Compile Include="Entidades\Rubros.cs" />
     <Compile Include="Formularios\Ayuda\frmAcercaDeBSP.cs">

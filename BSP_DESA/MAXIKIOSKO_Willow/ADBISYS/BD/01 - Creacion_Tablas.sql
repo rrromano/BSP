@@ -1,6 +1,7 @@
 USE WIAdbisys
 GO
 
+-- FU 2014-04-28: VER FOREING KEY DE MOVIMIENTOS_CAJA CON TIPOMOVIMIENTO_CAJA YA QUE NO PUEDO ELIMINAR UN TIPO DE MOVIMIENTO SIN ELIMINAR PREVIAMENTE EL MOVIMIENTO DE LA CAJA
 -- RR 2014-03-21: CREACIÓN DE LAS DIFERENTES TABLAS QUE UTILIZARÁ EL SISTEMA ADBISYS.
 
 SET NOCOUNT ON
@@ -212,8 +213,8 @@ create table MOVIMIENTOS_CAJA(
 )
 GO
 ALTER TABLE MOVIMIENTOS_CAJA ADD PRIMARY KEY(ID_Movimiento)
-ALTER TABLE MOVIMIENTOS_CAJA ADD CONSTRAINT FK_MOVIMIENTO_CAJA_TIPOMOVIMIENTO_CAJA 
-	FOREIGN KEY(ID_TipoMovimiento) REFERENCES TIPOMOVIMIENTO_CAJA(ID_TipoMovimiento)
+--ALTER TABLE MOVIMIENTOS_CAJA ADD CONSTRAINT FK_MOVIMIENTO_CAJA_TIPOMOVIMIENTO_CAJA --FU 2014-04-28 
+--	FOREIGN KEY(ID_TipoMovimiento) REFERENCES TIPOMOVIMIENTO_CAJA(ID_TipoMovimiento) --FU 2014-04-28
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA MOVIMIENTOS_CAJA.'
 GO
 --=============================================================================================
@@ -256,13 +257,13 @@ PRINT 'SE CREÓ CORRECTAMENTE EL USUARIO ADMIN.'
 
 INSERT INTO PARAMETROS_GENERALES (Fecha_Sistema, Estado_Caja,fecha_modif,login_modif,term_modif) VALUES (GETDATE(), 0, GETDATE(), 'BSP', HOST_NAME())
 
-INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, fecha_modif, login_modif, term_modif) VALUES (0, 'CIERRE CAJA', 0, GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, fecha_modif, login_modif, term_modif) VALUES (1,'INICIO CAJA', 1, GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, fecha_modif, login_modif, term_modif) VALUES (2,'COMPRA', 0, GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, fecha_modif, login_modif, term_modif) VALUES (3,'VENTA', 1, GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, fecha_modif, login_modif, term_modif) VALUES (4,'OTROS GASTOS', 0, GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, fecha_modif, login_modif, term_modif) VALUES (5,'OTROS INGRESOS', 1, GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, fecha_modif, login_modif, term_modif) VALUES (6,'RETIROS', 0, GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, fecha_modif, login_modif, term_modif) VALUES (0, 'CIERRE CAJA'		, 0, GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, fecha_modif, login_modif, term_modif) VALUES (1,'INICIO CAJA'		, 1, GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, fecha_modif, login_modif, term_modif) VALUES (2,'COMPRA'					, 0, GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, fecha_modif, login_modif, term_modif) VALUES (3,'VENTA'					, 1, GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, fecha_modif, login_modif, term_modif) VALUES (4,'OTROS GASTOS'		, 0, GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, fecha_modif, login_modif, term_modif) VALUES (5,'OTROS INGRESOS'	, 1, GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, fecha_modif, login_modif, term_modif) VALUES (6,'RETIROS'				, 0, GETDATE(), 'BSP', HOST_NAME())
 
 GO
 

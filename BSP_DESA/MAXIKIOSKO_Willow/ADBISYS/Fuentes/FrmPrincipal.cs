@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ADBISYS.FuncionesGenerales;
 using ADBISYS.Formularios.Ingresar;
 using ADBISYS.Formularios.Caja;
 using ADBISYS.Formularios.Ayuda;
@@ -28,8 +29,32 @@ namespace ADBISYS
 
         private void mostrarFormularioCajaInicial()
         {
-            frmCajaInicial cajaIni = new frmCajaInicial();
-            cajaIni.ShowDialog();
+            if (validarInicioCaja()) 
+            {
+                frmCajaInicial cajaIni = new frmCajaInicial();
+                cajaIni.ShowDialog();
+            }
+        }
+
+        private bool validarInicioCaja()
+        {
+            try
+            {
+                FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
+                Entidades.Caja caja = new Entidades.Caja();
+                DateTime fechaSistema = fg.appFechaSistema();
+                if (caja.obtenerEstado() != 0)
+                {
+                    MessageBox.Show("No se puede iniciar la caja debido a que no se cerró la caja del día " + caja.obtenerFechaCajaAbierta().ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return false;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
 
         private void FrmPrincipal_Load(object sender, EventArgs e)

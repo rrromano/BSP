@@ -112,7 +112,6 @@ namespace ADBISYS.Entidades
 
                 sSQL = "exec adp_registrar_mov_caja ";
                 sSQL = sSQL + "  @Tipo_Movimiento = " + fg.fcSql(tipoMovimiento.ToString(), "STRING");
-                sSQL = sSQL + " ,@Descripcion     = " + fg.fcSql(descripcion, "STRING");
                 sSQL = sSQL + " ,@Valor           = " + fg.fcSql(valor.ToString(), "DOUBLE");
                 sSQL = sSQL + " ,@fecha           = " + fg.fcSql(fecha.ToString(), "DATETIME");
                 sSQL = sSQL + " ,@hora            = " + fg.fcSql(hora, "STRING");

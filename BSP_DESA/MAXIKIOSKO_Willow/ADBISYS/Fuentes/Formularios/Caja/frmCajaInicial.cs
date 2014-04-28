@@ -41,27 +41,10 @@ namespace ADBISYS.Formularios.Caja
         {
             try
             {
-                Entidades.Caja caja = new Entidades.Caja();
-                DateTime fechaSistema = fg.appFechaSistema();
-                Regex reg = new Regex("[0-9]*.*[0-9][0-9]");
-
-
-                if (caja.obtenerEstado() != 0)
-                {
-                    MessageBox.Show("No se puede iniciar la caja del día " + fechaSistema.ToString() + " debido a que no se cerró la caja del día " + caja.obtenerFechaCajaAbierta().ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return false;
-                }
-
                 if (txtCajaInicial.Text.Length == 0)
                 {
                     MessageBox.Show("Debe indicar el importe de la caja para poder iniciar la misma.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return false;
-                }
-
-                if (!(reg.IsMatch(txtCajaInicial.Text.ToString())))
-                {
-                    MessageBox.Show("Debe indicar un importe correcto.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return false;                    
                 }
 
                 return true;
@@ -80,7 +63,10 @@ namespace ADBISYS.Formularios.Caja
             {
                 registrarMovimientosInicialesCaja();
                 modificarCajaInicial();
-                fg.modificarEstadoGlobalSistema(1);
+
+                ParametrosGenerales pg = new ParametrosGenerales();
+                pg.modificarEstadoGlobalSistema(1);
+
                 this.Hide();
             }
             catch (Exception e)

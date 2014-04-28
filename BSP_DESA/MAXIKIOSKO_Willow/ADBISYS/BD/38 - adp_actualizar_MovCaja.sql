@@ -7,7 +7,7 @@ Go
 -- SP QUE BUSCA RUBROS DE ACUERDO A LOS PARAMETROS QUE RECIBA.
 
 Create procedure adp_actualizar_MovCaja (	@ID_MOVIMIENTO NUMERIC(30), 
-																					@VALOR NUMERIC(10), 
+																					@VALOR NUMERIC(10,2), 
 																					@FECHA DATETIME, 
 																					@HORA VARCHAR(8))
 as

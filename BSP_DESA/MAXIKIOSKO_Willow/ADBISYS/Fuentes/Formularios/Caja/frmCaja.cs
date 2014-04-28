@@ -34,7 +34,7 @@ namespace ADBISYS.Formularios.Caja
             try
             {
                 llenarGrillaMovimientosCaja();
-                grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 2);
+                grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 1);
             }
             catch (Exception ex)
             {
@@ -53,6 +53,11 @@ namespace ADBISYS.Formularios.Caja
                 Ds.Reset();
                 Ds = caja.obtenerMovimientosCaja(fg.appFechaSistema());
                 if (Ds.Tables[0].Rows.Count > 0) grdMovsCaja.DataSource = Ds.Tables[0];
+
+                if ((filaSeleccionada > 0) && (celdaSeleccionada > 0) && (filaSeleccionada <= grdMovsCaja.Rows.Count - 1))
+                {
+                    grdMovsCaja[celdaSeleccionada, filaSeleccionada].Selected = true;
+                }
 	        }
 	        catch (Exception ex)
 	        {
@@ -93,7 +98,7 @@ namespace ADBISYS.Formularios.Caja
         {
             try
             {
-                modificarMovimientoCaja();
+                modificarMovCaja();
             }
             catch (Exception ex)
             {
@@ -105,7 +110,10 @@ namespace ADBISYS.Formularios.Caja
         {
             try
             {
-                eliminarMovimientoCaja();
+                if (puedoEliminar())
+                {
+                    eliminarMovCaja();
+                }
             }
             catch (Exception ex)
             {
@@ -113,11 +121,40 @@ namespace ADBISYS.Formularios.Caja
             }
         }
 
+        private bool puedoEliminar()
+        {
+            try
+            {
+                celdaSeleccionada = grdMovsCaja.CurrentCellAddress.X;
+                filaSeleccionada = grdMovsCaja.CurrentCellAddress.Y;
+
+                MovimientoCaja movCaja = new MovimientoCaja();
+                movCaja.m_Id = Int32.Parse(grdMovsCaja.Rows[filaSeleccionada].Cells["CODIGO"].Value.ToString());
+                movCaja.m_descripcion = grdMovsCaja.Rows[filaSeleccionada].Cells["MOVIMIENTO"].Value.ToString();
+
+                if (movCaja.m_Id <= 6)
+                {
+                    MessageBox.Show("No se permite eliminar el Movimiento " + movCaja.m_Id + " - " + movCaja.m_descripcion + ".", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
         private void modificarToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             try
             {
-                modificarMovimientoCaja();
+                if (puedoEliminar())
+                {
+                    eliminarMovCaja();
+                }
             }
             catch (Exception ex)
             {
@@ -129,7 +166,7 @@ namespace ADBISYS.Formularios.Caja
         {
             try
             {
-                eliminarMovimientoCaja();
+                eliminarMovCaja();
             }
             catch (Exception ex)
             {
@@ -143,14 +180,63 @@ namespace ADBISYS.Formularios.Caja
             nuevoMov.ShowDialog();
         }
 
-        private void modificarMovimientoCaja()
+        private void eliminarMovCaja()
         {
-            modificarMovCaja();
+            try
+            {
+                if (grdMovsCaja.DataSource != null)
+                {
+                    if (notFilaSeleccionada()) return;
+                    eliminarMovimientoCaja();
+                    llenarGrillaMovimientosCaja();
+                    grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 1);
+                    btnEliminar.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("No existen Proveedores.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void eliminarMovimientoCaja()
         {
-            MessageBox.Show("Falta Implementar");
+            try
+            {
+                celdaSeleccionada = grdMovsCaja.CurrentCellAddress.X;
+                filaSeleccionada = grdMovsCaja.CurrentCellAddress.Y;
+
+                MovimientoCaja movCaja = new MovimientoCaja();
+                movCaja.m_Id = Int32.Parse(grdMovsCaja.Rows[filaSeleccionada].Cells["CODIGO"].Value.ToString());
+                movCaja.m_descripcion = grdMovsCaja.Rows[filaSeleccionada].Cells["MOVIMIENTO"].Value.ToString();
+
+                if (MessageBox.Show("¿Está seguro que desea eliminar el movimiento " + movCaja.m_Id + "-" + movCaja.m_descripcion + "?", "Eliminar Movimiento Caja.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        Entidades.Caja caja = new Entidades.Caja();
+                        caja.eliminarMovCaja(movCaja.m_Id);
+                        grdMovsCaja.Focus();
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                else
+                {
+                    btnEliminar.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void salir()

@@ -24,15 +24,17 @@ namespace ADBISYS.Formularios.Caja
             {
                 FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
                 MovimientoCaja movCaja = new MovimientoCaja();
-                TimeSpan hora = System.DateTime.Now.TimeOfDay;
-                DateTime Dia = fg.appFechaSistema();
-                String Hora = hora.ToString().Substring(0, 8);
-                String Descripcion = "";
+                DateTime fecSisActual = fg.appFechaSistema();
+                String Hora = System.DateTime.Now.TimeOfDay.ToString().Substring(0, 8);
+                String Descripcion = "Cierre de caja del día " + fg.appFechaSistema().ToString();
 
-                Descripcion = "Cierre de caja del día " + fg.appFechaSistema().ToString();
-                movCaja.registrarMovimientoCaja(0, Descripcion, 0.00, Dia, Hora);
-                fg.modificarEstadoGlobalSistema(0);
-                MessageBox.Show("Se realizó el cierre de caja Correctamente.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                movCaja.registrarMovimientoCaja(0, Descripcion, 0.00, fecSisActual, Hora);
+
+                ParametrosGenerales pg = new ParametrosGenerales();
+                pg.modificarEstadoGlobalSistema(0);
+                pg.modificarFechaSistema(fecSisActual.AddDays(1));
+
+                MessageBox.Show("Se realizó el cierre de caja Correctamente.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             catch (Exception r)
             {

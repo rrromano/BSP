@@ -14,22 +14,29 @@ namespace ADBISYS.Formularios.Caja
 {
     public partial class frmModificarMovimientoCaja : Form
     {
-
-        MovimientoCaja movCaja = new MovimientoCaja();
+        FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
         Dictionary<int, string> EntradaSalida = new Dictionary<int, string>();
-
+        MovimientoCaja movCaja = new MovimientoCaja();
+        
         public frmModificarMovimientoCaja()
         {
             InitializeComponent();
         }
 
-        public frmModificarMovimientoCaja(MovimientoCaja movimiento)
+        public frmModificarMovimientoCaja(MovimientoCaja movimientoCaja)
         {
-            movCaja = movimiento;
-            InitializeComponent();
-            cargarComboEntradaSalida();
-            cargarMovimientoCaja();
-            habilitarCampos();
+            try
+            {
+                movCaja = movimientoCaja;
+                InitializeComponent();
+                cargarComboEntradaSalida();
+                cargarMovimientoCaja();
+                habilitarCampos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void cargarComboEntradaSalida()
@@ -71,19 +78,10 @@ namespace ADBISYS.Formularios.Caja
         {
             try
             {
-                txtCodigo.Text = movCaja.m_Id.ToString();
+                txtCodigo.Text      = movCaja.m_Id.ToString();
                 txtDescripcion.Text = movCaja.m_descripcion;
-                txtImporte.Text = movCaja.m_valor.ToString();
-
-                if (movCaja.m_entradaSalida == 1)
-                {
-                    cboEntradaSalida.Text = "INGRESO";
-                }
-                else
-                {
-                    cboEntradaSalida.Text = "SALIDA";
-                }
-
+                txtImporte.Text     = movCaja.m_valor.ToString().Replace(',','.');
+                if (movCaja.m_entradaSalida == 1){cboEntradaSalida.Text = "INGRESO";}else{cboEntradaSalida.Text = "SALIDA";}
             }
             catch (Exception ex)
             {
@@ -95,9 +93,12 @@ namespace ADBISYS.Formularios.Caja
         {
             try
             {
-                actualizarTipoMovimientoCaja();
-                actualizarMovimientoCaja();
-                this.Hide();
+                if (fiValidarModificacion())
+                {
+                    actualizarTipoMovimientoCaja();
+                    actualizarMovimientoCaja();
+                    this.Hide();
+                }
             }
             catch (Exception ex)
             {
@@ -105,11 +106,37 @@ namespace ADBISYS.Formularios.Caja
             }
         }
 
+        private bool fiValidarModificacion()
+        {
+            try
+            {
+                if (txtImporte.Text.Trim() == String.Empty)
+                {
+                    MessageBox.Show("Debe ingresar un importe.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtImporte.Focus();
+                    return false; 
+                }
+
+                if (!(fg.esUnNumeroDecimal(txtImporte.Text))) 
+                {
+                    MessageBox.Show("El importe ingresado es inválido.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtImporte.Focus();
+                    return false; 
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
         private void actualizarTipoMovimientoCaja()
         {
             try
             {
-                FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
                 ConectarBD Conex = new ConectarBD();
                 DateTime Dia = fg.appFechaSistema();
                 String Usuario = Properties.Settings.Default.UsuarioLogueado.ToString();
@@ -121,14 +148,7 @@ namespace ADBISYS.Formularios.Caja
                 sSQL = sSQL + " @ID_TIPOMOVIMIENTO = " + movCaja.m_Id_tipoMovimiento;
                 sSQL = sSQL + " ,@DESCRIPCION = " + fg.fcSql(txtDescripcion.Text , "STRING");
 
-                if (cboEntradaSalida.Text == "INGRESO")
-                {
-                    sSQL = sSQL + " ,@INGRESO_SALIDA = 1";
-                }
-                else
-                {
-                    sSQL = sSQL + " ,@INGRESO_SALIDA = 0";
-                }
+                if (cboEntradaSalida.Text == "INGRESO") {sSQL = sSQL + " ,@INGRESO_SALIDA = 1";} else {sSQL = sSQL + " ,@INGRESO_SALIDA = 0";}
 
                 sSQL = sSQL + " ,@FECHA_MODIF = " + fg.fcSql(Dia.ToString(), "DATETIME");
                 sSQL = sSQL + " ,@LOGIN_MODIF = " + fg.fcSql(Usuario, "STRING");
@@ -145,7 +165,6 @@ namespace ADBISYS.Formularios.Caja
         {
             try
             {
-                FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
                 ConectarBD Conex = new ConectarBD();
                 TimeSpan hora = System.DateTime.Now.TimeOfDay;
                 DateTime Dia = fg.appFechaSistema();
@@ -154,17 +173,33 @@ namespace ADBISYS.Formularios.Caja
 
                 sSQL = "EXEC dbo.adp_actualizar_MovCaja ";
                 sSQL = sSQL + " @ID_MOVIMIENTO = " + fg.fcSql(txtCodigo.Text, "STRING");
-                sSQL = sSQL + " ,@VALOR = " + fg.fcSql(txtCodigo.Text, "STRING");
+                sSQL = sSQL + " ,@VALOR = " + fg.fcSql(txtImporte.Text, "STRING");
                 sSQL = sSQL + " ,@FECHA = " + fg.fcSql(Dia.ToString(), "DATETIME");
                 sSQL = sSQL + " ,@HORA = " + fg.fcSql(Hora, "STRING");
 
                 Conex.ejecutarQuery(sSQL);
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void txtImporte_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            fg.keyPressNumerosDecimales(e, txtImporte);
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            if (txtImporte.Enabled) { txtImporte.Text = String.Empty; }
+            if (txtDescripcion.Enabled) { txtDescripcion.Text = String.Empty; }
+            if (cboEntradaSalida.Enabled) { cboEntradaSalida.Text = String.Empty; }
         }
     }
 }

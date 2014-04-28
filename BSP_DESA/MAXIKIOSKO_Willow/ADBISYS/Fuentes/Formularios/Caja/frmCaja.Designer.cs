@@ -62,7 +62,7 @@
             this.groupBox1.Controls.Add(this.btnNuevo);
             this.groupBox1.Location = new System.Drawing.Point(18, 27);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(716, 308);
+            this.groupBox1.Size = new System.Drawing.Size(866, 433);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -73,7 +73,7 @@
             this.grdMovsCaja.Location = new System.Drawing.Point(23, 110);
             this.grdMovsCaja.Name = "grdMovsCaja";
             this.grdMovsCaja.RowTemplate.Height = 24;
-            this.grdMovsCaja.Size = new System.Drawing.Size(669, 177);
+            this.grdMovsCaja.Size = new System.Drawing.Size(819, 301);
             this.grdMovsCaja.TabIndex = 13;
             this.grdMovsCaja.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdMovsCaja_CellContentDoubleClick);
             // 
@@ -174,7 +174,7 @@
             this.salidaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(757, 31);
+            this.menuStrip1.Size = new System.Drawing.Size(904, 31);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -227,7 +227,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(757, 350);
+            this.ClientSize = new System.Drawing.Size(904, 478);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

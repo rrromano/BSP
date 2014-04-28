@@ -19,22 +19,6 @@ namespace ADBISYS.FuncionesGenerales
         String query;
         public string mensajeErrorCatch = "No se puede realizar la accion pedida. Por favor, intente más tarde.";
 
-        public void modificarEstadoGlobalSistema(Int32 EstadoNuevo)
-        {
-            try
-            {
-                ConectarBD con = new ConectarBD();
-                String sSQL;
-
-                sSQL = "exec adp_actualizar_estado_global @estado = " + EstadoNuevo.ToString();
-                con.ejecutarQuery(sSQL);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         public DateTime appFechaSistema()
         {
             try
@@ -388,6 +372,32 @@ namespace ADBISYS.FuncionesGenerales
             try
             {
                 return char.Parse(e.KeyChar.ToString().ToUpper());
+            }
+            catch (Exception r)
+            {
+                throw new System.ArgumentException("[Error] - [" + r.Message.ToString() + "]");
+            }
+        }
+
+        internal Boolean esUnNumeroDecimal(String p) //Se le pasa un número decimal (o no) y devuelve si es o no un número correcto
+        {
+            try
+            {
+                p = p.Replace(",", ".");
+
+                if (p == "." || p.Trim().EndsWith(@"."))
+                {
+                    return false;
+                }
+
+                foreach (char Caracter in p)
+                {
+                    if (!(char.IsNumber(Caracter) || Caracter == '.'))
+                    {
+                        return false;
+                    }
+                }
+                return true;
             }
             catch (Exception r)
             {
