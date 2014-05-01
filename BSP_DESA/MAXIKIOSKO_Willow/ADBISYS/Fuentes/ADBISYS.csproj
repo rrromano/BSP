@@ -91,17 +91,23 @@
     <Compile Include="Formularios\Caja\frmModificarMovimientoCaja.Designer.cs">
       <DependentUpon>frmModificarMovimientoCaja.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Caja\frmModificarTipoMovCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Caja\frmModificarTipoMovCaja.Designer.cs">
+      <DependentUpon>frmModificarTipoMovCaja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Caja\frmNuevoMovimientoCaja.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Formularios\Caja\frmNuevoMovimientoCaja.Designer.cs">
       <DependentUpon>frmNuevoMovimientoCaja.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\Caja\frmVisualizarCaja.cs">
+    <Compile Include="Formularios\Caja\frmNuevoTipoMovCaja.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\Caja\frmVisualizarCaja.Designer.cs">
-      <DependentUpon>frmVisualizarCaja.cs</DependentUpon>
+    <Compile Include="Formularios\Caja\frmNuevoTipoMovCaja.Designer.cs">
+      <DependentUpon>frmNuevoTipoMovCaja.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Ingresar\frmAdministrarUsuario.cs">
       <SubType>Form</SubType>
@@ -202,11 +208,14 @@
     <EmbeddedResource Include="Formularios\Caja\frmModificarMovimientoCaja.resx">
       <DependentUpon>frmModificarMovimientoCaja.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Caja\frmModificarTipoMovCaja.resx">
+      <DependentUpon>frmModificarTipoMovCaja.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Caja\frmNuevoMovimientoCaja.resx">
       <DependentUpon>frmNuevoMovimientoCaja.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\Caja\frmVisualizarCaja.resx">
-      <DependentUpon>frmVisualizarCaja.cs</DependentUpon>
+    <EmbeddedResource Include="Formularios\Caja\frmNuevoTipoMovCaja.resx">
+      <DependentUpon>frmNuevoTipoMovCaja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Ingresar\frmAdministrarUsuario.resx">
       <DependentUpon>frmAdministrarUsuario.cs</DependentUpon>

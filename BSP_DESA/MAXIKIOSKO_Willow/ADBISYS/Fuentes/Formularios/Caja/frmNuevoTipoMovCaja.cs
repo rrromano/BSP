@@ -12,11 +12,11 @@ using ADBISYS.Formularios.Rubros;
 
 namespace ADBISYS.Formularios.Caja
 {
-    public partial class frmNuevoMovimientoCaja : Form
+    public partial class frmNuevoTipoMovCaja : Form
     {
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
 
-        public frmNuevoMovimientoCaja()
+        public frmNuevoTipoMovCaja()
         {
             InitializeComponent();
         }

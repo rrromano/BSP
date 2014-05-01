@@ -28,11 +28,11 @@ namespace ADBISYS.Formularios.Caja
         {
             try
             {
-                movCaja = movimientoCaja;
-                InitializeComponent();
-                cargarComboEntradaSalida();
-                cargarMovimientoCaja();
-                habilitarCampos();
+                //movCaja = movimientoCaja;
+                //InitializeComponent();
+                //cargarComboEntradaSalida();
+                //cargarMovimientoCaja();
+                //habilitarCampos();
             }
             catch (Exception ex)
             {

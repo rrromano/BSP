@@ -1,6 +1,6 @@
 ﻿namespace ADBISYS.Formularios.Caja
 {
-    partial class frmNuevoMovimientoCaja
+    partial class frmNuevoTipoMovCaja
     {
         /// <summary>
         /// Variable del diseñador requerida.
