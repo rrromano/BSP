@@ -105,9 +105,6 @@ namespace ADBISYS.Entidades
             {
                 cadenaSql = "EXEC adp_eliminar_rubro @Id_Rubro = " + id_Rubro;
                 objConect.ejecutarQuery(cadenaSql);
-
-                cadenaSql = "EXEC adp_reseteoCampoIdentity_rubros";
-                objConect.ejecutarQuery(cadenaSql);
             }
             catch (Exception e)
             {

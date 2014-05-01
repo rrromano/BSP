@@ -29,6 +29,7 @@ BEGIN TRY
 													 PROVINCIA	,
 													 TELEFONO		,
 													 CUIT				,
+													 ESTADO			,
 													 FECHA_MODIF,
 													 LOGIN_MODIF,
 													 TERM_MODIF	)
@@ -41,6 +42,7 @@ BEGIN TRY
 					UPPER(@Proveedor_Provincia)	,
 					@Proveedor_Telefono					,
 					@Proveedor_Cuit							,
+					1														,
 					GETDATE()										,
 					@Proveedor_Login						,
 					HOST_NAME()					)	

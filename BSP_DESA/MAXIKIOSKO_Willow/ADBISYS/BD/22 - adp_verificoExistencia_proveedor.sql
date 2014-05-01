@@ -15,7 +15,10 @@ BEGIN TRY
   SET NOCOUNT ON
   PRINT 'INICIO ACTUALIZACIÓN'
   
-	select 1 from PROVEEDORES where ID_Rubro = @Id_Rubro and Nombre = @Nombre and ID_Proveedor <> @Id_Proveedor
+	select 1 from PROVEEDORES where ID_Rubro		 = @Id_Rubro 
+															and Nombre			 = @Nombre 
+															and ID_Proveedor <> @Id_Proveedor 
+															and ESTADO			 = 1
 
   PRINT 'FIN ACTUALIZACIÓN OK'
   SET NOCOUNT OFF

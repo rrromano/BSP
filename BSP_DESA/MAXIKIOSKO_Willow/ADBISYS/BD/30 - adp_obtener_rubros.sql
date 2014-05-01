@@ -18,7 +18,8 @@ BEGIN TRY
 				 UPPER(login_modif) AS LOGIN_MODIF,
 				 UPPER(term_modif)  AS TERM_MODIF
 
-	FROM RUBROS 				 
+	FROM RUBROS
+		WHERE ESTADO = 1
 
 	SET NOCOUNT OFF
 	

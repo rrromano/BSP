@@ -28,7 +28,7 @@ BEGIN TRY
 										 UPPER(Cuit)					AS CUIT,
 										 convert(varchar,A.fecha_modif,120) AS FECHA_MODIF,
 										 UPPER(A.login_modif) AS LOGIN_MODIF,
-										 UPPER(A.term_modif)  AS TERM_MODIF from ' + @tabla + ' A INNER JOIN RUBROS B ON (A.ID_RUBRO = B.ID_RUBRO) WHERE B.DESCRIPCION LIKE ''' + @texto + '%''')
+										 UPPER(A.term_modif)  AS TERM_MODIF from ' + @tabla + ' A INNER JOIN RUBROS B ON (A.ID_RUBRO = B.ID_RUBRO) WHERE A.ESTADO = 1 AND B.DESCRIPCION LIKE ''' + @texto + '%''')
 		end else
 		begin
 			exec ('select  UPPER(ID_Proveedor)  AS CÓDIGO,
@@ -42,7 +42,7 @@ BEGIN TRY
 										 UPPER(Cuit)					AS CUIT,
 										 convert(varchar,A.fecha_modif,120) AS FECHA_MODIF,
 										 UPPER(A.login_modif) AS LOGIN_MODIF,
-										 UPPER(A.term_modif)  AS TERM_MODIF from ' + @tabla + ' A INNER JOIN RUBROS B ON (A.ID_RUBRO = B.ID_RUBRO)'  + ' where ' + @campo_tabla + ' like ''' + @texto + '%''')
+										 UPPER(A.term_modif)  AS TERM_MODIF from ' + @tabla + ' A INNER JOIN RUBROS B ON (A.ID_RUBRO = B.ID_RUBRO)'  + ' WHERE A.ESTADO = 1 AND ' + @campo_tabla + ' like ''' + @texto + '%''')
 		end
 							
   PRINT 'FIN ACTUALIZACIÓN OK'

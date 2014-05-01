@@ -83,9 +83,6 @@ namespace ADBISYS.Entidades
             {
                 cadenaSql = "EXEC adp_eliminar_proveedor @Id_Proveedor = " + id_Proveedor;
                 objConect.ejecutarQuery(cadenaSql);
-
-                cadenaSql = "EXEC adp_reseteoCampoIdentity_proveedores";
-                objConect.ejecutarQuery(cadenaSql);
             }
             catch (Exception e)
             {

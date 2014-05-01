@@ -19,7 +19,7 @@ BEGIN TRY
 									 UPPER(Descripcion) AS DESCRIPCIÓN,
 									 convert(varchar,fecha_modif,120) AS FECHA_MODIF,
 									 UPPER(login_modif) AS LOGIN_MODIF,
-									 UPPER(term_modif)  AS TERM_MODIF from ' + @tabla + ' where ' + @campo_tabla + ' like ''' + @texto + '%''')
+									 UPPER(term_modif)  AS TERM_MODIF from ' + @tabla + ' where ESTADO = 1 AND ' + @campo_tabla + ' like ''' + @texto + '%''')
 							
   PRINT 'FIN ACTUALIZACIÓN OK'
   SET NOCOUNT OFF

@@ -197,7 +197,7 @@ namespace ADBISYS.Formularios.Proveedores
                 if (txtProvincia.Text != "")
                 { cadenaSql = cadenaSql + ",@Proveedor_Provincia = " + fg.fcSql(txtProvincia.Text, "String"); }
                 if (txtTelefono.Text != "")
-                { cadenaSql = cadenaSql + ",@Proveedor_Telefono = " + txtTelefono.Text; }
+                { cadenaSql = cadenaSql + ",@Proveedor_Telefono = " + fg.fcSql(txtTelefono.Text, "String"); }
                 if (txtCuit.Text != "")
                 { cadenaSql = cadenaSql + ",@Proveedor_Cuit = " + txtCuit.Text; }
                 if (usuario != "")

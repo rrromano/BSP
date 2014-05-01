@@ -14,10 +14,13 @@ BEGIN TRY
 	SET NOCOUNT ON
 
 	INSERT INTO RUBROS (DESCRIPCION,
+											ESTADO,
 											FECHA_MODIF,
 											LOGIN_MODIF,
-											TERM_MODIF) 
+											TERM_MODIF
+											) 
 	VALUES (UPPER(@RUBRO_DESCRIPCION), 
+					1,
 					GETDATE(), 
 					@RUBRO_LOGIN, 
 					HOST_NAME())
