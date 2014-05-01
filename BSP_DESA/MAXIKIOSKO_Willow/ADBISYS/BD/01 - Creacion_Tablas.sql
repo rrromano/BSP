@@ -1,7 +1,6 @@
 USE WIAdbisys
 GO
 
--- FU 2014-04-28: VER FOREING KEY DE MOVIMIENTOS_CAJA CON TIPOMOVIMIENTO_CAJA YA QUE NO PUEDO ELIMINAR UN TIPO DE MOVIMIENTO SIN ELIMINAR PREVIAMENTE EL MOVIMIENTO DE LA CAJA
 -- RR 2014-03-21: CREACIÓN DE LAS DIFERENTES TABLAS QUE UTILIZARÁ EL SISTEMA ADBISYS.
 
 SET NOCOUNT ON
@@ -13,6 +12,12 @@ PRINT REPLICATE('=',60)
 GO
 
 
+If Exists ( Select 1 From sysobjects Where Name = 'COMPRAS' )
+  Drop Table COMPRAS
+Go
+If Exists ( Select 1 From sysobjects Where Name = 'ESTADO_COMPRAS' )
+  Drop Table ESTADO_COMPRAS
+Go
 If Exists ( Select 1 From sysobjects Where Name = 'USUARIOS' )
   Drop Table USUARIOS
 Go
@@ -25,11 +30,20 @@ Go
 If Exists ( Select 1 From sysobjects Where Name = 'ARTICULOS' )
   Drop Table ARTICULOS
 Go
+If Exists ( Select 1 From sysobjects Where Name = 'ESTADO_ARTICULOS' )
+  Drop Table ESTADO_ARTICULOS
+Go
 If Exists ( Select 1 From sysobjects Where Name = 'PROVEEDORES' )
   Drop Table PROVEEDORES
 Go
+If Exists ( Select 1 From sysobjects Where Name = 'ESTADO_PROVEEDORES' )
+  Drop Table ESTADO_PROVEEDORES
+Go
 If Exists ( Select 1 From sysobjects Where Name = 'RUBROS' )
   Drop Table RUBROS
+Go
+If Exists ( Select 1 From sysobjects Where Name = 'ESTADO_RUBROS' )
+  Drop Table ESTADO_RUBROS
 Go
 If Exists ( Select 1 From sysobjects Where Name = 'TMP_VENTAS' )
   Drop Table TMP_VENTAS
@@ -37,14 +51,20 @@ Go
 If Exists ( Select 1 From sysobjects Where Name = 'VENTAS' )
   Drop Table VENTAS
 Go
-If Exists ( Select 1 From sysobjects Where Name = 'ESTADOS_VENTAS' )
-  Drop Table ESTADOS_VENTAS
+If Exists ( Select 1 From sysobjects Where Name = 'ESTADO_VENTAS' )
+  Drop Table ESTADO_VENTAS
 Go
 If Exists ( Select 1 From sysobjects Where Name = 'MOVIMIENTOS_CAJA' )
   Drop Table MOVIMIENTOS_CAJA
 Go
+If Exists ( Select 1 From sysobjects Where Name = 'ESTADO_MOVIMIENTOS_CAJA' )
+  Drop Table ESTADO_MOVIMIENTOS_CAJA
+Go
 If Exists ( Select 1 From sysobjects Where Name = 'TIPOMOVIMIENTO_CAJA' )
   Drop Table TIPOMOVIMIENTO_CAJA
+Go
+If Exists ( Select 1 From sysobjects Where Name = 'ESTADO_TIPOMOVIMIENTO_CAJA' )
+  Drop Table ESTADO_TIPOMOVIMIENTO_CAJA
 Go
 If Exists ( Select 1 From sysobjects Where Name = 'CAJA' )
   Drop Table CAJA
@@ -52,7 +72,6 @@ Go
 If Exists ( Select 1 From sysobjects Where Name = 'PARAMETROS_GENERALES' )
   Drop Table PARAMETROS_GENERALES
 Go
-
 --=============================================================================================
 ------------------------------------ TABLE USUARIOS -------------------------------------------
 --=============================================================================================
@@ -71,18 +90,47 @@ GO
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA USUARIOS.'
 GO
 --=============================================================================================
+------------------------------------ TABLE ESTADO_RUBROS --------------------------------------
+--=============================================================================================
+create table ESTADO_RUBROS(
+	Estado			numeric(1)		not null,
+	Descripcion	varchar(255)	not null,
+	fecha_modif datetime      null,
+	login_modif varchar(255)  null,
+	term_modif  varchar(255)  null
+)
+ALTER TABLE ESTADO_RUBROS ADD PRIMARY KEY(Estado)
+PRINT 'SE CREÓ CORRECTAMENTE LA ESTADO_RUBROS.'
+GO
+--=============================================================================================
 ------------------------------------ TABLE RUBROS ---------------------------------------------
 --=============================================================================================
 create table RUBROS(
 	ID_Rubro    int identity  not null,
 	Descripcion varchar(255)  not null,
+	Estado			numeric(1)		not null,
 	fecha_modif datetime      null,
 	login_modif varchar(255)  null,
 	term_modif  varchar(255)  null
 )
 ALTER TABLE RUBROS ADD PRIMARY KEY(ID_Rubro)
 GO
+ALTER TABLE RUBROS ADD CONSTRAINT FK_ESTADO_RUBROS 
+	FOREIGN KEY(Estado) REFERENCES ESTADO_RUBROS(Estado)
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA RUBROS.'
+GO
+--=============================================================================================
+------------------------------------ TABLE ESTADO_ARTICULOS -----------------------------------
+--=============================================================================================
+create table ESTADO_ARTICULOS(
+	Estado			numeric(1)		not null,
+	Descripcion	varchar(255)	not null,
+	fecha_modif datetime      null,
+	login_modif varchar(255)  null,
+	term_modif  varchar(255)  null
+)
+ALTER TABLE ESTADO_ARTICULOS ADD PRIMARY KEY(Estado)
+PRINT 'SE CREÓ CORRECTAMENTE LA ESTADO_ARTICULOS.'
 GO
 --=============================================================================================
 ------------------------------------ TABLE ARTICULOS ------------------------------------------
@@ -92,6 +140,7 @@ create table ARTICULOS(
 	Descripcion  varchar(255)  not null,
 	Precio_Venta numeric(10,2) not null,
 	Rubro        int           not null,
+	Estado			 numeric(1)		 not null,
 	Hora_modif   varchar(8)	   not null,
 	fecha_modif  datetime      null,
 	login_modif  varchar(255)  null,
@@ -101,6 +150,8 @@ GO
 ALTER TABLE ARTICULOS ADD PRIMARY KEY(ID_Articulo)
 ALTER TABLE ARTICULOS ADD CONSTRAINT FK_RUBRO_ARTICULOS 
 	FOREIGN KEY(Rubro) REFERENCES RUBROS(ID_Rubro)
+ALTER TABLE ARTICULOS ADD CONSTRAINT FK_ESTADO_ARTICULOS 
+	FOREIGN KEY(Estado) REFERENCES ESTADO_ARTICULOS(Estado)	
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA ARTICULOS.'
 GO
 --=============================================================================================
@@ -112,20 +163,23 @@ create table TMP_ARTICULOS_VENTAS(
 	Cantidad	      numeric(10)           not null
 )
 GO
-ALTER TABLE TMP_ARTICULOS_VENTAS ADD CONSTRAINT FK_ID_Articulo_TMP_ARTICULOS_VENTAS
+ALTER TABLE TMP_ARTICULOS_VENTAS ADD CONSTRAINT FK_ID_ARTICULO_TMP_ARTICULOS_VENTAS
 	FOREIGN KEY(ID_Articulo) REFERENCES ARTICULOS(ID_Articulo)
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA TMP_ARTICULOS_VENTAS.'
 GO
 --=============================================================================================
------------------------------------- TABLE ESTADOS_VENTAS -------------------------------------
+------------------------------------ TABLE ESTADO_VENTAS -------------------------------------
 --=============================================================================================
-create table ESTADOS_VENTAS(
-	Estado            numeric(1)		not null, 
-	Descripcion		  varchar(255)		not null
+create table ESTADO_VENTAS(
+	Estado        numeric(1)		not null, 
+	Descripcion		varchar(255)	not null,
+	fecha_modif		datetime      NULL,
+	login_modif		varchar(255)  NULL,
+	term_modif		varchar(255)  NULL
 )
 GO
-ALTER TABLE ESTADOS_VENTAS ADD PRIMARY KEY(Estado)
-PRINT 'SE CREÓ CORRECTAMENTE LA TABLA ESTADOS_VENTAS.'
+ALTER TABLE ESTADO_VENTAS ADD PRIMARY KEY(Estado)
+PRINT 'SE CREÓ CORRECTAMENTE LA TABLA ESTADO_VENTAS.'
 GO
 --=============================================================================================
 ------------------------------------ TABLE VENTAS ---------------------------------------------
@@ -140,8 +194,8 @@ create table VENTAS(
 )
 GO
 ALTER TABLE VENTAS ADD PRIMARY KEY(ID_Venta)
-ALTER TABLE VENTAS ADD CONSTRAINT FK_Estado_VENTAS
-	FOREIGN KEY(Estado) REFERENCES ESTADOS_VENTAS(Estado)
+ALTER TABLE VENTAS ADD CONSTRAINT FK_ESTADO_VENTAS
+	FOREIGN KEY(Estado) REFERENCES ESTADO_VENTAS(Estado)
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA VENTAS.'
 GO
 --=============================================================================================
@@ -156,11 +210,25 @@ create table ARTICULOS_VENTAS(
 )
 GO
 ALTER TABLE ARTICULOS_VENTAS ADD PRIMARY KEY(ID_Venta,ID_Item_Venta)
-ALTER TABLE ARTICULOS_VENTAS ADD CONSTRAINT FK_ID_Item_Venta_ARTICULOS_VENTAS
+ALTER TABLE ARTICULOS_VENTAS ADD CONSTRAINT FK_ID_ITEM_VENTA_ARTICULOS_VENTAS
 	FOREIGN KEY(ID_Venta) REFERENCES VENTAS(ID_Venta)
-ALTER TABLE ARTICULOS_VENTAS ADD CONSTRAINT FK_ID_Articulo_VENTAS
+ALTER TABLE ARTICULOS_VENTAS ADD CONSTRAINT FK_ID_ARTICULO_ARTICULOS_VENTAS
 	FOREIGN KEY(ID_Articulo) REFERENCES ARTICULOS(ID_Articulo)
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA ARTICULOS_VENTAS.'
+GO
+--=============================================================================================
+------------------------------------ TABLE ESTADO_PROVEEDORES ---------------------------------
+--=============================================================================================
+create table ESTADO_PROVEEDORES(
+	Estado        numeric(1)		not null, 
+	Descripcion		varchar(255)	not null,
+	fecha_modif		datetime      NULL,
+	login_modif		varchar(255)  NULL,
+	term_modif		varchar(255)  NULL
+)
+GO
+ALTER TABLE ESTADO_PROVEEDORES ADD PRIMARY KEY(Estado)
+PRINT 'SE CREÓ CORRECTAMENTE LA TABLA ESTADO_PROVEEDORES.'
 GO
 --=============================================================================================
 ------------------------------------ TABLE PROVEEDORES ----------------------------------------
@@ -169,12 +237,13 @@ create table PROVEEDORES(
 	ID_Proveedor int identity not null,
 	Nombre       varchar(255) not null,
 	ID_Rubro     int		  not null,
-	Contacto     varchar(255) null    ,
-	Direccion    varchar(255) null    ,
-	Localidad    varchar(255) null    ,
-	Provincia    varchar(255) null    ,
-	Telefono     varchar(20)  null    ,
-	Cuit         numeric(11)  null	  ,
+	Contacto     varchar(255) null,
+	Direccion    varchar(255) null,
+	Localidad    varchar(255) null,
+	Provincia    varchar(255) null,
+	Telefono     varchar(20)  null,
+	Cuit         numeric(11)  null,
+	Estado			 numeric(1)   not null,	
 	fecha_modif  datetime     null,
 	login_modif  varchar(255) null,
 	term_modif   varchar(255) null
@@ -183,7 +252,23 @@ GO
 ALTER TABLE PROVEEDORES ADD PRIMARY KEY(ID_Proveedor)
 ALTER TABLE PROVEEDORES ADD CONSTRAINT FK_ID_RUBRO_PROVEEDORES 
 	FOREIGN KEY(ID_Rubro) REFERENCES RUBROS(ID_Rubro)
+ALTER TABLE PROVEEDORES ADD CONSTRAINT FK_ESTADO_PROVEEDORES 
+	FOREIGN KEY(Estado) REFERENCES ESTADO_PROVEEDORES(Estado)
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA PROVEEDORES.'
+GO
+--=============================================================================================
+------------------------------------ TABLE ESTADO_TIPOMOVIMIENTO_CAJA -------------------------
+--=============================================================================================
+create table ESTADO_TIPOMOVIMIENTO_CAJA(
+	Estado        numeric(1)		not null, 
+	Descripcion		varchar(255)	not null,
+	fecha_modif		datetime      NULL,
+	login_modif		varchar(255)  NULL,
+	term_modif		varchar(255)  NULL	
+)
+GO
+ALTER TABLE ESTADO_TIPOMOVIMIENTO_CAJA ADD PRIMARY KEY(Estado)
+PRINT 'SE CREÓ CORRECTAMENTE LA TABLA ESTADO_TIPOMOVIMIENTO_CAJA.'
 GO
 --=============================================================================================
 ------------------------------------ TABLE TIPOMOVIMIENTO_CAJA --------------------------------
@@ -192,6 +277,7 @@ create table TIPOMOVIMIENTO_CAJA(
 	ID_TipoMovimiento   numeric(2)    not null,
 	Descripcion         varchar(255)  not null,
 	Ingreso_Salida      numeric(1)    not null,
+	Estado							numeric(1)    not null,
 	fecha_modif         datetime      null,
 	login_modif         varchar(255)  null,
 	term_modif          varchar(255)  null
@@ -199,22 +285,40 @@ create table TIPOMOVIMIENTO_CAJA(
 GO
 ALTER TABLE TIPOMOVIMIENTO_CAJA ADD PRIMARY KEY(ID_TipoMovimiento)
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA TIPOMOVIMIENTO_CAJA.'
+ALTER TABLE TIPOMOVIMIENTO_CAJA ADD CONSTRAINT FK_ESTADO_TIPOMOVIMIENTO_CAJA 
+	FOREIGN KEY(Estado) REFERENCES ESTADO_TIPOMOVIMIENTO_CAJA(Estado)
+GO
+--=============================================================================================
+------------------------------------ TABLE ESTADO_MOVIMIENTOS_CAJA ----------------------------
+--=============================================================================================
+create table ESTADO_MOVIMIENTOS_CAJA(
+	Estado        numeric(1)		not null, 
+	Descripcion		varchar(255)	not null,
+	fecha_modif		datetime      NULL,
+	login_modif		varchar(255)  NULL,
+	term_modif		varchar(255)  NULL
+)
+GO
+ALTER TABLE ESTADO_MOVIMIENTOS_CAJA ADD PRIMARY KEY(Estado)
+PRINT 'SE CREÓ CORRECTAMENTE LA TABLA ESTADO_MOVIMIENTOS_CAJA.'
 GO
 --=============================================================================================
 ------------------------------------ TABLE MOVIMIENTOS_CAJA -----------------------------------
 --=============================================================================================
 create table MOVIMIENTOS_CAJA(
 	ID_Movimiento     numeric(30) identity	not null,
-	--Ingreso_Salida numeric(1)    		not null, -- 0:Ingreso 1:Salida. FU 2014-04-05 Este campo ahora va en la nueva tabla TIPOMOVIMIENTO_CAJA
 	ID_TipoMovimiento numeric(2)        not null,
 	Valor             numeric(10,2) 		not null,
 	Fecha             DATETIME      		not null,
-	Hora              varchar(8)    		not null, 						 
+	Hora              varchar(8)    		not null,
+	Estado						numeric(1)				not null				 						 
 )
 GO
 ALTER TABLE MOVIMIENTOS_CAJA ADD PRIMARY KEY(ID_Movimiento)
---ALTER TABLE MOVIMIENTOS_CAJA ADD CONSTRAINT FK_MOVIMIENTO_CAJA_TIPOMOVIMIENTO_CAJA --FU 2014-04-28 
---	FOREIGN KEY(ID_TipoMovimiento) REFERENCES TIPOMOVIMIENTO_CAJA(ID_TipoMovimiento) --FU 2014-04-28
+ALTER TABLE MOVIMIENTOS_CAJA ADD CONSTRAINT FK_ID_TIPOMOVIMIENTO_TIPOMOVIMIENTO_CAJA 
+	FOREIGN KEY(ID_TipoMovimiento) REFERENCES TIPOMOVIMIENTO_CAJA(ID_TipoMovimiento)
+ALTER TABLE MOVIMIENTOS_CAJA ADD CONSTRAINT FK_ESTADO_MOVIMIENTOS_CAJA
+	FOREIGN KEY(Estado) REFERENCES ESTADO_MOVIMIENTOS_CAJA(Estado) 
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA MOVIMIENTOS_CAJA.'
 GO
 --=============================================================================================
@@ -246,24 +350,77 @@ create table PARAMETROS_GENERALES(
 GO
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA PARAMETROS_GENERALES.'
 GO
--- =====================================================================================
--- ============================== Administrador General ================================
--- =============== Password: w23e (encriptada con el algoritmo SHA256) =================
--- =====================================================================================
+--=============================================================================================
+------------------------------------ TABLE ESTADO_COMPRAS -------------------------------------
+--=============================================================================================
+create table ESTADO_COMPRAS(
+	Estado        numeric(1)		not null, 
+	Descripcion		varchar(255)	not null,
+	fecha_modif		datetime      NULL,
+	login_modif		varchar(255)  NULL,
+	term_modif		varchar(255)  NULL
+)
+GO
+ALTER TABLE ESTADO_COMPRAS ADD PRIMARY KEY(Estado)
+PRINT 'SE CREÓ CORRECTAMENTE LA TABLA ESTADO_COMPRAS.'
+GO
+--=============================================================================================
+------------------------------------ TABLE COMPRAS --------------------------------------------
+--=============================================================================================
+create table COMPRAS(
+	Id_Compra			numeric(30) identity NOT NULL,
+	Id_Proveedor  int						NOT NULL,
+	Importe				numeric(10,2)	NOT NULL,
+	Fecha_Compra	datetime			NOT NULL,
+	Estado				numeric(1)		NOT NULL,
+	fecha_modif		datetime      NULL,
+	login_modif		varchar(255)  NULL,
+	term_modif		varchar(255)  NULL
+)
+GO
+ALTER TABLE COMPRAS ADD PRIMARY KEY(Id_Compra)
+ALTER TABLE COMPRAS ADD CONSTRAINT FK_ID_PROVEEDOR_COMPRAS
+	FOREIGN KEY(Id_Proveedor) REFERENCES PROVEEDORES(Id_Proveedor) 
+ALTER TABLE COMPRAS ADD CONSTRAINT FK_ESTADO_COMPRAS
+	FOREIGN KEY(Estado) REFERENCES ESTADO_COMPRAS(Estado) 	
+PRINT 'SE CREÓ CORRECTAMENTE LA TABLA COMPRAS.'
+GO
+-- ============================================================================================
+-- ============================== Administrador General =======================================
+-- =============== Password: w23e (encriptada con el algoritmo SHA256) ========================
+-- ============================================================================================
 DELETE FROM USUARIOS WHERE USERNAME = 'ADMIN'
 INSERT INTO USUARIOS(Username,Pass,Descripcion,sino_bloqueado)
 	VALUES ('admin', 'E6-B8-70-50-BF-CB-81-43-FC-B8-DB-01-70-A4-DC-9E-D0-0D-90-4D-DD-3E-2A-4A-D1-B1-E8-DC-0F-DC-9B-E7','Administrador General','0')
 PRINT 'SE CREÓ CORRECTAMENTE EL USUARIO ADMIN.'
-
+-- ============================================================================================
+-- ============================================================================================
 INSERT INTO PARAMETROS_GENERALES (Fecha_Sistema, Estado_Caja,fecha_modif,login_modif,term_modif) VALUES (GETDATE(), 0, GETDATE(), 'BSP', HOST_NAME())
-
-INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, fecha_modif, login_modif, term_modif) VALUES (0, 'CIERRE CAJA'		, 0, GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, fecha_modif, login_modif, term_modif) VALUES (1,'INICIO CAJA'		, 1, GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, fecha_modif, login_modif, term_modif) VALUES (2,'COMPRA'					, 0, GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, fecha_modif, login_modif, term_modif) VALUES (3,'VENTA'					, 1, GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, fecha_modif, login_modif, term_modif) VALUES (4,'OTROS GASTOS'		, 0, GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, fecha_modif, login_modif, term_modif) VALUES (5,'OTROS INGRESOS'	, 1, GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, fecha_modif, login_modif, term_modif) VALUES (6,'RETIROS'				, 0, GETDATE(), 'BSP', HOST_NAME())
+-- ============================================================================================
+-- ============================================================================================
+INSERT INTO ESTADO_COMPRAS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO ESTADO_COMPRAS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO ESTADO_ARTICULOS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO ESTADO_ARTICULOS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO ESTADO_PROVEEDORES (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO ESTADO_PROVEEDORES (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO ESTADO_RUBROS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO ESTADO_RUBROS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO ESTADO_VENTAS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO ESTADO_VENTAS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO ESTADO_MOVIMIENTOS_CAJA (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO ESTADO_MOVIMIENTOS_CAJA (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO ESTADO_TIPOMOVIMIENTO_CAJA (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO ESTADO_TIPOMOVIMIENTO_CAJA (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', HOST_NAME())
+-- ============================================================================================
+-- ============================================================================================
+INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, Estado, fecha_modif, login_modif, term_modif) VALUES (0, 'CIERRE CAJA'		, 0, 1, GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, Estado, fecha_modif, login_modif, term_modif) VALUES (1,'INICIO CAJA'		, 1, 1,GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, Estado, fecha_modif, login_modif, term_modif) VALUES (2,'COMPRA'					, 0, 1,GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, Estado, fecha_modif, login_modif, term_modif) VALUES (3,'VENTA'					, 1, 1,GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, Estado, fecha_modif, login_modif, term_modif) VALUES (4,'OTROS GASTOS'		, 0, 1,GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, Estado, fecha_modif, login_modif, term_modif) VALUES (5,'OTROS INGRESOS'	, 1, 1,GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, Estado, fecha_modif, login_modif, term_modif) VALUES (6,'RETIROS'				, 0, 1,GETDATE(), 'BSP', HOST_NAME())
 
 GO
 
