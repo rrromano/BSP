@@ -28,12 +28,72 @@ namespace ADBISYS.Formularios.Caja
             {
                 if (validar())
                 {
+                    if (hayMovimientosHoy())
+                    {
+                        if (!(preguntoSiEliminarMovimientosHoy()))
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            eliminarMovimientosHoy();
+                        }
+                    }
+
                     registrarCajaInicial();
                 }
             }
             catch (Exception r)
             {
                 MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void eliminarMovimientosHoy()
+        {
+            try
+            {
+                Entidades.Caja caja = new Entidades.Caja();
+                caja.eliminarMovCajaPorFecha(DateTime.Now.Date);
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private Boolean preguntoSiEliminarMovimientosHoy()
+        {
+            try
+            {
+                if (MessageBox.Show("No se puede iniciar la caja del día de hoy ya que existen movimientos con la fecha de hoy. Si inicia la caja se eliminaran todos los movimientos actuales con la fecha de hoy. \n¿Está seguro que desa continuar?", "¿Está Seguro?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        private bool hayMovimientosHoy()
+        {
+            try
+            {
+                Entidades.Caja caja = new Entidades.Caja();
+
+                return caja.verificarExistenciaMovCajaSegunFecha(DateTime.Now.Date);
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
 
@@ -61,10 +121,13 @@ namespace ADBISYS.Formularios.Caja
         {
             try
             {
+                ParametrosGenerales pg = new ParametrosGenerales();
+                pg.modificarEstadoGlobalSistema(0);
+                pg.modificarFechaSistema(DateTime.Now.Date);
                 registrarMovimientosInicialesCaja();
                 modificarCajaInicial();
 
-                ParametrosGenerales pg = new ParametrosGenerales();
+                //ParametrosGenerales pg = new ParametrosGenerales();
                 pg.modificarEstadoGlobalSistema(1);
 
                 this.Hide();

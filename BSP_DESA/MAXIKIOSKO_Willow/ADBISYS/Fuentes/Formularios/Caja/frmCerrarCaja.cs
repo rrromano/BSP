@@ -32,7 +32,7 @@ namespace ADBISYS.Formularios.Caja
 
                 ParametrosGenerales pg = new ParametrosGenerales();
                 pg.modificarEstadoGlobalSistema(0);
-                pg.modificarFechaSistema(fecSisActual.AddDays(1));
+                //pg.modificarFechaSistema(fecSisActual.AddDays(1));
 
                 MessageBox.Show("Se realizó el cierre de caja Correctamente.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }

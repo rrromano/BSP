@@ -205,10 +205,40 @@ namespace ADBISYS.Entidades
         {
             try
             {
+                ConectarBD Conex = new ConectarBD();
+                String sSQL = "EXEC dbo.adp_eliminarMovCaja @Id_MovimientoCaja = " + Id_MovCaja;
+                Conex.ejecutarQuery(sSQL);
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+        }
+
+        internal bool verificarExistenciaMovCajaSegunFecha(DateTime fecha_mov)
+        {
+            try
+            {
                 FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
                 ConectarBD Conex = new ConectarBD();
+                DataSet Ds = new DataSet();
+                String sSQL = "EXEC dbo.adp_VerificoExistenciaMovCaja @fecha_mov = " + fg.fcSql(fecha_mov.ToString(),"DATETIME");
+                Ds = Conex.ejecutarQuerySelect(sSQL);
+                if (Ds.Tables[0].Rows.Count == 0) { return false; } else { return true; }
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+        }
 
-                String sSQL = "EXEC dbo.adp_eliminarMovCaja @Id_MovimientoCaja = " + Id_MovCaja;
+        internal void eliminarMovCajaPorFecha(DateTime fecha_mov)
+        {
+            try
+            {
+                FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
+                ConectarBD Conex = new ConectarBD();
+                String sSQL = "EXEC dbo.adp_eliminarMovCajaPorFecha @fecha_mov = " + fg.fcSql(fecha_mov.ToString(), "DATETIME");
                 Conex.ejecutarQuery(sSQL);
             }
             catch (Exception e)
