@@ -328,7 +328,7 @@
             this.Name = "frmNuevoProveedor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Alta de Proveedor";
-            this.Activated += new System.EventHandler(this.frmNuevoProveedor_Activated);
+            this.Load += new System.EventHandler(this.frmNuevoProveedor_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

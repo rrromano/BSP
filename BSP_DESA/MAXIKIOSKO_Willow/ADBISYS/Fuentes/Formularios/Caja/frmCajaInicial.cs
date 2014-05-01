@@ -107,6 +107,13 @@ namespace ADBISYS.Formularios.Caja
                     return false;
                 }
 
+                if (!(fg.esUnNumeroDecimal(txtCajaInicial.Text)))
+                {
+                    MessageBox.Show("El importe ingresado es inválido.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtCajaInicial.Focus();
+                    return false;
+                }
+
                 return true;
             }
             catch (Exception e)

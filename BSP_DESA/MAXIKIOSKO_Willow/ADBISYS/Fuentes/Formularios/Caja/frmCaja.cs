@@ -253,7 +253,7 @@ namespace ADBISYS.Formularios.Caja
             try
             {
                 if (notFilaSeleccionada()) return;
-                mostrarFormularioModificarTipoMovimientoCaja();
+                mostrarFormularioModificarMovimientoCaja();
                 llenarGrillaMovimientosCaja();
                 grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 1);
                 grdMovsCaja.Focus();
@@ -264,28 +264,27 @@ namespace ADBISYS.Formularios.Caja
             }
         }
 
-        private void mostrarFormularioModificarTipoMovimientoCaja()
+        private void mostrarFormularioModificarMovimientoCaja()
         {
             try
             {
                 celdaSeleccionada = grdMovsCaja.CurrentCellAddress.X;
                 filaSeleccionada  = grdMovsCaja.CurrentCellAddress.Y;
 
-                TipoMovimientoCaja movCaja = new TipoMovimientoCaja();
-                //movCaja.m_Id = Int32.Parse(grdMovsCaja.Rows[filaSeleccionada].Cells["CODIGO"].Value.ToString());
-                //movCaja.m_descripcion = grdMovsCaja.Rows[filaSeleccionada].Cells["MOVIMIENTO"].Value.ToString();
-                //movCaja.m_valor = Double.Parse(grdMovsCaja.Rows[filaSeleccionada].Cells["VALOR"].Value.ToString());
+                MovimientoCaja movCaja = new MovimientoCaja();
+                movCaja.m_Id = Int32.Parse(grdMovsCaja.Rows[filaSeleccionada].Cells["CODIGO"].Value.ToString());
+                movCaja.m_descripcion = grdMovsCaja.Rows[filaSeleccionada].Cells["MOVIMIENTO"].Value.ToString();
+                movCaja.m_valor = Double.Parse(grdMovsCaja.Rows[filaSeleccionada].Cells["VALOR"].Value.ToString());
 
-                //if (grdMovsCaja.Rows[filaSeleccionada].Cells["INGRESO/SALIDA"].Value.ToString() == "INGRESO")
-                //{
-                //    movCaja.m_entradaSalida = 1;
-                //}
-                //else
-                //{
-                //    movCaja.m_entradaSalida = 0;
-                //}
+                if (grdMovsCaja.Rows[filaSeleccionada].Cells["INGRESO/SALIDA"].Value.ToString() == "INGRESO")
+                {
+                    movCaja.m_entradaSalida = 1;
+                }
+                else
+                {
+                    movCaja.m_entradaSalida = 0;
+                }
                 
-
                 frmModificarMovimientoCaja modifCaja = new frmModificarMovimientoCaja(movCaja);
                 modifCaja.ShowDialog(); 
             }

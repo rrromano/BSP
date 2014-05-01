@@ -51,11 +51,6 @@ namespace ADBISYS.Formularios.Proveedores
         {
             frmNuevoRubro nuevoRubro = new frmNuevoRubro();
             nuevoRubro.ShowDialog();
-        }
-
-        private void frmNuevoProveedor_Activated(object sender, EventArgs e)
-        {
-            cargarCodigoProveedor();
             cargarComboRubro();
         }
 
@@ -257,6 +252,12 @@ namespace ADBISYS.Formularios.Proveedores
         private void txtProvincia_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.KeyChar = fg.keyPressMayusculas(e);
+        }
+
+        private void frmNuevoProveedor_Load(object sender, EventArgs e)
+        {
+            cargarCodigoProveedor();
+            cargarComboRubro();
         }
     }
 }

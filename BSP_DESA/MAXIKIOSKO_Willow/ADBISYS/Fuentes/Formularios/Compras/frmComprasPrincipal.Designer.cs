@@ -47,10 +47,10 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
-            this.grdProveedores = new System.Windows.Forms.DataGridView();
+            this.grdCompras = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdProveedores)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdCompras)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -84,6 +84,7 @@
             this.nuevoToolStripMenuItem1.Name = "nuevoToolStripMenuItem1";
             this.nuevoToolStripMenuItem1.Size = new System.Drawing.Size(174, 28);
             this.nuevoToolStripMenuItem1.Text = "Nuevo";
+            this.nuevoToolStripMenuItem1.Click += new System.EventHandler(this.nuevoToolStripMenuItem1_Click);
             // 
             // modificarToolStripMenuItem
             // 
@@ -139,7 +140,7 @@
             this.groupBox1.Controls.Add(this.btnEliminar);
             this.groupBox1.Controls.Add(this.btnModificar);
             this.groupBox1.Controls.Add(this.btnNuevo);
-            this.groupBox1.Controls.Add(this.grdProveedores);
+            this.groupBox1.Controls.Add(this.grdCompras);
             this.groupBox1.Location = new System.Drawing.Point(16, 28);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1250, 592);
@@ -227,16 +228,17 @@
             this.btnNuevo.Text = "&Nuevo";
             this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnNuevo.UseVisualStyleBackColor = true;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
-            // grdProveedores
+            // grdCompras
             // 
-            this.grdProveedores.BackgroundColor = System.Drawing.Color.White;
-            this.grdProveedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdProveedores.Location = new System.Drawing.Point(18, 103);
-            this.grdProveedores.Name = "grdProveedores";
-            this.grdProveedores.RowTemplate.Height = 24;
-            this.grdProveedores.Size = new System.Drawing.Size(1212, 454);
-            this.grdProveedores.TabIndex = 7;
+            this.grdCompras.BackgroundColor = System.Drawing.Color.White;
+            this.grdCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdCompras.Location = new System.Drawing.Point(18, 103);
+            this.grdCompras.Name = "grdCompras";
+            this.grdCompras.RowTemplate.Height = 24;
+            this.grdCompras.Size = new System.Drawing.Size(1212, 454);
+            this.grdCompras.TabIndex = 7;
             // 
             // frmComprasPrincipal
             // 
@@ -257,7 +259,7 @@
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdProveedores)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdCompras)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -283,6 +285,6 @@
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnNuevo;
-        private System.Windows.Forms.DataGridView grdProveedores;
+        private System.Windows.Forms.DataGridView grdCompras;
     }
 }

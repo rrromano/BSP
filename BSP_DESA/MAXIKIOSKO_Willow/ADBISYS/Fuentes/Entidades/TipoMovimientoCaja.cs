@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ADBISYS.Conexion;
+using ADBISYS.Entidades;
+using ADBISYS.FuncionesGenerales;
+using System.Data;
 
 namespace ADBISYS.Entidades
 {
     public class TipoMovimientoCaja
     {
+        FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
         private Int32 ID_TipoMovimiento;
         private String Descripcion;
         private Int32 entradaSalida; //1 Ingreso - 0 Salida
@@ -27,6 +32,57 @@ namespace ADBISYS.Entidades
         {
             get { return entradaSalida; }
             set { entradaSalida = value; }
+        }
+
+        internal DataSet obtenerTiposMovimientosCaja()
+        {
+            try
+            {
+                ConectarBD con = new ConectarBD();
+                DataSet Ds = new DataSet();
+                FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
+
+                String sSQL = "";
+                sSQL = "EXEC dbo.adp_obtenerTiposMovsCaja";
+                Ds.Reset();
+                Ds = con.ejecutarQuerySelect(sSQL);
+
+                return Ds;
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+        }
+
+        internal void eliminarTipoMovCaja(int id_TipoMovCaja)
+        {
+            try
+            {
+                ConectarBD Conex = new ConectarBD();
+                String sSQL = "EXEC dbo.adp_eliminarTipoMovCaja @Id_MovimientoCaja = " + id_TipoMovCaja;
+                Conex.ejecutarQuery(sSQL);
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+        }
+
+        internal void eliminarTipoMovCajaDeHoy(int Id_TipoMovCaja, DateTime Fecsis)
+        {
+            try
+            {
+                ConectarBD Conex = new ConectarBD();
+                String sSQL = "EXEC dbo.adp_eliminarMovCajaPorFecha ";
+                sSQL = sSQL + " @Id_MovimientoCaja = " + Id_TipoMovCaja;
+                sSQL = sSQL + " ,@Fecha_mov = " + fg.fcSql(Fecsis.ToString(),"DATETIME");
+                Conex.ejecutarQuery(sSQL);
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
         }
     }
 }

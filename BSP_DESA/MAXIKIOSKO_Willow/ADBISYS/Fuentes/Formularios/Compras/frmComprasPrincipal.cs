@@ -42,7 +42,7 @@ namespace ADBISYS.Formularios.Compras
         private void frmComprasPrincipal_Load(object sender, EventArgs e)
         {
             llenarGrilla();
-            grdProveedores = fg.formatoGrilla(grdProveedores, 1);
+            grdCompras = fg.formatoGrilla(grdCompras, 1);
         }
 
         private void llenarGrilla()
@@ -56,11 +56,11 @@ namespace ADBISYS.Formularios.Compras
 
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        grdProveedores.DataSource = ds.Tables[0];
+                        grdCompras.DataSource = ds.Tables[0];
                     }
                     else
                     {
-                        grdProveedores.DataSource = null;
+                        grdCompras.DataSource = null;
                     }
                 }
                 else
@@ -78,9 +78,9 @@ namespace ADBISYS.Formularios.Compras
 
                 }
 
-                if ((filaSeleccionada > 0) && (celdaSeleccionada > 0) && (filaSeleccionada <= grdProveedores.Rows.Count - 1))
+                if ((filaSeleccionada > 0) && (celdaSeleccionada > 0) && (filaSeleccionada <= grdCompras.Rows.Count - 1))
                 {
-                    grdProveedores[celdaSeleccionada, filaSeleccionada].Selected = true;
+                    grdCompras[celdaSeleccionada, filaSeleccionada].Selected = true;
                 }
             }
             catch (Exception e)
@@ -90,6 +90,31 @@ namespace ADBISYS.Formularios.Compras
             }
         }
 
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            nuevaCompra();
+        }
+
+        private void nuevoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            nuevaCompra();
+        }
+
+        private void nuevaCompra()
+        {
+            mostrarFormularioNuevaCompra();
+            llenarGrilla();
+            grdCompras = fg.formatoGrilla(grdCompras, 1);
+            grdCompras.Focus();
+        }
+
+        private void mostrarFormularioNuevaCompra()
+        {
+            celdaSeleccionada = grdCompras.CurrentCellAddress.X;
+            filaSeleccionada = grdCompras.CurrentCellAddress.Y;
+            frmNuevaCompra nuevaCompra = new frmNuevaCompra();
+            nuevaCompra.ShowDialog();
+        }
 
     }
 }

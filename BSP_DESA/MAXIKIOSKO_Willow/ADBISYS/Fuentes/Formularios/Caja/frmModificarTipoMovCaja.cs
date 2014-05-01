@@ -17,22 +17,48 @@ namespace ADBISYS.Formularios.Caja
 
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
         Dictionary<int, string> EntradaSalida = new Dictionary<int, string>();
-        MovimientoCaja movCaja = new MovimientoCaja();
+        TipoMovimientoCaja TipoMovCaja = new TipoMovimientoCaja();
 
         public frmModificarTipoMovCaja()
         {
             InitializeComponent();
         }
 
-        public frmModificarTipoMovCaja(MovimientoCaja movimientoCaja)
+        public frmModificarTipoMovCaja(TipoMovimientoCaja tipoMovCaja)
         {
             try
             {
-                //movCaja = movimientoCaja;
-                //InitializeComponent();
-                //cargarComboEntradaSalida();
-                //cargarMovimientoCaja();
-                //habilitarCampos();
+                TipoMovCaja = tipoMovCaja;
+                InitializeComponent();
+                cargarComboEntradaSalida();
+                cargarTipoMovimientoCaja();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cargarTipoMovimientoCaja()
+        {
+            try
+            {
+                txtCodigo.Text = TipoMovCaja.m_ID_TipoMovimiento.ToString();
+                txtDescripcion.Text = TipoMovCaja.m_Descripcion;
+                if (TipoMovCaja.m_entradaSalida == 1) { cboEntradaSalida.Text = "INGRESO"; } else { cboEntradaSalida.Text = "SALIDA"; }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cargarComboEntradaSalida()
+        {
+            try
+            {
+                cboEntradaSalida.Items.Add("INGRESO");
+                cboEntradaSalida.Items.Add("SALIDA");
             }
             catch (Exception ex)
             {
@@ -65,10 +91,8 @@ namespace ADBISYS.Formularios.Caja
                 String Usuario = Properties.Settings.Default.UsuarioLogueado.ToString();
                 String sSQL;
 
-                movCaja.m_Id_tipoMovimiento = movCaja.ObtenerId_TipoMovimiento(movCaja.m_Id);
-
                 sSQL = "EXEC dbo.adp_actualizar_TipoMovCaja ";
-                sSQL = sSQL + " @ID_TIPOMOVIMIENTO = " + movCaja.m_Id_tipoMovimiento;
+                sSQL = sSQL + " @ID_TIPOMOVIMIENTO = " + TipoMovCaja.m_ID_TipoMovimiento;
                 sSQL = sSQL + " ,@DESCRIPCION = " + fg.fcSql(txtDescripcion.Text, "STRING");
 
                 if (cboEntradaSalida.Text == "INGRESO") { sSQL = sSQL + " ,@INGRESO_SALIDA = 1"; } else { sSQL = sSQL + " ,@INGRESO_SALIDA = 0"; }

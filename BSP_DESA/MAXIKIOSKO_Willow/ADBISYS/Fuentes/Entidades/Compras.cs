@@ -32,5 +32,35 @@ namespace ADBISYS.Entidades
 
         }
 
+        public DataSet obtenerMaximaCompra()
+        {
+            try
+            {
+                cadenaSql = "EXEC adp_maxima_compra";
+                ds = objConect.ejecutarQuerySelect(cadenaSql);
+                return ds;
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+
+        }
+
+        public DataSet obtenerInfoProveedores()
+        {
+            try
+            {
+                cadenaSql = "EXEC adp_info_proveedores";
+                ds = objConect.ejecutarQuerySelect(cadenaSql);
+                return ds;
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+
+        }
+
     }
 }

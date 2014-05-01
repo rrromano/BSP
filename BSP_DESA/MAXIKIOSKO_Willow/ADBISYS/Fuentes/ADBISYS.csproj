@@ -110,11 +110,23 @@
     <Compile Include="Formularios\Caja\frmNuevoTipoMovCaja.Designer.cs">
       <DependentUpon>frmNuevoTipoMovCaja.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Caja\frmTipoMovCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Caja\frmTipoMovCaja.Designer.cs">
+      <DependentUpon>frmTipoMovCaja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Compras\frmComprasPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Formularios\Compras\frmComprasPrincipal.Designer.cs">
       <DependentUpon>frmComprasPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Compras\frmNuevaCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Compras\frmNuevaCompra.Designer.cs">
+      <DependentUpon>frmNuevaCompra.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Ingresar\frmAdministrarUsuario.cs">
       <SubType>Form</SubType>
@@ -224,8 +236,14 @@
     <EmbeddedResource Include="Formularios\Caja\frmNuevoTipoMovCaja.resx">
       <DependentUpon>frmNuevoTipoMovCaja.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Caja\frmTipoMovCaja.resx">
+      <DependentUpon>frmTipoMovCaja.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Compras\frmComprasPrincipal.resx">
       <DependentUpon>frmComprasPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Compras\frmNuevaCompra.resx">
+      <DependentUpon>frmNuevaCompra.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Ingresar\frmAdministrarUsuario.resx">
       <DependentUpon>frmAdministrarUsuario.cs</DependentUpon>

@@ -70,7 +70,6 @@
             // 
             // cboEntradaSalida
             // 
-            this.cboEntradaSalida.Enabled = false;
             this.cboEntradaSalida.FormattingEnabled = true;
             this.cboEntradaSalida.Location = new System.Drawing.Point(332, 34);
             this.cboEntradaSalida.Name = "cboEntradaSalida";
@@ -79,7 +78,6 @@
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Enabled = false;
             this.txtDescripcion.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescripcion.Location = new System.Drawing.Point(150, 73);
             this.txtDescripcion.MaxLength = 255;

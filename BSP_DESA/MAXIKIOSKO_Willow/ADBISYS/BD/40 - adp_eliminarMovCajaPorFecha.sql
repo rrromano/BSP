@@ -5,7 +5,7 @@ If Exists ( Select 1 From SysObjects Where Name = 'adp_eliminarMovCajaPorFecha')
 Go 
 
 
-Create procedure dbo.adp_eliminarMovCajaPorFecha (@FECHA_MOV AS DATETIME)
+Create procedure dbo.adp_eliminarMovCajaPorFecha (@FECHA_MOV AS DATETIME, @ID_TIPOMOVIMIENTO AS NUMERIC(2) = NULL)
 as
 
 
@@ -20,7 +20,9 @@ BEGIN TRY
 	UPDATE A
 	SET A.ESTADO = 0
 	FROM MOVIMIENTOS_CAJA A
-	WHERE A.FECHA = @FECHA_MOV
+	WHERE 1 = 1
+		AND A.FECHA = @FECHA_MOV
+		AND A.ID_TIPOMOVIMIENTO = ISNULL(@ID_TIPOMOVIMIENTO,A.ID_TIPOMOVIMIENTO)
 	
 	
   PRINT 'FIN ACTUALIZACIÓN OK'

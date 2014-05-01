@@ -16,18 +16,18 @@ namespace ADBISYS.Formularios.Caja
     {
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
         Dictionary<int, string> EntradaSalida = new Dictionary<int, string>();
-        TipoMovimientoCaja TipoMovCaja = new TipoMovimientoCaja();
+        MovimientoCaja MovimientoCaja = new MovimientoCaja();
         
         public frmModificarMovimientoCaja()
         {
             InitializeComponent();
         }
 
-        public frmModificarMovimientoCaja(TipoMovimientoCaja TipoMov)
+        public frmModificarMovimientoCaja(MovimientoCaja MovCaja)
         {
             try
             {
-                TipoMovCaja = TipoMov;
+                MovimientoCaja = MovCaja;
                 InitializeComponent();
                 cargarComboEntradaSalida();
                 cargarMovimientoCaja();
@@ -78,9 +78,9 @@ namespace ADBISYS.Formularios.Caja
         {
             try
             {
-                txtCodigo.Text = TipoMovCaja.m_ID_TipoMovimiento.ToString();
-                txtDescripcion.Text = TipoMovCaja.m_Descripcion;
-                if (TipoMovCaja.m_entradaSalida == 1) { cboEntradaSalida.Text = "INGRESO"; } else { cboEntradaSalida.Text = "SALIDA"; }
+                txtCodigo.Text = MovimientoCaja.m_Id.ToString();
+                txtDescripcion.Text = MovimientoCaja.m_descripcion;
+                if (MovimientoCaja.m_entradaSalida == 1) { cboEntradaSalida.Text = "INGRESO"; } else { cboEntradaSalida.Text = "SALIDA"; }
             }
             catch (Exception ex)
             {
@@ -94,7 +94,6 @@ namespace ADBISYS.Formularios.Caja
             {
                 if (fiValidarModificacion())
                 {
-                    //actualizarTipoMovimientoCaja();
                     actualizarMovimientoCaja();
                     this.Hide();
                 }
@@ -131,34 +130,6 @@ namespace ADBISYS.Formularios.Caja
                 return false;
             }
         }
-
-        //private void actualizarTipoMovimientoCaja()
-        //{
-        //    try
-        //    {
-        //        ConectarBD Conex = new ConectarBD();
-        //        DateTime Dia = fg.appFechaSistema();
-        //        String Usuario = Properties.Settings.Default.UsuarioLogueado.ToString();
-        //        String sSQL;
-
-        //        TipoMovCaja.m_Id_tipoMovimiento = TipoMovCaja.ObtenerId_TipoMovimiento(TipoMovCaja.m_Id);
-
-        //        sSQL = "EXEC dbo.adp_actualizar_TipoMovCaja ";
-        //        sSQL = sSQL + " @ID_TIPOMOVIMIENTO = " + TipoMovCaja.m_Id_tipoMovimiento;
-        //        sSQL = sSQL + " ,@DESCRIPCION = " + fg.fcSql(txtDescripcion.Text , "STRING");
-
-        //        if (cboEntradaSalida.Text == "INGRESO") {sSQL = sSQL + " ,@INGRESO_SALIDA = 1";} else {sSQL = sSQL + " ,@INGRESO_SALIDA = 0";}
-
-        //        sSQL = sSQL + " ,@FECHA_MODIF = " + fg.fcSql(Dia.ToString(), "DATETIME");
-        //        sSQL = sSQL + " ,@LOGIN_MODIF = " + fg.fcSql(Usuario, "STRING");
-
-        //        Conex.ejecutarQuery(sSQL);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
 
         private void actualizarMovimientoCaja()
         {
