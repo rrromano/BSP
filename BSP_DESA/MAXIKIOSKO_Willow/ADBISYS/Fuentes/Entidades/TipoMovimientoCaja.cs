@@ -60,7 +60,7 @@ namespace ADBISYS.Entidades
             try
             {
                 ConectarBD Conex = new ConectarBD();
-                String sSQL = "EXEC dbo.adp_eliminarTipoMovCaja @Id_MovimientoCaja = " + id_TipoMovCaja;
+                String sSQL = "EXEC dbo.adp_eliminarTipoMovCaja @ID_TIPOMOVIMIENTO = " + id_TipoMovCaja;
                 Conex.ejecutarQuery(sSQL);
             }
             catch (Exception e)
@@ -75,8 +75,8 @@ namespace ADBISYS.Entidades
             {
                 ConectarBD Conex = new ConectarBD();
                 String sSQL = "EXEC dbo.adp_eliminarMovCajaPorFecha ";
-                sSQL = sSQL + " @Id_MovimientoCaja = " + Id_TipoMovCaja;
-                sSQL = sSQL + " ,@Fecha_mov = " + fg.fcSql(Fecsis.ToString(),"DATETIME");
+                sSQL = sSQL + " @ID_TIPOMOVIMIENTO = " + Id_TipoMovCaja;
+                sSQL = sSQL + " ,@FECHA_MOV = " + fg.fcSql(Fecsis.ToString(),"DATETIME");
                 Conex.ejecutarQuery(sSQL);
             }
             catch (Exception e)

@@ -128,7 +128,7 @@
             this.MinimizeBox = false;
             this.Name = "frmModificarRubro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Modificación de Rubro";
+            this.Text = "Modificar Rubro";
             this.Load += new System.EventHandler(this.frmModificarRubro_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

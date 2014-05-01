@@ -1,0 +1,46 @@
+Use WIADBISYS
+Go 
+If Exists ( Select 1 From SysObjects Where Name = 'adp_ObtenerMovimientosCierreCaja')
+  Drop Procedure adp_ObtenerMovimientosCierreCaja
+Go 
+
+-- SP PARA OBTENER LOS MOVIMIENTOS DE LA CAJA DEL DÍA @FECHA_MOV
+Create procedure dbo.adp_ObtenerMovimientosCierreCaja (@FECHA_MOV datetime)
+as
+
+
+BEGIN TRY
+
+	SET NOCOUNT ON
+	
+	SELECT  UPPER(B.DESCRIPCION)						'MOVIMIENTO',
+					VALOR														'VALOR',	
+					CASE B.INGRESO_SALIDA 
+						WHEN 1 THEN 'INGRESO' 
+						ELSE 'SALIDA' 
+					END AS													'INGRESO/SALIDA'
+			
+	FROM MOVIMIENTOS_CAJA A
+	INNER JOIN TIPOMOVIMIENTO_CAJA B ON (A.ID_TIPOMOVIMIENTO = B.ID_TIPOMOVIMIENTO)
+	WHERE 1 = 1
+		AND B.ID_TipoMovimiento != 0
+		AND A.FECHA = @FECHA_MOV
+		AND A.ESTADO = 1
+		AND B.ESTADO = 1
+
+	SET NOCOUNT OFF
+	
+END TRY
+
+BEGIN CATCH
+  SET NOCOUNT OFF
+  PRINT 'ACTUALIZACION CANCELADA POR ERROR'
+  SELECT ERROR_NUMBER()     'ERROR_NUMBER' , 
+         ERROR_MESSAGE()    'ERROR_MESSAGE', 
+         ERROR_LINE()       'ERROR_LINE', 
+         ERROR_PROCEDURE()  'ERROR_PROCEDURE', 
+         ERROR_SEVERITY ()  'ERROR_SEVERITY',   
+         ERROR_STATE()      'ERROR_STATE'
+END CATCH	
+
+go

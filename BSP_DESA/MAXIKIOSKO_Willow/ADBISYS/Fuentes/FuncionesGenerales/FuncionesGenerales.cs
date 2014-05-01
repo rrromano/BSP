@@ -299,7 +299,6 @@ namespace ADBISYS.FuncionesGenerales
                     return;
                 }
 
-
                 bool IsDec = false;
                 int nroDec = 0;
 
@@ -363,6 +362,55 @@ namespace ADBISYS.FuncionesGenerales
             }
             catch (Exception r)
             {
+                throw new System.ArgumentException("[Error] - [" + r.Message.ToString() + "]");
+            }
+        }
+
+        public void keyPressNumericoDiezDosDecimales(KeyPressEventArgs e, int longitudActual, string texto)
+        {
+            try
+            {
+                if (e.KeyChar == 8)
+                {
+                    e.Handled = false;
+                    return;
+                }
+
+                if (longitudActual == 8 && e.KeyChar == 46)
+                {
+                    e.Handled = false;
+                    return;                
+                }
+
+                if (longitudActual == 8 && (!(contieneComa(texto))))
+                {
+                    e.Handled = true;
+                    return;
+                }
+
+            }
+            catch (Exception r)
+            {
+                throw new System.ArgumentException("[Error] - [" + r.Message.ToString() + "]");
+            }
+        }
+
+        private bool contieneComa(string texto)
+        {
+            try
+            {
+                for (int i = 0; i <= texto.Length; i++)
+                {
+                    if (texto.Substring(i, 1) == ".")
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch (Exception r)
+            {
+                return false;
                 throw new System.ArgumentException("[Error] - [" + r.Message.ToString() + "]");
             }
         }

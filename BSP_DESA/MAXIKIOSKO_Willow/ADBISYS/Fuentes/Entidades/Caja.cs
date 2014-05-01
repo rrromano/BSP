@@ -82,7 +82,6 @@ namespace ADBISYS.Entidades
             {
                 throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
             }
-
         }
 
         public Double obtenerImporteCajaActual(DateTime fecha)
@@ -134,7 +133,6 @@ namespace ADBISYS.Entidades
                 }
 
                 return importe;
-
             }
             catch (Exception e)
             {
@@ -240,6 +238,27 @@ namespace ADBISYS.Entidades
                 ConectarBD Conex = new ConectarBD();
                 String sSQL = "EXEC dbo.adp_eliminarMovCajaPorFecha @fecha_mov = " + fg.fcSql(fecha_mov.ToString(), "DATETIME");
                 Conex.ejecutarQuery(sSQL);
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+        }
+
+        internal DataSet obtenerMovimientosCierreCaja(DateTime fechaCierre)
+        {
+            try
+            {
+                ConectarBD con = new ConectarBD();
+                DataSet Ds = new DataSet();
+                FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
+
+                String sSQL = "";
+                sSQL = "EXEC dbo.adp_ObtenerMovimientosCierreCaja @fecha_mov = " + fg.fcSql(fechaCierre.ToString(), "DATETIME");
+                Ds.Reset();
+                Ds = con.ejecutarQuerySelect(sSQL);
+
+                return Ds;
             }
             catch (Exception e)
             {

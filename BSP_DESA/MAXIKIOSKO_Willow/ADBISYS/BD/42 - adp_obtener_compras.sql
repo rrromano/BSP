@@ -5,17 +5,17 @@ If Exists ( Select 1 From SysObjects Where Name = 'adp_obtener_compras')
 Go 
 
 -- SP PARA OBTENER LAS DIFERENTES COMPRAS DEL DÍA
-Create procedure dbo.adp_obtener_compras
+Create procedure dbo.adp_obtener_compras (@fecha_sistema datetime)
 as
 
 BEGIN TRY
 
 	SET NOCOUNT ON
 	
-	SELECT UPPER(A.Id_Compra)		AS CÓDIGO,
+	SELECT A.Id_Compra					AS CÓDIGO,
 				 UPPER(B.Nombre)			AS PROVEEDOR,
-				 UPPER(A.Importe)			AS IMPORTE,	
-				 convert(varchar,A.Fecha_Compra,120) AS 'FECHA DE COMPRA',
+				 A.Importe						AS IMPORTE,	
+				 convert(varchar,A.Fecha_Compra,120) AS FECHA_COMPRA,
 				 convert(varchar,A.fecha_modif,120) AS FECHA_MODIF,
 				 UPPER(A.login_modif) AS LOGIN_MODIF,
 				 UPPER(A.term_modif)  AS TERM_MODIF
@@ -23,6 +23,7 @@ BEGIN TRY
 	FROM COMPRAS A
 		INNER JOIN PROVEEDORES B ON (A.Id_Proveedor = B.ID_Proveedor)
 		WHERE A.ESTADO = 1
+			AND A.Fecha_Compra = @fecha_sistema
 
 	SET NOCOUNT OFF
 	

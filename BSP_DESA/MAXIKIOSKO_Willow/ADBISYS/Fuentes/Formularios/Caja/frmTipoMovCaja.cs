@@ -226,6 +226,108 @@ namespace ADBISYS.Formularios.Caja
             }
         }
 
+        private void frmTipoMovCaja_Activated(object sender, EventArgs e)
+        {
+            try
+            {
+                llenarGrillaTipoMovimientosCaja();
+                grdTipoMovCaja = fg.formatoGrilla(grdTipoMovCaja, 1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
+        private void grdTipoMovCaja_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                modificarTipoMovCaja();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void grdTipoMovCaja_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Return)
+                {
+                    e.SuppressKeyPress = true;
+                    modificarTipoMovCaja();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                nuevoTipoMovimientoCaja();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void modificarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                modificarTipoMovCaja();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void eliminarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (puedoEliminar())
+                {
+                    eliminarTipoMovimientoCaja();
+                    eliminarEseTipoMovimientoConFechaHoy();
+                    llenarGrillaTipoMovimientosCaja();
+                    grdTipoMovCaja = fg.formatoGrilla(grdTipoMovCaja, 1);
+                    btnEliminar.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            salir();
+        }
+
+        private void salir()
+        {
+            this.Close();
+        }
+
+        private void salirToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            salir();
+        }
+
+        private void salidaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            salir();
+        }
     }
 }

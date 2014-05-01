@@ -36,7 +36,51 @@ namespace ADBISYS.Formularios.Compras
         {
             if (!(validoCampos())) return;
             if (!validoImporte()) return;
-            //altaDeCompra();
+            altaDeCompra();
+        }
+
+        private void altaDeCompra()
+        {
+            try
+            {
+                usuario = Properties.Settings.Default.UsuarioLogueado.ToString();
+
+                cadenaSql = "EXEC adp_nueva_compra";
+                cadenaSql = cadenaSql + " @Compra_IdProveedor = " + obtenerIdProveedor().ToString();
+                cadenaSql = cadenaSql + ",@Compra_Importe = " + fg.fcSql(txtImporte.Text, "Double");
+                cadenaSql = cadenaSql + ",@Compra_Fecha_Compra = " + fg.fcSql(fg.appFechaSistema().ToString(), "Datetime");
+                if (usuario != "")
+                { cadenaSql = cadenaSql + ",@Compra_Login = " + fg.fcSql(usuario, "String"); }
+
+                objConect.ejecutarQuery(cadenaSql);
+                this.Hide();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        private object obtenerIdProveedor()
+        {
+            try
+            {
+                foreach (KeyValuePair<int, string> proveedor in proveedores)
+                {
+                    if (cboProveedor.Text == proveedor.Value)
+                    {
+                        return (proveedor.Key);
+                    }
+                }
+                return 0;
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 9;
+            }
         }
 
         private bool validoImporte()
@@ -132,6 +176,12 @@ namespace ADBISYS.Formularios.Compras
             frmNuevoProveedor nuevoProveedor = new frmNuevoProveedor();
             nuevoProveedor.ShowDialog();
             cargarComboProveedores();
+        }
+
+        private void txtImporte_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            fg.keyPressNumerosDecimales(e, txtImporte);
+            fg.keyPressNumericoDiezDosDecimales(e, txtImporte.Text.Length, txtImporte.Text);
         }
     }
 }

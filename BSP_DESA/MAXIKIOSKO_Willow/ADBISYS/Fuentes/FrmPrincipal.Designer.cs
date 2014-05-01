@@ -41,6 +41,7 @@
             this.modifArticuloTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.actPrecioArticuloTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.comprasTS = new System.Windows.Forms.ToolStripMenuItem();
+            this.agregarModificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cajaTS = new System.Windows.Forms.ToolStripMenuItem();
             this.iniciarCajaTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarCajaTSMI = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,7 +68,7 @@
             this.maquinaTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.horaTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.agregarModificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.agregarModificarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.StripPrincipal.SuspendLayout();
             this.statusStripPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -170,6 +171,13 @@
             this.comprasTS.Size = new System.Drawing.Size(106, 27);
             this.comprasTS.Text = "C&ompras";
             // 
+            // agregarModificarToolStripMenuItem
+            // 
+            this.agregarModificarToolStripMenuItem.Name = "agregarModificarToolStripMenuItem";
+            this.agregarModificarToolStripMenuItem.Size = new System.Drawing.Size(266, 28);
+            this.agregarModificarToolStripMenuItem.Text = "Agregar / Modificar";
+            this.agregarModificarToolStripMenuItem.Click += new System.EventHandler(this.agregarModificarToolStripMenuItem_Click);
+            // 
             // cajaTS
             // 
             this.cajaTS.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -185,27 +193,29 @@
             // iniciarCajaTSMI
             // 
             this.iniciarCajaTSMI.Name = "iniciarCajaTSMI";
-            this.iniciarCajaTSMI.Size = new System.Drawing.Size(289, 28);
+            this.iniciarCajaTSMI.Size = new System.Drawing.Size(240, 28);
             this.iniciarCajaTSMI.Text = "Iniciar";
             this.iniciarCajaTSMI.Click += new System.EventHandler(this.iniciarCajaTSMI_Click);
             // 
             // modificarCajaTSMI
             // 
             this.modificarCajaTSMI.Name = "modificarCajaTSMI";
-            this.modificarCajaTSMI.Size = new System.Drawing.Size(289, 28);
+            this.modificarCajaTSMI.Size = new System.Drawing.Size(240, 28);
             this.modificarCajaTSMI.Text = "Modificar ";
             this.modificarCajaTSMI.Click += new System.EventHandler(this.modificarCajaTSMI_Click);
             // 
             // tipoMovimientoCajaToolStripMenuItem
             // 
+            this.tipoMovimientoCajaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.agregarModificarToolStripMenuItem1});
             this.tipoMovimientoCajaToolStripMenuItem.Name = "tipoMovimientoCajaToolStripMenuItem";
-            this.tipoMovimientoCajaToolStripMenuItem.Size = new System.Drawing.Size(289, 28);
-            this.tipoMovimientoCajaToolStripMenuItem.Text = "Tipo Movimiento Caja";
+            this.tipoMovimientoCajaToolStripMenuItem.Size = new System.Drawing.Size(240, 28);
+            this.tipoMovimientoCajaToolStripMenuItem.Text = "Movimiento Caja";
             // 
             // finalizarTSMI
             // 
             this.finalizarTSMI.Name = "finalizarTSMI";
-            this.finalizarTSMI.Size = new System.Drawing.Size(289, 28);
+            this.finalizarTSMI.Size = new System.Drawing.Size(240, 28);
             this.finalizarTSMI.Text = "Finalizar";
             this.finalizarTSMI.Click += new System.EventHandler(this.finalizarTSMI_Click);
             // 
@@ -380,12 +390,12 @@
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // agregarModificarToolStripMenuItem
+            // agregarModificarToolStripMenuItem1
             // 
-            this.agregarModificarToolStripMenuItem.Name = "agregarModificarToolStripMenuItem";
-            this.agregarModificarToolStripMenuItem.Size = new System.Drawing.Size(266, 28);
-            this.agregarModificarToolStripMenuItem.Text = "Agregar / Modificar";
-            this.agregarModificarToolStripMenuItem.Click += new System.EventHandler(this.agregarModificarToolStripMenuItem_Click);
+            this.agregarModificarToolStripMenuItem1.Name = "agregarModificarToolStripMenuItem1";
+            this.agregarModificarToolStripMenuItem1.Size = new System.Drawing.Size(266, 28);
+            this.agregarModificarToolStripMenuItem1.Text = "Agregar / Modificar";
+            this.agregarModificarToolStripMenuItem1.Click += new System.EventHandler(this.agregarModificarToolStripMenuItem1_Click);
             // 
             // FrmPrincipal
             // 
@@ -453,6 +463,7 @@
         private System.Windows.Forms.ToolStripMenuItem comprasTS;
         private System.Windows.Forms.ToolStripMenuItem tipoMovimientoCajaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem agregarModificarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem agregarModificarToolStripMenuItem1;
 
 
 

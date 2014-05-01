@@ -372,5 +372,10 @@ namespace ADBISYS.Formularios.Proveedores
         {
             ordenamientoProveedor();
         }
+
+        private void actualizarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            llenarGrilla();
+        }
     }
 }

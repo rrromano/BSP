@@ -327,7 +327,7 @@
             this.MinimizeBox = false;
             this.Name = "frmModificarProveedor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Modificación de Proveedor";
+            this.Text = "Modificar Proveedor";
             this.Load += new System.EventHandler(this.frmModificarProveedor_Load);
             this.Activated += new System.EventHandler(this.frmModificarProveedor_Activated);
             this.groupBox1.ResumeLayout(false);

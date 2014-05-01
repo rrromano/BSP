@@ -104,17 +104,17 @@
     <Compile Include="Formularios\Caja\frmNuevoMovimientoCaja.Designer.cs">
       <DependentUpon>frmNuevoMovimientoCaja.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\Caja\frmNuevoTipoMovCaja.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Formularios\Caja\frmNuevoTipoMovCaja.Designer.cs">
-      <DependentUpon>frmNuevoTipoMovCaja.cs</DependentUpon>
-    </Compile>
     <Compile Include="Formularios\Caja\frmTipoMovCaja.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Formularios\Caja\frmTipoMovCaja.Designer.cs">
       <DependentUpon>frmTipoMovCaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Compras\frmBusquedaCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Compras\frmBusquedaCompra.Designer.cs">
+      <DependentUpon>frmBusquedaCompra.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Compras\frmComprasPrincipal.cs">
       <SubType>Form</SubType>
@@ -122,11 +122,23 @@
     <Compile Include="Formularios\Compras\frmComprasPrincipal.Designer.cs">
       <DependentUpon>frmComprasPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Compras\frmModificarCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Compras\frmModificarCompra.Designer.cs">
+      <DependentUpon>frmModificarCompra.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Compras\frmNuevaCompra.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Formularios\Compras\frmNuevaCompra.Designer.cs">
       <DependentUpon>frmNuevaCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Compras\frmOrdenarCompras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Compras\frmOrdenarCompras.Designer.cs">
+      <DependentUpon>frmOrdenarCompras.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Ingresar\frmAdministrarUsuario.cs">
       <SubType>Form</SubType>
@@ -233,17 +245,23 @@
     <EmbeddedResource Include="Formularios\Caja\frmNuevoMovimientoCaja.resx">
       <DependentUpon>frmNuevoMovimientoCaja.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\Caja\frmNuevoTipoMovCaja.resx">
-      <DependentUpon>frmNuevoTipoMovCaja.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Caja\frmTipoMovCaja.resx">
       <DependentUpon>frmTipoMovCaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Compras\frmBusquedaCompra.resx">
+      <DependentUpon>frmBusquedaCompra.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Compras\frmComprasPrincipal.resx">
       <DependentUpon>frmComprasPrincipal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Compras\frmModificarCompra.resx">
+      <DependentUpon>frmModificarCompra.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Compras\frmNuevaCompra.resx">
       <DependentUpon>frmNuevaCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Compras\frmOrdenarCompras.resx">
+      <DependentUpon>frmOrdenarCompras.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Ingresar\frmAdministrarUsuario.resx">
       <DependentUpon>frmAdministrarUsuario.cs</DependentUpon>

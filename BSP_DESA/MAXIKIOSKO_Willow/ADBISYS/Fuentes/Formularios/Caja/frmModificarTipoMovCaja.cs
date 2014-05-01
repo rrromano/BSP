@@ -32,6 +32,24 @@ namespace ADBISYS.Formularios.Caja
                 InitializeComponent();
                 cargarComboEntradaSalida();
                 cargarTipoMovimientoCaja();
+                habilitarCampos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void habilitarCampos()
+        {
+            try
+            {
+
+                if (int.Parse(txtCodigo.Text) > 6)
+                {
+                    cboEntradaSalida.Enabled = true;
+                    txtDescripcion.Enabled = true;
+                }
             }
             catch (Exception ex)
             {
@@ -112,7 +130,15 @@ namespace ADBISYS.Formularios.Caja
         {
             try
             {
+                if (txtDescripcion.Text.Trim() == "")
+                {
+                    MessageBox.Show("La descrición del Tipo de Movimiento es obligatoria.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    txtDescripcion.Focus();
+                    return false;
+                }
+                
                 return true;
+
             }
             catch (Exception ex)
             {

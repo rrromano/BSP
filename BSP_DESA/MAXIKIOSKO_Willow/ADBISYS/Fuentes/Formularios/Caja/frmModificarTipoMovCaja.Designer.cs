@@ -70,6 +70,8 @@
             // 
             // cboEntradaSalida
             // 
+            this.cboEntradaSalida.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboEntradaSalida.Enabled = false;
             this.cboEntradaSalida.FormattingEnabled = true;
             this.cboEntradaSalida.Location = new System.Drawing.Point(332, 34);
             this.cboEntradaSalida.Name = "cboEntradaSalida";
@@ -78,6 +80,7 @@
             // 
             // txtDescripcion
             // 
+            this.txtDescripcion.Enabled = false;
             this.txtDescripcion.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescripcion.Location = new System.Drawing.Point(150, 73);
             this.txtDescripcion.MaxLength = 255;
@@ -160,8 +163,11 @@
             this.ClientSize = new System.Drawing.Size(669, 232);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmModificarTipoMovCaja";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modificar tipo movimiento Caja";

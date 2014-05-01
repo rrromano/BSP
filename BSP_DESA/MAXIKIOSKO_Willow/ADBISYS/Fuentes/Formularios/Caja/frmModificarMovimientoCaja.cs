@@ -56,7 +56,7 @@ namespace ADBISYS.Formularios.Caja
         {
             try
             {
-                if (int.Parse(txtCodigo.Text) >= 5 && int.Parse(txtCodigo.Text) <= 6)
+                if (int.Parse(txtCodigo.Text) >= 4 && int.Parse(txtCodigo.Text) <= 6)
                 {
                     txtImporte.Enabled = true;
                 }
@@ -80,6 +80,7 @@ namespace ADBISYS.Formularios.Caja
             {
                 txtCodigo.Text = MovimientoCaja.m_Id.ToString();
                 txtDescripcion.Text = MovimientoCaja.m_descripcion;
+                txtImporte.Text = MovimientoCaja.m_valor.ToString().Replace(",", "."); 
                 if (MovimientoCaja.m_entradaSalida == 1) { cboEntradaSalida.Text = "INGRESO"; } else { cboEntradaSalida.Text = "SALIDA"; }
             }
             catch (Exception ex)

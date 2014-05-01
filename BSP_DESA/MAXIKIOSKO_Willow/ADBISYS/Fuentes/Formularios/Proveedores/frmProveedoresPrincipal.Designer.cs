@@ -45,7 +45,7 @@
             this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buscarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ordenarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.actualizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salidaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
@@ -189,7 +189,7 @@
             this.eliminarToolStripMenuItem,
             this.buscarToolStripMenuItem,
             this.ordenarToolStripMenuItem,
-            this.aToolStripMenuItem});
+            this.actualizarToolStripMenuItem});
             this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
             this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(139, 27);
             this.nuevoToolStripMenuItem.Text = "&Proveedores";
@@ -229,11 +229,12 @@
             this.ordenarToolStripMenuItem.Text = "Ordenar";
             this.ordenarToolStripMenuItem.Click += new System.EventHandler(this.ordenarToolStripMenuItem_Click);
             // 
-            // aToolStripMenuItem
+            // actualizarToolStripMenuItem
             // 
-            this.aToolStripMenuItem.Name = "aToolStripMenuItem";
-            this.aToolStripMenuItem.Size = new System.Drawing.Size(174, 28);
-            this.aToolStripMenuItem.Text = "&Actualizar";
+            this.actualizarToolStripMenuItem.Name = "actualizarToolStripMenuItem";
+            this.actualizarToolStripMenuItem.Size = new System.Drawing.Size(174, 28);
+            this.actualizarToolStripMenuItem.Text = "&Actualizar";
+            this.actualizarToolStripMenuItem.Click += new System.EventHandler(this.actualizarToolStripMenuItem_Click);
             // 
             // salidaToolStripMenuItem
             // 
@@ -296,6 +297,6 @@
         private System.Windows.Forms.ToolStripMenuItem ordenarToolStripMenuItem;
         private System.Windows.Forms.DataGridView grdProveedores;
         private System.Windows.Forms.Label lbFiltroBusqueda;
-        private System.Windows.Forms.ToolStripMenuItem aToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem actualizarToolStripMenuItem;
     }
 }

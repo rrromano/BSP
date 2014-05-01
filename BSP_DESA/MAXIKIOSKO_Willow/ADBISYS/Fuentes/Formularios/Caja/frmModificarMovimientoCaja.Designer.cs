@@ -74,6 +74,7 @@
             // 
             // cboEntradaSalida
             // 
+            this.cboEntradaSalida.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboEntradaSalida.Enabled = false;
             this.cboEntradaSalida.FormattingEnabled = true;
             this.cboEntradaSalida.Location = new System.Drawing.Point(332, 34);

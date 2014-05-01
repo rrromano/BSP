@@ -389,5 +389,37 @@ namespace ADBISYS
             compras.Show();
         }
 
+        private void agregarModificarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (!(cajaIniciada())) { return; }
+
+                Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmTipoMovCaja);
+
+                if (frm != null)
+                {
+                    frm.WindowState = FormWindowState.Normal;
+                    frm.BringToFront();
+                    return;
+                }
+                else
+                {
+                    mostrarFormularioTipoMovCaja();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void mostrarFormularioTipoMovCaja()
+        {
+            frmTipoMovCaja TipoMovCaja = new frmTipoMovCaja();
+            TipoMovCaja.Show();
+        }
+
     }
 }

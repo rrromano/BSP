@@ -150,10 +150,7 @@ namespace ADBISYS.Formularios.Caja
         {
             try
             {
-                if (puedoEliminar())
-                {
-                    eliminarMovCaja();
-                }
+                modificarMovCaja();
             }
             catch (Exception ex)
             {
@@ -165,7 +162,10 @@ namespace ADBISYS.Formularios.Caja
         {
             try
             {
-                eliminarMovCaja();
+                if (puedoEliminar())
+                {
+                    eliminarMovCaja();
+                }
             }
             catch (Exception ex)
             {
@@ -306,6 +306,27 @@ namespace ADBISYS.Formularios.Caja
                 MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return true;
             }
+        }
+
+        private void grdMovsCaja_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Return)
+                {
+                    e.SuppressKeyPress = true;
+                    modificarMovCaja();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void salirToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            salir();
         }
 
     }
