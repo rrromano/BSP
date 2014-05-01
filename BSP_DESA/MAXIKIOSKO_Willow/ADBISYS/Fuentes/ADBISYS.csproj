@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Conexion\ConectarBD.cs" />
     <Compile Include="Entidades\Caja.cs" />
+    <Compile Include="Entidades\Compras.cs" />
     <Compile Include="Entidades\MovimientoCaja.cs" />
     <Compile Include="Entidades\ParametrosGenerales.cs" />
     <Compile Include="Entidades\Proveedores.cs" />
@@ -108,6 +109,12 @@
     </Compile>
     <Compile Include="Formularios\Caja\frmNuevoTipoMovCaja.Designer.cs">
       <DependentUpon>frmNuevoTipoMovCaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Compras\frmComprasPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Compras\frmComprasPrincipal.Designer.cs">
+      <DependentUpon>frmComprasPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Ingresar\frmAdministrarUsuario.cs">
       <SubType>Form</SubType>
@@ -216,6 +223,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Caja\frmNuevoTipoMovCaja.resx">
       <DependentUpon>frmNuevoTipoMovCaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Compras\frmComprasPrincipal.resx">
+      <DependentUpon>frmComprasPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Ingresar\frmAdministrarUsuario.resx">
       <DependentUpon>frmAdministrarUsuario.cs</DependentUpon>

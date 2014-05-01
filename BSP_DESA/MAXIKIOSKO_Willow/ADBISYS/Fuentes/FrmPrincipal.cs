@@ -12,6 +12,7 @@ using ADBISYS.Formularios.Caja;
 using ADBISYS.Formularios.Ayuda;
 using ADBISYS.Formularios.Proveedores;
 using ADBISYS.Formularios.Rubros;
+using ADBISYS.Formularios.Compras;
 
 // RR 2014-03-22: Comienzo del sistema ADBISYS.
 
@@ -357,6 +358,35 @@ namespace ADBISYS
         {
             frmRubrosPrincipal rubros = new frmRubrosPrincipal();
             rubros.Show();
+        }
+
+        private void agregarModificarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmComprasPrincipal);
+
+                if (frm != null)
+                {
+                    frm.WindowState = FormWindowState.Normal;
+                    frm.BringToFront();
+                    return;
+                }
+                else
+                {
+                    mostrarFormularioCompras();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void mostrarFormularioCompras()
+        {
+            frmComprasPrincipal compras = new frmComprasPrincipal();
+            compras.Show();
         }
 
     }
