@@ -54,6 +54,7 @@
     <Compile Include="Entidades\ParametrosGenerales.cs" />
     <Compile Include="Entidades\Proveedores.cs" />
     <Compile Include="Entidades\Rubros.cs" />
+    <Compile Include="Entidades\TipoMovimientoCaja.cs" />
     <Compile Include="Formularios\Ayuda\frmAcercaDeBSP.cs">
       <SubType>Form</SubType>
     </Compile>

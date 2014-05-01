@@ -44,7 +44,6 @@
             this.cajaTS = new System.Windows.Forms.ToolStripMenuItem();
             this.iniciarCajaTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarCajaTSMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.visualizarCajaTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.finalizarTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.proveedoresTS = new System.Windows.Forms.ToolStripMenuItem();
             this.modifProveedoresTSMI = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,6 +66,7 @@
             this.maquinaTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.horaTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.tipoMovimientoCajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StripPrincipal.SuspendLayout();
             this.statusStripPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -89,7 +89,7 @@
             this.StripPrincipal.Location = new System.Drawing.Point(0, 0);
             this.StripPrincipal.Name = "StripPrincipal";
             this.StripPrincipal.Padding = new System.Windows.Forms.Padding(11, 4, 0, 4);
-            this.StripPrincipal.Size = new System.Drawing.Size(1916, 35);
+            this.StripPrincipal.Size = new System.Drawing.Size(1914, 35);
             this.StripPrincipal.TabIndex = 0;
             this.StripPrincipal.Text = "menuStrip1";
             // 
@@ -172,7 +172,7 @@
             this.cajaTS.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.iniciarCajaTSMI,
             this.modificarCajaTSMI,
-            this.visualizarCajaTSMI,
+            this.tipoMovimientoCajaToolStripMenuItem,
             this.finalizarTSMI});
             this.cajaTS.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cajaTS.Name = "cajaTS";
@@ -182,28 +182,21 @@
             // iniciarCajaTSMI
             // 
             this.iniciarCajaTSMI.Name = "iniciarCajaTSMI";
-            this.iniciarCajaTSMI.Size = new System.Drawing.Size(175, 28);
+            this.iniciarCajaTSMI.Size = new System.Drawing.Size(289, 28);
             this.iniciarCajaTSMI.Text = "Iniciar";
             this.iniciarCajaTSMI.Click += new System.EventHandler(this.iniciarCajaTSMI_Click);
             // 
             // modificarCajaTSMI
             // 
             this.modificarCajaTSMI.Name = "modificarCajaTSMI";
-            this.modificarCajaTSMI.Size = new System.Drawing.Size(175, 28);
+            this.modificarCajaTSMI.Size = new System.Drawing.Size(289, 28);
             this.modificarCajaTSMI.Text = "Modificar ";
             this.modificarCajaTSMI.Click += new System.EventHandler(this.modificarCajaTSMI_Click);
-            // 
-            // visualizarCajaTSMI
-            // 
-            this.visualizarCajaTSMI.Name = "visualizarCajaTSMI";
-            this.visualizarCajaTSMI.Size = new System.Drawing.Size(175, 28);
-            this.visualizarCajaTSMI.Text = "Visualizar";
-            this.visualizarCajaTSMI.Click += new System.EventHandler(this.visualizarCajaTSMI_Click);
             // 
             // finalizarTSMI
             // 
             this.finalizarTSMI.Name = "finalizarTSMI";
-            this.finalizarTSMI.Size = new System.Drawing.Size(175, 28);
+            this.finalizarTSMI.Size = new System.Drawing.Size(289, 28);
             this.finalizarTSMI.Text = "Finalizar";
             this.finalizarTSMI.Click += new System.EventHandler(this.finalizarTSMI_Click);
             // 
@@ -331,7 +324,7 @@
             this.statusStripPrincipal.Location = new System.Drawing.Point(0, 639);
             this.statusStripPrincipal.Name = "statusStripPrincipal";
             this.statusStripPrincipal.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStripPrincipal.Size = new System.Drawing.Size(1916, 34);
+            this.statusStripPrincipal.Size = new System.Drawing.Size(1914, 34);
             this.statusStripPrincipal.TabIndex = 1;
             this.statusStripPrincipal.Text = "statusStrip1";
             // 
@@ -356,7 +349,7 @@
             // 
             this.vacioTSS.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
             this.vacioTSS.Name = "vacioTSS";
-            this.vacioTSS.Size = new System.Drawing.Size(1368, 29);
+            this.vacioTSS.Size = new System.Drawing.Size(1366, 29);
             this.vacioTSS.Spring = true;
             this.vacioTSS.Text = "Vacio";
             // 
@@ -378,15 +371,20 @@
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // tipoMovimientoCajaToolStripMenuItem
+            // 
+            this.tipoMovimientoCajaToolStripMenuItem.Name = "tipoMovimientoCajaToolStripMenuItem";
+            this.tipoMovimientoCajaToolStripMenuItem.Size = new System.Drawing.Size(289, 28);
+            this.tipoMovimientoCajaToolStripMenuItem.Text = "Tipo Movimiento Caja";
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1916, 673);
+            this.ClientSize = new System.Drawing.Size(1914, 673);
             this.Controls.Add(this.statusStripPrincipal);
             this.Controls.Add(this.StripPrincipal);
             this.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -432,7 +430,6 @@
         private System.Windows.Forms.ToolStripMenuItem finalizarTSMI;
         private System.Windows.Forms.ToolStripMenuItem iniciarSesiónTSMI;
         private System.Windows.Forms.ToolStripMenuItem cerrarSesiónTSMI;
-        private System.Windows.Forms.ToolStripMenuItem visualizarCajaTSMI;
         private System.Windows.Forms.ToolStripMenuItem modifArticuloTSMI;
         private System.Windows.Forms.ToolStripMenuItem actPrecioArticuloTSMI;
         private System.Windows.Forms.ToolStripMenuItem modifProveedoresTSMI;
@@ -444,6 +441,7 @@
         private System.Windows.Forms.ToolStripMenuItem ventasDelDíaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem adminUsuarioTSMI;
         private System.Windows.Forms.ToolStripMenuItem comprasTS;
+        private System.Windows.Forms.ToolStripMenuItem tipoMovimientoCajaToolStripMenuItem;
 
 
 

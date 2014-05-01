@@ -40,7 +40,6 @@ namespace ADBISYS.Formularios.Caja
             {
                 MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
         }
 
         private void llenarGrillaMovimientosCaja()
@@ -272,19 +271,19 @@ namespace ADBISYS.Formularios.Caja
                 celdaSeleccionada = grdMovsCaja.CurrentCellAddress.X;
                 filaSeleccionada  = grdMovsCaja.CurrentCellAddress.Y;
 
-                MovimientoCaja movCaja = new MovimientoCaja();
-                movCaja.m_Id = Int32.Parse(grdMovsCaja.Rows[filaSeleccionada].Cells["CODIGO"].Value.ToString());
-                movCaja.m_descripcion = grdMovsCaja.Rows[filaSeleccionada].Cells["MOVIMIENTO"].Value.ToString();
-                movCaja.m_valor = Double.Parse(grdMovsCaja.Rows[filaSeleccionada].Cells["VALOR"].Value.ToString());
+                TipoMovimientoCaja movCaja = new TipoMovimientoCaja();
+                //movCaja.m_Id = Int32.Parse(grdMovsCaja.Rows[filaSeleccionada].Cells["CODIGO"].Value.ToString());
+                //movCaja.m_descripcion = grdMovsCaja.Rows[filaSeleccionada].Cells["MOVIMIENTO"].Value.ToString();
+                //movCaja.m_valor = Double.Parse(grdMovsCaja.Rows[filaSeleccionada].Cells["VALOR"].Value.ToString());
 
-                if (grdMovsCaja.Rows[filaSeleccionada].Cells["INGRESO/SALIDA"].Value.ToString() == "INGRESO")
-                {
-                    movCaja.m_entradaSalida = 1;
-                }
-                else
-                {
-                    movCaja.m_entradaSalida = 0;
-                }
+                //if (grdMovsCaja.Rows[filaSeleccionada].Cells["INGRESO/SALIDA"].Value.ToString() == "INGRESO")
+                //{
+                //    movCaja.m_entradaSalida = 1;
+                //}
+                //else
+                //{
+                //    movCaja.m_entradaSalida = 0;
+                //}
                 
 
                 frmModificarMovimientoCaja modifCaja = new frmModificarMovimientoCaja(movCaja);

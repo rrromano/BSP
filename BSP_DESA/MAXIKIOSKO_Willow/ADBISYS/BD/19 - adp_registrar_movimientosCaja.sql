@@ -5,8 +5,8 @@ If Exists ( Select 1 From SysObjects Where Name = 'adp_registrar_movimientosCaja
 Go 
 
 -- SP QUE REGISTRAN LOS MOVIMIENTOS PARAMETRIZADOS DE LA CAJA
-Create procedure adp_registrar_movimientosCaja (	@fecha           datetime, 
-																									@hora            varchar(8)
+Create procedure adp_registrar_movimientosCaja (	@FECHA           datetime, 
+																									@HORA            varchar(8)
 																								) 
 as
 
@@ -14,16 +14,20 @@ BEGIN TRY
   SET NOCOUNT ON
   PRINT 'INICIO ACTUALIZACIÓN'
   
-  INSERT INTO MOVIMIENTOS_CAJA (ID_TipoMovimiento,  
-                                Valor, 
-                                Fecha, 
-                                Hora)
-	SELECT	Id_TipoMovimiento,
+  INSERT INTO MOVIMIENTOS_CAJA (ID_TIPOMOVIMIENTO,  
+                                VALOR, 
+                                ESTADO,
+                                FECHA, 
+                                HORA)
+	SELECT	A.ID_TIPOMOVIMIENTO,
 					0.00,
-          @Fecha, 
-          @Hora
-	FROM TIPOMOVIMIENTO_CAJA
-	WHERE ID_TipoMovimiento != 0 --NO INSERTO EL CIERRE DE CAJA
+					A.ESTADO,
+          @FECHA, 
+          @HORA
+	FROM TIPOMOVIMIENTO_CAJA A
+	WHERE 1 = 1
+		AND A.ESTADO = 1
+		AND A.ID_TipoMovimiento != 0 --NO INSERTO EL CIERRE DE CAJA
           
   PRINT 'FIN ACTUALIZACIÓN OK'
   SET NOCOUNT OFF
