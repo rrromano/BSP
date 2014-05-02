@@ -57,16 +57,16 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(12, -1);
+            this.groupBox1.Location = new System.Drawing.Point(22, 11);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(645, 256);
+            this.groupBox1.Size = new System.Drawing.Size(642, 260);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(269, 37);
+            this.label4.Location = new System.Drawing.Point(279, 37);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 23);
             this.label4.TabIndex = 16;
@@ -77,7 +77,7 @@
             this.cboEntradaSalida.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboEntradaSalida.Enabled = false;
             this.cboEntradaSalida.FormattingEnabled = true;
-            this.cboEntradaSalida.Location = new System.Drawing.Point(332, 34);
+            this.cboEntradaSalida.Location = new System.Drawing.Point(342, 34);
             this.cboEntradaSalida.Name = "cboEntradaSalida";
             this.cboEntradaSalida.Size = new System.Drawing.Size(273, 30);
             this.cboEntradaSalida.TabIndex = 15;
@@ -86,7 +86,7 @@
             // 
             this.txtDescripcion.Enabled = false;
             this.txtDescripcion.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescripcion.Location = new System.Drawing.Point(150, 73);
+            this.txtDescripcion.Location = new System.Drawing.Point(160, 73);
             this.txtDescripcion.MaxLength = 255;
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(455, 29);
@@ -96,7 +96,7 @@
             // 
             this.btnLimpiar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiar.Image")));
             this.btnLimpiar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnLimpiar.Location = new System.Drawing.Point(214, 161);
+            this.btnLimpiar.Location = new System.Drawing.Point(220, 169);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(188, 67);
             this.btnLimpiar.TabIndex = 12;
@@ -109,7 +109,7 @@
             // 
             this.btnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptar.Image")));
             this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnAceptar.Location = new System.Drawing.Point(415, 161);
+            this.btnAceptar.Location = new System.Drawing.Point(425, 169);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(190, 67);
             this.btnAceptar.TabIndex = 11;
@@ -122,7 +122,7 @@
             // 
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCancelar.Location = new System.Drawing.Point(27, 161);
+            this.btnCancelar.Location = new System.Drawing.Point(27, 169);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(172, 67);
             this.btnCancelar.TabIndex = 13;
@@ -135,7 +135,7 @@
             // 
             this.txtImporte.Enabled = false;
             this.txtImporte.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtImporte.Location = new System.Drawing.Point(150, 111);
+            this.txtImporte.Location = new System.Drawing.Point(160, 111);
             this.txtImporte.MaxLength = 11;
             this.txtImporte.Name = "txtImporte";
             this.txtImporte.Size = new System.Drawing.Size(455, 29);
@@ -146,7 +146,7 @@
             // 
             this.txtCodigo.Enabled = false;
             this.txtCodigo.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigo.Location = new System.Drawing.Point(150, 34);
+            this.txtCodigo.Location = new System.Drawing.Point(160, 34);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(95, 29);
             this.txtCodigo.TabIndex = 1;
@@ -185,15 +185,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(675, 270);
+            this.ClientSize = new System.Drawing.Size(687, 292);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(693, 315);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(693, 315);
             this.Name = "frmModificarMovimientoCaja";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modificar Caja";

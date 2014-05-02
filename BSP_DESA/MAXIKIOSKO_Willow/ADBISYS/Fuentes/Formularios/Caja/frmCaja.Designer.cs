@@ -58,9 +58,9 @@
             this.groupBox1.Controls.Add(this.btnModificar);
             this.groupBox1.Controls.Add(this.btnNuevo);
             this.groupBox1.Controls.Add(this.btnEliminar);
-            this.groupBox1.Location = new System.Drawing.Point(18, 27);
+            this.groupBox1.Location = new System.Drawing.Point(16, 28);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(733, 588);
+            this.groupBox1.Size = new System.Drawing.Size(721, 578);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -68,7 +68,7 @@
             // 
             this.grdMovsCaja.BackgroundColor = System.Drawing.Color.White;
             this.grdMovsCaja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdMovsCaja.Location = new System.Drawing.Point(23, 110);
+            this.grdMovsCaja.Location = new System.Drawing.Point(19, 104);
             this.grdMovsCaja.Name = "grdMovsCaja";
             this.grdMovsCaja.RowTemplate.Height = 24;
             this.grdMovsCaja.Size = new System.Drawing.Size(683, 454);
@@ -80,7 +80,7 @@
             // 
             this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
             this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSalir.Location = new System.Drawing.Point(179, 35);
+            this.btnSalir.Location = new System.Drawing.Point(175, 29);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(150, 69);
             this.btnSalir.TabIndex = 12;
@@ -93,7 +93,7 @@
             // 
             this.btnModificar.Image = ((System.Drawing.Image)(resources.GetObject("btnModificar.Image")));
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnModificar.Location = new System.Drawing.Point(23, 35);
+            this.btnModificar.Location = new System.Drawing.Point(19, 29);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(150, 69);
             this.btnModificar.TabIndex = 8;
@@ -106,7 +106,7 @@
             // 
             this.btnNuevo.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevo.Image")));
             this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnNuevo.Location = new System.Drawing.Point(23, 35);
+            this.btnNuevo.Location = new System.Drawing.Point(19, 29);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(150, 69);
             this.btnNuevo.TabIndex = 7;
@@ -119,7 +119,7 @@
             // 
             this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnEliminar.Location = new System.Drawing.Point(23, 35);
+            this.btnEliminar.Location = new System.Drawing.Point(19, 29);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(150, 69);
             this.btnEliminar.TabIndex = 9;
@@ -173,7 +173,7 @@
             this.salidaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(775, 31);
+            this.menuStrip1.Size = new System.Drawing.Size(755, 31);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -212,7 +212,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(775, 636);
+            this.ClientSize = new System.Drawing.Size(755, 622);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

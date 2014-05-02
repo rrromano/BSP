@@ -53,16 +53,16 @@
             this.groupBox1.Controls.Add(this.txtCodigo);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(12, 3);
+            this.groupBox1.Location = new System.Drawing.Point(20, 9);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(645, 219);
+            this.groupBox1.Size = new System.Drawing.Size(629, 219);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(269, 37);
+            this.label4.Location = new System.Drawing.Point(273, 37);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 23);
             this.label4.TabIndex = 16;
@@ -92,7 +92,7 @@
             // 
             this.btnLimpiar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiar.Image")));
             this.btnLimpiar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnLimpiar.Location = new System.Drawing.Point(214, 126);
+            this.btnLimpiar.Location = new System.Drawing.Point(214, 131);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(188, 67);
             this.btnLimpiar.TabIndex = 12;
@@ -105,7 +105,7 @@
             // 
             this.btnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptar.Image")));
             this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnAceptar.Location = new System.Drawing.Point(415, 126);
+            this.btnAceptar.Location = new System.Drawing.Point(415, 131);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(190, 67);
             this.btnAceptar.TabIndex = 11;
@@ -118,7 +118,7 @@
             // 
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCancelar.Location = new System.Drawing.Point(27, 126);
+            this.btnCancelar.Location = new System.Drawing.Point(27, 131);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(172, 67);
             this.btnCancelar.TabIndex = 13;
@@ -160,7 +160,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(669, 232);
+            this.ClientSize = new System.Drawing.Size(671, 247);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

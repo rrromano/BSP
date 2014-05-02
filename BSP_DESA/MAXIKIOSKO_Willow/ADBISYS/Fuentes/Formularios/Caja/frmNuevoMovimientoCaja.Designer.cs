@@ -53,9 +53,9 @@
             this.groupBox1.Controls.Add(this.txtCodigo);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(12, 2);
+            this.groupBox1.Location = new System.Drawing.Point(21, 10);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(506, 248);
+            this.groupBox1.Size = new System.Drawing.Size(506, 270);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -64,7 +64,7 @@
             this.cboEntradaSalida.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboEntradaSalida.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboEntradaSalida.FormattingEnabled = true;
-            this.cboEntradaSalida.Location = new System.Drawing.Point(222, 116);
+            this.cboEntradaSalida.Location = new System.Drawing.Point(222, 123);
             this.cboEntradaSalida.Name = "cboEntradaSalida";
             this.cboEntradaSalida.Size = new System.Drawing.Size(260, 30);
             this.cboEntradaSalida.TabIndex = 2;
@@ -73,7 +73,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(16, 119);
+            this.label2.Location = new System.Drawing.Point(16, 126);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(168, 23);
             this.label2.TabIndex = 17;
@@ -83,9 +83,9 @@
             // 
             this.btnLimpiar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiar.Image")));
             this.btnLimpiar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnLimpiar.Location = new System.Drawing.Point(172, 164);
+            this.btnLimpiar.Location = new System.Drawing.Point(172, 187);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(140, 61);
+            this.btnLimpiar.Size = new System.Drawing.Size(149, 61);
             this.btnLimpiar.TabIndex = 4;
             this.btnLimpiar.Text = "&Limpiar";
             this.btnLimpiar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -96,9 +96,9 @@
             // 
             this.btnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptar.Image")));
             this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnAceptar.Location = new System.Drawing.Point(340, 164);
+            this.btnAceptar.Location = new System.Drawing.Point(327, 187);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(142, 61);
+            this.btnAceptar.Size = new System.Drawing.Size(155, 61);
             this.btnAceptar.TabIndex = 3;
             this.btnAceptar.Text = "&Aceptar";
             this.btnAceptar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -109,9 +109,9 @@
             // 
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCancelar.Location = new System.Drawing.Point(20, 164);
+            this.btnCancelar.Location = new System.Drawing.Point(20, 187);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(124, 61);
+            this.btnCancelar.Size = new System.Drawing.Size(146, 61);
             this.btnCancelar.TabIndex = 5;
             this.btnCancelar.Text = "&Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -121,7 +121,7 @@
             // txtTipoMovimiento
             // 
             this.txtTipoMovimiento.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTipoMovimiento.Location = new System.Drawing.Point(222, 69);
+            this.txtTipoMovimiento.Location = new System.Drawing.Point(222, 76);
             this.txtTipoMovimiento.MaxLength = 255;
             this.txtTipoMovimiento.Name = "txtTipoMovimiento";
             this.txtTipoMovimiento.Size = new System.Drawing.Size(260, 29);
@@ -132,16 +132,16 @@
             // 
             this.txtCodigo.Enabled = false;
             this.txtCodigo.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigo.Location = new System.Drawing.Point(222, 22);
+            this.txtCodigo.Location = new System.Drawing.Point(222, 29);
             this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(95, 29);
+            this.txtCodigo.Size = new System.Drawing.Size(131, 29);
             this.txtCodigo.TabIndex = 7;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(16, 25);
+            this.label1.Location = new System.Drawing.Point(16, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(195, 23);
             this.label1.TabIndex = 5;
@@ -151,7 +151,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(16, 72);
+            this.label3.Location = new System.Drawing.Point(16, 79);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(200, 23);
             this.label3.TabIndex = 8;
@@ -161,7 +161,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(531, 266);
+            this.ClientSize = new System.Drawing.Size(548, 299);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

@@ -90,5 +90,18 @@ namespace ADBISYS.Entidades
 
         }
 
+        public void actualizar_moovimiento_compras(DateTime fecha_sistema)
+        {
+            try
+            {
+                cadenaSql = "EXEC adp_actualiza_mov_compras @fecha_sistema = " + fg.fcSql(fecha_sistema.ToString(), "Datetime");
+                objConect.ejecutarQuery(cadenaSql);
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+        }
+
     }
 }

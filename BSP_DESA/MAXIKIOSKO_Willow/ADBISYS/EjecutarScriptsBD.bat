@@ -50,6 +50,7 @@ sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\48 - adp_elim
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\49 - adp_ObtenerMovimientosCierreCaja.sql"
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\50 - adp_cboBusqueda_Compras.sql"
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\51 - adp_busqueda_compras.sql"
+sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\52 - adp_actualiza_mov_compras.sql"
 
 ECHO.
 ECHO PROCESO FINALIZADO

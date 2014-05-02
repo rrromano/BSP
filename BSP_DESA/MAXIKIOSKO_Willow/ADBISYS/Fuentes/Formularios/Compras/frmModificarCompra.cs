@@ -133,6 +133,10 @@ namespace ADBISYS.Formularios.Compras
                 { cadenaSql = cadenaSql + ",@Compra_Login = " + fg.fcSql(usuario, "String"); }
 
                 objConect.ejecutarQuery(cadenaSql);
+
+                Entidades.Compras entCompras = new ADBISYS.Entidades.Compras();
+                entCompras.actualizar_moovimiento_compras(fg.appFechaSistema());
+
                 this.Hide();
             }
             catch (Exception e)

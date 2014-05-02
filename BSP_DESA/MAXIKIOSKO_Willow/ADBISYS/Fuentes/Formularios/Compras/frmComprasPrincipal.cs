@@ -231,6 +231,7 @@ namespace ADBISYS.Formularios.Compras
                 {
                     Entidades.Compras entCompras = new ADBISYS.Entidades.Compras();
                     entCompras.eliminarCompra(id_compra);
+                    entCompras.actualizar_moovimiento_compras(fg.appFechaSistema());
                     grdCompras.Focus();
                 }
                 catch (Exception e)

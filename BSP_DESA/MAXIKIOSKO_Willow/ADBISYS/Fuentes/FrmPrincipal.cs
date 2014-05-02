@@ -385,6 +385,7 @@ namespace ADBISYS
 
         private void mostrarFormularioCompras()
         {
+            if (!(cajaIniciada())) { return; }
             frmComprasPrincipal compras = new frmComprasPrincipal();
             compras.Show();
         }
