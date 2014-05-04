@@ -29,18 +29,18 @@ namespace ADBISYS.Formularios.Caja
             salir();
         }
 
-        private void frmCaja_Activated(object sender, EventArgs e)
-        {
-            try
-            {
-                llenarGrillaMovimientosCaja();
-                grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 1);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        //private void frmCaja_Activated(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        llenarGrillaMovimientosCaja();
+        //        grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 1);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
 
         private void llenarGrillaMovimientosCaja()
         {
@@ -69,17 +69,17 @@ namespace ADBISYS.Formularios.Caja
             salir();
         }
 
-        private void btnNuevo_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                nuevoMovimientoCaja();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        //private void btnNuevo_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        nuevoMovimientoCaja();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
 
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -327,6 +327,45 @@ namespace ADBISYS.Formularios.Caja
         private void salirToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             salir();
+        }
+
+        private void frmCaja_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                llenarGrillaMovimientosCaja();
+                grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void actualizarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                llenarGrillaMovimientosCaja();
+                grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                llenarGrillaMovimientosCaja();
+                grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
     }

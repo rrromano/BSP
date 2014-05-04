@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCerrarCaja));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnSalir = new System.Windows.Forms.Button();
-            this.btnNuevo = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnCerrarCaja = new System.Windows.Forms.Button();
             this.grdMovsCaja = new System.Windows.Forms.DataGridView();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMovsCaja)).BeginInit();
@@ -39,8 +39,8 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.btnSalir);
-            this.groupBox2.Controls.Add(this.btnNuevo);
+            this.groupBox2.Controls.Add(this.btnCancelar);
+            this.groupBox2.Controls.Add(this.btnCerrarCaja);
             this.groupBox2.Controls.Add(this.grdMovsCaja);
             this.groupBox2.Location = new System.Drawing.Point(19, 8);
             this.groupBox2.Name = "groupBox2";
@@ -48,31 +48,31 @@
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             // 
-            // btnSalir
+            // btnCancelar
             // 
-            this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
-            this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSalir.Location = new System.Drawing.Point(22, 225);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(225, 69);
-            this.btnSalir.TabIndex = 18;
-            this.btnSalir.Text = "&Cancelar";
-            this.btnSalir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSalir.UseVisualStyleBackColor = true;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
+            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCancelar.Location = new System.Drawing.Point(22, 225);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(225, 69);
+            this.btnCancelar.TabIndex = 18;
+            this.btnCancelar.Text = "&Cancelar";
+            this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // btnNuevo
+            // btnCerrarCaja
             // 
-            this.btnNuevo.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevo.Image")));
-            this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnNuevo.Location = new System.Drawing.Point(253, 225);
-            this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(230, 69);
-            this.btnNuevo.TabIndex = 15;
-            this.btnNuevo.Text = "C&errar Caja";
-            this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnNuevo.UseVisualStyleBackColor = true;
-            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
+            this.btnCerrarCaja.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrarCaja.Image")));
+            this.btnCerrarCaja.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCerrarCaja.Location = new System.Drawing.Point(253, 225);
+            this.btnCerrarCaja.Name = "btnCerrarCaja";
+            this.btnCerrarCaja.Size = new System.Drawing.Size(230, 69);
+            this.btnCerrarCaja.TabIndex = 15;
+            this.btnCerrarCaja.Text = "C&errar Caja";
+            this.btnCerrarCaja.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCerrarCaja.UseVisualStyleBackColor = true;
+            this.btnCerrarCaja.Click += new System.EventHandler(this.btnCerrarCaja_Click);
             // 
             // grdMovsCaja
             // 
@@ -109,9 +109,9 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button btnNuevo;
+        private System.Windows.Forms.Button btnCerrarCaja;
         private System.Windows.Forms.DataGridView grdMovsCaja;
-        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnCancelar;
 
 
 
