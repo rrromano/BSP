@@ -422,5 +422,34 @@ namespace ADBISYS
             TipoMovCaja.Show();
         }
 
+        private void actPrecioArticuloTSMI_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is Formularios.Articulos.frmActMasivaArticulo);
+
+                if (frm != null)
+                {
+                    frm.WindowState = FormWindowState.Normal;
+                    frm.BringToFront();
+                    return;
+                }
+                else
+                {
+                    mostrarFormlarioActMasivaArticulo();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void mostrarFormlarioActMasivaArticulo()
+        {
+            Formularios.Articulos.frmActMasivaArticulo frmActMasivaArt = new Formularios.Articulos.frmActMasivaArticulo();
+            frmActMasivaArt.Show();
+        }
+
     }
 }

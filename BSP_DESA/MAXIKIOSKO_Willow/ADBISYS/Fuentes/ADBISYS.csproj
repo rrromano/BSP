@@ -56,6 +56,18 @@
     <Compile Include="Entidades\Proveedores.cs" />
     <Compile Include="Entidades\Rubros.cs" />
     <Compile Include="Entidades\TipoMovimientoCaja.cs" />
+    <Compile Include="Formularios\Articulos\frmActMasivaArticulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Articulos\frmActMasivaArticulo.Designer.cs">
+      <DependentUpon>frmActMasivaArticulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Articulos\frmArticulosPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Articulos\frmArticulosPrincipal.Designer.cs">
+      <DependentUpon>frmArticulosPrincipal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Ayuda\frmAcercaDeBSP.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,6 +233,12 @@
     <Compile Include="FuncionesGenerales\FuncionesGenerales.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Formularios\Articulos\frmActMasivaArticulo.resx">
+      <DependentUpon>frmActMasivaArticulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Articulos\frmArticulosPrincipal.resx">
+      <DependentUpon>frmArticulosPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Ayuda\frmAcercaDeBSP.resx">
       <DependentUpon>frmAcercaDeBSP.cs</DependentUpon>
     </EmbeddedResource>
@@ -323,7 +341,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Formularios\Articulos\" />
     <Folder Include="Formularios\Reportes\" />
     <Folder Include="Formularios\Ventas\" />
   </ItemGroup>

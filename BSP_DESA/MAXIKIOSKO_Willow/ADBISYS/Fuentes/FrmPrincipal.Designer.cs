@@ -46,6 +46,7 @@
             this.iniciarCajaTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarCajaTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.tipoMovimientoCajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.agregarModificarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.finalizarTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.proveedoresTS = new System.Windows.Forms.ToolStripMenuItem();
             this.modifProveedoresTSMI = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,7 +69,6 @@
             this.maquinaTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.horaTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.agregarModificarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.StripPrincipal.SuspendLayout();
             this.statusStripPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -161,6 +161,7 @@
             this.actPrecioArticuloTSMI.Name = "actPrecioArticuloTSMI";
             this.actPrecioArticuloTSMI.Size = new System.Drawing.Size(311, 28);
             this.actPrecioArticuloTSMI.Text = "Actualización de Precios";
+            this.actPrecioArticuloTSMI.Click += new System.EventHandler(this.actPrecioArticuloTSMI_Click);
             // 
             // comprasTS
             // 
@@ -211,6 +212,13 @@
             this.tipoMovimientoCajaToolStripMenuItem.Name = "tipoMovimientoCajaToolStripMenuItem";
             this.tipoMovimientoCajaToolStripMenuItem.Size = new System.Drawing.Size(240, 28);
             this.tipoMovimientoCajaToolStripMenuItem.Text = "Movimiento Caja";
+            // 
+            // agregarModificarToolStripMenuItem1
+            // 
+            this.agregarModificarToolStripMenuItem1.Name = "agregarModificarToolStripMenuItem1";
+            this.agregarModificarToolStripMenuItem1.Size = new System.Drawing.Size(266, 28);
+            this.agregarModificarToolStripMenuItem1.Text = "Agregar / Modificar";
+            this.agregarModificarToolStripMenuItem1.Click += new System.EventHandler(this.agregarModificarToolStripMenuItem1_Click);
             // 
             // finalizarTSMI
             // 
@@ -389,13 +397,6 @@
             // timer
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
-            // 
-            // agregarModificarToolStripMenuItem1
-            // 
-            this.agregarModificarToolStripMenuItem1.Name = "agregarModificarToolStripMenuItem1";
-            this.agregarModificarToolStripMenuItem1.Size = new System.Drawing.Size(266, 28);
-            this.agregarModificarToolStripMenuItem1.Text = "Agregar / Modificar";
-            this.agregarModificarToolStripMenuItem1.Click += new System.EventHandler(this.agregarModificarToolStripMenuItem1_Click);
             // 
             // FrmPrincipal
             // 
