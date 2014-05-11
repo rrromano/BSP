@@ -375,7 +375,28 @@ namespace ADBISYS.Formularios.Proveedores
 
         private void actualizarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            llenarGrilla();
+            try
+            {
+                llenarGrilla();
+                grdProveedores = fg.formatoGrilla(grdProveedores, 1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                llenarGrilla();
+                grdProveedores = fg.formatoGrilla(grdProveedores, 1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -165,16 +165,24 @@ namespace ADBISYS.Formularios.Ingresar
         private void txtContraActual_KeyPress(object sender, KeyPressEventArgs e)
         {
             fg.keyPressSinEspacios(e);
+            e.KeyChar = fg.keyPressMayusculas(e);
         }
 
         private void txtContraNueva_KeyPress(object sender, KeyPressEventArgs e)
         {
             fg.keyPressSinEspacios(e);
+            e.KeyChar = fg.keyPressMayusculas(e);
         }
 
         private void txtContraRepe_KeyPress(object sender, KeyPressEventArgs e)
         {
             fg.keyPressSinEspacios(e);
+            e.KeyChar = fg.keyPressMayusculas(e);
+        }
+
+        private void txtDescripcion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = fg.keyPressMayusculas(e);
         }
 
 

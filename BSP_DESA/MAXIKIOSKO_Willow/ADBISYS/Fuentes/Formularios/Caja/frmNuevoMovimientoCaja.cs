@@ -25,9 +25,9 @@ namespace ADBISYS.Formularios.Caja
         {
             try
             {
-                //txtCodigo.Text = String.Empty;
                 txtTipoMovimiento.Text = String.Empty;
-                cboEntradaSalida.Text = String.Empty;
+                cboEntradaSalida.Text = null;
+                txtTipoMovimiento.Focus();
             }
             catch (Exception ex)
             {
@@ -85,7 +85,7 @@ namespace ADBISYS.Formularios.Caja
             try
             {
                 cboEntradaSalida.Items.Clear();
-                cboEntradaSalida.Items.Add("ENTRADA");
+                cboEntradaSalida.Items.Add("INGRESO");
                 cboEntradaSalida.Items.Add("SALIDA");
             }
             catch (Exception ex)
@@ -126,14 +126,14 @@ namespace ADBISYS.Formularios.Caja
                 
                 switch (cboEntradaSalida.Text)
                 {
-                    case "ENTRADA":
+                    case "INGRESO":
                         CadenaSql = CadenaSql + " ,@TIPOMOVCAJA_ES = 1";
                         break;
                     case "SALIDA":
                         CadenaSql = CadenaSql + " ,@TIPOMOVCAJA_ES = 0";
                         break;
                     default:
-                        throw new System.ArgumentException("Error alta Tipo Movimiento Caja - Entrada/Salida");
+                        throw new System.ArgumentException("Error alta Tipo Movimiento Caja - Ingreso/Salida");
                 }
 
                 Conex.ejecutarQuery(CadenaSql);
@@ -159,7 +159,7 @@ namespace ADBISYS.Formularios.Caja
 
                 if (Ds.Tables[0].Rows.Count > 0)
                 {
-                    MessageBox.Show("Ya existe un Tipo de Movimiento " + fg.fcSql(txtTipoMovimiento.Text, "STRING"), "Alta de Tipo de Movimiento Caja.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Ya existe un Tipo de Movimiento " + fg.fcSql(txtTipoMovimiento.Text, "STRING") + ".", "Alta de Tipo de Movimiento Caja.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtTipoMovimiento.Focus();
                     return true;
                 }
@@ -186,7 +186,7 @@ namespace ADBISYS.Formularios.Caja
 
                 if (cboEntradaSalida.Text.Length == 0)
                 {
-                    MessageBox.Show("Debe indicar si el tipo de movimiento es de Entrada o Salida.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Debe indicar si el tipo de movimiento es de Ingreso o Salida.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     cboEntradaSalida.Focus();
                     return false;
                 }

@@ -15,9 +15,15 @@ namespace ADBISYS.Formularios.Caja
 {
     public partial class frmCaja : Form
     {
+        ConectarBD objConect = new ConectarBD();
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
         int celdaSeleccionada = 0;
         int filaSeleccionada = 0;
+        string cadenaSql, campoAnterior, textoAnterior, campoOrdenamiento = "";
+        Boolean EstoyBuscando =false;
+        Boolean ordenamiento = true;
+        Dictionary<string, string> campos_tabla = new Dictionary<string, string>();
+        DataSet Ds = new DataSet();
 
         public frmCaja()
         {
@@ -29,29 +35,37 @@ namespace ADBISYS.Formularios.Caja
             salir();
         }
 
-        //private void frmCaja_Activated(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        llenarGrillaMovimientosCaja();
-        //        grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 1);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
-
         private void llenarGrillaMovimientosCaja()
         {
             try 
-	        {	
-                Entidades.Caja caja = new Entidades.Caja();
-                DataSet Ds = new DataSet();
-                
-                Ds.Reset();
-                Ds = caja.obtenerMovimientosCaja(fg.appFechaSistema());
-                if (Ds.Tables[0].Rows.Count > 0) grdMovsCaja.DataSource = Ds.Tables[0];
+	        {
+                if (EstoyBuscando == false)
+                {
+                    Entidades.Caja caja = new Entidades.Caja();
+                    Ds = caja.obtenerMovimientosCaja(fg.appFechaSistema());
+                    if (Ds.Tables[0].Rows.Count > 0)
+                    {
+                        grdMovsCaja.DataSource = Ds.Tables[0];
+                    }
+                    else
+                    {
+                        grdMovsCaja.DataSource = null;
+                    }
+                }
+                else
+                {
+                    cadenaSql = "EXEC adp_busqueda_movimientos_caja";
+                    cadenaSql = cadenaSql + " @tabla = " + fg.fcSql("MOVIMIENTOS_CAJA", "String");
+                    cadenaSql = cadenaSql + ",@campo_tabla = " + fg.fcSql(obtenerCampoTabla().ToString(), "String");
+                    cadenaSql = cadenaSql + ",@texto = " + fg.fcSql(textoAnterior, "String").Replace(",",".");
+                    cadenaSql = cadenaSql + ",@Fecha = " + fg.fcSql(fg.appFechaSistema().ToString(), "String");
+
+                    Ds = objConect.ejecutarQuerySelect(cadenaSql);
+                    if (Ds.Tables[0].Rows.Count > 0)
+                    {
+                        grdMovsCaja.DataSource = Ds.Tables[0];
+                    }
+                }
 
                 if ((filaSeleccionada > 0) && (celdaSeleccionada > 0) && (filaSeleccionada <= grdMovsCaja.Rows.Count - 1))
                 {
@@ -64,22 +78,26 @@ namespace ADBISYS.Formularios.Caja
 	        }
         }
 
-        private void salidaToolStripMenuItem_Click(object sender, EventArgs e)
+        private object obtenerCampoTabla()
         {
-            salir();
-        }
+            try
+            {
+                foreach (KeyValuePair<string, string> campo in campos_tabla)
+                {
+                    if (campoAnterior == campo.Value)
+                    {
+                        return (campo.Key);
+                    }
+                }
+                return "ok";
+            }
 
-        //private void btnNuevo_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        nuevoMovimientoCaja();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return "error";
+            }
+        }
 
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -105,47 +123,6 @@ namespace ADBISYS.Formularios.Caja
             }
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (puedoEliminar())
-                {
-                    eliminarMovCaja();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private bool puedoEliminar()
-        {
-            try
-            {
-                celdaSeleccionada = grdMovsCaja.CurrentCellAddress.X;
-                filaSeleccionada = grdMovsCaja.CurrentCellAddress.Y;
-
-                MovimientoCaja movCaja = new MovimientoCaja();
-                movCaja.m_Id = Int32.Parse(grdMovsCaja.Rows[filaSeleccionada].Cells["CODIGO"].Value.ToString());
-                movCaja.m_descripcion = grdMovsCaja.Rows[filaSeleccionada].Cells["MOVIMIENTO"].Value.ToString();
-
-                if (movCaja.m_Id <= 6)
-                {
-                    MessageBox.Show("No se permite eliminar el Movimiento " + movCaja.m_Id + " - " + movCaja.m_descripcion + ".", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return false;
-                }
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-        }
-
         private void modificarToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             try
@@ -158,84 +135,10 @@ namespace ADBISYS.Formularios.Caja
             }
         }
 
-        private void eliminarToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (puedoEliminar())
-                {
-                    eliminarMovCaja();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void nuevoMovimientoCaja()
         {
             frmNuevoMovimientoCaja nuevoMov = new frmNuevoMovimientoCaja();
             nuevoMov.ShowDialog();
-        }
-
-        private void eliminarMovCaja()
-        {
-            try
-            {
-                if (grdMovsCaja.DataSource != null)
-                {
-                    if (notFilaSeleccionada()) return;
-                    eliminarMovimientoCaja();
-                    llenarGrillaMovimientosCaja();
-                    grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 1);
-                    btnEliminar.Focus();
-                }
-                else
-                {
-                    MessageBox.Show("No existen Proveedores.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void eliminarMovimientoCaja()
-        {
-            try
-            {
-                celdaSeleccionada = grdMovsCaja.CurrentCellAddress.X;
-                filaSeleccionada = grdMovsCaja.CurrentCellAddress.Y;
-
-                MovimientoCaja movCaja = new MovimientoCaja();
-                movCaja.m_Id = Int32.Parse(grdMovsCaja.Rows[filaSeleccionada].Cells["CODIGO"].Value.ToString());
-                movCaja.m_descripcion = grdMovsCaja.Rows[filaSeleccionada].Cells["MOVIMIENTO"].Value.ToString();
-
-                if (MessageBox.Show("¿Está seguro que desea eliminar el movimiento " + movCaja.m_Id + "-" + movCaja.m_descripcion + "?", "Eliminar Movimiento Caja.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    try
-                    {
-                        Entidades.Caja caja = new Entidades.Caja();
-                        caja.eliminarMovCaja(movCaja.m_Id);
-                        grdMovsCaja.Focus();
-                    }
-                    catch (Exception e)
-                    {
-                        MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                }
-                else
-                {
-                    btnEliminar.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void salir()
@@ -272,7 +175,7 @@ namespace ADBISYS.Formularios.Caja
                 filaSeleccionada  = grdMovsCaja.CurrentCellAddress.Y;
 
                 MovimientoCaja movCaja = new MovimientoCaja();
-                movCaja.m_Id = Int32.Parse(grdMovsCaja.Rows[filaSeleccionada].Cells["CODIGO"].Value.ToString());
+                movCaja.m_Id = Int32.Parse(grdMovsCaja.Rows[filaSeleccionada].Cells["CÓDIGO"].Value.ToString());
                 movCaja.m_descripcion = grdMovsCaja.Rows[filaSeleccionada].Cells["MOVIMIENTO"].Value.ToString();
                 movCaja.m_valor = Double.Parse(grdMovsCaja.Rows[filaSeleccionada].Cells["VALOR"].Value.ToString());
 
@@ -324,11 +227,6 @@ namespace ADBISYS.Formularios.Caja
             }
         }
 
-        private void salirToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            salir();
-        }
-
         private void frmCaja_Load(object sender, EventArgs e)
         {
             try
@@ -365,6 +263,114 @@ namespace ADBISYS.Formularios.Caja
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void salirToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            salir();
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            buscarMovimiento();
+        }
+
+        private void buscarMovimiento()
+        {
+            Entidades.Caja caja = new Entidades.Caja();
+            DataSet Ds = new DataSet();
+            Ds.Reset();
+            Ds = caja.obtenerMovimientosCaja(fg.appFechaSistema());
+            if (Ds.Tables[0].Rows.Count > 0)
+            {
+                mostrarFormularioBusquedaMovimientos();
+                llenarGrillaMovimientosCaja();
+                grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 1);
+                grdMovsCaja.Focus();
+            }
+            else
+            {
+                MessageBox.Show("No existen Movimientos.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnBuscar.Focus();
+            }
+        }
+
+        private void mostrarFormularioBusquedaMovimientos()
+        {
+            frmBusquedaMovCaja buscarMovCaja = new frmBusquedaMovCaja();
+            buscarMovCaja.campo = campoAnterior;
+            buscarMovCaja.texto = textoAnterior;
+            buscarMovCaja.estoyBuscando = EstoyBuscando;
+            buscarMovCaja.ShowDialog();
+            EstoyBuscando = buscarMovCaja.estoyBuscando;
+            campoAnterior = buscarMovCaja.campo;
+            textoAnterior = buscarMovCaja.texto;
+            campos_tabla = buscarMovCaja.campos_tabla;
+            actualizarLabelFiltroBusqueda();
+            return;
+        }
+
+        private void actualizarLabelFiltroBusqueda()
+        {
+            if (EstoyBuscando == true)
+            {
+                lbFiltroBusqueda.Text = "FILTRO DE BÚSQUEDA --> CAMPO: " + campoAnterior + ", TEXTO: " + textoAnterior + ".";
+            }
+            else
+            {
+                lbFiltroBusqueda.Text = "SIN FILTRO DE BÚSQUEDA.";
+            }
+        }
+
+        private void buscarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            buscarMovimiento();
+        }
+
+        private void btnOrdenar_Click(object sender, EventArgs e)
+        {
+            ordenamientoMovimientosCaja();
+        }
+
+        private void ordenarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ordenamientoMovimientosCaja();
+        }
+
+        private void ordenamientoMovimientosCaja()
+        {
+            if (grdMovsCaja.DataSource != null)
+            {
+                mostrarFormularioOrdenarMovCaja();
+                grdMovsCaja.Focus();
+            }
+            else
+            {
+                MessageBox.Show("No existen Movimientos.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnOrdenar.Focus();
+            }
+        }
+
+        private void mostrarFormularioOrdenarMovCaja()
+        {
+            frmOrdenarMovCaja ordenarMovCaja = new frmOrdenarMovCaja();
+            ordenarMovCaja.Ascendente = ordenamiento;
+            ordenarMovCaja.campo = campoOrdenamiento;
+            ordenarMovCaja.ShowDialog();
+            campoOrdenamiento = ordenarMovCaja.campo;
+            ordenamiento = ordenarMovCaja.Ascendente;
+            DataGridViewColumn columna = grdMovsCaja.Columns[campoOrdenamiento];
+            if (campoOrdenamiento != "")
+            {
+                if (ordenamiento == true)
+                {
+                    grdMovsCaja.Sort(columna, ListSortDirection.Ascending);
+                }
+                if (ordenamiento == false)
+                {
+                    grdMovsCaja.Sort(columna, ListSortDirection.Descending);
+                }
             }
         }
 

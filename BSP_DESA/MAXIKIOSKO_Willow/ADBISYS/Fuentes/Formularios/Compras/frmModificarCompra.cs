@@ -195,5 +195,12 @@ namespace ADBISYS.Formularios.Compras
             }
             return true;
         }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            cboProveedor.Text = null;
+            txtImporte.Text = "";
+            cboProveedor.Focus();
+        }
     }
 }

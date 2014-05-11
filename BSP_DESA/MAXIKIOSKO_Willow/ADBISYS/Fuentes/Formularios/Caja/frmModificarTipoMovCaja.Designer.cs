@@ -64,9 +64,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(273, 37);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 23);
+            this.label4.Size = new System.Drawing.Size(40, 23);
             this.label4.TabIndex = 16;
-            this.label4.Text = "E/S";
+            this.label4.Text = "I/S";
             // 
             // cboEntradaSalida
             // 
@@ -76,7 +76,7 @@
             this.cboEntradaSalida.Location = new System.Drawing.Point(332, 34);
             this.cboEntradaSalida.Name = "cboEntradaSalida";
             this.cboEntradaSalida.Size = new System.Drawing.Size(273, 30);
-            this.cboEntradaSalida.TabIndex = 15;
+            this.cboEntradaSalida.TabIndex = 2;
             // 
             // txtDescripcion
             // 
@@ -86,16 +86,18 @@
             this.txtDescripcion.MaxLength = 255;
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(455, 29);
-            this.txtDescripcion.TabIndex = 14;
+            this.txtDescripcion.TabIndex = 3;
+            this.txtDescripcion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescripcion_KeyPress);
             // 
             // btnLimpiar
             // 
+            this.btnLimpiar.Enabled = false;
             this.btnLimpiar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiar.Image")));
             this.btnLimpiar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnLimpiar.Location = new System.Drawing.Point(214, 131);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(188, 67);
-            this.btnLimpiar.TabIndex = 12;
+            this.btnLimpiar.TabIndex = 5;
             this.btnLimpiar.Text = "&Limpiar";
             this.btnLimpiar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnLimpiar.UseVisualStyleBackColor = true;
@@ -103,12 +105,13 @@
             // 
             // btnAceptar
             // 
+            this.btnAceptar.Enabled = false;
             this.btnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptar.Image")));
             this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnAceptar.Location = new System.Drawing.Point(415, 131);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(190, 67);
-            this.btnAceptar.TabIndex = 11;
+            this.btnAceptar.TabIndex = 4;
             this.btnAceptar.Text = "&Aceptar";
             this.btnAceptar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAceptar.UseVisualStyleBackColor = true;
@@ -121,7 +124,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(27, 131);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(172, 67);
-            this.btnCancelar.TabIndex = 13;
+            this.btnCancelar.TabIndex = 6;
             this.btnCancelar.Text = "&Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnCancelar.UseVisualStyleBackColor = true;

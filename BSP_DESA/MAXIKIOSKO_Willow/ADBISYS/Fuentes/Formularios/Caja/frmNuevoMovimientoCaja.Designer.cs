@@ -77,7 +77,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(168, 23);
             this.label2.TabIndex = 17;
-            this.label2.Text = "Entrada o Salida";
+            this.label2.Text = "Ingreso o Salida";
             // 
             // btnLimpiar
             // 

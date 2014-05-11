@@ -38,7 +38,7 @@ namespace ADBISYS.Entidades
             set { importe_Final = value; }
         }
 
-        public DateTime obtenerFechaCajaAbierta()
+        public string obtenerFechaCajaAbierta()
         {
             try
             {
@@ -55,7 +55,7 @@ namespace ADBISYS.Entidades
                     throw new System.ArgumentException("No se pudo obtener la última fecha de caja abierta. Consulte con el administrador.", "Estado del sistema");
                 }
 
-                return DateTime.Parse(dataSet.Tables[0].Rows[0]["FechaCajaAbierta"].ToString());
+                return (dataSet.Tables[0].Rows[0]["FechaCajaAbierta"].ToString());
             }
             catch (Exception e)
             {
@@ -199,20 +199,6 @@ namespace ADBISYS.Entidades
 
         }
 
-        internal void eliminarMovCaja(Int32 Id_MovCaja)
-        {
-            try
-            {
-                ConectarBD Conex = new ConectarBD();
-                String sSQL = "EXEC dbo.adp_eliminarMovCaja @Id_MovimientoCaja = " + Id_MovCaja;
-                Conex.ejecutarQuery(sSQL);
-            }
-            catch (Exception e)
-            {
-                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
-            }
-        }
-
         internal bool verificarExistenciaMovCajaSegunFecha(DateTime fecha_mov)
         {
             try
@@ -259,6 +245,25 @@ namespace ADBISYS.Entidades
                 Ds = con.ejecutarQuerySelect(sSQL);
 
                 return Ds;
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+        }
+
+        public DataSet obtenerCamposMovimientosCaja()
+        {
+            try
+            {
+                ConectarBD con = new ConectarBD();
+                DataSet ds = new DataSet();
+                FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
+                String cadenaSql = "";
+
+                cadenaSql = "EXEC adp_cbobusqueda_movimientos_caja";
+                ds = con.ejecutarQuerySelect(cadenaSql);
+                return ds;
             }
             catch (Exception e)
             {

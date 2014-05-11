@@ -69,6 +69,7 @@
             this.maquinaTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.horaTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.cajaTTS = new System.Windows.Forms.ToolStripStatusLabel();
             this.StripPrincipal.SuspendLayout();
             this.statusStripPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -345,6 +346,7 @@
             this.statusStripPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fechaTSS,
             this.usuarioTSS,
+            this.cajaTTS,
             this.vacioTSS,
             this.maquinaTSS,
             this.horaTSS});
@@ -376,7 +378,7 @@
             // 
             this.vacioTSS.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
             this.vacioTSS.Name = "vacioTSS";
-            this.vacioTSS.Size = new System.Drawing.Size(1366, 29);
+            this.vacioTSS.Size = new System.Drawing.Size(1238, 29);
             this.vacioTSS.Spring = true;
             this.vacioTSS.Text = "Vacio";
             // 
@@ -397,6 +399,14 @@
             // timer
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // cajaTTS
+            // 
+            this.cajaTTS.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
+            this.cajaTTS.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cajaTTS.Name = "cajaTTS";
+            this.cajaTTS.Size = new System.Drawing.Size(128, 29);
+            this.cajaTTS.Text = "Caja Cerrada";
             // 
             // FrmPrincipal
             // 
@@ -465,6 +475,7 @@
         private System.Windows.Forms.ToolStripMenuItem tipoMovimientoCajaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem agregarModificarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem agregarModificarToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripStatusLabel cajaTTS;
 
 
 

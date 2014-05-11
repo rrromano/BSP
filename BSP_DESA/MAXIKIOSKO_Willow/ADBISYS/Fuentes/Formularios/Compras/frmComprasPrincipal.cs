@@ -370,7 +370,28 @@ namespace ADBISYS.Formularios.Compras
 
         private void actualizarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            llenarGrilla();
+            try
+            {
+                llenarGrilla();
+                grdCompras = fg.formatoGrilla(grdCompras, 1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                llenarGrilla();
+                grdCompras = fg.formatoGrilla(grdCompras, 1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
     }

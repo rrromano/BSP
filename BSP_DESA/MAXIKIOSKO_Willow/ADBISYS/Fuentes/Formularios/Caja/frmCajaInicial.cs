@@ -66,7 +66,7 @@ namespace ADBISYS.Formularios.Caja
         {
             try
             {
-                if (MessageBox.Show("No se puede iniciar la caja del día de hoy ya que existen movimientos con la fecha de hoy. Si inicia la caja se eliminaran todos los movimientos actuales con la fecha de hoy. \n¿Está seguro que desa continuar?", "¿Está Seguro?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("No se puede iniciar la caja del día de hoy, ya que existen movimientos con la fecha de hoy. Si inicia la caja, se eliminarán todos los movimientos actuales. \n¿Está seguro que desa continuar?", "¿Está Seguro?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     return true;
                 }
@@ -87,7 +87,6 @@ namespace ADBISYS.Formularios.Caja
             try
             {
                 Entidades.Caja caja = new Entidades.Caja();
-
                 return caja.verificarExistenciaMovCajaSegunFecha(DateTime.Now.Date);
             }
             catch (Exception r)
@@ -129,12 +128,10 @@ namespace ADBISYS.Formularios.Caja
             try
             {
                 ParametrosGenerales pg = new ParametrosGenerales();
-                pg.modificarEstadoGlobalSistema(0);
-                pg.modificarFechaSistema(DateTime.Now.Date);
+                DateTime fecha = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+                pg.modificarFechaSistema(fecha);
                 registrarMovimientosInicialesCaja();
                 modificarCajaInicial();
-
-                //ParametrosGenerales pg = new ParametrosGenerales();
                 pg.modificarEstadoGlobalSistema(1);
 
                 this.Hide();
@@ -179,7 +176,7 @@ namespace ADBISYS.Formularios.Caja
         private void txtCajaInicial_KeyPress(object sender, KeyPressEventArgs e)
         {
             fg.keyPressNumerosDecimales(e, txtCajaInicial);
-            //fg.keyPressNumeros(e);
+            fg.keyPressNumericoDiezDosDecimales(e,txtCajaInicial.Text.Length,txtCajaInicial.Text);
         }
     }
 }

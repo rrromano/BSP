@@ -4,7 +4,7 @@ If Exists ( Select 1 From SysObjects Where Name = 'adp_actualizar_estado_global'
   Drop Procedure adp_actualizar_estado_global
 Go 
 
--- SP QUE BUSCA USUARIO.
+-- SP QUE ACTUALIZA EL ESTADO GLOBAL DE LA CAJA.
 Create procedure adp_actualizar_estado_global (@ESTADO NUMERIC(1)) 
 as
 

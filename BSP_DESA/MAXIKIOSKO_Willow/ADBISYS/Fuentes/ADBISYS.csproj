@@ -80,6 +80,12 @@
     <Compile Include="Formularios\Ayuda\frmAcercaDeWillow.Designer.cs">
       <DependentUpon>frmAcercaDeWillow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Caja\frmBusquedaMovCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Caja\frmBusquedaMovCaja.Designer.cs">
+      <DependentUpon>frmBusquedaMovCaja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Caja\frmCaja.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +121,12 @@
     </Compile>
     <Compile Include="Formularios\Caja\frmNuevoMovimientoCaja.Designer.cs">
       <DependentUpon>frmNuevoMovimientoCaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Caja\frmOrdenarMovCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Caja\frmOrdenarMovCaja.Designer.cs">
+      <DependentUpon>frmOrdenarMovCaja.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Caja\frmTipoMovCaja.cs">
       <SubType>Form</SubType>
@@ -245,6 +257,9 @@
     <EmbeddedResource Include="Formularios\Ayuda\frmAcercaDeWillow.resx">
       <DependentUpon>frmAcercaDeWillow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Caja\frmBusquedaMovCaja.resx">
+      <DependentUpon>frmBusquedaMovCaja.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Caja\frmCaja.resx">
       <DependentUpon>frmCaja.cs</DependentUpon>
     </EmbeddedResource>
@@ -262,6 +277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Caja\frmNuevoMovimientoCaja.resx">
       <DependentUpon>frmNuevoMovimientoCaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Caja\frmOrdenarMovCaja.resx">
+      <DependentUpon>frmOrdenarMovCaja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Caja\frmTipoMovCaja.resx">
       <DependentUpon>frmTipoMovCaja.cs</DependentUpon>

@@ -49,6 +49,8 @@ namespace ADBISYS.Formularios.Caja
                 {
                     cboEntradaSalida.Enabled = true;
                     txtDescripcion.Enabled = true;
+                    btnAceptar.Enabled = true;
+                    btnLimpiar.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -105,17 +107,13 @@ namespace ADBISYS.Formularios.Caja
             try
             {
                 ConectarBD Conex = new ConectarBD();
-                DateTime Dia = fg.appFechaSistema();
                 String Usuario = Properties.Settings.Default.UsuarioLogueado.ToString();
                 String sSQL;
 
                 sSQL = "EXEC dbo.adp_actualizar_TipoMovCaja ";
                 sSQL = sSQL + " @ID_TIPOMOVIMIENTO = " + TipoMovCaja.m_ID_TipoMovimiento;
                 sSQL = sSQL + " ,@DESCRIPCION = " + fg.fcSql(txtDescripcion.Text, "STRING");
-
                 if (cboEntradaSalida.Text == "INGRESO") { sSQL = sSQL + " ,@INGRESO_SALIDA = 1"; } else { sSQL = sSQL + " ,@INGRESO_SALIDA = 0"; }
-
-                sSQL = sSQL + " ,@FECHA_MODIF = " + fg.fcSql(Dia.ToString(), "DATETIME");
                 sSQL = sSQL + " ,@LOGIN_MODIF = " + fg.fcSql(Usuario, "STRING");
 
                 Conex.ejecutarQuery(sSQL);
@@ -150,12 +148,17 @@ namespace ADBISYS.Formularios.Caja
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             if (txtDescripcion.Enabled) { txtDescripcion.Text = String.Empty; }
-            if (cboEntradaSalida.Enabled) { cboEntradaSalida.Text = String.Empty; }
+            if (cboEntradaSalida.Enabled) { cboEntradaSalida.Text = null; cboEntradaSalida.Focus(); }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void txtDescripcion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = fg.keyPressMayusculas(e);
         }
     }
 }

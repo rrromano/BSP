@@ -187,5 +187,12 @@ namespace ADBISYS.Formularios.Compras
             fg.keyPressNumerosDecimales(e, txtImporte);
             fg.keyPressNumericoDiezDosDecimales(e, txtImporte.Text.Length, txtImporte.Text);
         }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            cboProveedor.Text = null;
+            txtImporte.Text = "";
+            cboProveedor.Focus();
+        }
     }
 }

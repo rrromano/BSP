@@ -44,7 +44,7 @@
             this.groupBox2.Controls.Add(this.grdMovsCaja);
             this.groupBox2.Location = new System.Drawing.Point(19, 8);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(507, 318);
+            this.groupBox2.Size = new System.Drawing.Size(507, 324);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             // 
@@ -52,7 +52,7 @@
             // 
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCancelar.Location = new System.Drawing.Point(22, 225);
+            this.btnCancelar.Location = new System.Drawing.Point(22, 234);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(225, 69);
             this.btnCancelar.TabIndex = 18;
@@ -65,7 +65,7 @@
             // 
             this.btnCerrarCaja.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrarCaja.Image")));
             this.btnCerrarCaja.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCerrarCaja.Location = new System.Drawing.Point(253, 225);
+            this.btnCerrarCaja.Location = new System.Drawing.Point(253, 234);
             this.btnCerrarCaja.Name = "btnCerrarCaja";
             this.btnCerrarCaja.Size = new System.Drawing.Size(230, 69);
             this.btnCerrarCaja.TabIndex = 15;
@@ -81,14 +81,14 @@
             this.grdMovsCaja.Location = new System.Drawing.Point(22, 34);
             this.grdMovsCaja.Name = "grdMovsCaja";
             this.grdMovsCaja.RowTemplate.Height = 24;
-            this.grdMovsCaja.Size = new System.Drawing.Size(461, 181);
+            this.grdMovsCaja.Size = new System.Drawing.Size(461, 177);
             this.grdMovsCaja.TabIndex = 14;
             // 
             // frmCerrarCaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(546, 345);
+            this.ClientSize = new System.Drawing.Size(546, 351);
             this.Controls.Add(this.groupBox2);
             this.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

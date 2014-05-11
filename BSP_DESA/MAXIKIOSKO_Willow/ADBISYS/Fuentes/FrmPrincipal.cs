@@ -34,6 +34,15 @@ namespace ADBISYS
             {
                 frmCajaInicial cajaIni = new frmCajaInicial();
                 cajaIni.ShowDialog();
+                FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
+                Entidades.Caja caja = new Entidades.Caja();
+                string fechaSistema = fg.appFechaSistema().ToString().Substring(0, 10);
+                if (caja.obtenerEstado() != 0)
+                {
+                    cajaTTS.Text = "Caja Iniciada: " + fechaSistema;
+                    cajaTTS.BackColor = Color.Black;
+                    cajaTTS.ForeColor = Color.White;
+                }
             }
         }
 
@@ -46,7 +55,7 @@ namespace ADBISYS
                 DateTime fechaSistema = fg.appFechaSistema();
                 if (caja.obtenerEstado() != 0)
                 {
-                    MessageBox.Show("No se puede iniciar la caja debido a que no se cerró la caja del día " + caja.obtenerFechaCajaAbierta().ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No se puede iniciar la caja debido a que no se cerró la caja del día " + caja.obtenerFechaCajaAbierta() + ".", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return false;
                 }
                 return true;
@@ -61,6 +70,16 @@ namespace ADBISYS
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
             IniciarPrograma(); // RR 2014-03-22.
+            FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
+            Entidades.Caja caja = new Entidades.Caja();
+            string fechaSistema = fg.appFechaSistema().ToString().Substring(0,10);
+            if (caja.obtenerEstado() != 0)
+            {
+                cajaTTS.Text = "Caja Iniciada: " + fechaSistema;
+                cajaTTS.BackColor = Color.Black;
+                cajaTTS.ForeColor = Color.White;
+            }
+
         }
 
         private void IniciarPrograma()
@@ -183,7 +202,7 @@ namespace ADBISYS
                 {
                     usuarioTSS.Text = "Usuario: " + Properties.Settings.Default.UsuarioLogueado;
                     usuarioTSS.BackColor = Color.Black;
-                    usuarioTSS.ForeColor = Color.Yellow;
+                    usuarioTSS.ForeColor = Color.White;
                 }
             }
             catch (Exception ex)
@@ -202,7 +221,7 @@ namespace ADBISYS
                 {
                     usuarioTSS.Text = "Usuario: " + Properties.Settings.Default.UsuarioLogueado;
                     usuarioTSS.BackColor = Color.Black;
-                    usuarioTSS.ForeColor = Color.Yellow;
+                    usuarioTSS.ForeColor = Color.White;
                 }
             }
             catch (Exception ex)

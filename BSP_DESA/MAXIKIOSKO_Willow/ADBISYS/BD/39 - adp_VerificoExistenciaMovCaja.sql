@@ -4,7 +4,7 @@ If Exists ( Select 1 From SysObjects Where Name = 'adp_VerificoExistenciaMovCaja
   Drop Procedure adp_VerificoExistenciaMovCaja
 Go 
 
--- SP QUE BUSCA RUBROS DE ACUERDO A LOS PARAMETROS QUE RECIBA.
+-- SP QUE VERIFICA SI LA CAJA YA FUE ABIERTA EN LA FECHA QUE SE RECIBE COMO PARÁMETRO.
 
 Create procedure dbo.adp_VerificoExistenciaMovCaja (@FECHA_MOV DATETIME)
 as

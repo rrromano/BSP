@@ -36,6 +36,9 @@ namespace ADBISYS.Formularios.Caja
         {
             frmNuevoMovimientoCaja nuevoMov = new frmNuevoMovimientoCaja();
             nuevoMov.ShowDialog();
+            llenarGrillaTipoMovimientosCaja();
+            grdTipoMovCaja = fg.formatoGrilla(grdTipoMovCaja, 1);
+            grdTipoMovCaja.Focus();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -96,7 +99,7 @@ namespace ADBISYS.Formularios.Caja
                 filaSeleccionada = grdTipoMovCaja.CurrentCellAddress.Y;
 
                 Entidades.TipoMovimientoCaja TipoMovCaja = new Entidades.TipoMovimientoCaja();
-                TipoMovCaja.m_ID_TipoMovimiento = Int32.Parse(grdTipoMovCaja.Rows[filaSeleccionada].Cells["CODIGO"].Value.ToString());
+                TipoMovCaja.m_ID_TipoMovimiento = Int32.Parse(grdTipoMovCaja.Rows[filaSeleccionada].Cells["CÓDIGO"].Value.ToString());
                 TipoMovCaja.m_Descripcion = grdTipoMovCaja.Rows[filaSeleccionada].Cells["MOVIMIENTO"].Value.ToString();
 
                 if (grdTipoMovCaja.Rows[filaSeleccionada].Cells["INGRESO/SALIDA"].Value.ToString() == "INGRESO")
@@ -202,7 +205,7 @@ namespace ADBISYS.Formularios.Caja
                 filaSeleccionada = grdTipoMovCaja.CurrentCellAddress.Y;
 
                 Entidades.TipoMovimientoCaja TipoMovCaja = new Entidades.TipoMovimientoCaja();
-                TipoMovCaja.m_ID_TipoMovimiento = Int32.Parse(grdTipoMovCaja.Rows[filaSeleccionada].Cells["CODIGO"].Value.ToString());
+                TipoMovCaja.m_ID_TipoMovimiento = Int32.Parse(grdTipoMovCaja.Rows[filaSeleccionada].Cells["CÓDIGO"].Value.ToString());
                 TipoMovCaja.m_Descripcion = grdTipoMovCaja.Rows[filaSeleccionada].Cells["MOVIMIENTO"].Value.ToString();
 
                 if (TipoMovCaja.m_ID_TipoMovimiento <= 6)
@@ -223,19 +226,6 @@ namespace ADBISYS.Formularios.Caja
             {
                 MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
-            }
-        }
-
-        private void frmTipoMovCaja_Activated(object sender, EventArgs e)
-        {
-            try
-            {
-                llenarGrillaTipoMovimientosCaja();
-                grdTipoMovCaja = fg.formatoGrilla(grdTipoMovCaja, 1);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -320,14 +310,45 @@ namespace ADBISYS.Formularios.Caja
             this.Close();
         }
 
-        private void salirToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             salir();
         }
 
-        private void salidaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void frmTipoMovCaja_Load(object sender, EventArgs e)
         {
-            salir();
+            try
+            {
+                llenarGrillaTipoMovimientosCaja();
+                grdTipoMovCaja = fg.formatoGrilla(grdTipoMovCaja, 1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            actualizarTipoMovCaja();
+        }
+
+        private void actualizarTipoMovCaja()
+        {
+            try
+            {
+                llenarGrillaTipoMovimientosCaja();
+                grdTipoMovCaja = fg.formatoGrilla(grdTipoMovCaja, 1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void actualizarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            actualizarTipoMovCaja();
         }
     }
 }

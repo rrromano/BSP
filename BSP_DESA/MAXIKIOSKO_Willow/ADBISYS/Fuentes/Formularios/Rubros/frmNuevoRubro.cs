@@ -126,5 +126,11 @@ namespace ADBISYS.Formularios.Rubros
                 return false;
             }
         }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtDescripcion.Text = "";
+            txtDescripcion.Focus();
+        }
     }
 }

@@ -32,11 +32,13 @@ namespace ADBISYS.Formularios.Ingresar
         private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
         {
             fg.keyPressSinEspacios(e);
+            e.KeyChar = fg.keyPressMayusculas(e);
         }
 
         private void txtContraseña_KeyPress(object sender, KeyPressEventArgs e)
         {
             fg.keyPressSinEspacios(e);
+            e.KeyChar = fg.keyPressMayusculas(e);
         }
 
         private bool validoCampos()

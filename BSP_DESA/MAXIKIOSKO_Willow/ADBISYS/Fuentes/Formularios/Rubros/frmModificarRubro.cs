@@ -97,5 +97,11 @@ namespace ADBISYS.Formularios.Rubros
             txtCodigo.Text = rubro_codigo;
             txtDescripcion.Text = rubro_descripcion;
         }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtDescripcion.Text = "";
+            txtDescripcion.Focus();
+        }
     }
 }

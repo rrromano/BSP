@@ -26,40 +26,40 @@ namespace ADBISYS.FuncionesGenerales
                 ConectarBD Conex = new ConectarBD();
                 FuncionesGenerales fg = new FuncionesGenerales();
                 DataSet Ds = new DataSet();
-                String result = "";
+                //String result = "";
                 //String Dia = System.DateTime.Now.Day.ToString();
                 //String Mes = System.DateTime.Now.Month.ToString();
                 //String Anio = System.DateTime.Now.Year.ToString();
                 String ssQL = "EXEC dbo.adp_FecSis";
-                String Dia;
-                String Mes;
-                String Anio; 
+                //String Dia;
+                //String Mes;
+                //String Anio; 
 
 
                 Ds = Conex.ejecutarQuerySelect(ssQL);
+                return DateTime.Parse(Ds.Tables[0].Rows[0]["FECHA_SISTEMA"].ToString());
+                //if (Ds.Tables[0].Rows.Count > 0)
+                //{
+                //    Dia = DateTime.Parse(Ds.Tables[0].Rows[0]["FECHA_SISTEMA"].ToString()).Day.ToString();
+                //    Mes = DateTime.Parse(Ds.Tables[0].Rows[0]["FECHA_SISTEMA"].ToString()).Month.ToString();
+                //    Anio = DateTime.Parse(Ds.Tables[0].Rows[0]["FECHA_SISTEMA"].ToString()).Year.ToString();
+                //}
+                //else
+                //{
+                //    throw new System.ArgumentException("Error al intentar obtener la fecha de sistema");
+                //}
 
-                if (Ds.Tables[0].Rows.Count > 0)
-                {
-                    Dia = DateTime.Parse(Ds.Tables[0].Rows[0]["FECHA_SISTEMA"].ToString()).Day.ToString();
-                    Mes = DateTime.Parse(Ds.Tables[0].Rows[0]["FECHA_SISTEMA"].ToString()).Month.ToString();
-                    Anio = DateTime.Parse(Ds.Tables[0].Rows[0]["FECHA_SISTEMA"].ToString()).Year.ToString();
-                }
-                else
-                {
-                    throw new System.ArgumentException("Error al intentar obtener la fecha de sistema");
-                }
+                //switch (Dia.Length) { case 1: result = result + "0" + Dia; break; default: result = result + Dia; break; }
 
-                switch (Dia.Length) { case 1: result = result + "0" + Dia; break; default: result = result + Dia; break; }
+                //result = result + "/";
 
-                result = result + "/";
+                //switch (Mes.Length) { case 1: result = result + "0" + Mes; break; default: result = result + Mes; break; }
 
-                switch (Mes.Length) { case 1: result = result + "0" + Mes; break; default: result = result + Mes; break; }
+                //result = result + "/";
 
-                result = result + "/";
+                //result = result + Anio;
 
-                result = result + Anio;
-
-                return DateTime.Parse(result);
+                //return DateTime.Parse(result);
             }
             catch (Exception e)
             {

@@ -9,7 +9,6 @@ Go
 Create procedure adp_actualizar_TipoMovCaja (@ID_TIPOMOVIMIENTO NUMERIC(30),
 																						 @DESCRIPCION				VARCHAR(255),
 																						 @INGRESO_SALIDA		NUMERIC(1),
-																						 @FECHA_MODIF				DATETIME,
 																						 @LOGIN_MODIF				VARCHAR(255))
 as
 
@@ -20,7 +19,7 @@ BEGIN TRY
 	UPDATE A
 	SET A.DESCRIPCION			= @DESCRIPCION,
 			A.INGRESO_SALIDA	= @INGRESO_SALIDA,
-			A.FECHA_MODIF			= @FECHA_MODIF,
+			A.FECHA_MODIF			= GETDATE(),
 			A.LOGIN_MODIF			=	@LOGIN_MODIF,
 			A.TERM_MODIF			= HOST_NAME()
 	FROM TIPOMOVIMIENTO_CAJA A

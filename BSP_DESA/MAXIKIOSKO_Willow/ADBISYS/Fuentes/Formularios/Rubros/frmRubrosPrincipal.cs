@@ -248,7 +248,15 @@ namespace ADBISYS.Formularios.Rubros
 
         private void actualizarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            llenarGrilla();
+            try
+            {
+                llenarGrilla();
+                grdRubros = fg.formatoGrilla(grdRubros, 1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -370,6 +378,19 @@ namespace ADBISYS.Formularios.Rubros
                 {
                     grdRubros.Sort(columna, ListSortDirection.Descending);
                 }
+            }
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                llenarGrilla();
+                grdRubros = fg.formatoGrilla(grdRubros, 1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

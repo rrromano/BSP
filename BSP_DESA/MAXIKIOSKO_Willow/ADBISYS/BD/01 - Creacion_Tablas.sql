@@ -391,36 +391,36 @@ GO
 -- ============================================================================================
 DELETE FROM USUARIOS WHERE USERNAME = 'ADMIN'
 INSERT INTO USUARIOS(Username,Pass,Descripcion,sino_bloqueado)
-	VALUES ('admin', 'E6-B8-70-50-BF-CB-81-43-FC-B8-DB-01-70-A4-DC-9E-D0-0D-90-4D-DD-3E-2A-4A-D1-B1-E8-DC-0F-DC-9B-E7','Administrador General','0')
+	VALUES ('admin', '80-81-66-6D-1D-2E-4A-84-7C-19-B8-3A-6D-09-C5-21-75-96-20-5D-FE-54-4B-28-15-BA-B2-B0-50-12-95-AE','Administrador General','0')
 PRINT 'SE CREÓ CORRECTAMENTE EL USUARIO ADMIN.'
 -- ============================================================================================
 -- ============================================================================================
-INSERT INTO PARAMETROS_GENERALES (Fecha_Sistema, Estado_Caja,fecha_modif,login_modif,term_modif) VALUES (GETDATE(), 0, GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO PARAMETROS_GENERALES (Fecha_Sistema, Estado_Caja,fecha_modif,login_modif,term_modif) VALUES (GETDATE(), 0, GETDATE(), 'BSP', 'BSP')
 -- ============================================================================================
 -- ============================================================================================
-INSERT INTO ESTADO_COMPRAS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO ESTADO_COMPRAS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO ESTADO_ARTICULOS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO ESTADO_ARTICULOS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO ESTADO_PROVEEDORES (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO ESTADO_PROVEEDORES (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO ESTADO_RUBROS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO ESTADO_RUBROS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO ESTADO_VENTAS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO ESTADO_VENTAS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO ESTADO_MOVIMIENTOS_CAJA (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO ESTADO_MOVIMIENTOS_CAJA (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO ESTADO_TIPOMOVIMIENTO_CAJA (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO ESTADO_TIPOMOVIMIENTO_CAJA (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO ESTADO_COMPRAS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', 'BSP')
+INSERT INTO ESTADO_COMPRAS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', 'BSP')
+INSERT INTO ESTADO_ARTICULOS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', 'BSP')
+INSERT INTO ESTADO_ARTICULOS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', 'BSP')
+INSERT INTO ESTADO_PROVEEDORES (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', 'BSP')
+INSERT INTO ESTADO_PROVEEDORES (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', 'BSP')
+INSERT INTO ESTADO_RUBROS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', 'BSP')
+INSERT INTO ESTADO_RUBROS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', 'BSP')
+INSERT INTO ESTADO_VENTAS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', 'BSP')
+INSERT INTO ESTADO_VENTAS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', 'BSP')
+INSERT INTO ESTADO_MOVIMIENTOS_CAJA (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', 'BSP')
+INSERT INTO ESTADO_MOVIMIENTOS_CAJA (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', 'BSP')
+INSERT INTO ESTADO_TIPOMOVIMIENTO_CAJA (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', 'BSP')
+INSERT INTO ESTADO_TIPOMOVIMIENTO_CAJA (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', 'BSP')
 -- ============================================================================================
 -- ============================================================================================
-INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, Estado, fecha_modif, login_modif, term_modif) VALUES (0, 'CIERRE CAJA'		, 0, 1, GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, Estado, fecha_modif, login_modif, term_modif) VALUES (1,'INICIO CAJA'		, 1, 1,GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, Estado, fecha_modif, login_modif, term_modif) VALUES (2,'COMPRA'					, 0, 1,GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, Estado, fecha_modif, login_modif, term_modif) VALUES (3,'VENTA'					, 1, 1,GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, Estado, fecha_modif, login_modif, term_modif) VALUES (4,'OTROS GASTOS'		, 0, 1,GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, Estado, fecha_modif, login_modif, term_modif) VALUES (5,'OTROS INGRESOS'	, 1, 1,GETDATE(), 'BSP', HOST_NAME())
-INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, Estado, fecha_modif, login_modif, term_modif) VALUES (6,'RETIROS'				, 0, 1,GETDATE(), 'BSP', HOST_NAME())
+INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, Estado, fecha_modif, login_modif, term_modif) VALUES (0,'CIERRE CAJA'		, 0, 1,GETDATE(), 'BSP', 'BSP')
+INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, Estado, fecha_modif, login_modif, term_modif) VALUES (1,'INICIO CAJA'		, 1, 1,GETDATE(), 'BSP', 'BSP')
+INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, Estado, fecha_modif, login_modif, term_modif) VALUES (2,'COMPRAS'				, 0, 1,GETDATE(), 'BSP', 'BSP')
+INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, Estado, fecha_modif, login_modif, term_modif) VALUES (3,'VENTAS'					, 1, 1,GETDATE(), 'BSP', 'BSP')
+INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, Estado, fecha_modif, login_modif, term_modif) VALUES (4,'OTROS GASTOS'		, 0, 1,GETDATE(), 'BSP', 'BSP')
+INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, Estado, fecha_modif, login_modif, term_modif) VALUES (5,'OTROS INGRESOS'	, 1, 1,GETDATE(), 'BSP', 'BSP')
+INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, Estado, fecha_modif, login_modif, term_modif) VALUES (6,'RETIROS'				, 0, 1,GETDATE(), 'BSP', 'BSP')
 
 GO
 

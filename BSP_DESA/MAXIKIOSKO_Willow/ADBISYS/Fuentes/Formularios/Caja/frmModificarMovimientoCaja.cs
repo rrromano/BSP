@@ -59,13 +59,15 @@ namespace ADBISYS.Formularios.Caja
                 if (int.Parse(txtCodigo.Text) >= 4 && int.Parse(txtCodigo.Text) <= 6)
                 {
                     txtImporte.Enabled = true;
+                    btnAceptar.Enabled = true;
+                    btnLimpiar.Enabled = true;
                 }
 
                 if (int.Parse(txtCodigo.Text) > 6)
                 {
-                    cboEntradaSalida.Enabled = true;
-                    txtDescripcion.Enabled   = true;
                     txtImporte.Enabled       = true;
+                    btnAceptar.Enabled       = true;
+                    btnLimpiar.Enabled       = true;
                 }
             }
             catch (Exception ex)
@@ -168,9 +170,14 @@ namespace ADBISYS.Formularios.Caja
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            if (txtImporte.Enabled) { txtImporte.Text = String.Empty; }
+            if (txtImporte.Enabled) { txtImporte.Text = String.Empty; txtImporte.Focus(); }
             if (txtDescripcion.Enabled) { txtDescripcion.Text = String.Empty; }
-            if (cboEntradaSalida.Enabled) { cboEntradaSalida.Text = String.Empty; }
         }
+
+        private void txtDescripcion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = fg.keyPressMayusculas(e);
+        }
+
     }
 }

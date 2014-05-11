@@ -33,7 +33,7 @@ namespace ADBISYS.Entidades
                 ConectarBD con = new ConectarBD();
                 String sSQL;
 
-                sSQL = "exec adp_FecSis @FECHA = " + fg.fcSql(fechaSistema.ToString(),"DATETIME");
+                sSQL = "exec adp_FecSis @FECHA = " + fg.fcSql(fechaSistema.ToString(),"String");
                 con.ejecutarQuery(sSQL);                
             }
             catch (Exception e)

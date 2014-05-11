@@ -13,15 +13,15 @@ BEGIN TRY
 
 	SET NOCOUNT ON
 	
-	SELECT  ID_Movimiento										'CODIGO'				,
-					UPPER(B.DESCRIPCION)						'MOVIMIENTO'		,
-					VALOR														'VALOR'					,
-					CONVERT(VARCHAR,A.FECHA,112)		'FECHA'					,
-					CONVERT(VARCHAR,A.HORA,8)				'HORA'					,
+	SELECT  ID_Movimiento														'CÓDIGO'				,
+					UPPER(B.DESCRIPCION)										'MOVIMIENTO'		,
+					VALOR																		'VALOR'					,
+					LEFT(CONVERT(VARCHAR,A.FECHA,120),10)		'FECHA'					,
+					CONVERT(VARCHAR,A.HORA,8)								'HORA'					,
 					CASE B.INGRESO_SALIDA 
 						WHEN 1 THEN 'INGRESO' 
 						ELSE 'SALIDA' 
-					END AS													'INGRESO/SALIDA'
+					END AS																	'INGRESO/SALIDA'
 	FROM MOVIMIENTOS_CAJA A
 	INNER JOIN TIPOMOVIMIENTO_CAJA B ON (A.ID_TIPOMOVIMIENTO = B.ID_TIPOMOVIMIENTO)
 	WHERE 1 = 1

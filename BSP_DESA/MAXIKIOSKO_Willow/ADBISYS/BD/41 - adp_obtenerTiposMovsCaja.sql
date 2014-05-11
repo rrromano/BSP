@@ -4,7 +4,7 @@ If Exists ( Select 1 From SysObjects Where Name = 'adp_ObtenerTiposMovsCaja')
   Drop Procedure adp_ObtenerTiposMovsCaja
 Go 
 
--- SP QUE INSERTA UN NUEVO PROVEEDOR.
+-- SP QUE TRAE LOS DIFERENTES TIPOS DE MOVIMIENTOS DE CAJA.
 Create procedure adp_ObtenerTiposMovsCaja 
 as
 
@@ -13,13 +13,13 @@ BEGIN TRY
 
 	SET NOCOUNT ON
 
-	SELECT	ID_TIPOMOVIMIENTO	'CODIGO',
+	SELECT	ID_TIPOMOVIMIENTO	'CÓDIGO',
 					UPPER(DESCRIPCION) 'MOVIMIENTO',
 					CASE INGRESO_SALIDA 
 				  	WHEN 1 THEN 'INGRESO' 
 						ELSE 'SALIDA' 
 					END AS	'INGRESO/SALIDA',
-					CONVERT(VARCHAR,fecha_modif,112) 'FECHA_MODIF',
+					CONVERT(VARCHAR,fecha_modif,120) 'FECHA_MODIF',
 					UPPER(login_modif) 'LOGIN_MODIF',
 					UPPER(term_modif) 'TERM_MODIF'
 	FROM TIPOMOVIMIENTO_CAJA
