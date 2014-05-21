@@ -51,12 +51,49 @@ namespace ADBISYS.Formularios.Articulos
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             if (!(validarActualizacion())) { return; }
-            actualizacionMasiva();
+
+            if (deseaContinuar())
+            {
+                actualizacionMasiva();
+            }
+            
         }
 
         private void actualizacionMasiva()
         {
-            throw new NotImplementedException();
+            try
+            {
+
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private bool deseaContinuar()
+        {
+            try
+            {
+                Boolean estaSeguro;
+
+                if (cboAumentarDisminuir.Text.ToUpper() == "AUMENTAR")
+                {
+                    estaSeguro = (MessageBox.Show("A continuación se aumentará $" + txtPrecioPorcentaje.Text + " a todos los artículos pertenecientes al rubro " + cboRubro.Text + ". ¿Desea continuar?", "Actualización Masiva de Artículos.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
+                }
+                else
+                {
+                    estaSeguro = (MessageBox.Show("A continuación se aumentará un " + txtPrecioPorcentaje.Text + "% a todos los artículos pertenecientes al rubro " + cboRubro.Text + ". ¿Desea continuar?", "Actualización Masiva de Artículos.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
+                }
+
+                return estaSeguro;
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
 
         private Boolean validarActualizacion()
@@ -80,6 +117,25 @@ namespace ADBISYS.Formularios.Articulos
                     resultado = false;
                     return resultado;
                 }
+
+                if (txtPrecioPorcentaje.Text == "")
+                {
+                    MessageBox.Show("Debe indicar el porcentaje/precio a aumentar", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    txtPrecioPorcentaje.Focus();
+                    resultado = false;
+                    return resultado;
+                }
+
+                //if (RBporcentaje.Checked)
+                //{
+                //    if (int.Parse(txtPrecioPorcentaje.Text) > 100 || int.Parse(txtPrecioPorcentaje.Text) < 0)
+                //    {
+                //        MessageBox.Show("Debe indicar un porcentaje válido entre 0 y 100.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                //        txtPrecioPorcentaje.Focus();
+                //        resultado = false;
+                //        return resultado;
+                //    }
+                //}
 
                 return resultado;
             }
