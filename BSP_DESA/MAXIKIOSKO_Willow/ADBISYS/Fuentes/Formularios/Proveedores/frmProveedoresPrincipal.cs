@@ -41,28 +41,56 @@ namespace ADBISYS.Formularios.Proveedores
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            nuevoProveedor();
+            try
+            {
+                nuevoProveedor();
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void nuevoToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            nuevoProveedor();
+            try
+            {
+                nuevoProveedor();
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void nuevoProveedor()
         {
-            mostrarFormularioNuevoProveedor();
-            llenarGrilla();
-            grdProveedores = fg.formatoGrilla(grdProveedores, 1);
-            grdProveedores.Focus();
+            try
+            {
+                mostrarFormularioNuevoProveedor();
+                llenarGrilla();
+                grdProveedores = fg.formatoGrilla(grdProveedores, 1);
+                grdProveedores.Focus();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void mostrarFormularioNuevoProveedor()
         {
-            celdaSeleccionada = grdProveedores.CurrentCellAddress.X;
-            filaSeleccionada = grdProveedores.CurrentCellAddress.Y;
-            frmNuevoProveedor nuevoProveedor = new frmNuevoProveedor();
-            nuevoProveedor.ShowDialog();
+            try
+            {
+                celdaSeleccionada = grdProveedores.CurrentCellAddress.X;
+                filaSeleccionada = grdProveedores.CurrentCellAddress.Y;
+                frmNuevoProveedor nuevoProveedor = new frmNuevoProveedor();
+                nuevoProveedor.ShowDialog();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void llenarGrilla()
@@ -112,44 +140,64 @@ namespace ADBISYS.Formularios.Proveedores
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            modificarProveedor();
+            try
+            {
+                modificarProveedor();
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void modificarProveedor()
         {
-            if (grdProveedores.DataSource != null)
+            try
             {
-                if (notFilaSeleccionada()) return;
-                mostrarFormularioModificarProveedor();
-                llenarGrilla();
-                grdProveedores = fg.formatoGrilla(grdProveedores, 1);
-                grdProveedores.Focus();
+                if (grdProveedores.DataSource != null)
+                {
+                    if (notFilaSeleccionada()) return;
+                    mostrarFormularioModificarProveedor();
+                    llenarGrilla();
+                    grdProveedores = fg.formatoGrilla(grdProveedores, 1);
+                    grdProveedores.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("No existen Proveedores.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btnModificar.Focus();
+                }
             }
-            else
+            catch (Exception e)
             {
-                MessageBox.Show("No existen Proveedores.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                btnModificar.Focus();
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void mostrarFormularioModificarProveedor()
         {
+            try
+            {
+                celdaSeleccionada = grdProveedores.CurrentCellAddress.X;
+                filaSeleccionada = grdProveedores.CurrentCellAddress.Y;
 
-            celdaSeleccionada = grdProveedores.CurrentCellAddress.X;
-            filaSeleccionada = grdProveedores.CurrentCellAddress.Y;
+                frmModificarProveedor modificarProveedor = new frmModificarProveedor();
+                modificarProveedor.proveedor_codigo = grdProveedores.Rows[filaSeleccionada].Cells["CÓDIGO"].Value.ToString();
+                modificarProveedor.proveedor_rubro = grdProveedores.Rows[filaSeleccionada].Cells["RUBRO"].Value.ToString();
+                modificarProveedor.proveedor_nombre = grdProveedores.Rows[filaSeleccionada].Cells["NOMBRE"].Value.ToString();
+                modificarProveedor.proveedor_contacto = grdProveedores.Rows[filaSeleccionada].Cells["CONTACTO"].Value.ToString();
+                modificarProveedor.proveedor_direccion = grdProveedores.Rows[filaSeleccionada].Cells["DIRECCIÓN"].Value.ToString();
+                modificarProveedor.proveedor_localidad = grdProveedores.Rows[filaSeleccionada].Cells["LOCALIDAD"].Value.ToString();
+                modificarProveedor.proveedor_provincia = grdProveedores.Rows[filaSeleccionada].Cells["PROVINCIA"].Value.ToString();
+                modificarProveedor.proveedor_telefono = grdProveedores.Rows[filaSeleccionada].Cells["TELÉFONO"].Value.ToString();
+                modificarProveedor.proveedor_cuit = grdProveedores.Rows[filaSeleccionada].Cells["CUIT"].Value.ToString();
 
-            frmModificarProveedor modificarProveedor = new frmModificarProveedor();
-            modificarProveedor.proveedor_codigo      = grdProveedores.Rows[filaSeleccionada].Cells["CÓDIGO"].Value.ToString();
-            modificarProveedor.proveedor_rubro       = grdProveedores.Rows[filaSeleccionada].Cells["RUBRO"].Value.ToString();
-            modificarProveedor.proveedor_nombre      = grdProveedores.Rows[filaSeleccionada].Cells["NOMBRE"].Value.ToString();
-            modificarProveedor.proveedor_contacto    = grdProveedores.Rows[filaSeleccionada].Cells["CONTACTO"].Value.ToString();
-            modificarProveedor.proveedor_direccion   = grdProveedores.Rows[filaSeleccionada].Cells["DIRECCIÓN"].Value.ToString();
-            modificarProveedor.proveedor_localidad   = grdProveedores.Rows[filaSeleccionada].Cells["LOCALIDAD"].Value.ToString();
-            modificarProveedor.proveedor_provincia   = grdProveedores.Rows[filaSeleccionada].Cells["PROVINCIA"].Value.ToString();
-            modificarProveedor.proveedor_telefono    = grdProveedores.Rows[filaSeleccionada].Cells["TELÉFONO"].Value.ToString();
-            modificarProveedor.proveedor_cuit        = grdProveedores.Rows[filaSeleccionada].Cells["CUIT"].Value.ToString();
-
-            modificarProveedor.ShowDialog();            
+                modificarProveedor.ShowDialog(); 
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }           
         }
 
         private bool notFilaSeleccionada()
@@ -175,167 +223,269 @@ namespace ADBISYS.Formularios.Proveedores
 
         private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            modificarProveedor();
+            try
+            {
+                modificarProveedor();
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void grdProveedores_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            modificarProveedor();
+            try
+            {
+                modificarProveedor();
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            eliminoProveedor();
+            try
+            {
+                eliminoProveedor();
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void eliminoProveedor()
         {
-            if (grdProveedores.DataSource != null)
+            try
             {
-                if (notFilaSeleccionada()) return;
-                eliminarProveedor();
-                llenarGrilla();
-                grdProveedores = fg.formatoGrilla(grdProveedores, 1);
-                btnEliminar.Focus();
+                if (grdProveedores.DataSource != null)
+                {
+                    if (notFilaSeleccionada()) return;
+                    eliminarProveedor();
+                    llenarGrilla();
+                    grdProveedores = fg.formatoGrilla(grdProveedores, 1);
+                    btnEliminar.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("No existen Proveedores.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
+            catch (Exception r)
             {
-                MessageBox.Show("No existen Proveedores.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void eliminarProveedor()
         {
-            celdaSeleccionada = grdProveedores.CurrentCellAddress.X;
-            filaSeleccionada = grdProveedores.CurrentCellAddress.Y;
-            string nombre_Proveedor = grdProveedores.Rows[filaSeleccionada].Cells["NOMBRE"].Value.ToString();
-            string id_Proveedor = grdProveedores.Rows[filaSeleccionada].Cells["CÓDIGO"].Value.ToString();
+            try 
+	        {
+                celdaSeleccionada = grdProveedores.CurrentCellAddress.X;
+                filaSeleccionada = grdProveedores.CurrentCellAddress.Y;
+                string nombre_Proveedor = grdProveedores.Rows[filaSeleccionada].Cells["NOMBRE"].Value.ToString();
+                string id_Proveedor = grdProveedores.Rows[filaSeleccionada].Cells["CÓDIGO"].Value.ToString();
 
-            if (MessageBox.Show("¿Está seguro que desea eliminar el Proveedor " + id_Proveedor + "-" + nombre_Proveedor + "?", "Eliminar Proveedor.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                try
+                if (MessageBox.Show("¿Está seguro que desea eliminar el Proveedor " + id_Proveedor + "-" + nombre_Proveedor + "?", "Eliminar Proveedor.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     Entidades.Proveedores entProveedores = new ADBISYS.Entidades.Proveedores();
                     entProveedores.eliminarProveedor(id_Proveedor);
                     grdProveedores.Focus();
                 }
-                catch (Exception e)
+                else
                 {
-                    MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                    btnEliminar.Focus();
+                }	
             }
-            else
+            catch (Exception e)
             {
-                btnEliminar.Focus();
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 
         private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            eliminoProveedor();
+            try
+            {
+                eliminoProveedor();
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            buscarProveedor();
+            try
+            {
+                buscarProveedor();
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
 
         private void buscarProveedor()
         {
-            Entidades.Proveedores entProveedores = new ADBISYS.Entidades.Proveedores();
-            ds = entProveedores.obtenerProveedores();
-            if(ds.Tables[0].Rows.Count > 0)
+            try
             {
-                mostrarFormularioBusquedaProveedor();
-                llenarGrilla();
-                grdProveedores = fg.formatoGrilla(grdProveedores, 1);
-                grdProveedores.Focus();
+                Entidades.Proveedores entProveedores = new ADBISYS.Entidades.Proveedores();
+                ds = entProveedores.obtenerProveedores();
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    mostrarFormularioBusquedaProveedor();
+                    llenarGrilla();
+                    grdProveedores = fg.formatoGrilla(grdProveedores, 1);
+                    grdProveedores.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("No existen Proveedores.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btnBuscar.Focus();
+                }
             }
-            else
+            catch (Exception r)
             {
-                MessageBox.Show("No existen Proveedores.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                btnBuscar.Focus();
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 
         private void mostrarFormularioBusquedaProveedor()
         {
-            frmBusquedaProveedor buscarProveedor = new frmBusquedaProveedor();
-            buscarProveedor.campo = campoAnterior;
-            buscarProveedor.texto = textoAnterior;
-            buscarProveedor.estoyBuscando = EstoyBuscando;
-            buscarProveedor.ShowDialog();
-            EstoyBuscando = buscarProveedor.estoyBuscando;
-            campoAnterior = buscarProveedor.campo;
-            textoAnterior = buscarProveedor.texto;
-            campos_tabla = buscarProveedor.campos_tabla;
-            actualizarLabelFiltroBusqueda();
-            return;
+            try
+            {
+                frmBusquedaProveedor buscarProveedor = new frmBusquedaProveedor();
+                buscarProveedor.campo = campoAnterior;
+                buscarProveedor.texto = textoAnterior;
+                buscarProveedor.estoyBuscando = EstoyBuscando;
+                buscarProveedor.ShowDialog();
+                EstoyBuscando = buscarProveedor.estoyBuscando;
+                campoAnterior = buscarProveedor.campo;
+                textoAnterior = buscarProveedor.texto;
+                campos_tabla = buscarProveedor.campos_tabla;
+                actualizarLabelFiltroBusqueda();
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
 
         private void actualizarLabelFiltroBusqueda()
         {
-            if (EstoyBuscando == true)
+            try
             {
-                lbFiltroBusqueda.Text = "FILTRO DE BÚSQUEDA --> CAMPO: " + campoAnterior + ", TEXTO: " + textoAnterior + ".";
+                if (EstoyBuscando == true)
+                {
+                    lbFiltroBusqueda.Text = "FILTRO DE BÚSQUEDA --> CAMPO: " + campoAnterior + ", TEXTO: " + textoAnterior + ".";
+                }
+                else
+                {
+                    lbFiltroBusqueda.Text = "SIN FILTRO DE BÚSQUEDA.";
+                }
             }
-            else
+            catch (Exception r)
             {
-                lbFiltroBusqueda.Text = "SIN FILTRO DE BÚSQUEDA.";
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 
         private void buscarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            buscarProveedor();
+            try
+            {
+                buscarProveedor();
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnOrdenar_Click(object sender, EventArgs e)
         {
-            ordenamientoProveedor();
+            try
+            {
+                ordenamientoProveedor();
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ordenamientoProveedor()
-        {    
-            if (grdProveedores.DataSource != null)
+        {
+            try
             {
-                mostrarFormularioOrdenarProveedor();
-                grdProveedores.Focus();
+                if (grdProveedores.DataSource != null)
+                {
+                    mostrarFormularioOrdenarProveedor();
+                    grdProveedores.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("No existen Proveedores.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btnOrdenar.Focus();
+                }
             }
-            else
+            catch (Exception r)
             {
-                MessageBox.Show("No existen Proveedores.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                btnOrdenar.Focus();
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void mostrarFormularioOrdenarProveedor()
         {
-            frmOrdenarProveedor ordenarProveedores = new frmOrdenarProveedor();
-            ordenarProveedores.Ascendente = ordenamiento;
-            ordenarProveedores.campo = campoOrdenamiento;
-            ordenarProveedores.ShowDialog();
-            campoOrdenamiento = ordenarProveedores.campo;
-            ordenamiento = ordenarProveedores.Ascendente;
-            DataGridViewColumn columna = grdProveedores.Columns[campoOrdenamiento];
-            if (campoOrdenamiento != "")
+            try
             {
-                if (ordenamiento == true)
+                frmOrdenarProveedor ordenarProveedores = new frmOrdenarProveedor();
+                ordenarProveedores.Ascendente = ordenamiento;
+                ordenarProveedores.campo = campoOrdenamiento;
+                ordenarProveedores.ShowDialog();
+                campoOrdenamiento = ordenarProveedores.campo;
+                ordenamiento = ordenarProveedores.Ascendente;
+                DataGridViewColumn columna = grdProveedores.Columns[campoOrdenamiento];
+                if (campoOrdenamiento != "")
                 {
-                    grdProveedores.Sort(columna, ListSortDirection.Ascending);
+                    if (ordenamiento == true)
+                    {
+                        grdProveedores.Sort(columna, ListSortDirection.Ascending);
+                    }
+                    if (ordenamiento == false)
+                    {
+                        grdProveedores.Sort(columna, ListSortDirection.Descending);
+                    }
                 }
-                if (ordenamiento == false)
-                {
-                    grdProveedores.Sort(columna, ListSortDirection.Descending);
-                }
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void frmProveedoresPrincipal_Load(object sender, EventArgs e)
         {
-            llenarGrilla(); 
-            grdProveedores = fg.formatoGrilla(grdProveedores, 1); 
+            try
+            {
+                llenarGrilla();
+                grdProveedores = fg.formatoGrilla(grdProveedores, 1);
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } 
         }
 
         private object obtenerCampoTabla()
@@ -361,16 +511,30 @@ namespace ADBISYS.Formularios.Proveedores
 
         private void grdProveedores_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Return)
+            try
             {
-                e.SuppressKeyPress = true;
-                modificarProveedor();
+                if (e.KeyCode == Keys.Return)
+                {
+                    e.SuppressKeyPress = true;
+                    modificarProveedor();
+                }
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void ordenarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ordenamientoProveedor();
+            try
+            {
+                ordenamientoProveedor();
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void actualizarToolStripMenuItem_Click(object sender, EventArgs e)

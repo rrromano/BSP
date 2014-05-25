@@ -17,28 +17,32 @@ namespace ADBISYS.Formularios.Articulos
     {
         String rubroAnterior = "";
         Dictionary<int, string> colRubros = new Dictionary<int, string>();
+        FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
 
         public frmActMasivaArticulo()
         {
             InitializeComponent();
+            txtPrecioPorcentaje.Focus();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            salir();
+            if (salir()) { this.Close(); }
         }
 
-        private void salir()
+        private Boolean salir()
         {
             try
             {
                 Boolean estaSeguro = (MessageBox.Show("¿Está seguro que desea cancelar la actualización masiva de artículos?", "Actualización Masiva de Artículos.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
-                if (estaSeguro) this.Close();
-            }
+                if (estaSeguro) return true ;
 
+                return false;
+            }
             catch (Exception r)
             {
                 MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
 
@@ -50,26 +54,94 @@ namespace ADBISYS.Formularios.Articulos
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            if (!(validarActualizacion())) { return; }
-
-            if (deseaContinuar())
+            try
             {
-                actualizacionMasiva();
+                if (!(validarActualizacion())) { return; }
+
+                if (deseaContinuar())
+                {
+                    actualizacionMasiva();
+                }
             }
-            
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }            
         }
 
         private void actualizacionMasiva()
         {
             try
             {
+                ConectarBD objConect = new ConectarBD();
+                String usuario = Properties.Settings.Default.UsuarioLogueado.ToString();
+                String cadenaSql = "";
 
+                cadenaSql = "exec adp_actualizacionMasiva_Articulo ";
+
+                //============================================================================================================
+                //ID RUBRO - ID RUBRO - ID RUBRO - ID RUBRO - ID RUBRO - ID RUBRO - ID RUBRO - ID RUBRO - ID RUBRO - ID RUBRO 
+                //============================================================================================================
+                if (cboRubro.Text.ToUpper() == "[TODOS]") { cadenaSql = cadenaSql + " @Articulo_IdRubro = null"; }
+                else { cadenaSql = cadenaSql + " @Articulo_IdRubro = " + obtenerIdRubro().ToString(); }
+                //============================================================================================================
+
+                //============================================================================================================
+                //TIPO ACTUALIZACIÓN - TIPO ACTUALIZACIÓN - TIPO ACTUALIZACIÓN - TIPO ACTUALIZACIÓN - TIPO ACTUALIZACIÓN - TIPO 
+                //============================================================================================================
+                if (RBporcentaje.Checked) { cadenaSql = cadenaSql + " , @Articulo_TipoAct = 1"; } //ACTUALIZACIÓN POR PORCENTAJE
+                else { cadenaSql = cadenaSql + " , @Articulo_TipoAct = 0";  } //ACTUALIZACIÓN POR VALOR
+                //============================================================================================================
+
+                //============================================================================================================
+                //SUMA O RESTA - SUMA O RESTA - SUMA O RESTA - SUMA O RESTA - SUMA O RESTA - SUMA O RESTA - SUMA O RESTA - SUMA
+                //============================================================================================================
+                if (cboAumentarDisminuir.Text.ToUpper() == "AUMENTAR") { cadenaSql = cadenaSql + " , @Articulo_SumaResta = 1"; }
+                else { cadenaSql = cadenaSql + " , @Articulo_SumaResta = 0"; } 
+                //============================================================================================================
+
+                //============================================================================================================
+                //VALOR - VALOR - VALOR - VALOR - VALOR - VALOR - VALOR - VALOR - VALOR - VALOR - VALOR - VALOR - VALOR - VALOR
+                //============================================================================================================
+                cadenaSql = cadenaSql + " , @Articulo_Valor = " + txtPrecioPorcentaje.Text;
+                //============================================================================================================
+
+                //============================================================================================================
+                //USUARIO - USUARIO - USUARIO - USUARIO - USUARIO - USUARIO - USUARIO - USUARIO - USUARIO - USUARIO - USUARIO 
+                //============================================================================================================
+                if (usuario != "") { cadenaSql = cadenaSql + " , @Articulo_Login = " + fg.fcSql(usuario, "String"); }
+                //============================================================================================================
+
+                objConect.ejecutarQuery(cadenaSql);
+
+                MessageBox.Show("Actualización Ok.", "Actualización Masiva Artículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception r)
             {
                 MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private int obtenerIdRubro()
+        {
+            try
+            {
+                foreach (KeyValuePair<int, string> rubro in colRubros)
+                {
+                    if (cboRubro.Text == rubro.Value)
+                    {
+                        return (rubro.Key);
+                    }
+                }
+                return 0;
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
         }
 
         private bool deseaContinuar()
@@ -80,11 +152,25 @@ namespace ADBISYS.Formularios.Articulos
 
                 if (cboAumentarDisminuir.Text.ToUpper() == "AUMENTAR")
                 {
-                    estaSeguro = (MessageBox.Show("A continuación se aumentará $" + txtPrecioPorcentaje.Text + " a todos los artículos pertenecientes al rubro " + cboRubro.Text + ". ¿Desea continuar?", "Actualización Masiva de Artículos.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
+                    if (RBporcentaje.Checked)
+                    {
+                        estaSeguro = (MessageBox.Show("A continuación se aumentará un " + txtPrecioPorcentaje.Text + "% a todos los artículos pertenecientes al rubro " + cboRubro.Text + ". ¿Desea continuar?", "Actualización Masiva de Artículos.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
+                    }
+                    else
+                    {
+                        estaSeguro = (MessageBox.Show("A continuación se aumentará $" + txtPrecioPorcentaje.Text + " a todos los artículos pertenecientes al rubro " + cboRubro.Text + ". ¿Desea continuar?", "Actualización Masiva de Artículos.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);                    
+                    }
                 }
                 else
                 {
-                    estaSeguro = (MessageBox.Show("A continuación se aumentará un " + txtPrecioPorcentaje.Text + "% a todos los artículos pertenecientes al rubro " + cboRubro.Text + ". ¿Desea continuar?", "Actualización Masiva de Artículos.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
+                    if (RBporcentaje.Checked)
+                    {
+                        estaSeguro = (MessageBox.Show("A continuación se disminuirá un " + txtPrecioPorcentaje.Text + "% a todos los artículos pertenecientes al rubro " + cboRubro.Text + ". ¿Desea continuar?", "Actualización Masiva de Artículos.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
+                    }
+                    else
+                    {
+                        estaSeguro = (MessageBox.Show("A continuación se disminuirá $" + txtPrecioPorcentaje.Text + " a todos los artículos pertenecientes al rubro " + cboRubro.Text + ". ¿Desea continuar?", "Actualización Masiva de Artículos.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
+                    }
                 }
 
                 return estaSeguro;
@@ -177,6 +263,8 @@ namespace ADBISYS.Formularios.Articulos
                 Entidades.Proveedores entProveedores = new Entidades.Proveedores();
                 Ds = entProveedores.obtenerInfoRubros();
 
+                cboRubro.Items.Add("[TODOS]");
+
                 foreach (DataRow dataRow in Ds.Tables[0].Rows)
                 {
                     cboRubro.Items.Add(dataRow["DESCRIPCION"]);
@@ -197,6 +285,9 @@ namespace ADBISYS.Formularios.Articulos
             {
                 cargarComboRubro();
                 cargarComboAumentarDisminuir();
+                RBporcentaje.Checked = true;
+                cboRubro.SelectedIndex = 0;
+                cboAumentarDisminuir.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -219,38 +310,19 @@ namespace ADBISYS.Formularios.Articulos
 
         private void salidaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            salir();
+            if (salir()) { this.Close(); }
         }
 
         private void salirToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            salir();
+            if (salir()) { this.Close(); }
         }
 
-        private void RBporcentaje_CheckedChanged(object sender, EventArgs e)
+        private void txtPrecioPorcentaje_KeyPress(object sender, KeyPressEventArgs e)
         {
-            try
-            {
-                lblInformacion.Text = "A continuación indique el porcentaje que \ndesea aumentar o disminuir.";
-                lblPrecioPorcentaje.Text = "Porcentaje";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void RBPrecio_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                lblInformacion.Text = "A continuación indique la cantidad (pesos)\nque desea aumentar o disminuir.";
-                lblPrecioPorcentaje.Text = "Precio";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            fg.keyPressNumerosDecimales(e, txtPrecioPorcentaje);
+            fg.keyPressNumericoDiezDosDecimales(e, txtPrecioPorcentaje.Text.Length, txtPrecioPorcentaje.Text);
         }
     }
 }
+

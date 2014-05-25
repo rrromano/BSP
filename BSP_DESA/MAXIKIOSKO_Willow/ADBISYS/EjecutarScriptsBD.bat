@@ -52,7 +52,7 @@ sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\50 - adp_cboB
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\51 - adp_busqueda_compras.sql"
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\52 - adp_actualiza_mov_compras.sql"
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\53 - adp_busqueda_movimientos_caja.sql"
-sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\54 - adp_actualizacionMasiva_Articulos.sql"
+sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\54 - adp_actualizacionMasiva_Articulo.sql"
 ECHO.
 ECHO PROCESO FINALIZADO
 ECHO. 

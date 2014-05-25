@@ -225,7 +225,7 @@ namespace ADBISYS.Formularios.Proveedores
             catch (Exception e)
             {
                 MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return 9;
+                return -1;
             }
         }
 
@@ -258,16 +258,6 @@ namespace ADBISYS.Formularios.Proveedores
         {
             cargarCodigoProveedor();
             cargarComboRubro();
-        }
-
-        private void cboRubro_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

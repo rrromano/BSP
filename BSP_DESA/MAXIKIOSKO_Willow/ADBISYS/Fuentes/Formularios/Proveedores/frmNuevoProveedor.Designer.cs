@@ -74,7 +74,6 @@
             this.label2.Size = new System.Drawing.Size(67, 23);
             this.label2.TabIndex = 1;
             this.label2.Text = "Rubro";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -234,7 +233,6 @@
             this.cboRubro.Name = "cboRubro";
             this.cboRubro.Size = new System.Drawing.Size(223, 30);
             this.cboRubro.TabIndex = 2;
-            this.cboRubro.SelectedIndexChanged += new System.EventHandler(this.cboRubro_SelectedIndexChanged);
             // 
             // txtCuit
             // 
