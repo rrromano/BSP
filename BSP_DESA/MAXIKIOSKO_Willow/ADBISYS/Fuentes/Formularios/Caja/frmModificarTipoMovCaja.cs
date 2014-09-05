@@ -128,9 +128,16 @@ namespace ADBISYS.Formularios.Caja
         {
             try
             {
+                if (cboEntradaSalida.Text == "")
+                {
+                    MessageBox.Show("Debe seleccionar si el Tipo de Movimiento es de Ingreso o Salida.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtDescripcion.Focus();
+                    return false;
+                }
+                
                 if (txtDescripcion.Text.Trim() == "")
                 {
-                    MessageBox.Show("La descrición del Tipo de Movimiento es obligatoria.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("La descrición del Tipo de Movimiento es obligatoria.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtDescripcion.Focus();
                     return false;
                 }

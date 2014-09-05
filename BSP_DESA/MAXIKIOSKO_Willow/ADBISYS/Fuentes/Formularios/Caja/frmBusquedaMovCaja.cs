@@ -51,7 +51,7 @@ namespace ADBISYS.Formularios.Caja
                 cadenaSql = cadenaSql + " @tabla = " + fg.fcSql("MOVIMIENTOS_CAJA", "String");
                 cadenaSql = cadenaSql + ",@campo_tabla = " + fg.fcSql(obtenerCampoTabla().ToString(), "String");
                 cadenaSql = cadenaSql + ",@texto = " + fg.fcSql(txtTexto.Text, "String").Replace(",", ".");
-                cadenaSql = cadenaSql + ",@Fecha = " + fg.fcSql(fg.appFechaSistema().ToString(), "String");
+                cadenaSql = cadenaSql + ",@Fecha = " + fg.fcSql(fg.appFechaSistema().ToString(), "Datetime");
 
                 Ds.Reset();
                 Ds = objConect.ejecutarQuerySelect(cadenaSql);
@@ -65,7 +65,7 @@ namespace ADBISYS.Formularios.Caja
                 }
                 else
                 {
-                    MessageBox.Show("No se encontraron coincidencias.", "Búsqueda de Proveedor.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No se encontraron coincidencias.", "Búsqueda de Movimientos.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     cboCampo.Focus();
                     return;
                 }
@@ -181,8 +181,8 @@ namespace ADBISYS.Formularios.Caja
             {
                 campoAnt = cboCampo.Text;
                 textoAnt = txtTexto.Text;
-                cboCampo.Items.Clear();
-                txtTexto.Text = "";
+                //cboCampo.Items.Clear();
+                //txtTexto.Text = "";
                 cboCampo.Enabled = false;
                 txtTexto.Enabled = false;
             }
@@ -190,7 +190,7 @@ namespace ADBISYS.Formularios.Caja
             {
                 cboCampo.Enabled = true;
                 txtTexto.Enabled = true;
-                cargarComboCampo();
+                //cargarComboCampo();
                 cboCampo.Text = campoAnt;
                 txtTexto.Text = textoAnt;
             }

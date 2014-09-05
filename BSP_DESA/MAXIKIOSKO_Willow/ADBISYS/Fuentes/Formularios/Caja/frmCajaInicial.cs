@@ -66,7 +66,7 @@ namespace ADBISYS.Formularios.Caja
         {
             try
             {
-                if (MessageBox.Show("No se puede iniciar la caja del día de hoy, ya que existen movimientos con la fecha de hoy. Si inicia la caja, se eliminarán todos los movimientos actuales. \n¿Está seguro que desa continuar?", "¿Está Seguro?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("No se puede iniciar la caja del día de hoy, ya que existen movimientos correspondientes a la fecha. Si inicia la caja, se eliminarán todos los movimientos actuales. \n¿Está seguro que desa continuar?", "¿Está Seguro?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     return true;
                 }

@@ -90,7 +90,7 @@ namespace ADBISYS.Entidades
 
         }
 
-        public void actualizar_moovimiento_compras(DateTime fecha_sistema)
+        public void actualizar_movimiento_compras(DateTime fecha_sistema)
         {
             try
             {

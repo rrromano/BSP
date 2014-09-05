@@ -55,7 +55,7 @@ namespace ADBISYS.Formularios.Compras
                 objConect.ejecutarQuery(cadenaSql);
 
                 Entidades.Compras entCompras = new ADBISYS.Entidades.Compras();
-                entCompras.actualizar_moovimiento_compras(fg.appFechaSistema());
+                entCompras.actualizar_movimiento_compras(fg.appFechaSistema());
 
                 this.Hide();
             }

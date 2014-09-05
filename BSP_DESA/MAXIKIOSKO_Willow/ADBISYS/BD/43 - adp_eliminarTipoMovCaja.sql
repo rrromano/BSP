@@ -4,7 +4,7 @@ If Exists ( Select 1 From SysObjects Where Name = 'adp_eliminarTipoMovCaja')
   Drop Procedure adp_eliminarTipoMovCaja
 Go 
 
--- SP QUE INSERTA UN NUEVO PROVEEDOR.
+-- SP QUE ELIMINA UN TIPO DE MOVIMIENTO DE CAJA
 Create procedure dbo.adp_eliminarTipoMovCaja (@ID_TIPOMOVIMIENTO AS NUMERIC(2))
 as
 

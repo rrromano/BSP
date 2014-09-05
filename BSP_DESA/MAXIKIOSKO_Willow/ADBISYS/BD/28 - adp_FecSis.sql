@@ -4,7 +4,7 @@ If Exists ( Select 1 From SysObjects Where Name = 'adp_FecSis')
   Drop Procedure adp_FecSis
 Go 
 
--- SP PARA OBTENER LOS MOVIMIENTOS DE LA CAJA DEL DÍA @FECHA_MOV
+-- SP PARA OBTENER/ACTUALIZAR LA FECHA DE SISTEMA, CORRESPONDIENTE A LA CAJA.
 Create procedure dbo.adp_FecSis (@FECHA DATETIME = NULL)
 as
 

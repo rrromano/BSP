@@ -58,7 +58,7 @@ namespace ADBISYS.Formularios.Caja
                     cadenaSql = cadenaSql + " @tabla = " + fg.fcSql("MOVIMIENTOS_CAJA", "String");
                     cadenaSql = cadenaSql + ",@campo_tabla = " + fg.fcSql(obtenerCampoTabla().ToString(), "String");
                     cadenaSql = cadenaSql + ",@texto = " + fg.fcSql(textoAnterior, "String").Replace(",",".");
-                    cadenaSql = cadenaSql + ",@Fecha = " + fg.fcSql(fg.appFechaSistema().ToString(), "String");
+                    cadenaSql = cadenaSql + ",@Fecha = " + fg.fcSql(fg.appFechaSistema().ToString(), "Datetime");
 
                     Ds = objConect.ejecutarQuerySelect(cadenaSql);
                     if (Ds.Tables[0].Rows.Count > 0)
@@ -323,11 +323,6 @@ namespace ADBISYS.Formularios.Caja
             }
         }
 
-        private void buscarToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            buscarMovimiento();
-        }
-
         private void btnOrdenar_Click(object sender, EventArgs e)
         {
             ordenamientoMovimientosCaja();
@@ -374,5 +369,9 @@ namespace ADBISYS.Formularios.Caja
             }
         }
 
+        private void buscarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            buscarMovimiento();
+        }
     }
 }

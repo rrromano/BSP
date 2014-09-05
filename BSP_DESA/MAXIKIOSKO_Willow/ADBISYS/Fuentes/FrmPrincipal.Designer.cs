@@ -65,11 +65,11 @@
             this.statusStripPrincipal = new System.Windows.Forms.StatusStrip();
             this.fechaTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.usuarioTSS = new System.Windows.Forms.ToolStripStatusLabel();
+            this.cajaTTS = new System.Windows.Forms.ToolStripStatusLabel();
             this.vacioTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.maquinaTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.horaTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.cajaTTS = new System.Windows.Forms.ToolStripStatusLabel();
             this.StripPrincipal.SuspendLayout();
             this.statusStripPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -195,15 +195,15 @@
             // iniciarCajaTSMI
             // 
             this.iniciarCajaTSMI.Name = "iniciarCajaTSMI";
-            this.iniciarCajaTSMI.Size = new System.Drawing.Size(240, 28);
+            this.iniciarCajaTSMI.Size = new System.Drawing.Size(369, 28);
             this.iniciarCajaTSMI.Text = "Iniciar";
             this.iniciarCajaTSMI.Click += new System.EventHandler(this.iniciarCajaTSMI_Click);
             // 
             // modificarCajaTSMI
             // 
             this.modificarCajaTSMI.Name = "modificarCajaTSMI";
-            this.modificarCajaTSMI.Size = new System.Drawing.Size(240, 28);
-            this.modificarCajaTSMI.Text = "Modificar ";
+            this.modificarCajaTSMI.Size = new System.Drawing.Size(369, 28);
+            this.modificarCajaTSMI.Text = "Visualizar / Modificar ";
             this.modificarCajaTSMI.Click += new System.EventHandler(this.modificarCajaTSMI_Click);
             // 
             // tipoMovimientoCajaToolStripMenuItem
@@ -211,8 +211,8 @@
             this.tipoMovimientoCajaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.agregarModificarToolStripMenuItem1});
             this.tipoMovimientoCajaToolStripMenuItem.Name = "tipoMovimientoCajaToolStripMenuItem";
-            this.tipoMovimientoCajaToolStripMenuItem.Size = new System.Drawing.Size(240, 28);
-            this.tipoMovimientoCajaToolStripMenuItem.Text = "Movimiento Caja";
+            this.tipoMovimientoCajaToolStripMenuItem.Size = new System.Drawing.Size(369, 28);
+            this.tipoMovimientoCajaToolStripMenuItem.Text = "Tipos de Movimientos de Caja";
             // 
             // agregarModificarToolStripMenuItem1
             // 
@@ -224,7 +224,7 @@
             // finalizarTSMI
             // 
             this.finalizarTSMI.Name = "finalizarTSMI";
-            this.finalizarTSMI.Size = new System.Drawing.Size(240, 28);
+            this.finalizarTSMI.Size = new System.Drawing.Size(369, 28);
             this.finalizarTSMI.Text = "Finalizar";
             this.finalizarTSMI.Click += new System.EventHandler(this.finalizarTSMI_Click);
             // 
@@ -374,6 +374,14 @@
             this.usuarioTSS.Size = new System.Drawing.Size(215, 29);
             this.usuarioTSS.Text = "Usuario Desconectado";
             // 
+            // cajaTTS
+            // 
+            this.cajaTTS.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
+            this.cajaTTS.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cajaTTS.Name = "cajaTTS";
+            this.cajaTTS.Size = new System.Drawing.Size(128, 29);
+            this.cajaTTS.Text = "Caja Cerrada";
+            // 
             // vacioTSS
             // 
             this.vacioTSS.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
@@ -399,14 +407,6 @@
             // timer
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
-            // 
-            // cajaTTS
-            // 
-            this.cajaTTS.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
-            this.cajaTTS.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cajaTTS.Name = "cajaTTS";
-            this.cajaTTS.Size = new System.Drawing.Size(128, 29);
-            this.cajaTTS.Text = "Caja Cerrada";
             // 
             // FrmPrincipal
             // 

@@ -153,8 +153,8 @@ namespace ADBISYS.Formularios.Rubros
             {
                 campoAnt = cboCampo.Text;
                 textoAnt = txtTexto.Text;
-                cboCampo.Items.Clear();
-                txtTexto.Text = "";
+                //cboCampo.Items.Clear();
+                //txtTexto.Text = "";
                 cboCampo.Enabled = false;
                 txtTexto.Enabled = false;
             }
@@ -162,7 +162,7 @@ namespace ADBISYS.Formularios.Rubros
             {
                 cboCampo.Enabled = true;
                 txtTexto.Enabled = true;
-                cargarComboCampo();
+                //cargarComboCampo();
                 cboCampo.Text = campoAnt;
                 txtTexto.Text = textoAnt;
             }

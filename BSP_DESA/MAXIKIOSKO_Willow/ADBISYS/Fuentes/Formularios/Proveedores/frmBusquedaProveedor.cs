@@ -175,8 +175,8 @@ namespace ADBISYS.Formularios.Proveedores
             {
                 campoAnt = cboCampo.Text;
                 textoAnt = txtTexto.Text;
-                cboCampo.Items.Clear();
-                txtTexto.Text = "";
+                //cboCampo.Items.Clear();
+                //txtTexto.Text = "";
                 cboCampo.Enabled = false;
                 txtTexto.Enabled = false;
             }
@@ -184,7 +184,7 @@ namespace ADBISYS.Formularios.Proveedores
             {
                 cboCampo.Enabled = true;
                 txtTexto.Enabled = true;
-                cargarComboCampo();
+                //cargarComboCampo();
                 cboCampo.Text = campoAnt;
                 txtTexto.Text = textoAnt;
             }

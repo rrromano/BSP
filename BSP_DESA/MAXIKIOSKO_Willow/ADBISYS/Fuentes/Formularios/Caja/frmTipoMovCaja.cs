@@ -161,7 +161,7 @@ namespace ADBISYS.Formularios.Caja
                 filaSeleccionada = grdTipoMovCaja.CurrentCellAddress.Y;
 
                 Entidades.TipoMovimientoCaja TipoMovCaja = new Entidades.TipoMovimientoCaja();
-                TipoMovCaja.m_ID_TipoMovimiento = Int32.Parse(grdTipoMovCaja.Rows[filaSeleccionada].Cells["CODIGO"].Value.ToString());
+                TipoMovCaja.m_ID_TipoMovimiento = Int32.Parse(grdTipoMovCaja.Rows[filaSeleccionada].Cells["CÓDIGO"].Value.ToString());
                 TipoMovCaja.eliminarTipoMovCajaDeHoy(TipoMovCaja.m_ID_TipoMovimiento, fg.appFechaSistema());
                 grdTipoMovCaja.Focus();
             }
@@ -179,7 +179,7 @@ namespace ADBISYS.Formularios.Caja
                 filaSeleccionada = grdTipoMovCaja.CurrentCellAddress.Y;
 
                 Entidades.TipoMovimientoCaja TipoMovCaja = new Entidades.TipoMovimientoCaja();
-                TipoMovCaja.m_ID_TipoMovimiento = Int32.Parse(grdTipoMovCaja.Rows[filaSeleccionada].Cells["CODIGO"].Value.ToString());
+                TipoMovCaja.m_ID_TipoMovimiento = Int32.Parse(grdTipoMovCaja.Rows[filaSeleccionada].Cells["CÓDIGO"].Value.ToString());
                 TipoMovCaja.eliminarTipoMovCaja(TipoMovCaja.m_ID_TipoMovimiento);
                 grdTipoMovCaja.Focus();
             }

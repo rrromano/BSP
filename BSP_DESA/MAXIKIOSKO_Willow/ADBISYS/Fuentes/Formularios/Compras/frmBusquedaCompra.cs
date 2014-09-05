@@ -180,8 +180,8 @@ namespace ADBISYS.Formularios.Compras
             {
                 campoAnt = cboCampo.Text;
                 textoAnt = txtTexto.Text;
-                cboCampo.Items.Clear();
-                txtTexto.Text = "";
+                //cboCampo.Items.Clear();
+                //txtTexto.Text = "";
                 cboCampo.Enabled = false;
                 txtTexto.Enabled = false;
             }
@@ -189,7 +189,7 @@ namespace ADBISYS.Formularios.Compras
             {
                 cboCampo.Enabled = true;
                 txtTexto.Enabled = true;
-                cargarComboCampo();
+                //cargarComboCampo();
                 cboCampo.Text = campoAnt;
                 txtTexto.Text = textoAnt;
             }

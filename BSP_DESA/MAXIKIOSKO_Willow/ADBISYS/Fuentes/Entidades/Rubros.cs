@@ -25,7 +25,8 @@ namespace ADBISYS.Entidades
 
                 cadenaSql = "EXEC adp_nuevo_rubro";
                 cadenaSql = cadenaSql + " @Rubro_Descripcion = " + fg.fcSql(descripcion, "String");
-                cadenaSql = cadenaSql + ",@Rubro_Login = " + fg.fcSql(usuario, "String");
+                if (usuario != "")
+                { cadenaSql = cadenaSql + ",@Rubro_Login = " + fg.fcSql(usuario, "String"); }
 
                 objConect.ejecutarQuery(cadenaSql);
             }

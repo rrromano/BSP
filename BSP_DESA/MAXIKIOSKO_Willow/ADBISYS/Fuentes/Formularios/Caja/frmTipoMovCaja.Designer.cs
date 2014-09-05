@@ -204,8 +204,8 @@
             this.buscarToolStripMenuItem,
             this.ordenarToolStripMenuItem});
             this.cajaToolStripMenuItem.Name = "cajaToolStripMenuItem";
-            this.cajaToolStripMenuItem.Size = new System.Drawing.Size(182, 27);
-            this.cajaToolStripMenuItem.Text = "Movimiento &Caja";
+            this.cajaToolStripMenuItem.Size = new System.Drawing.Size(192, 27);
+            this.cajaToolStripMenuItem.Text = "Movimientos &Caja";
             // 
             // actualizarToolStripMenuItem
             // 
@@ -275,7 +275,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmTipoMovCaja";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Tipo Movimiento Caja";
+            this.Text = "Tipos de Movimientos de Caja";
             this.Load += new System.EventHandler(this.frmTipoMovCaja_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

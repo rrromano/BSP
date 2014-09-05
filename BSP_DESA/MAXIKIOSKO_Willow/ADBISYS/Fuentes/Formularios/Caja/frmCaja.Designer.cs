@@ -236,6 +236,7 @@
             this.buscarToolStripMenuItem1.Name = "buscarToolStripMenuItem1";
             this.buscarToolStripMenuItem1.Size = new System.Drawing.Size(174, 28);
             this.buscarToolStripMenuItem1.Text = "Buscar";
+            this.buscarToolStripMenuItem1.Click += new System.EventHandler(this.buscarToolStripMenuItem1_Click);
             // 
             // ordenarToolStripMenuItem1
             // 

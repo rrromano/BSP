@@ -21,7 +21,7 @@ BEGIN TRY
 				 end as CAMPO
 	FROM sys.columns c JOIN sys.tables t
 	ON c.object_id = t.object_id
-	WHERE t.name = 'PROVEEDORES' and c.name not in ('fecha_modif', 'login_modif', 'term_modif')
+	WHERE t.name = 'PROVEEDORES' and c.name not in ('estado','fecha_modif', 'login_modif', 'term_modif')
 
   PRINT 'FIN ACTUALIZACIÓN OK'
   SET NOCOUNT OFF

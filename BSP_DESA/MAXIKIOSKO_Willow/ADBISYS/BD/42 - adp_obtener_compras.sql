@@ -15,7 +15,7 @@ BEGIN TRY
 	SELECT A.Id_Compra					AS CÓDIGO,
 				 UPPER(B.Nombre)			AS PROVEEDOR,
 				 A.Importe						AS IMPORTE,	
-				 convert(varchar,A.Fecha_Compra,120) AS FECHA_COMPRA,
+				 left(convert(varchar,A.Fecha_Compra,120),10) AS FECHA_COMPRA,
 				 convert(varchar,A.fecha_modif,120) AS FECHA_MODIF,
 				 UPPER(A.login_modif) AS LOGIN_MODIF,
 				 UPPER(A.term_modif)  AS TERM_MODIF

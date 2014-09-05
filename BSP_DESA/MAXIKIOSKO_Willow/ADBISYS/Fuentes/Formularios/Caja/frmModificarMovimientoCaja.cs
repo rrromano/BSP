@@ -56,18 +56,11 @@ namespace ADBISYS.Formularios.Caja
         {
             try
             {
-                if (int.Parse(txtCodigo.Text) >= 4 && int.Parse(txtCodigo.Text) <= 6)
+                if (int.Parse(txtCodigo.Text) >= 4)
                 {
                     txtImporte.Enabled = true;
                     btnAceptar.Enabled = true;
                     btnLimpiar.Enabled = true;
-                }
-
-                if (int.Parse(txtCodigo.Text) > 6)
-                {
-                    txtImporte.Enabled       = true;
-                    btnAceptar.Enabled       = true;
-                    btnLimpiar.Enabled       = true;
                 }
             }
             catch (Exception ex)

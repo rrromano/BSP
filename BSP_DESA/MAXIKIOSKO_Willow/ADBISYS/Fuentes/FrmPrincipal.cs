@@ -55,7 +55,7 @@ namespace ADBISYS
                 DateTime fechaSistema = fg.appFechaSistema();
                 if (caja.obtenerEstado() != 0)
                 {
-                    MessageBox.Show("No se puede iniciar la caja debido a que no se cerró la caja del día " + caja.obtenerFechaCajaAbierta() + ".", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No se puede iniciar la caja debido a que no se cerró la correspondiente al día " + caja.obtenerFechaCajaAbierta() + ".", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return false;
                 }
                 return true;
@@ -79,7 +79,6 @@ namespace ADBISYS
                 cajaTTS.BackColor = Color.Black;
                 cajaTTS.ForeColor = Color.White;
             }
-
         }
 
         private void IniciarPrograma()
