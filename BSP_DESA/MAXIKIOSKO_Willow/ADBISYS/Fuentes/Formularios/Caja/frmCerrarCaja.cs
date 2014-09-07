@@ -65,11 +65,21 @@ namespace ADBISYS.Formularios.Caja
             {
                 llenarGrillaMovimientosCierreCaja();
                 grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 1);
+                actualizarCierreParcial();
             }
             catch (Exception r)
             {
                 MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void actualizarCierreParcial()
+        {
+            Entidades.Caja caja = new Entidades.Caja();
+            DataSet Ds = new DataSet();
+            Ds.Reset();
+            Ds = caja.obtenerCierreParcialCaja(fg.appFechaSistema());
+            txtCierreParcial.Text = Ds.Tables[0].Rows[0]["Cierre_Parcial"].ToString();
         }
 
         private void llenarGrillaMovimientosCierreCaja()

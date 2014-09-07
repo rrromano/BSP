@@ -102,7 +102,25 @@ namespace ADBISYS
 
         private void salirTSMI_Click(object sender, EventArgs e)
         {
-            Application.Exit(); //RR 2014-03-22
+            try
+            {
+                //Estado de la caja: [0 no está iniciada] / [1 está iniciada]
+                Entidades.Caja caj = new ADBISYS.Entidades.Caja();
+                if (caj.obtenerEstado() == 1)
+                {
+                    MessageBox.Show("Para salir del Programa, debe realizar el Cierre de Caja Correspondiente.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    Application.Exit();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -285,6 +303,13 @@ namespace ADBISYS
             try
             {
                 if (!(cajaIniciada())) { return; }
+
+                if ((Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmCaja) != null) || (Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmTipoMovCaja) != null) || (Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmComprasPrincipal) != null))
+                {
+                    MessageBox.Show("Para realizar el Cierre de Caja, debe cerrar los formularios de Caja, Compras y Ventas.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                
                 frmCerrarCaja cerrarCaja = new frmCerrarCaja();
                 cerrarCaja.ShowDialog();
             }

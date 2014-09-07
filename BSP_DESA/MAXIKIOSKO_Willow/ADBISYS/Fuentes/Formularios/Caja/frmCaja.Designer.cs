@@ -71,14 +71,14 @@
             this.groupBox1.Controls.Add(this.btnActualizar);
             this.groupBox1.Location = new System.Drawing.Point(16, 28);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(778, 497);
+            this.groupBox1.Size = new System.Drawing.Size(778, 520);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
             // lbFiltroBusqueda
             // 
             this.lbFiltroBusqueda.AutoSize = true;
-            this.lbFiltroBusqueda.Location = new System.Drawing.Point(15, 464);
+            this.lbFiltroBusqueda.Location = new System.Drawing.Point(15, 490);
             this.lbFiltroBusqueda.Name = "lbFiltroBusqueda";
             this.lbFiltroBusqueda.Size = new System.Drawing.Size(279, 23);
             this.lbFiltroBusqueda.TabIndex = 9;
@@ -117,7 +117,7 @@
             this.grdMovsCaja.Location = new System.Drawing.Point(19, 103);
             this.grdMovsCaja.Name = "grdMovsCaja";
             this.grdMovsCaja.RowTemplate.Height = 24;
-            this.grdMovsCaja.Size = new System.Drawing.Size(738, 357);
+            this.grdMovsCaja.Size = new System.Drawing.Size(738, 381);
             this.grdMovsCaja.TabIndex = 7;
             this.grdMovsCaja.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdMovsCaja_CellContentDoubleClick);
             this.grdMovsCaja.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdMovsCaja_KeyDown);
@@ -267,7 +267,7 @@
             // lblTotalParcial
             // 
             this.lblTotalParcial.AutoSize = true;
-            this.lblTotalParcial.Location = new System.Drawing.Point(324, 28);
+            this.lblTotalParcial.Location = new System.Drawing.Point(324, 26);
             this.lblTotalParcial.Name = "lblTotalParcial";
             this.lblTotalParcial.Size = new System.Drawing.Size(179, 23);
             this.lblTotalParcial.TabIndex = 2;
@@ -277,7 +277,7 @@
             // 
             this.groupBox2.Controls.Add(this.txtCierreParcial);
             this.groupBox2.Controls.Add(this.lblTotalParcial);
-            this.groupBox2.Location = new System.Drawing.Point(16, 525);
+            this.groupBox2.Location = new System.Drawing.Point(16, 554);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(778, 64);
             this.groupBox2.TabIndex = 3;
@@ -286,7 +286,7 @@
             // txtCierreParcial
             // 
             this.txtCierreParcial.Enabled = false;
-            this.txtCierreParcial.Location = new System.Drawing.Point(522, 25);
+            this.txtCierreParcial.Location = new System.Drawing.Point(522, 23);
             this.txtCierreParcial.Name = "txtCierreParcial";
             this.txtCierreParcial.Size = new System.Drawing.Size(235, 29);
             this.txtCierreParcial.TabIndex = 3;
@@ -296,7 +296,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(813, 605);
+            this.ClientSize = new System.Drawing.Size(813, 638);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
