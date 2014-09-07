@@ -84,5 +84,24 @@ namespace ADBISYS.Entidades
                 throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
             }
         }
+
+        public DataSet obtenerCamposTiposDeMovimientosCaja()
+        {
+            try
+            {
+                ConectarBD con = new ConectarBD();
+                DataSet ds = new DataSet();
+                FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
+                String cadenaSql = "";
+
+                cadenaSql = "EXEC adp_cbobusqueda_tipoMovimientos_caja";
+                ds = con.ejecutarQuerySelect(cadenaSql);
+                return ds;
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+        }
     }
 }

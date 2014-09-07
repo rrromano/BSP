@@ -270,5 +270,24 @@ namespace ADBISYS.Entidades
                 throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
             }
         }
+
+        public DataSet obtenerCierreParcialCaja(DateTime fecha)
+        {
+            try
+            {
+                ConectarBD con = new ConectarBD();
+                DataSet ds = new DataSet();
+                FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
+                String cadenaSql = "";
+
+                cadenaSql = "EXEC adp_cierre_parcial @FECHA = " + fg.fcSql(fecha.ToString(), "DATETIME");
+                ds = con.ejecutarQuerySelect(cadenaSql);
+                return ds;
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+        }
     }
 }

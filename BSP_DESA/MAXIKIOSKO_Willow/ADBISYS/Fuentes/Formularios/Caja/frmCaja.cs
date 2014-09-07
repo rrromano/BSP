@@ -137,7 +137,7 @@ namespace ADBISYS.Formularios.Caja
 
         private void nuevoMovimientoCaja()
         {
-            frmNuevoMovimientoCaja nuevoMov = new frmNuevoMovimientoCaja();
+            frmNuevoMovCaja nuevoMov = new frmNuevoMovCaja();
             nuevoMov.ShowDialog();
         }
 
@@ -159,6 +159,7 @@ namespace ADBISYS.Formularios.Caja
                 mostrarFormularioModificarMovimientoCaja();
                 llenarGrillaMovimientosCaja();
                 grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 1);
+                actualizarCierreParcial();
                 grdMovsCaja.Focus();
             }
             catch (Exception ex)
@@ -188,7 +189,7 @@ namespace ADBISYS.Formularios.Caja
                     movCaja.m_entradaSalida = 0;
                 }
                 
-                frmModificarMovimientoCaja modifCaja = new frmModificarMovimientoCaja(movCaja);
+                frmModificarMovCaja modifCaja = new frmModificarMovCaja(movCaja);
                 modifCaja.ShowDialog(); 
             }
             catch (Exception e)
@@ -233,11 +234,21 @@ namespace ADBISYS.Formularios.Caja
             {
                 llenarGrillaMovimientosCaja();
                 grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 1);
+                actualizarCierreParcial();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void actualizarCierreParcial()
+        {
+            Entidades.Caja caja = new Entidades.Caja();
+            DataSet Ds = new DataSet();
+            Ds.Reset();
+            Ds = caja.obtenerCierreParcialCaja(fg.appFechaSistema());
+            txtCierreParcial.Text = Ds.Tables[0].Rows[0]["Cierre_Parcial"].ToString();
         }
 
         private void actualizarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -246,6 +257,7 @@ namespace ADBISYS.Formularios.Caja
             {
                 llenarGrillaMovimientosCaja();
                 grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 1);
+                actualizarCierreParcial();
             }
             catch (Exception ex)
             {
@@ -259,6 +271,7 @@ namespace ADBISYS.Formularios.Caja
             {
                 llenarGrillaMovimientosCaja();
                 grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 1);
+                actualizarCierreParcial();
             }
             catch (Exception ex)
             {
