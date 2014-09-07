@@ -52,7 +52,6 @@ namespace ADBISYS
             {
                 FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
                 Entidades.Caja caja = new Entidades.Caja();
-                DateTime fechaSistema = fg.appFechaSistema();
                 if (caja.obtenerEstado() != 0)
                 {
                     MessageBox.Show("No se puede iniciar la caja debido a que no se cerró la correspondiente al día " + caja.obtenerFechaCajaAbierta() + ".", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);

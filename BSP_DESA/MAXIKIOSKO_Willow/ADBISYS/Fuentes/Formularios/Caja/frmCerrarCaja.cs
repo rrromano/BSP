@@ -24,7 +24,7 @@ namespace ADBISYS.Formularios.Caja
         {
             try
             {
-                Boolean deseaModificarUnMovimiento = (MessageBox.Show("¿Desea modificar algún movimiento antes de realizar el Cierre de la Caja del día de Hoy?", "Cierre de Caja.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
+                Boolean deseaModificarUnMovimiento = (MessageBox.Show("¿Desea modificar algún movimiento antes de realizar el Cierre de Caja correspondiente?", "Cierre de Caja.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
 
                 if (deseaModificarUnMovimiento)
                 {
@@ -33,7 +33,8 @@ namespace ADBISYS.Formularios.Caja
                 }
                 else
                 {
-                    Boolean deseaContinuarConElCierreDeLaCaja = (MessageBox.Show("A continuación se realizará el cierre de la caja del día " + fg.appFechaSistema().ToString() + ". ¿Desea Continuar?", "Cierre de Caja.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
+                    Entidades.Caja caja = new Entidades.Caja();
+                    Boolean deseaContinuarConElCierreDeLaCaja = (MessageBox.Show("A continuación se realizará el Cierre de Caja correspondiente al día " + caja.obtenerFechaCajaAbierta() + ". ¿Desea Continuar?", "Cierre de Caja.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
 
                     if (deseaContinuarConElCierreDeLaCaja)
                     {
@@ -42,13 +43,17 @@ namespace ADBISYS.Formularios.Caja
                         String Hora = System.DateTime.Now.TimeOfDay.ToString().Substring(0, 8);
                         String Descripcion = "Cierre de caja del día " + fg.appFechaSistema().ToString();
 
-                        movCaja.registrarMovimientoCaja(0, Descripcion, 0.00, fecSisActual, Hora);
+                        DataSet Ds = new DataSet();
+                        Ds.Reset();
+                        Ds = caja.obtenerCierreParcialCaja(fg.appFechaSistema());
+                        double valor = double.Parse(Ds.Tables[0].Rows[0]["Cierre_Parcial"].ToString());
+
+                        movCaja.registrarMovimientoCaja(0, Descripcion, valor, fecSisActual, Hora);
 
                         ParametrosGenerales pg = new ParametrosGenerales();
                         pg.modificarEstadoGlobalSistema(0); //CIERRO LA CAJA - ESTADO "0"
-                        //pg.modificarFechaSistema(fecSisActual.AddDays(1));
 
-                        MessageBox.Show("Se realizó el cierre de caja Correctamente.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Se realizó el Cierre de Caja Correctamente.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         this.Close();
                     }
                 }
