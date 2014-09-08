@@ -118,7 +118,7 @@ namespace ADBISYS.Formularios.Ingresar
                 if (ds.Tables[0].Rows.Count == 0)
                 {
                     MessageBox.Show("La Contraseña Actual es incorrecta.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    txtUsuario.Focus();
+                    txtContraActual.Focus();
                     return true;
                 }
                 return false;
@@ -135,7 +135,7 @@ namespace ADBISYS.Formularios.Ingresar
             if (txtContraNueva.Text != txtContraRepe.Text)
             {
                 MessageBox.Show("La contraseña escrita en el cuadro Contraseña Actual no coincide con la escrita en el cuadro Repetir Contraseña.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                txtUsuario.Focus();
+                txtContraNueva.Focus();
                 return true;
             }
             return false;

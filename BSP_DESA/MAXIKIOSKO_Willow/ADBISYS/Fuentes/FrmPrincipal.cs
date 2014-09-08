@@ -119,7 +119,7 @@ namespace ADBISYS
                 Entidades.Caja caj = new ADBISYS.Entidades.Caja();
                 if (caj.obtenerEstado() == 1)
                 {
-                    MessageBox.Show("Para salir del Programa, debe realizar el Cierre de Caja Correspondiente.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Para cerrar AdbisyS debe realizar el cierre de caja correspondiente.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                 else
@@ -559,7 +559,35 @@ namespace ADBISYS
         private void mostrarFormlarioActMasivaArticulo()
         {
             Formularios.Articulos.frmActMasivaArticulo frmActMasivaArt = new Formularios.Articulos.frmActMasivaArticulo();
-            frmActMasivaArt.Show();
+            frmActMasivaArt.ShowDialog();
+        }
+
+        private void FrmPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+        }
+
+        private void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                //Estado de la caja: [0 no está iniciada] / [1 está iniciada]
+                Entidades.Caja caj = new ADBISYS.Entidades.Caja();
+                if (caj.obtenerEstado() == 1)
+                {
+                    MessageBox.Show("Para cerrar AdbisyS debe realizar el cierre de caja correspondiente.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    e.Cancel = true;
+                }
+                else
+                {
+                    Application.Exit();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
 
     }

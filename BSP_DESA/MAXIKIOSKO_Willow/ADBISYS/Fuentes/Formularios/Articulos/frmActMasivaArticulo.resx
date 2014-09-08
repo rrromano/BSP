@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnActualizar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -203,21 +200,6 @@
         C4UAjrwNXqLBp3jPC3fRjbzNDO8DfM3b4JcyPxTLmi4um1jiUxC6Hn5W3S/KoIHiLBrG97g4m/xFe2nQ
         spseQjS387fxDRe8mvtJD0yXggIEwxNDF4d/JL7PQAGG6ZJlk2C6hGeVHrp1mLsFoWtA6HwInY9Nh8eF
         BfB1gAtcMkKDb4jD9dBdyoyf/vuMP4j/AwxXt1YALLRWAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="btnNuevoRol.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7O
-        HOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAASbAAAEmwH8Ny86AAAAGXRFWHRTb2Z0d2FyZQB3d3cu
-        aW5rc2NhcGUub3Jnm+48GgAAAcJJREFUOE9j+P//PwYGAmYgFkTDTFjVYhNk1ue1tO7w3hI4NQGMTZpc
-        tzBIcmhjU4shAMJsBlwWOWuLtvQdmAzG8YtTt7CQYgCXMZdF9rrMLZ37OsA4cWn8Fg5SDBCwBLpgQ+KW
-        9n11YJy0ImwLhywLdgOAgFHMicNJ0h2BxRw5E/M3R25p2VcIxulrA7eImLFFIasRdeC0hRnA5j9Jb03R
-        tsAtMFy8PWhLy/50OG7anwqXg2GvLp0FcAMiZ+mvqd0XvIUUHDwRyQCPCTyrw9bybYHh8HUCW2I2iG9J
-        3CS7JWGTzJboDWJgMWQ1zh3cc+EGeHZwrIlcwrUFhhNWimxpOGy1ZdrZ6C1Tz0ZtqT1kuiV+hTBcHoTd
-        GjggLoCaIgbE4jBsFaTsO/Gs25bVN4u2rLpZsKX7uP0WHXNFR2Q1QCwCNwAd++doO8y+4rpl8/3iLZvu
-        FW6Zcs5ui72fpiE2tRgCIByar+2w+JbLll2Pi7bsfFywZc4V2y32gSQYEF6obLfigeWWnc8Stux4Frdl
-        4U3jLTbeSgbY1GIIgLBTOJdJzSrB6c0b5GaAcMVS/hlqBlyq2NRiCCBhRjSMRc1/BgDW6TJFKOWLswAA
-        AABJRU5ErkJggg==
 </value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

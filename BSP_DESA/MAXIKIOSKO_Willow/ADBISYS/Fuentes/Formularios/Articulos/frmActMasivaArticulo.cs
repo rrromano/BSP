@@ -77,7 +77,7 @@ namespace ADBISYS.Formularios.Articulos
                 String usuario = Properties.Settings.Default.UsuarioLogueado.ToString();
                 String cadenaSql = "";
 
-                cadenaSql = "exec adp_actualizacionMasiva_Articulo ";
+                cadenaSql = "exec dbo.adp_actualizacionMasiva_Articulo ";
 
                 //============================================================================================================
                 //ID RUBRO - ID RUBRO - ID RUBRO - ID RUBRO - ID RUBRO - ID RUBRO - ID RUBRO - ID RUBRO - ID RUBRO - ID RUBRO 
@@ -229,25 +229,6 @@ namespace ADBISYS.Formularios.Articulos
             {
                 MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
-            }
-        }
-
-        private void btnNuevoRol_Click(object sender, EventArgs e)
-        {
-            mostrarFormularioNuevoRubro();
-        }
-
-        private void mostrarFormularioNuevoRubro()
-        {
-            try
-            {
-                frmNuevoRubro nuevoRubro = new frmNuevoRubro();
-                nuevoRubro.ShowDialog();
-                cargarComboRubro();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

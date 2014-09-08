@@ -110,7 +110,7 @@ namespace ADBISYS.Entidades
                 ConectarBD con = new ConectarBD();
                 String sSQL;
 
-                sSQL = "exec adp_registrar_mov_caja ";
+                sSQL = "exec dbo.adp_registrar_mov_caja ";
                 sSQL = sSQL + "  @Tipo_Movimiento = " + fg.fcSql(tipoMovimiento.ToString(), "STRING");
                 sSQL = sSQL + " ,@Valor           = " + fg.fcSql(valor.ToString(), "DOUBLE").Replace(",", ".");
                 sSQL = sSQL + " ,@fecha           = " + fg.fcSql(fecha.ToString(), "DATETIME");

@@ -92,7 +92,7 @@
             this.StripPrincipal.Location = new System.Drawing.Point(0, 0);
             this.StripPrincipal.Name = "StripPrincipal";
             this.StripPrincipal.Padding = new System.Windows.Forms.Padding(11, 4, 0, 4);
-            this.StripPrincipal.Size = new System.Drawing.Size(1914, 35);
+            this.StripPrincipal.Size = new System.Drawing.Size(1274, 35);
             this.StripPrincipal.TabIndex = 0;
             this.StripPrincipal.Text = "menuStrip1";
             // 
@@ -335,7 +335,7 @@
             // salirTSMI
             // 
             this.salirTSMI.Name = "salirTSMI";
-            this.salirTSMI.Size = new System.Drawing.Size(124, 28);
+            this.salirTSMI.Size = new System.Drawing.Size(152, 28);
             this.salirTSMI.Text = "Salir";
             this.salirTSMI.Click += new System.EventHandler(this.salirTSMI_Click);
             // 
@@ -353,7 +353,7 @@
             this.statusStripPrincipal.Location = new System.Drawing.Point(0, 639);
             this.statusStripPrincipal.Name = "statusStripPrincipal";
             this.statusStripPrincipal.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStripPrincipal.Size = new System.Drawing.Size(1914, 34);
+            this.statusStripPrincipal.Size = new System.Drawing.Size(1274, 34);
             this.statusStripPrincipal.TabIndex = 1;
             this.statusStripPrincipal.Text = "statusStrip1";
             // 
@@ -386,7 +386,7 @@
             // 
             this.vacioTSS.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
             this.vacioTSS.Name = "vacioTSS";
-            this.vacioTSS.Size = new System.Drawing.Size(1238, 29);
+            this.vacioTSS.Size = new System.Drawing.Size(598, 29);
             this.vacioTSS.Spring = true;
             this.vacioTSS.Text = "Vacio";
             // 
@@ -415,7 +415,7 @@
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1914, 673);
+            this.ClientSize = new System.Drawing.Size(1274, 673);
             this.Controls.Add(this.statusStripPrincipal);
             this.Controls.Add(this.StripPrincipal);
             this.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -425,6 +425,8 @@
             this.Text = "Maxikosko WILLOW - BSP - Brothers Systems Programmers - ADBISYS 1.0";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmPrincipal_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmPrincipal_FormClosed);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmPrincipal_FormClosing);
             this.StripPrincipal.ResumeLayout(false);
             this.StripPrincipal.PerformLayout();
             this.statusStripPrincipal.ResumeLayout(false);
