@@ -6,14 +6,15 @@ Go
 
 -- SP QUE VERIFICA EXISTENCIA DE UN PROVEEDOR.
 
-Create procedure adp_verificoExistencia_TipoMovCaja (@Descripcion	 VARCHAR(255))
+Create procedure adp_verificoExistencia_TipoMovCaja (	@Codigo numeric (2),     
+																											@Descripcion	VARCHAR(255))
 as
 
 BEGIN TRY
   SET NOCOUNT ON
   PRINT 'INICIO ACTUALIZACIÓN'
   
-	SELECT 1 FROM TIPOMOVIMIENTO_CAJA WHERE DESCRIPCION = @Descripcion AND ESTADO = 1
+	SELECT 1 FROM TIPOMOVIMIENTO_CAJA WHERE DESCRIPCION = @Descripcion AND ESTADO = 1 AND ID_TipoMovimiento <> @Codigo
 
   PRINT 'FIN ACTUALIZACIÓN OK'
   SET NOCOUNT OFF

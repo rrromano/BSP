@@ -92,6 +92,7 @@ namespace ADBISYS.Formularios.Caja
             {
                 if (fiValidarModificacion())
                 {
+                    if (existeTipoMovimientoCaja()) return;
                     actualizarTipoMovimientoCaja();
                     this.Hide();
                 }
@@ -99,6 +100,36 @@ namespace ADBISYS.Formularios.Caja
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private bool existeTipoMovimientoCaja()
+        {
+            try
+            {
+                ConectarBD Conex = new ConectarBD();
+                DataSet Ds = new DataSet();
+                String CadenaSql;
+
+                CadenaSql = "EXEC adp_verificoExistencia_TipoMovCaja";
+                CadenaSql = CadenaSql + " @Codigo = " + fg.fcSql(txtCodigo.Text, "INTEGER");
+                CadenaSql = CadenaSql + ",@Descripcion = " + fg.fcSql(txtDescripcion.Text, "STRING");
+
+                Ds = Conex.ejecutarQuerySelect(CadenaSql);
+
+                if (Ds.Tables[0].Rows.Count > 0)
+                {
+                    MessageBox.Show("Ya existe un Tipo de Movimiento " + fg.fcSql(txtDescripcion.Text, "STRING") + ".", "Alta de Tipo de Movimiento Caja.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtDescripcion.Focus();
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
             }
         }
 

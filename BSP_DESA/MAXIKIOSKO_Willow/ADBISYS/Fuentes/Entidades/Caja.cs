@@ -222,7 +222,7 @@ namespace ADBISYS.Entidades
             {
                 FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
                 ConectarBD Conex = new ConectarBD();
-                String sSQL = "EXEC dbo.adp_eliminarMovCajaPorFecha @fecha_mov = " + fg.fcSql(fecha_mov.ToString(), "DATETIME");
+                String sSQL = "EXEC dbo.adp_eliminarTodosMovCajaDeHoy @fecha_mov = " + fg.fcSql(fecha_mov.ToString(), "DATETIME");
                 Conex.ejecutarQuery(sSQL);
             }
             catch (Exception e)

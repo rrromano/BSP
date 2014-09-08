@@ -32,6 +32,18 @@ namespace ADBISYS
         {
             if (validarInicioCaja()) 
             {
+                if (hayMovimientosHoy())
+                {
+                    if (!(preguntoSiEliminarMovimientosHoy()))
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        eliminarMovimientosHoy();
+                    }
+                }
+
                 frmCajaInicial cajaIni = new frmCajaInicial();
                 cajaIni.ShowDialog();
                 FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
@@ -136,6 +148,53 @@ namespace ADBISYS
         private void iniciarCajaTSMI_Click(object sender, EventArgs e)
         {
             mostrarFormularioCajaInicial();
+        }
+
+        private void eliminarMovimientosHoy()
+        {
+            try
+            {
+                Entidades.Caja caja = new Entidades.Caja();
+                caja.eliminarMovCajaPorFecha(DateTime.Now.Date);
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private Boolean preguntoSiEliminarMovimientosHoy()
+        {
+            try
+            {
+                if (MessageBox.Show("No se puede iniciar la caja del día de hoy, ya que existen movimientos correspondientes a la fecha. Si inicia la caja, se eliminarán todos los movimientos actuales. \n¿Está seguro que desa continuar?", "¿Está Seguro?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        private bool hayMovimientosHoy()
+        {
+            try
+            {
+                Entidades.Caja caja = new Entidades.Caja();
+                return caja.verificarExistenciaMovCajaSegunFecha(DateTime.Now.Date);
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
 
         private void iniciarSesiónTSMI_Click(object sender, EventArgs e)
@@ -311,6 +370,16 @@ namespace ADBISYS
                 
                 frmCerrarCaja cerrarCaja = new frmCerrarCaja();
                 cerrarCaja.ShowDialog();
+
+                FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
+                Entidades.Caja caja = new Entidades.Caja();
+                string fechaSistema = fg.appFechaSistema().ToString().Substring(0, 10);
+                if (caja.obtenerEstado() == 0)
+                {
+                    cajaTTS.Text = "Caja Cerrada";
+                    cajaTTS.BackColor = Color.White;
+                    cajaTTS.ForeColor = Color.Black;
+                }
             }
             catch (Exception ex)
             {

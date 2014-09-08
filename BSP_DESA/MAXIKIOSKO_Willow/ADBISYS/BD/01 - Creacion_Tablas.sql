@@ -57,17 +57,11 @@ Go
 If Exists ( Select 1 From sysobjects Where Name = 'MOVIMIENTOS_CAJA' )
   Drop Table MOVIMIENTOS_CAJA
 Go
-If Exists ( Select 1 From sysobjects Where Name = 'ESTADO_MOVIMIENTOS_CAJA' )
-  Drop Table ESTADO_MOVIMIENTOS_CAJA
-Go
 If Exists ( Select 1 From sysobjects Where Name = 'TIPOMOVIMIENTO_CAJA' )
   Drop Table TIPOMOVIMIENTO_CAJA
 Go
 If Exists ( Select 1 From sysobjects Where Name = 'ESTADO_TIPOMOVIMIENTO_CAJA' )
   Drop Table ESTADO_TIPOMOVIMIENTO_CAJA
-Go
-If Exists ( Select 1 From sysobjects Where Name = 'CAJA' )
-  Drop Table CAJA
 Go
 If Exists ( Select 1 From sysobjects Where Name = 'PARAMETROS_GENERALES' )
   Drop Table PARAMETROS_GENERALES
@@ -289,20 +283,6 @@ ALTER TABLE TIPOMOVIMIENTO_CAJA ADD CONSTRAINT FK_ESTADO_TIPOMOVIMIENTO_CAJA
 	FOREIGN KEY(Estado) REFERENCES ESTADO_TIPOMOVIMIENTO_CAJA(Estado)
 GO
 --=============================================================================================
------------------------------------- TABLE ESTADO_MOVIMIENTOS_CAJA ----------------------------
---=============================================================================================
-create table ESTADO_MOVIMIENTOS_CAJA(
-	Estado        numeric(1)		not null, 
-	Descripcion		varchar(255)	not null,
-	fecha_modif		datetime      NULL,
-	login_modif		varchar(255)  NULL,
-	term_modif		varchar(255)  NULL
-)
-GO
-ALTER TABLE ESTADO_MOVIMIENTOS_CAJA ADD PRIMARY KEY(Estado)
-PRINT 'SE CREÓ CORRECTAMENTE LA TABLA ESTADO_MOVIMIENTOS_CAJA.'
-GO
---=============================================================================================
 ------------------------------------ TABLE MOVIMIENTOS_CAJA -----------------------------------
 --=============================================================================================
 create table MOVIMIENTOS_CAJA(
@@ -310,32 +290,13 @@ create table MOVIMIENTOS_CAJA(
 	ID_TipoMovimiento numeric(2)        not null,
 	Valor             numeric(10,2) 		not null,
 	Fecha             DATETIME      		not null,
-	Hora              varchar(8)    		not null,
-	Estado						numeric(1)				not null				 						 
+	Hora              varchar(8)    		not null	 						 
 )
 GO
 ALTER TABLE MOVIMIENTOS_CAJA ADD PRIMARY KEY(ID_Movimiento)
 ALTER TABLE MOVIMIENTOS_CAJA ADD CONSTRAINT FK_ID_TIPOMOVIMIENTO_TIPOMOVIMIENTO_CAJA 
 	FOREIGN KEY(ID_TipoMovimiento) REFERENCES TIPOMOVIMIENTO_CAJA(ID_TipoMovimiento)
-ALTER TABLE MOVIMIENTOS_CAJA ADD CONSTRAINT FK_ESTADO_MOVIMIENTOS_CAJA
-	FOREIGN KEY(Estado) REFERENCES ESTADO_MOVIMIENTOS_CAJA(Estado) 
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA MOVIMIENTOS_CAJA.'
-GO
---=============================================================================================
------------------------------------- TABLE CAJA -----------------------------------------------
---=============================================================================================
-create table CAJA(
-	Fecha		        datetime      not null,
-	Caja_Inicial    numeric(10,2) not null,
-	Caja_Final	    numeric(10,2) not null,
-	Importe_Total   numeric(10,2) not null,
-	fecha_modif     datetime      null,
-	login_modif     varchar(255)  null,
-	term_modif      varchar(255)  null
-)
-GO
-ALTER TABLE CAJA ADD PRIMARY KEY(Fecha)
-PRINT 'SE CREÓ CORRECTAMENTE LA TABLA CAJA.'
 GO
 --=============================================================================================
 ------------------------------------ TABLE PARAMETROS_GENERALES -------------------------------
@@ -400,6 +361,7 @@ INSERT INTO PARAMETROS_GENERALES (Fecha_Sistema, Estado_Caja,fecha_modif,login_m
 -- ============================================================================================
 INSERT INTO ESTADO_COMPRAS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', 'BSP')
 INSERT INTO ESTADO_COMPRAS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', 'BSP')
+INSERT INTO ESTADO_COMPRAS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (2, 'ELIMINADO_INICIO_CAJA', GETDATE(), 'BSP', 'BSP')
 INSERT INTO ESTADO_ARTICULOS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', 'BSP')
 INSERT INTO ESTADO_ARTICULOS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', 'BSP')
 INSERT INTO ESTADO_PROVEEDORES (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', 'BSP')
@@ -408,8 +370,7 @@ INSERT INTO ESTADO_RUBROS (Estado, Descripcion, fecha_modif, login_modif, term_m
 INSERT INTO ESTADO_RUBROS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', 'BSP')
 INSERT INTO ESTADO_VENTAS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', 'BSP')
 INSERT INTO ESTADO_VENTAS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', 'BSP')
-INSERT INTO ESTADO_MOVIMIENTOS_CAJA (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', 'BSP')
-INSERT INTO ESTADO_MOVIMIENTOS_CAJA (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', 'BSP')
+INSERT INTO ESTADO_VENTAS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (2, 'ELIMINADO_INICIO_CAJA', GETDATE(), 'BSP', 'BSP')
 INSERT INTO ESTADO_TIPOMOVIMIENTO_CAJA (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', 'BSP')
 INSERT INTO ESTADO_TIPOMOVIMIENTO_CAJA (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (1, 'ACTIVO', GETDATE(), 'BSP', 'BSP')
 -- ============================================================================================

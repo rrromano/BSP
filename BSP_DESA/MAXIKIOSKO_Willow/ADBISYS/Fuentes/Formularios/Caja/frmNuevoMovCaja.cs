@@ -154,7 +154,8 @@ namespace ADBISYS.Formularios.Caja
                 String CadenaSql;
 
                 CadenaSql = "EXEC adp_verificoExistencia_TipoMovCaja";
-                CadenaSql = CadenaSql + " @Descripcion = " + fg.fcSql(txtTipoMovimiento.Text, "STRING");
+                CadenaSql = CadenaSql + " @Codigo = " + fg.fcSql(txtCodigo.Text, "INTEGER");
+                CadenaSql = CadenaSql + " ,@Descripcion = " + fg.fcSql(txtTipoMovimiento.Text, "STRING");
                 Ds = Conex.ejecutarQuerySelect(CadenaSql);
 
                 if (Ds.Tables[0].Rows.Count > 0)

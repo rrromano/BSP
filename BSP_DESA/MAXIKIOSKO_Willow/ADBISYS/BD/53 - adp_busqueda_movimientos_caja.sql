@@ -28,7 +28,7 @@ BEGIN TRY
 												WHEN 1 THEN ''INGRESO''  
 												ELSE ''SALIDA'' 
 										 END									AS	''INGRESO/SALIDA''
-										 from ' + @tabla + ' A INNER JOIN TIPOMOVIMIENTO_CAJA B ON (A.ID_TipoMovimiento = B.ID_TipoMovimiento) WHERE A.ESTADO = 1 AND A.FECHA = ''' + @Fecha + ''' AND B.DESCRIPCION LIKE ''' + @texto + '%''')
+										 from ' + @tabla + ' A INNER JOIN TIPOMOVIMIENTO_CAJA B ON (A.ID_TipoMovimiento = B.ID_TipoMovimiento) WHERE B.ESTADO = 1 AND A.FECHA = ''' + @Fecha + ''' AND B.DESCRIPCION LIKE ''' + @texto + '%''')
 		end else
 		begin
 			exec ('select  UPPER(ID_Movimiento)				AS CÓDIGO,
@@ -40,7 +40,7 @@ BEGIN TRY
 												WHEN 1 THEN ''INGRESO''  
 												ELSE ''SALIDA'' 
 										 END									AS	''INGRESO/SALIDA''
-										 from ' + @tabla + ' A INNER JOIN TIPOMOVIMIENTO_CAJA B ON (A.ID_TipoMovimiento = B.ID_TipoMovimiento)'  + ' WHERE A.ESTADO = 1 AND A.FECHA = ''' + @Fecha + ''' AND ' + @campo_tabla + ' like ''' + @texto + '%''')
+										 from ' + @tabla + ' A INNER JOIN TIPOMOVIMIENTO_CAJA B ON (A.ID_TipoMovimiento = B.ID_TipoMovimiento)'  + ' WHERE B.ESTADO = 1 AND A.FECHA = ''' + @Fecha + ''' AND ' + @campo_tabla + ' like ''' + @texto + '%''')
 		end
 							
   PRINT 'FIN ACTUALIZACIÓN OK'

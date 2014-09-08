@@ -37,12 +37,10 @@ BEGIN TRY
 					
 	INSERT	INTO MOVIMIENTOS_CAJA	(ID_TIPOMOVIMIENTO,
 																 VALOR,
-																 ESTADO,
 																 FECHA,
 																 HORA)
 	VALUES (@TIPOMOVCAJA_ID,
 					'0.00',
-					1,
 					CONVERT(VARCHAR,@TIPOMOVCAJA_FECHA,112),
 					@TIPOMOVCAJA_HORA)
 

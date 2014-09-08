@@ -28,71 +28,12 @@ namespace ADBISYS.Formularios.Caja
             {
                 if (validar())
                 {
-                    if (hayMovimientosHoy())
-                    {
-                        if (!(preguntoSiEliminarMovimientosHoy()))
-                        {
-                            return;
-                        }
-                        else
-                        {
-                            eliminarMovimientosHoy();
-                        }
-                    }
-
                     registrarCajaInicial();
                 }
             }
             catch (Exception r)
             {
                 MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void eliminarMovimientosHoy()
-        {
-            try
-            {
-                Entidades.Caja caja = new Entidades.Caja();
-                caja.eliminarMovCajaPorFecha(DateTime.Now.Date);
-            }
-            catch (Exception r)
-            {
-                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private Boolean preguntoSiEliminarMovimientosHoy()
-        {
-            try
-            {
-                if (MessageBox.Show("No se puede iniciar la caja del día de hoy, ya que existen movimientos correspondientes a la fecha. Si inicia la caja, se eliminarán todos los movimientos actuales. \n¿Está seguro que desa continuar?", "¿Está Seguro?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (Exception r)
-            {
-                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-        }
-
-        private bool hayMovimientosHoy()
-        {
-            try
-            {
-                Entidades.Caja caja = new Entidades.Caja();
-                return caja.verificarExistenciaMovCajaSegunFecha(DateTime.Now.Date);
-            }
-            catch (Exception r)
-            {
-                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
             }
         }
 

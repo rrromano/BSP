@@ -1,4 +1,4 @@
-Use WIADBISYS
+Use WIAdbisys
 Go 
 If Exists ( Select 1 From SysObjects Where Name = 'adp_registrar_movimientosCaja')
   Drop Procedure adp_registrar_movimientosCaja
@@ -16,12 +16,10 @@ BEGIN TRY
   
   INSERT INTO MOVIMIENTOS_CAJA (ID_TIPOMOVIMIENTO,  
                                 VALOR, 
-                                ESTADO,
                                 FECHA, 
                                 HORA)
 	SELECT	A.ID_TIPOMOVIMIENTO,
 					0.00,
-					A.ESTADO,
           @FECHA, 
           @HORA
 	FROM TIPOMOVIMIENTO_CAJA A

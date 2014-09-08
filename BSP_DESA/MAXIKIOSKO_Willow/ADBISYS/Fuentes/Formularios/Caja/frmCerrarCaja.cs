@@ -53,7 +53,8 @@ namespace ADBISYS.Formularios.Caja
                         ParametrosGenerales pg = new ParametrosGenerales();
                         pg.modificarEstadoGlobalSistema(0); //CIERRO LA CAJA - ESTADO "0"
 
-                        MessageBox.Show("Se realizó el Cierre de Caja Correctamente.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Se realizó el Cierre de Caja Correctamente.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                         this.Close();
                     }
                 }
