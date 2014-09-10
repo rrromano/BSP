@@ -157,6 +157,7 @@
             this.modifArticuloTSMI.Name = "modifArticuloTSMI";
             this.modifArticuloTSMI.Size = new System.Drawing.Size(311, 28);
             this.modifArticuloTSMI.Text = "Agregar / Modificar";
+            this.modifArticuloTSMI.Click += new System.EventHandler(this.modifArticuloTSMI_Click);
             // 
             // actPrecioArticuloTSMI
             // 

@@ -213,7 +213,7 @@
             // 
             this.actualizarToolStripMenuItem.Name = "actualizarToolStripMenuItem";
             this.actualizarToolStripMenuItem.Size = new System.Drawing.Size(174, 28);
-            this.actualizarToolStripMenuItem.Text = "Actualizar";
+            this.actualizarToolStripMenuItem.Text = "&Actualizar";
             this.actualizarToolStripMenuItem.Click += new System.EventHandler(this.actualizarToolStripMenuItem_Click);
             // 
             // nuevoToolStripMenuItem1
@@ -262,7 +262,7 @@
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(124, 28);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 28);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 

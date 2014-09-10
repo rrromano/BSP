@@ -130,6 +130,11 @@ namespace ADBISYS.Formularios.Compras
         {
             if (grdCompras.DataSource != null)
             {
+                if (Properties.Settings.Default.UsuarioLogueado == "")
+                {
+                    MessageBox.Show("Debe iniciar sesión.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
                 if (notFilaSeleccionada()) return;
                 mostrarFormularioModificarProveedor();
                 llenarGrilla();

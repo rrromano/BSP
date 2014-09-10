@@ -13,6 +13,7 @@ using ADBISYS.Formularios.Ayuda;
 using ADBISYS.Formularios.Proveedores;
 using ADBISYS.Formularios.Rubros;
 using ADBISYS.Formularios.Compras;
+using ADBISYS.Formularios.Articulos;
 
 // RR 2014-03-22: Comienzo del sistema ADBISYS.
 
@@ -119,13 +120,16 @@ namespace ADBISYS
                 Entidades.Caja caj = new ADBISYS.Entidades.Caja();
                 if (caj.obtenerEstado() == 1)
                 {
-                    MessageBox.Show("Para cerrar AdbisyS debe realizar el cierre de caja correspondiente.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Para salir de AdbisyS debe realizar el cierre de caja correspondiente.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-                else
+                if (Application.OpenForms.Count > 1)
                 {
-                    Application.Exit();
+                    MessageBox.Show("Para salir de AdbisyS debe cerrar todos los formularios.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
+
+                Application.Exit();
             }
             catch (Exception ex)
             {
@@ -537,6 +541,12 @@ namespace ADBISYS
         {
             try
             {
+                if (Properties.Settings.Default.UsuarioLogueado == "")
+                {
+                    MessageBox.Show("Debe iniciar sesión.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
                 Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is Formularios.Articulos.frmActMasivaArticulo);
 
                 if (frm != null)
@@ -596,5 +606,33 @@ namespace ADBISYS
             ventas.Show();
         }
 
+        private void modifArticuloTSMI_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmArticulosPrincipal);
+
+                if (frm != null)
+                {
+                    frm.WindowState = FormWindowState.Normal;
+                    frm.BringToFront();
+                    return;
+                }
+                else
+                {
+                    mostrarFormularioArticulos();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void mostrarFormularioArticulos()
+        {
+            frmArticulosPrincipal articulos = new frmArticulosPrincipal();
+            articulos.Show();
+        }
     }
 }

@@ -27,29 +27,7 @@ namespace ADBISYS.Formularios.Articulos
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            if (salir()) { this.Close(); }
-        }
-
-        private Boolean salir()
-        {
-            try
-            {
-                Boolean estaSeguro = (MessageBox.Show("¿Está seguro que desea cancelar la actualización masiva de artículos?", "Actualización Masiva de Artículos.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
-                if (estaSeguro) return true ;
-
-                return false;
-            }
-            catch (Exception r)
-            {
-                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-        }
-
-        private void articulosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmArticulosPrincipal frmArticulos = new frmArticulosPrincipal();
-            frmArticulos.Show();
+            this.Close();
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
@@ -190,7 +168,7 @@ namespace ADBISYS.Formularios.Articulos
 
                 if (cboRubro.Text == "")
                 {
-                    MessageBox.Show("Debe seleccionar el Rubro a actualizar.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Debe seleccionar el Rubro a actualizar.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     cboRubro.Focus();
                     resultado = false;
                     return resultado;
@@ -198,7 +176,7 @@ namespace ADBISYS.Formularios.Articulos
 
                 if (cboAumentarDisminuir.Text == "")
                 {
-                    MessageBox.Show("Debe indicar si se debe aumentar o disminuir el precio de los artículos.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Debe indicar si se debe aumentar o disminuir el precio de los artículos.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     cboAumentarDisminuir.Focus();
                     resultado = false;
                     return resultado;
@@ -206,7 +184,22 @@ namespace ADBISYS.Formularios.Articulos
 
                 if (txtPrecioPorcentaje.Text == "")
                 {
-                    MessageBox.Show("Debe indicar el porcentaje/precio a aumentar", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Debe indicar el Precio/Porcentaje.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtPrecioPorcentaje.Focus();
+                    resultado = false;
+                    return resultado;
+                }
+
+                if (fg.esUnNumeroDecimal(txtPrecioPorcentaje.Text) == false)
+                {
+                    MessageBox.Show("El importe ingresado es inválido.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtPrecioPorcentaje.Focus();
+                    resultado = false;
+                    return resultado;
+                }
+                if (double.Parse(txtPrecioPorcentaje.Text.ToString()) == 0)
+                {
+                    MessageBox.Show("El importe ingresado es inválido.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtPrecioPorcentaje.Focus();
                     resultado = false;
                     return resultado;
@@ -287,16 +280,6 @@ namespace ADBISYS.Formularios.Articulos
             {
                 MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void salidaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (salir()) { this.Close(); }
-        }
-
-        private void salirToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            if (salir()) { this.Close(); }
         }
 
         private void txtPrecioPorcentaje_KeyPress(object sender, KeyPressEventArgs e)

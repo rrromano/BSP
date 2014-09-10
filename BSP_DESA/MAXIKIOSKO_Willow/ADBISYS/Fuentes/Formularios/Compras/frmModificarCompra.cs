@@ -175,6 +175,12 @@ namespace ADBISYS.Formularios.Compras
                 txtImporte.Focus();
                 return false;
             }
+            if (double.Parse(txtImporte.Text.ToString()) == 0)
+            {
+                MessageBox.Show("El importe ingresado es inválido.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtImporte.Focus();
+                return false;
+            }
             return true;
         }
 
