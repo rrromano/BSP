@@ -590,5 +590,11 @@ namespace ADBISYS
             }
         }
 
+        private void nuevaVentaTSMI_Click(object sender, EventArgs e)
+        {
+            Formularios.Ventas.frmVentasPrincipal ventas = new ADBISYS.Formularios.Ventas.frmVentasPrincipal();
+            ventas.Show();
+        }
+
     }
 }

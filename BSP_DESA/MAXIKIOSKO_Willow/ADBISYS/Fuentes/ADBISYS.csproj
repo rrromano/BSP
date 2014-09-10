@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexion\ConectarBD.cs" />
+    <Compile Include="Entidades\Articulo.cs" />
     <Compile Include="Entidades\Caja.cs" />
     <Compile Include="Entidades\Compras.cs" />
     <Compile Include="Entidades\MovimientoCaja.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Entidades\Proveedores.cs" />
     <Compile Include="Entidades\Rubros.cs" />
     <Compile Include="Entidades\TipoMovimientoCaja.cs" />
+    <Compile Include="Entidades\Venta.cs" />
     <Compile Include="Formularios\Articulos\frmActMasivaArticulo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -248,6 +250,18 @@
     <Compile Include="Formularios\Rubros\frmRubrosPrincipal.Designer.cs">
       <DependentUpon>frmRubrosPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Ventas\frmNuevaVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Ventas\frmNuevaVenta.Designer.cs">
+      <DependentUpon>frmNuevaVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Ventas\frmVentasPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Ventas\frmVentasPrincipal.Designer.cs">
+      <DependentUpon>frmVentasPrincipal.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -353,6 +367,12 @@
     <EmbeddedResource Include="Formularios\Rubros\frmRubrosPrincipal.resx">
       <DependentUpon>frmRubrosPrincipal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Ventas\frmNuevaVenta.resx">
+      <DependentUpon>frmNuevaVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Ventas\frmVentasPrincipal.resx">
+      <DependentUpon>frmVentasPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
@@ -378,7 +398,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Formularios\Reportes\" />
-    <Folder Include="Formularios\Ventas\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

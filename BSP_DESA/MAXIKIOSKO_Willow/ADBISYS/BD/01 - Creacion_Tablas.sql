@@ -179,12 +179,12 @@ GO
 ------------------------------------ TABLE VENTAS ---------------------------------------------
 --=============================================================================================
 create table VENTAS(
-	ID_Venta      numeric(30) identity not null,
-	Cantidad      numeric(10)          not null,
-	Importe       numeric(10,2)        not null, 
-	Estado		    numeric(1)           not null, 
-	Fecha         datetime             not null,
-	Hora          varchar(8)           not null
+	ID_Venta            numeric(30) identity not null,
+	Cantidad_Articulos  numeric(10)          not null,
+	Importe             numeric(10,2)        not null, 
+	Estado		          numeric(1)           not null, 
+	Fecha               datetime             not null,
+	Hora                varchar(8)           not null
 )
 GO
 ALTER TABLE VENTAS ADD PRIMARY KEY(ID_Venta)

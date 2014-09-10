@@ -110,8 +110,9 @@
             // nuevaVentaTSMI
             // 
             this.nuevaVentaTSMI.Name = "nuevaVentaTSMI";
-            this.nuevaVentaTSMI.Size = new System.Drawing.Size(235, 28);
-            this.nuevaVentaTSMI.Text = "Nueva Venta";
+            this.nuevaVentaTSMI.Size = new System.Drawing.Size(266, 28);
+            this.nuevaVentaTSMI.Text = "Agregar / Modificar";
+            this.nuevaVentaTSMI.Click += new System.EventHandler(this.nuevaVentaTSMI_Click);
             // 
             // ventaErroneaTSMI
             // 
@@ -119,7 +120,7 @@
             this.cargarVentaErróneaTSMI,
             this.confVentaErroneaTSMI});
             this.ventaErroneaTSMI.Name = "ventaErroneaTSMI";
-            this.ventaErroneaTSMI.Size = new System.Drawing.Size(235, 28);
+            this.ventaErroneaTSMI.Size = new System.Drawing.Size(266, 28);
             this.ventaErroneaTSMI.Text = "Ventas Erróneas";
             // 
             // cargarVentaErróneaTSMI
@@ -137,7 +138,7 @@
             // ventasDelDíaToolStripMenuItem
             // 
             this.ventasDelDíaToolStripMenuItem.Name = "ventasDelDíaToolStripMenuItem";
-            this.ventasDelDíaToolStripMenuItem.Size = new System.Drawing.Size(235, 28);
+            this.ventasDelDíaToolStripMenuItem.Size = new System.Drawing.Size(266, 28);
             this.ventasDelDíaToolStripMenuItem.Text = "Ventas del Día";
             // 
             // articulosTS
@@ -335,7 +336,7 @@
             // salirTSMI
             // 
             this.salirTSMI.Name = "salirTSMI";
-            this.salirTSMI.Size = new System.Drawing.Size(152, 28);
+            this.salirTSMI.Size = new System.Drawing.Size(124, 28);
             this.salirTSMI.Text = "Salir";
             this.salirTSMI.Click += new System.EventHandler(this.salirTSMI_Click);
             // 
