@@ -29,7 +29,6 @@ namespace ADBISYS.Entidades
             {
                 throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
             }
-
         }
 
         public DataSet obtenerMaximaCompra()

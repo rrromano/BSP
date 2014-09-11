@@ -44,7 +44,7 @@ namespace ADBISYS.Formularios.Ventas
         {
             try
             {
-                mostrarFormularioNuevaCompra();
+                mostrarFormularioNuevaVenta();
                 llenarGrilla();
                 grdVentas = fg.formatoGrilla(grdVentas, 1);
                 grdVentas.Focus();
@@ -60,14 +60,14 @@ namespace ADBISYS.Formularios.Ventas
             MessageBox.Show("Error: " + e.Message, "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void mostrarFormularioNuevaCompra()
+        private void mostrarFormularioNuevaVenta()
         {
             try
             {
                 celdaSeleccionada = grdVentas.CurrentCellAddress.X;
                 filaSeleccionada = grdVentas.CurrentCellAddress.Y;
                 frmNuevaVenta nuevaVenta = new frmNuevaVenta();
-                nuevaVenta.ShowDialog();
+                nuevaVenta.Show();
             }
             catch (Exception e)
             {

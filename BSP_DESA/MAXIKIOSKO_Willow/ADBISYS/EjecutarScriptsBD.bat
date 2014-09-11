@@ -57,6 +57,8 @@ sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\55 - adp_busq
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\56 - adp_cbobusqueda_tipoMovimientos_caja.sql"
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\57 - adp_total_parcial.sql"
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\58 - adp_eliminarTodosMovCajaDeHoy.sql"
+sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\59 - adp_registrar_mov_caja.sql"
+sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\60 - adp_obtener_ventas.sql"
 ECHO.
 ECHO PROCESO FINALIZADO
 ECHO. 
