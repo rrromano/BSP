@@ -11,6 +11,8 @@ namespace ADBISYS.Formularios.Ventas
 {
     public partial class frmNuevaVenta : Form
     {
+        FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
+
         public frmNuevaVenta()
         {
             InitializeComponent();
@@ -55,6 +57,58 @@ namespace ADBISYS.Formularios.Ventas
         {
             //ACA GENERO UNA INSTANCIA DE ARTICULO BUSCANDO LOS DATOS DEL ARTICULO EN LA BD POR EL CODIGO RECIBIDO POR PARAMETRO
             throw new NotImplementedException();
+        }
+
+        private void frmNuevaVenta_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                ponerValoresEnDefault();
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
+        }
+
+        private void ponerValoresEnDefault()
+        {
+            try
+            {
+                txtCantidad.Text = "1";
+                lblTotalVenta.Text = "0,00";
+                grdItemsCompra.DataSource = null;
+                txtCodigoArticulo.Focus();
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
+        }
+
+        private void btnConfirmarVenta_TabIndexChanged(object sender, EventArgs e)
+        {
+            txtCodigoArticulo.Focus();
+        }
+
+        private void groupBox6_TabIndexChanged(object sender, EventArgs e)
+        {
+            txtCodigoArticulo.Focus();
+        }
+
+        private void txtCantidad_TabIndexChanged(object sender, EventArgs e)
+        {
+            txtCodigoArticulo.Focus();
+        }
+
+        private void groupBox5_TabIndexChanged(object sender, EventArgs e)
+        {
+            txtCodigoArticulo.Focus();
+        }
+
+        private void btnSalir_TabIndexChanged(object sender, EventArgs e)
+        {
+            txtCodigoArticulo.Focus();
         }
     }
 }

@@ -38,5 +38,56 @@ namespace ADBISYS.Formularios.Articulos
         {
             this.Close();
         }
+
+        private void frmArticulosPrincipal_Load(object sender, EventArgs e)
+        {
+            llenarGrilla();
+            grdArticulos = fg.formatoGrilla(grdArticulos, 1);
+        }
+
+        private void llenarGrilla()
+        {
+            try
+            {
+                if (EstoyBuscando == false)
+                {
+                    Entidades.Articulo entArticulo = new ADBISYS.Entidades.Articulo();
+                    ds = entArticulo.obtenerArticulos();
+
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        grdArticulos.DataSource = ds.Tables[0];
+                    }
+                    else
+                    {
+                        grdArticulos.DataSource = null;
+                    }
+                }
+                //else
+                //{
+                //    cadenaSql = "EXEC adp_busqueda_compras";
+                //    cadenaSql = cadenaSql + " @tabla = " + fg.fcSql("COMPRAS", "String");
+                //    cadenaSql = cadenaSql + ",@campo_tabla = " + fg.fcSql(obtenerCampoTabla().ToString(), "String");
+                //    cadenaSql = cadenaSql + ",@texto = " + fg.fcSql(textoAnterior, "String").Replace(",", ".");
+
+                //    ds = objConect.ejecutarQuerySelect(cadenaSql);
+                //    if (ds.Tables[0].Rows.Count > 0)
+                //    {
+                //        grdArticulos.DataSource = ds.Tables[0];
+                //    }
+
+                //}
+
+                if ((filaSeleccionada > 0) && (celdaSeleccionada > 0) && (filaSeleccionada <= grdArticulos.Rows.Count - 1))
+                {
+                    grdArticulos[celdaSeleccionada, filaSeleccionada].Selected = true;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
     }
 }

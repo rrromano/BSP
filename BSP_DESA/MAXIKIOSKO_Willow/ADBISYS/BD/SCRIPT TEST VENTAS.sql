@@ -1,0 +1,13 @@
+--TESTS VENTAS
+INSERT INTO VENTAS (Cantidad_Articulos,Importe,Estado,Fecha_Venta,Hora_Venta,fecha_modif,login_modif,term_modif)
+VALUES (3, '501.12', 1, DATEPART(DAY,GETDATE()), '02:03:00', GETDATE(), 'BSP', HOST_NAME() )
+INSERT INTO VENTAS (Cantidad_Articulos,Importe,Estado,Fecha_Venta,Hora_Venta,fecha_modif,login_modif,term_modif)
+VALUES (3, '501.12', 1, DATEPART(DAY,GETDATE()), '02:03:00', GETDATE(), 'BSP', HOST_NAME() )
+INSERT INTO VENTAS (Cantidad_Articulos,Importe,Estado,Fecha_Venta,Hora_Venta,fecha_modif,login_modif,term_modif)
+VALUES (3, '501.12', 1, DATEPART(DAY,GETDATE()), '02:03:00', GETDATE(), 'BSP', HOST_NAME() )
+INSERT INTO VENTAS (Cantidad_Articulos,Importe,Estado,Fecha_Venta,Hora_Venta,fecha_modif,login_modif,term_modif)
+VALUES (3, '501.12', 1, DATEPART(DAY,GETDATE()), '02:03:00', GETDATE(), 'BSP', HOST_NAME() )
+INSERT INTO VENTAS (Cantidad_Articulos,Importe,Estado,Fecha_Venta,Hora_Venta,fecha_modif,login_modif,term_modif)
+VALUES (3, '501.12', 1, DATEPART(DAY,GETDATE()), '02:03:00', GETDATE(), 'BSP', HOST_NAME() )
+INSERT INTO VENTAS (Cantidad_Articulos,Importe,Estado,Fecha_Venta,Hora_Venta,fecha_modif,login_modif,term_modif)
+VALUES (3, '501.12', 1, DATEPART(DAY,GETDATE()), '02:03:00', GETDATE(), 'BSP', HOST_NAME() )

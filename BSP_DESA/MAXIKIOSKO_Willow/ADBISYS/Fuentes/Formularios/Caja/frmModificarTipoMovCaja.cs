@@ -143,7 +143,7 @@ namespace ADBISYS.Formularios.Caja
 
                 sSQL = "EXEC dbo.adp_actualizar_TipoMovCaja ";
                 sSQL = sSQL + " @ID_TIPOMOVIMIENTO = " + TipoMovCaja.m_ID_TipoMovimiento;
-                sSQL = sSQL + " ,@DESCRIPCION = " + fg.fcSql(txtDescripcion.Text, "STRING");
+                sSQL = sSQL + " ,@DESCRIPCION = " + fg.fcSql(txtDescripcion.Text.Trim(), "STRING");
                 if (cboEntradaSalida.Text == "INGRESO") { sSQL = sSQL + " ,@INGRESO_SALIDA = 1"; } else { sSQL = sSQL + " ,@INGRESO_SALIDA = 0"; }
                 sSQL = sSQL + " ,@LOGIN_MODIF = " + fg.fcSql(Usuario, "STRING");
 
@@ -168,7 +168,7 @@ namespace ADBISYS.Formularios.Caja
                 
                 if (txtDescripcion.Text.Trim() == "")
                 {
-                    MessageBox.Show("La descrición del Tipo de Movimiento es obligatoria.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("La descripción del Tipo de Movimiento es obligatoria.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtDescripcion.Focus();
                     return false;
                 }

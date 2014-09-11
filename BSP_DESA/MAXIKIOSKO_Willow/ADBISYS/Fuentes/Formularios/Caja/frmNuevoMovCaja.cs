@@ -119,7 +119,7 @@ namespace ADBISYS.Formularios.Caja
 
                 String CadenaSql = "EXEC adp_nuevo_TipoMovCaja";
                 CadenaSql = CadenaSql + " @TIPOMOVCAJA_ID       = " + txtCodigo.Text.ToString() ;
-                CadenaSql = CadenaSql + " ,@TIPOMOVCAJA_DESC    = " + fg.fcSql(txtTipoMovimiento.Text, "STRING");
+                CadenaSql = CadenaSql + " ,@TIPOMOVCAJA_DESC    = " + fg.fcSql(txtTipoMovimiento.Text.Trim(), "STRING");
                 CadenaSql = CadenaSql + " ,@TIPOMOVCAJA_FECHA   = " + fg.fcSql(fg.appFechaSistema().ToString(), "STRING");
                 CadenaSql = CadenaSql + " ,@TIPOMOVCAJA_HORA    = " + fg.fcSql(Hora, "STRING");
                 CadenaSql = CadenaSql + " ,@TIPOMOVCAJA_LOGIN   = " + fg.fcSql(Usuario, "STRING");

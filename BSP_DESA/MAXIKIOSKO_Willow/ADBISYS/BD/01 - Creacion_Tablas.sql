@@ -183,8 +183,11 @@ create table VENTAS(
 	Cantidad_Articulos  numeric(10)          not null,
 	Importe             numeric(10,2)        not null, 
 	Estado		          numeric(1)           not null, 
-	Fecha               datetime             not null,
-	Hora                varchar(8)           not null
+	Fecha_Venta         datetime             not null,
+	Hora_Venta          varchar(8)           not null,
+	fecha_modif		      datetime             NULL,
+	login_modif		      varchar(255)         NULL,
+	term_modif		      varchar(255)         NULL
 )
 GO
 ALTER TABLE VENTAS ADD PRIMARY KEY(ID_Venta)

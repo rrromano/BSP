@@ -102,8 +102,63 @@ namespace ADBISYS.Formularios.Proveedores
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             if (validoCampos()) return;
+            if (validoTextoEnCampos()) return;
             if (validoExistenciaProveedor()) return;
             modificarProveedor();
+        }
+
+        private bool validoTextoEnCampos()
+        {
+            if (txtNombre.Text != "")
+            {
+                if (txtNombre.Text.Trim() == "")
+                {
+                    MessageBox.Show("El nombre ingresado es incorrecto.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtNombre.Focus();
+                    return true;
+                }
+            }
+
+            if (txtContacto.Text != "")
+            {
+                if (txtContacto.Text.Trim() == "")
+                {
+                    MessageBox.Show("El contacto ingresado es incorrecto.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtContacto.Focus();
+                    return true;
+                }
+            }
+
+            if (txtDireccion.Text != "")
+            {
+                if (txtDireccion.Text.Trim() == "")
+                {
+                    MessageBox.Show("La dirección ingresada es incorrecta.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtDireccion.Focus();
+                    return true;
+                }
+            }
+
+            if (txtLocalidad.Text != "")
+            {
+                if (txtLocalidad.Text.Trim() == "")
+                {
+                    MessageBox.Show("La localidad ingresada es incorrecta.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtLocalidad.Focus();
+                    return true;
+                }
+            }
+
+            if (txtProvincia.Text != "")
+            {
+                if (txtProvincia.Text.Trim() == "")
+                {
+                    MessageBox.Show("La provincia ingresada es incorrecta.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtProvincia.Focus();
+                    return true;
+                }
+            }
+            return false;
         }
 
         private bool validoExistenciaProveedor()
@@ -144,15 +199,15 @@ namespace ADBISYS.Formularios.Proveedores
                 cadenaSql = "EXEC adp_modificar_proveedor";
                 cadenaSql = cadenaSql + " @Proveedor_ID_Proveedor = " + fg.fcSql(txtCodigo.Text,"String");
                 cadenaSql = cadenaSql + ",@Proveedor_IdRubro = " + obtenerIdRubro().ToString();
-                cadenaSql = cadenaSql + ",@Proveedor_Nombre = " + fg.fcSql(txtNombre.Text, "String");
+                cadenaSql = cadenaSql + ",@Proveedor_Nombre = " + fg.fcSql(txtNombre.Text.Trim(), "String");
                 if (txtContacto.Text != "")
-                { cadenaSql = cadenaSql + ",@Proveedor_Contacto = " + fg.fcSql(txtContacto.Text, "String"); }
+                { cadenaSql = cadenaSql + ",@Proveedor_Contacto = " + fg.fcSql(txtContacto.Text.Trim(), "String"); }
                 if (txtDireccion.Text != "")
-                { cadenaSql = cadenaSql + ",@Proveedor_Direccion = " + fg.fcSql(txtDireccion.Text, "String"); }
+                { cadenaSql = cadenaSql + ",@Proveedor_Direccion = " + fg.fcSql(txtDireccion.Text.Trim(), "String"); }
                 if (txtLocalidad.Text != "")
-                { cadenaSql = cadenaSql + ",@Proveedor_Localidad = " + fg.fcSql(txtLocalidad.Text, "String"); }
+                { cadenaSql = cadenaSql + ",@Proveedor_Localidad = " + fg.fcSql(txtLocalidad.Text.Trim(), "String"); }
                 if (txtProvincia.Text != "")
-                { cadenaSql = cadenaSql + ",@Proveedor_Provincia = " + fg.fcSql(txtProvincia.Text, "String"); }
+                { cadenaSql = cadenaSql + ",@Proveedor_Provincia = " + fg.fcSql(txtProvincia.Text.Trim(), "String"); }
                 if (txtTelefono.Text != "")
                 { cadenaSql = cadenaSql + ",@Proveedor_Telefono = " + txtTelefono.Text; }
                 if (txtCuit.Text != "")

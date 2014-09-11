@@ -51,7 +51,7 @@ namespace ADBISYS.Formularios.Ventas
             }
             catch (Exception e)
             {
-                mostrarErrorTryCatch(e);
+                fg.mostrarErrorTryCatch(e);
             }
         }
 
@@ -67,7 +67,8 @@ namespace ADBISYS.Formularios.Ventas
                 celdaSeleccionada = grdVentas.CurrentCellAddress.X;
                 filaSeleccionada = grdVentas.CurrentCellAddress.Y;
                 frmNuevaVenta nuevaVenta = new frmNuevaVenta();
-                nuevaVenta.Show();
+                nuevaVenta.ShowDialog();
+                nuevaVenta.Select();
             }
             catch (Exception e)
             {
@@ -82,8 +83,13 @@ namespace ADBISYS.Formularios.Ventas
                 if (EstoyBuscando == false)
                 {
                     Entidades.Venta venta = new ADBISYS.Entidades.Venta();
+                    List<Venta> ventasDelDia = new List<Venta>();
+                    
+                    //ventasDelDia = venta.obtenerVentas(fg.appFechaSistema());
+
                     ds = venta.obtenerVentas(fg.appFechaSistema());
 
+                    //if (ventasDelDia.Count > 0)
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         grdVentas.DataSource = ds.Tables[0];
@@ -105,7 +111,6 @@ namespace ADBISYS.Formularios.Ventas
                     {
                         grdVentas.DataSource = ds.Tables[0];
                     }
-
                 }
 
                 if ((filaSeleccionada > 0) && (celdaSeleccionada > 0) && (filaSeleccionada <= grdVentas.Rows.Count - 1))
@@ -115,7 +120,7 @@ namespace ADBISYS.Formularios.Ventas
             }
             catch (Exception e)
             {
-                mostrarErrorTryCatch(e);
+                fg.mostrarErrorTryCatch(e);
                 return;
             }
         }
@@ -135,8 +140,45 @@ namespace ADBISYS.Formularios.Ventas
 
             catch (Exception e)
             {
-                mostrarErrorTryCatch(e);
+                fg.mostrarErrorTryCatch(e);
                 return "error";
+            }
+        }
+
+        private void frmVentasPrincipal_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                llenarGrillaYActualizar();
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                llenarGrillaYActualizar();
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
+        }
+
+        private void llenarGrillaYActualizar()
+        {
+            try
+            {
+                llenarGrilla();
+                grdVentas = fg.formatoGrilla(grdVentas, 1);
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
             }
         }
     }

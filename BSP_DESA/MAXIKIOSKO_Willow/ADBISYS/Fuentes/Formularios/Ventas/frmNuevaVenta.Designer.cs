@@ -40,20 +40,23 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnConfirmarVenta = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.txtCantidad = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdItemsCompra)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txtCodigoArticulo);
-            this.groupBox1.Location = new System.Drawing.Point(10, 9);
+            this.groupBox1.Location = new System.Drawing.Point(132, 9);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(497, 90);
+            this.groupBox1.Size = new System.Drawing.Size(381, 90);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Código de Artículo";
@@ -61,10 +64,10 @@
             // txtCodigoArticulo
             // 
             this.txtCodigoArticulo.Font = new System.Drawing.Font("Verdana", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigoArticulo.Location = new System.Drawing.Point(15, 36);
+            this.txtCodigoArticulo.Location = new System.Drawing.Point(19, 35);
             this.txtCodigoArticulo.MaxLength = 50;
             this.txtCodigoArticulo.Name = "txtCodigoArticulo";
-            this.txtCodigoArticulo.Size = new System.Drawing.Size(461, 35);
+            this.txtCodigoArticulo.Size = new System.Drawing.Size(342, 35);
             this.txtCodigoArticulo.TabIndex = 0;
             this.txtCodigoArticulo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoArticulo_KeyPress);
             // 
@@ -74,7 +77,7 @@
             this.groupBox3.Location = new System.Drawing.Point(10, 105);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(621, 255);
-            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabIndex = 50;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Items Compra";
             // 
@@ -93,7 +96,7 @@
             this.groupBox4.Location = new System.Drawing.Point(526, 9);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(105, 90);
-            this.groupBox4.TabIndex = 3;
+            this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             // 
             // btnBuscarArticulo
@@ -112,7 +115,7 @@
             this.groupBox2.Location = new System.Drawing.Point(414, 366);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(217, 108);
-            this.groupBox2.TabIndex = 4;
+            this.groupBox2.TabIndex = 81;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Total";
             // 
@@ -133,8 +136,9 @@
             this.groupBox5.Location = new System.Drawing.Point(10, 366);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(383, 108);
-            this.groupBox5.TabIndex = 5;
+            this.groupBox5.TabIndex = 2;
             this.groupBox5.TabStop = false;
+            this.groupBox5.TabIndexChanged += new System.EventHandler(this.groupBox5_TabIndexChanged);
             // 
             // btnConfirmarVenta
             // 
@@ -145,11 +149,12 @@
             this.btnConfirmarVenta.Margin = new System.Windows.Forms.Padding(4);
             this.btnConfirmarVenta.Name = "btnConfirmarVenta";
             this.btnConfirmarVenta.Size = new System.Drawing.Size(146, 69);
-            this.btnConfirmarVenta.TabIndex = 9;
+            this.btnConfirmarVenta.TabIndex = 0;
             this.btnConfirmarVenta.Text = "&Confirmar";
             this.btnConfirmarVenta.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnConfirmarVenta.UseVisualStyleBackColor = true;
             this.btnConfirmarVenta.Click += new System.EventHandler(this.btnConfirmarVenta_Click);
+            this.btnConfirmarVenta.TabIndexChanged += new System.EventHandler(this.btnConfirmarVenta_TabIndexChanged);
             // 
             // btnSalir
             // 
@@ -158,16 +163,41 @@
             this.btnSalir.Location = new System.Drawing.Point(31, 28);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(146, 69);
-            this.btnSalir.TabIndex = 8;
+            this.btnSalir.TabIndex = 1;
             this.btnSalir.Text = "&Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            this.btnSalir.TabIndexChanged += new System.EventHandler(this.btnSalir_TabIndexChanged);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.txtCantidad);
+            this.groupBox6.Location = new System.Drawing.Point(10, 9);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(110, 90);
+            this.groupBox6.TabIndex = 6;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Cantidad";
+            this.groupBox6.TabIndexChanged += new System.EventHandler(this.groupBox6_TabIndexChanged);
+            // 
+            // txtCantidad
+            // 
+            this.txtCantidad.Font = new System.Drawing.Font("Verdana", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCantidad.Location = new System.Drawing.Point(27, 35);
+            this.txtCantidad.MaxLength = 3;
+            this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.Size = new System.Drawing.Size(55, 35);
+            this.txtCantidad.TabIndex = 0;
+            this.txtCantidad.Text = "1";
+            this.txtCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCantidad.TabIndexChanged += new System.EventHandler(this.txtCantidad_TabIndexChanged);
             // 
             // frmNuevaVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(647, 490);
+            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox4);
@@ -179,6 +209,7 @@
             this.Name = "frmNuevaVenta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nueva Venta";
+            this.Load += new System.EventHandler(this.frmNuevaVenta_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -187,6 +218,8 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox5.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -204,5 +237,7 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnConfirmarVenta;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.TextBox txtCantidad;
     }
 }

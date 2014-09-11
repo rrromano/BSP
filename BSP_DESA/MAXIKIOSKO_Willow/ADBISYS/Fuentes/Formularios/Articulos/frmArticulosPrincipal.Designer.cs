@@ -48,10 +48,10 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
-            this.grdCompras = new System.Windows.Forms.DataGridView();
+            this.grdArticulos = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdCompras)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdArticulos)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -127,7 +127,7 @@
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 28);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(124, 28);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -141,7 +141,7 @@
             this.groupBox1.Controls.Add(this.btnEliminar);
             this.groupBox1.Controls.Add(this.btnModificar);
             this.groupBox1.Controls.Add(this.btnNuevo);
-            this.groupBox1.Controls.Add(this.grdCompras);
+            this.groupBox1.Controls.Add(this.grdArticulos);
             this.groupBox1.Location = new System.Drawing.Point(16, 28);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1094, 592);
@@ -242,15 +242,15 @@
             this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnNuevo.UseVisualStyleBackColor = true;
             // 
-            // grdCompras
+            // grdArticulos
             // 
-            this.grdCompras.BackgroundColor = System.Drawing.Color.White;
-            this.grdCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdCompras.Location = new System.Drawing.Point(18, 103);
-            this.grdCompras.Name = "grdCompras";
-            this.grdCompras.RowTemplate.Height = 24;
-            this.grdCompras.Size = new System.Drawing.Size(1058, 454);
-            this.grdCompras.TabIndex = 8;
+            this.grdArticulos.BackgroundColor = System.Drawing.Color.White;
+            this.grdArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdArticulos.Location = new System.Drawing.Point(18, 103);
+            this.grdArticulos.Name = "grdArticulos";
+            this.grdArticulos.RowTemplate.Height = 24;
+            this.grdArticulos.Size = new System.Drawing.Size(1058, 454);
+            this.grdArticulos.TabIndex = 8;
             // 
             // frmArticulosPrincipal
             // 
@@ -266,11 +266,12 @@
             this.Name = "frmArticulosPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Artículos";
+            this.Load += new System.EventHandler(this.frmArticulosPrincipal_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdCompras)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdArticulos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -297,6 +298,6 @@
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnNuevo;
-        private System.Windows.Forms.DataGridView grdCompras;
+        private System.Windows.Forms.DataGridView grdArticulos;
     }
 }
