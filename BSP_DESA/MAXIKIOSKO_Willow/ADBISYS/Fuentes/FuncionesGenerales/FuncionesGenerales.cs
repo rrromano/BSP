@@ -421,5 +421,10 @@ namespace ADBISYS.FuncionesGenerales
                 throw new System.ArgumentException("[Error] - [" + r.Message.ToString() + "]");
             }
         }
+
+        public void mostrarErrorTryCatch(Exception ex)
+        {
+            MessageBox.Show("Error: " + ex.Message);
+        }
     }
 }

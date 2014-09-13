@@ -59,6 +59,10 @@ sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\57 - adp_tota
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\58 - adp_eliminarTodosMovCajaDeHoy.sql"
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\59 - adp_registrar_mov_caja.sql"
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\60 - adp_obtener_ventas.sql"
+sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\61 - adp_obtener_articulos.sql"
+sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\62 - adp_verificoExistencia_articulo.sql"
+sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\63 - adp_nuevo_articulo.sql"
+sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\64 - adp_modificar_articulo.sql"
 ECHO.
 ECHO PROCESO FINALIZADO
 ECHO. 

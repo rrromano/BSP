@@ -85,18 +85,21 @@
             this.actualizarToolStripMenuItem.Name = "actualizarToolStripMenuItem";
             this.actualizarToolStripMenuItem.Size = new System.Drawing.Size(174, 28);
             this.actualizarToolStripMenuItem.Text = "&Actualizar";
+            this.actualizarToolStripMenuItem.Click += new System.EventHandler(this.actualizarToolStripMenuItem_Click);
             // 
             // nuevoToolStripMenuItem1
             // 
             this.nuevoToolStripMenuItem1.Name = "nuevoToolStripMenuItem1";
             this.nuevoToolStripMenuItem1.Size = new System.Drawing.Size(174, 28);
             this.nuevoToolStripMenuItem1.Text = "Nuevo";
+            this.nuevoToolStripMenuItem1.Click += new System.EventHandler(this.nuevoToolStripMenuItem1_Click);
             // 
             // modificarToolStripMenuItem
             // 
             this.modificarToolStripMenuItem.Name = "modificarToolStripMenuItem";
             this.modificarToolStripMenuItem.Size = new System.Drawing.Size(174, 28);
             this.modificarToolStripMenuItem.Text = "Modificar";
+            this.modificarToolStripMenuItem.Click += new System.EventHandler(this.modificarToolStripMenuItem_Click);
             // 
             // eliminarToolStripMenuItem
             // 
@@ -159,6 +162,7 @@
             this.btnActualizar.Text = "&Actualizar";
             this.btnActualizar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnActualizar.UseVisualStyleBackColor = true;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // lbFiltroBusqueda
             // 
@@ -229,6 +233,7 @@
             this.btnModificar.Text = "&Modificar";
             this.btnModificar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnNuevo
             // 
@@ -241,6 +246,7 @@
             this.btnNuevo.Text = "&Nuevo";
             this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnNuevo.UseVisualStyleBackColor = true;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
             // grdArticulos
             // 
@@ -251,6 +257,8 @@
             this.grdArticulos.RowTemplate.Height = 24;
             this.grdArticulos.Size = new System.Drawing.Size(1058, 454);
             this.grdArticulos.TabIndex = 8;
+            this.grdArticulos.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdArticulos_CellContentDoubleClick);
+            this.grdArticulos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdArticulos_KeyDown);
             // 
             // frmArticulosPrincipal
             // 

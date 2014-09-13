@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using ADBISYS.Formularios.Compras;
+using ADBISYS.Formularios.Articulos;
 using ADBISYS.Conexion;
 using ADBISYS.Entidades;
 
@@ -89,5 +89,175 @@ namespace ADBISYS.Formularios.Articulos
                 return;
             }
         }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            actualizar();
+        }
+
+        private void actualizar()
+        {
+            try
+            {
+                llenarGrilla();
+                grdArticulos = fg.formatoGrilla(grdArticulos, 1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void actualizarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            actualizar();
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            nuevoArticulo();
+        }
+
+        private void nuevoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            nuevoArticulo();
+        }
+
+        private void nuevoArticulo()
+        {
+            if (Properties.Settings.Default.UsuarioLogueado == "")
+            {
+                MessageBox.Show("Debe iniciar sesión.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            mostrarFormularioNuevoArticulo();
+            llenarGrilla();
+            grdArticulos = fg.formatoGrilla(grdArticulos, 1);
+            grdArticulos.Focus();
+        }
+
+        private void mostrarFormularioNuevoArticulo()
+        {
+            celdaSeleccionada = grdArticulos.CurrentCellAddress.X;
+            filaSeleccionada = grdArticulos.CurrentCellAddress.Y;
+            frmNuevoArticulo nuevoArticulo = new frmNuevoArticulo();
+            nuevoArticulo.ShowDialog();
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                modificarArticulo();
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                modificarArticulo();
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void modificarArticulo()
+        {
+            if (grdArticulos.DataSource != null)
+            {
+                if (Properties.Settings.Default.UsuarioLogueado == "")
+                {
+                    MessageBox.Show("Debe iniciar sesión.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                if (notFilaSeleccionada()) return;
+                mostrarFormularioModificarArticulo();
+                llenarGrilla();
+                grdArticulos = fg.formatoGrilla(grdArticulos, 1);
+                grdArticulos.Focus();
+            }
+            else
+            {
+                MessageBox.Show("No existen Artículos.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnModificar.Focus();
+            }
+        }
+
+        private void mostrarFormularioModificarArticulo()
+        {
+            try
+            {
+                celdaSeleccionada = grdArticulos.CurrentCellAddress.X;
+                filaSeleccionada = grdArticulos.CurrentCellAddress.Y;
+
+                frmModificarArticulo modificarArticulo = new frmModificarArticulo();
+                modificarArticulo.articulo_codigo = grdArticulos.Rows[filaSeleccionada].Cells["CÓDIGO"].Value.ToString();
+                modificarArticulo.articulo_desccripcion = grdArticulos.Rows[filaSeleccionada].Cells["DESCRIPCIÓN"].Value.ToString();
+                modificarArticulo.articulo_precioVenta = grdArticulos.Rows[filaSeleccionada].Cells["PRECIO_VENTA"].Value.ToString();
+                modificarArticulo.articulo_rubro = grdArticulos.Rows[filaSeleccionada].Cells["RUBRO"].Value.ToString();
+                modificarArticulo.ShowDialog();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private bool notFilaSeleccionada()
+        {
+            try
+            {
+                if (grdArticulos.SelectedRows.Count != 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar un Artículo.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
+            }
+        }
+
+        private void grdArticulos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                modificarArticulo();
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void grdArticulos_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Return)
+                {
+                    e.SuppressKeyPress = true;
+                    modificarArticulo();
+                }
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }

@@ -70,6 +70,18 @@
     <Compile Include="Formularios\Articulos\frmArticulosPrincipal.Designer.cs">
       <DependentUpon>frmArticulosPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Articulos\frmModificarArticulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Articulos\frmModificarArticulo.Designer.cs">
+      <DependentUpon>frmModificarArticulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Articulos\frmNuevoArticulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Articulos\frmNuevoArticulo.Designer.cs">
+      <DependentUpon>frmNuevoArticulo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Ayuda\frmAcercaDeBSP.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -276,6 +288,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Articulos\frmArticulosPrincipal.resx">
       <DependentUpon>frmArticulosPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Articulos\frmModificarArticulo.resx">
+      <DependentUpon>frmModificarArticulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Articulos\frmNuevoArticulo.resx">
+      <DependentUpon>frmNuevoArticulo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Ayuda\frmAcercaDeBSP.resx">
       <DependentUpon>frmAcercaDeBSP.cs</DependentUpon>

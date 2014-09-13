@@ -135,7 +135,6 @@ create table ARTICULOS(
 	Precio_Venta numeric(10,2) not null,
 	Rubro        int           not null,
 	Estado			 numeric(1)		 not null,
-	Hora_modif   varchar(8)	   not null,
 	fecha_modif  datetime      null,
 	login_modif  varchar(255)  null,
 	term_modif   varchar(255)  null
