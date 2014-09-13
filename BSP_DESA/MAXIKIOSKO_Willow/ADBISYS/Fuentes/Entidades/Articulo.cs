@@ -50,9 +50,22 @@ namespace ADBISYS.Entidades
         {
             try
             {
-                cadenaSql = "EXEC adp_verificoExistencia_articulo @Codigo = " + fg.fcSql(codigo, "String"); ;
+                cadenaSql = "EXEC adp_verificoExistencia_articulo @Codigo = " + fg.fcSql(codigo, "String");
                 ds = objConect.ejecutarQuerySelect(cadenaSql);
                 return ds;
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+        }
+
+        public void eliminarArticulo(string id_articulo)
+        {
+            try
+            {
+                cadenaSql = "EXEC adp_eliminar_articulo @Id_articulo = " + fg.fcSql(id_articulo, "String");
+                objConect.ejecutarQuery(cadenaSql);
             }
             catch (Exception e)
             {

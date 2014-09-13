@@ -259,5 +259,78 @@ namespace ADBISYS.Formularios.Articulos
             }
         }
 
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                eliminarArticulo();
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                eliminarArticulo();
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void eliminarArticulo()
+        {
+            if (grdArticulos.DataSource != null)
+            {
+                if (Properties.Settings.Default.UsuarioLogueado == "")
+                {
+                    MessageBox.Show("Debe iniciar sesión.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                if (notFilaSeleccionada()) return;
+                eliminoArticulo();
+                llenarGrilla();
+                grdArticulos = fg.formatoGrilla(grdArticulos, 1);
+                btnEliminar.Focus();
+            }
+            else
+            {
+                MessageBox.Show("No existen Artículos.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnModificar.Focus();
+            }
+        }
+
+        private void eliminoArticulo()
+        {
+            celdaSeleccionada = grdArticulos.CurrentCellAddress.X;
+            filaSeleccionada = grdArticulos.CurrentCellAddress.Y;
+            string articulo_codigo = grdArticulos.Rows[filaSeleccionada].Cells["CÓDIGO"].Value.ToString();
+            string descripcion = grdArticulos.Rows[filaSeleccionada].Cells["DESCRIPCIÓN"].Value.ToString();
+
+            if (MessageBox.Show("¿Está seguro que desea eliminar el Artículo: " + articulo_codigo + " - " + descripcion + "?", "Eliminar Artículo.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    Entidades.Articulo entArticulo = new ADBISYS.Entidades.Articulo();
+                    entArticulo.eliminarArticulo(articulo_codigo);
+                    grdArticulos.Focus();
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            else
+            {
+                btnEliminar.Focus();
+            }
+        }
+
     }
 }
