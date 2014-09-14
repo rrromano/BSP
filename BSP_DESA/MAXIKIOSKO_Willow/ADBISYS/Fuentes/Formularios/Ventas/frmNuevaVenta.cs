@@ -18,32 +18,28 @@ namespace ADBISYS.Formularios.Ventas
             InitializeComponent();
         }
 
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void btnBuscarArticulo_Click(object sender, EventArgs e)
         {
             //va a abrir un formulario nuevo donde vas a buscar al articulo 
             //una vez que lo encuentres se debe generar una nueva instancia de ese nuevo articulo
             //se llama a la funcion cargarArticuloEnGrilla(articulo) pasandole por parametro la nueva instancia
         }
-
-        private void btnConfirmarVenta_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Venta Ok");
-        }
-
         private void txtCodigoArticulo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13)
+            try
             {
-                //SI APRETO ENTER EJECUTO ESTE CODIGO
+                if (e.KeyChar == 13)
+                {
+                    //SI APRETO ENTER EJECUTO ESTE CODIGO
 
-                //Entidades.Articulo articulo = new ADBISYS.Entidades.Articulo();
-                //articulo = generarArticulo(txtCodigoArticulo.Text);
-                //cargarArticuloEnGrilla(articulo);
+                    Entidades.Articulo articulo = new ADBISYS.Entidades.Articulo();
+                    articulo = obtenerArticulo(txtCodigoArticulo.Text);
+                    cargarArticuloEnGrilla(articulo);
+                }
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
             }
         }
 
@@ -53,12 +49,18 @@ namespace ADBISYS.Formularios.Ventas
             throw new NotImplementedException();
         }
 
-        private ADBISYS.Entidades.Articulo generarArticulo(String codigo)
+        private ADBISYS.Entidades.Articulo obtenerArticulo(String codigo)
         {
-            //ACA GENERO UNA INSTANCIA DE ARTICULO BUSCANDO LOS DATOS DEL ARTICULO EN LA BD POR EL CODIGO RECIBIDO POR PARAMETRO
-            throw new NotImplementedException();
+            String sSQL = "";
+            DataSet Ds = new DataSet();
+
+            sSQL = "EXEC dbo.adp_obtenerArticulo ";
+            sSQL = sSQL + " @Id_Articulo = " + fg.fcSql(codigo, "STRING");
+
+            Ds = venta.obtenerVentas(fg.appFechaSistema());
         }
 
+        #region Form_Load
         private void frmNuevaVenta_Load(object sender, EventArgs e)
         {
             try
@@ -70,7 +72,8 @@ namespace ADBISYS.Formularios.Ventas
                 fg.mostrarErrorTryCatch(ex);
             }
         }
-
+        #endregion
+        #region Poner Valores En Default
         private void ponerValoresEnDefault()
         {
             try
@@ -85,30 +88,40 @@ namespace ADBISYS.Formularios.Ventas
                 fg.mostrarErrorTryCatch(ex);
             }
         }
-
+        #endregion
+        #region TabIndexChanged
         private void btnConfirmarVenta_TabIndexChanged(object sender, EventArgs e)
         {
             txtCodigoArticulo.Focus();
         }
-
         private void groupBox6_TabIndexChanged(object sender, EventArgs e)
         {
             txtCodigoArticulo.Focus();
         }
-
         private void txtCantidad_TabIndexChanged(object sender, EventArgs e)
         {
             txtCodigoArticulo.Focus();
         }
-
         private void groupBox5_TabIndexChanged(object sender, EventArgs e)
         {
             txtCodigoArticulo.Focus();
         }
-
         private void btnSalir_TabIndexChanged(object sender, EventArgs e)
         {
             txtCodigoArticulo.Focus();
         }
+        #endregion
+        #region Confirmar Venta
+        private void btnConfirmarVenta_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Venta Ok");
+        }
+        #endregion
+        #region Salir
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        #endregion
     }
 }

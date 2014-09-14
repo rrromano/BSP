@@ -15,67 +15,64 @@ namespace ADBISYS.Formularios.Ventas
     public partial class frmVentasPrincipal : Form
     {
 
+        #region fmrVentasPrincipal Declaraciones
         ConectarBD objConect = new ConectarBD();
         DataSet ds = new DataSet();
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
-        string cadenaSql, campoAnterior, textoAnterior, campoOrdenamiento = "";
-        int filaSeleccionada = 0;
-        int celdaSeleccionada = 0;
+        String cadenaSql, campoAnterior, textoAnterior, campoOrdenamiento = "";
+        Int32 filaSeleccionada = 0;
+        Int32 celdaSeleccionada = 0;
         Boolean EstoyBuscando = false;
         Boolean ordenamiento = true;
         Dictionary<string, string> campos_tabla = new Dictionary<string, string>();
-
+        #endregion
+        #region InitializeComponent
         public frmVentasPrincipal()
         {
             InitializeComponent();
         }
-
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnNuevo_Click(object sender, EventArgs e)
-        {
-            nuevaVenta();
-        }
-
-        private void nuevaVenta()
+        #endregion
+        #region Load_Form
+        private void frmVentasPrincipal_Load(object sender, EventArgs e)
         {
             try
             {
-                mostrarFormularioNuevaVenta();
+                actualizarGrilla();
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
+        }
+        #endregion
+        #region Actualizar Grilla
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                actualizarGrilla();
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
+        }
+        private void actualizarGrilla()
+        {
+            try
+            {
                 llenarGrilla();
                 grdVentas = fg.formatoGrilla(grdVentas, 1);
-                grdVentas.Focus();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                fg.mostrarErrorTryCatch(e);
+                fg.mostrarErrorTryCatch(ex);
             }
         }
 
-        private void mostrarErrorTryCatch(Exception e)
-        {
-            MessageBox.Show("Error: " + e.Message, "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        private void mostrarFormularioNuevaVenta()
-        {
-            try
-            {
-                celdaSeleccionada = grdVentas.CurrentCellAddress.X;
-                filaSeleccionada = grdVentas.CurrentCellAddress.Y;
-                frmNuevaVenta nuevaVenta = new frmNuevaVenta();
-                nuevaVenta.ShowDialog();
-                nuevaVenta.Select();
-            }
-            catch (Exception e)
-            {
-                mostrarErrorTryCatch(e);
-            }
-        }
-
+        #endregion
+        #region Llegar Grilla
         private void llenarGrilla()
         {
             try
@@ -84,7 +81,7 @@ namespace ADBISYS.Formularios.Ventas
                 {
                     Entidades.Venta venta = new ADBISYS.Entidades.Venta();
                     List<Venta> ventasDelDia = new List<Venta>();
-                    
+
                     //ventasDelDia = venta.obtenerVentas(fg.appFechaSistema());
 
                     ds = venta.obtenerVentas(fg.appFechaSistema());
@@ -103,7 +100,7 @@ namespace ADBISYS.Formularios.Ventas
                 {
                     cadenaSql = "EXEC adp_busqueda_ventas";
                     cadenaSql = cadenaSql + " @tabla = " + fg.fcSql("COMPRAS", "String");
-                    cadenaSql = cadenaSql + ",@campo_tabla = " + fg.fcSql(obtenerCampoTabla().ToString(), "String");
+                    cadenaSql = cadenaSql + ",@campo_tabla = " + fg.fcSql(fg.obtenerCampoTabla(campoAnterior, campos_tabla).ToString(), "String");
                     cadenaSql = cadenaSql + ",@texto = " + fg.fcSql(textoAnterior, "String").Replace(",", ".");
 
                     ds = objConect.ejecutarQuerySelect(cadenaSql);
@@ -124,62 +121,48 @@ namespace ADBISYS.Formularios.Ventas
                 return;
             }
         }
-        private object obtenerCampoTabla()
+        #endregion
+        #region Nueva Venta
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            nuevaVenta();
+        }
+        private void nuevaVenta()
         {
             try
             {
-                foreach (KeyValuePair<string, string> campo in campos_tabla)
-                {
-                    if (campoAnterior == campo.Value)
-                    {
-                        return (campo.Key);
-                    }
-                }
-                return "ok";
+                mostrarFormularioNuevaVenta();
+                llenarGrilla();
+                grdVentas = fg.formatoGrilla(grdVentas, 1);
+                grdVentas.Focus();
             }
-
             catch (Exception e)
             {
                 fg.mostrarErrorTryCatch(e);
-                return "error";
             }
         }
-
-        private void frmVentasPrincipal_Load(object sender, EventArgs e)
+        private void mostrarFormularioNuevaVenta()
         {
             try
             {
-                llenarGrillaYActualizar();
+                celdaSeleccionada = grdVentas.CurrentCellAddress.X;
+                filaSeleccionada = grdVentas.CurrentCellAddress.Y;
+                frmNuevaVenta nuevaVenta = new frmNuevaVenta();
+                nuevaVenta.ShowDialog();
+                nuevaVenta.Select();
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                fg.mostrarErrorTryCatch(ex);
+                fg.mostrarErrorTryCatch(e);
             }
         }
-
-        private void btnActualizar_Click(object sender, EventArgs e)
+        #endregion
+        #region Salir
+        private void btnSalir_Click(object sender, EventArgs e)
         {
-            try
-            {
-                llenarGrillaYActualizar();
-            }
-            catch (Exception ex)
-            {
-                fg.mostrarErrorTryCatch(ex);
-            }
+            this.Close();
         }
+        #endregion
 
-        private void llenarGrillaYActualizar()
-        {
-            try
-            {
-                llenarGrilla();
-                grdVentas = fg.formatoGrilla(grdVentas, 1);
-            }
-            catch (Exception ex)
-            {
-                fg.mostrarErrorTryCatch(ex);
-            }
-        }
     }
 }

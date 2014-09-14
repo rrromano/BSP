@@ -258,6 +258,26 @@ namespace ADBISYS.FuncionesGenerales
             }
         }
 
+        public object obtenerCampoTabla(String Valor, Dictionary<string, string> Collection)
+        {
+            try
+            {
+                foreach (KeyValuePair<string, string> campo in Collection)
+                {
+                    if (Valor == campo.Value)
+                    {
+                        return (campo.Key);
+                    }
+                }
+                return "ok";
+            }
+
+            catch (Exception r)
+            {
+                throw new System.ArgumentException("[Error] -  [" + r.Message.ToString() + "]");
+            }
+        }
+
         public void keyPressNumerosDecimales(KeyPressEventArgs e, TextBox textBox)
         {
             try

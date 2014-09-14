@@ -76,7 +76,7 @@
             this.groupBox3.Controls.Add(this.grdItemsCompra);
             this.groupBox3.Location = new System.Drawing.Point(10, 105);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(621, 255);
+            this.groupBox3.Size = new System.Drawing.Size(621, 374);
             this.groupBox3.TabIndex = 50;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Items Compra";
@@ -87,7 +87,7 @@
             this.grdItemsCompra.Location = new System.Drawing.Point(15, 28);
             this.grdItemsCompra.Name = "grdItemsCompra";
             this.grdItemsCompra.RowTemplate.Height = 24;
-            this.grdItemsCompra.Size = new System.Drawing.Size(592, 209);
+            this.grdItemsCompra.Size = new System.Drawing.Size(592, 330);
             this.grdItemsCompra.TabIndex = 0;
             // 
             // groupBox4
@@ -112,7 +112,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.lblTotalVenta);
-            this.groupBox2.Location = new System.Drawing.Point(414, 366);
+            this.groupBox2.Location = new System.Drawing.Point(414, 485);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(217, 108);
             this.groupBox2.TabIndex = 81;
@@ -133,7 +133,7 @@
             // 
             this.groupBox5.Controls.Add(this.btnConfirmarVenta);
             this.groupBox5.Controls.Add(this.btnSalir);
-            this.groupBox5.Location = new System.Drawing.Point(10, 366);
+            this.groupBox5.Location = new System.Drawing.Point(10, 485);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(383, 108);
             this.groupBox5.TabIndex = 2;
@@ -196,7 +196,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(647, 490);
+            this.ClientSize = new System.Drawing.Size(647, 605);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox2);
