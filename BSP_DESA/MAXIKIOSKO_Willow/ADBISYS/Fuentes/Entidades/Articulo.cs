@@ -64,8 +64,14 @@ namespace ADBISYS.Entidades
         {
             try
             {
+                string usuario = Properties.Settings.Default.UsuarioLogueado.ToString();
+
                 cadenaSql = "EXEC adp_eliminar_articulo @Id_articulo = " + fg.fcSql(id_articulo, "String");
+                if (usuario != "")
+                { cadenaSql = cadenaSql + ",@Articulo_Login = " + fg.fcSql(usuario, "String"); }
+                
                 objConect.ejecutarQuery(cadenaSql);
+
             }
             catch (Exception e)
             {

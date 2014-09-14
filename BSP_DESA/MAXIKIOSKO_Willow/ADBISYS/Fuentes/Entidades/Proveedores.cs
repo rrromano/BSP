@@ -81,7 +81,12 @@ namespace ADBISYS.Entidades
         {
             try
             {
+                string usuario = Properties.Settings.Default.UsuarioLogueado.ToString();
+                
                 cadenaSql = "EXEC adp_eliminar_proveedor @Id_Proveedor = " + id_Proveedor;
+                if (usuario != "")
+                { cadenaSql = cadenaSql + ",@Proveedor_Login = " + fg.fcSql(usuario, "String"); }
+
                 objConect.ejecutarQuery(cadenaSql);
             }
             catch (Exception e)

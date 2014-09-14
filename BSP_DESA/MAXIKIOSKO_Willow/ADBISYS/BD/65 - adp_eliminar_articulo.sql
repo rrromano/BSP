@@ -6,14 +6,18 @@ Go
 
 -- SP QUE ELIMINA A UNA COMPRA.
 
-Create procedure adp_eliminar_articulo (@Id_articulo VARCHAR(255))
+Create procedure adp_eliminar_articulo (@Id_articulo			VARCHAR(255),
+																				@Articulo_Login		VARCHAR(255) = NULL)
 as
 
 BEGIN TRY
   SET NOCOUNT ON
   PRINT 'INICIO ACTUALIZACIÓN'
   
-	UPDATE ARTICULOS SET Estado = 0
+	UPDATE ARTICULOS SET ESTADO = 0,
+											 FECHA_MODIF = GETDATE(),
+											 LOGIN_MODIF = @ARTICULO_LOGIN,
+											 TERM_MODIF = HOST_NAME()
 		WHERE ID_Articulo = @Id_articulo
 
   PRINT 'FIN ACTUALIZACIÓN OK'

@@ -60,7 +60,12 @@ namespace ADBISYS.Entidades
             try
             {
                 ConectarBD Conex = new ConectarBD();
+                string usuario = Properties.Settings.Default.UsuarioLogueado.ToString();
+                
                 String sSQL = "EXEC dbo.adp_eliminarTipoMovCaja @ID_TIPOMOVIMIENTO = " + id_TipoMovCaja;
+                if (usuario != "")
+                { sSQL = sSQL + ",@TipoMovCaja_Login = " + fg.fcSql(usuario, "String"); }
+                
                 Conex.ejecutarQuery(sSQL);
             }
             catch (Exception e)

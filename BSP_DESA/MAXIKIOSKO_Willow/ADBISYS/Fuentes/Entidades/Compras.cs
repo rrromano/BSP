@@ -65,7 +65,12 @@ namespace ADBISYS.Entidades
         {
             try
             {
+                string usuario = Properties.Settings.Default.UsuarioLogueado.ToString();
+
                 cadenaSql = "EXEC adp_eliminar_compra @Id_Compra = " + id_compra;
+                if (usuario != "")
+                { cadenaSql = cadenaSql + ",@Compra_Login = " + fg.fcSql(usuario, "String"); }
+
                 objConect.ejecutarQuery(cadenaSql);
             }
             catch (Exception e)

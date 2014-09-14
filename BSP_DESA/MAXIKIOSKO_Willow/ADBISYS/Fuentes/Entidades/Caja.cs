@@ -220,9 +220,13 @@ namespace ADBISYS.Entidades
         {
             try
             {
+                string usuario = Properties.Settings.Default.UsuarioLogueado.ToString();
                 FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
                 ConectarBD Conex = new ConectarBD();
                 String sSQL = "EXEC dbo.adp_eliminarTodosMovCajaDeHoy @fecha_mov = " + fg.fcSql(fecha_mov.ToString(), "DATETIME");
+                if (usuario != "")
+                { sSQL = sSQL + ",@Login = " + fg.fcSql(usuario, "String"); }
+
                 Conex.ejecutarQuery(sSQL);
             }
             catch (Exception e)

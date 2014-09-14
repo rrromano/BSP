@@ -104,7 +104,12 @@ namespace ADBISYS.Entidades
         {
             try
             {
+                string usuario = Properties.Settings.Default.UsuarioLogueado.ToString();
+
                 cadenaSql = "EXEC adp_eliminar_rubro @Id_Rubro = " + id_Rubro;
+                if (usuario != "")
+                { cadenaSql = cadenaSql + ",@Rubro_Login = " + fg.fcSql(usuario, "String"); }
+
                 objConect.ejecutarQuery(cadenaSql);
             }
             catch (Exception e)

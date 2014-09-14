@@ -6,14 +6,18 @@ Go
 
 -- SP QUE ELIMINA A UN PROVEEDOR.
 
-Create procedure adp_eliminar_proveedor (@Id_Proveedor INT)
+Create procedure adp_eliminar_proveedor (@Id_Proveedor INT,
+																				 @Proveedor_Login AS VARCHAR(255) = NULL)
 as
 
 BEGIN TRY
   SET NOCOUNT ON
   PRINT 'INICIO ACTUALIZACIÓN'
   
-	UPDATE PROVEEDORES SET Estado = 0
+	UPDATE PROVEEDORES SET Estado = 0,
+												 fecha_modif = GETDATE(),
+												 login_modif = @Proveedor_Login,
+												 term_modif = HOST_NAME()
 		WHERE ID_Proveedor = @Id_proveedor
 
   PRINT 'FIN ACTUALIZACIÓN OK'

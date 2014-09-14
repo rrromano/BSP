@@ -6,14 +6,18 @@ Go
 
 -- SP QUE ELIMINA A UN RUBRO.
 
-Create procedure adp_eliminar_rubro (@Id_Rubro INT)
+Create procedure adp_eliminar_rubro (@Id_Rubro INT,
+																		 @Rubro_Login AS VARCHAR(255) = NULL)
 as
 
 BEGIN TRY
   SET NOCOUNT ON
   PRINT 'INICIO ACTUALIZACIÓN'
   
-	UPDATE RUBROS SET Estado = 0	
+	UPDATE RUBROS SET Estado = 0,
+										fecha_modif = GETDATE(),
+										login_modif = @Rubro_Login,
+										term_modif = HOST_NAME()	
 		WHERE ID_Rubro = @Id_Rubro
 
   PRINT 'FIN ACTUALIZACIÓN OK'
