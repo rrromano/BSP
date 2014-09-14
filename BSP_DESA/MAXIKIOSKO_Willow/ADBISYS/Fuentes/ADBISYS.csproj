@@ -70,6 +70,12 @@
     <Compile Include="Formularios\Articulos\frmArticulosPrincipal.Designer.cs">
       <DependentUpon>frmArticulosPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Articulos\frmBusquedaArticulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Articulos\frmBusquedaArticulo.Designer.cs">
+      <DependentUpon>frmBusquedaArticulo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Articulos\frmModificarArticulo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -288,6 +294,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Articulos\frmArticulosPrincipal.resx">
       <DependentUpon>frmArticulosPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Articulos\frmBusquedaArticulo.resx">
+      <DependentUpon>frmBusquedaArticulo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Articulos\frmModificarArticulo.resx">
       <DependentUpon>frmModificarArticulo.cs</DependentUpon>

@@ -4,21 +4,17 @@ If Exists ( Select 1 From SysObjects Where Name = 'adp_eliminar_articulo')
   Drop Procedure adp_eliminar_articulo
 Go 
 
--- SP QUE ELIMINA A UNA COMPRA.
+-- SP QUE ELIMINA A UN ARTICULO.
 
-Create procedure adp_eliminar_articulo (@Id_articulo			VARCHAR(255),
-																				@Articulo_Login		VARCHAR(255) = NULL)
+Create procedure adp_eliminar_articulo (@Id_articulo			VARCHAR(255))
+
 as
 
 BEGIN TRY
   SET NOCOUNT ON
   PRINT 'INICIO ACTUALIZACIÓN'
   
-	UPDATE ARTICULOS SET ESTADO = 0,
-											 FECHA_MODIF = GETDATE(),
-											 LOGIN_MODIF = @ARTICULO_LOGIN,
-											 TERM_MODIF = HOST_NAME()
-		WHERE ID_Articulo = @Id_articulo
+	DELETE FROM ARTICULOS WHERE ID_Articulo = @Id_articulo
 
   PRINT 'FIN ACTUALIZACIÓN OK'
   SET NOCOUNT OFF

@@ -30,6 +30,9 @@ Go
 If Exists ( Select 1 From sysobjects Where Name = 'ARTICULOS' )
   Drop Table ARTICULOS
 Go
+If Exists ( Select 1 From sysobjects Where Name = 'ARTICULOS_ELIMINADOS' )
+  Drop Table ARTICULOS_ELIMINADOS
+Go
 If Exists ( Select 1 From sysobjects Where Name = 'ESTADO_ARTICULOS' )
   Drop Table ESTADO_ARTICULOS
 Go
@@ -146,6 +149,22 @@ ALTER TABLE ARTICULOS ADD CONSTRAINT FK_RUBRO_ARTICULOS
 ALTER TABLE ARTICULOS ADD CONSTRAINT FK_ESTADO_ARTICULOS 
 	FOREIGN KEY(Estado) REFERENCES ESTADO_ARTICULOS(Estado)	
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA ARTICULOS.'
+GO
+--=============================================================================================
+------------------------------------ TABLE ARTICULOS_ELIMINADOS -------------------------------
+--=============================================================================================
+create table ARTICULOS_ELIMINADOS(
+	ID_Articulo  numeric(20)   not null, 
+	Descripcion  varchar(255)  not null,
+	Precio_Venta numeric(10,2) not null,
+	Rubro        int           not null,
+	Estado			 numeric(1)		 not null,
+	fecha_modif  datetime      null,
+	login_modif  varchar(255)  null,
+	term_modif   varchar(255)  null
+)
+GO	
+PRINT 'SE CREÓ CORRECTAMENTE LA TABLA ARTICULOS_ELIMINADOS.'
 GO
 --=============================================================================================
 ------------------------------------ TABLE TMP_ARTICULOS_VENTAS -------------------------------
