@@ -56,7 +56,7 @@
             this.groupBox1.Controls.Add(this.txtCodigoArticulo);
             this.groupBox1.Location = new System.Drawing.Point(132, 9);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(381, 90);
+            this.groupBox1.Size = new System.Drawing.Size(535, 90);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Código de Artículo";
@@ -64,10 +64,10 @@
             // txtCodigoArticulo
             // 
             this.txtCodigoArticulo.Font = new System.Drawing.Font("Verdana", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigoArticulo.Location = new System.Drawing.Point(19, 35);
+            this.txtCodigoArticulo.Location = new System.Drawing.Point(21, 35);
             this.txtCodigoArticulo.MaxLength = 50;
             this.txtCodigoArticulo.Name = "txtCodigoArticulo";
-            this.txtCodigoArticulo.Size = new System.Drawing.Size(342, 35);
+            this.txtCodigoArticulo.Size = new System.Drawing.Size(493, 35);
             this.txtCodigoArticulo.TabIndex = 0;
             this.txtCodigoArticulo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoArticulo_KeyPress);
             // 
@@ -76,7 +76,7 @@
             this.groupBox3.Controls.Add(this.grdItemsCompra);
             this.groupBox3.Location = new System.Drawing.Point(10, 105);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(621, 374);
+            this.groupBox3.Size = new System.Drawing.Size(768, 374);
             this.groupBox3.TabIndex = 50;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Items Compra";
@@ -87,13 +87,13 @@
             this.grdItemsCompra.Location = new System.Drawing.Point(15, 28);
             this.grdItemsCompra.Name = "grdItemsCompra";
             this.grdItemsCompra.RowTemplate.Height = 24;
-            this.grdItemsCompra.Size = new System.Drawing.Size(592, 330);
+            this.grdItemsCompra.Size = new System.Drawing.Size(736, 330);
             this.grdItemsCompra.TabIndex = 0;
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.btnBuscarArticulo);
-            this.groupBox4.Location = new System.Drawing.Point(526, 9);
+            this.groupBox4.Location = new System.Drawing.Point(673, 9);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(105, 90);
             this.groupBox4.TabIndex = 1;
@@ -112,7 +112,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.lblTotalVenta);
-            this.groupBox2.Location = new System.Drawing.Point(414, 485);
+            this.groupBox2.Location = new System.Drawing.Point(561, 485);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(217, 108);
             this.groupBox2.TabIndex = 81;
@@ -196,7 +196,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(647, 605);
+            this.ClientSize = new System.Drawing.Size(814, 605);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox2);

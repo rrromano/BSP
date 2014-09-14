@@ -12,10 +12,12 @@ namespace ADBISYS.Entidades
 {
     class Articulo
     {
+        #region Declaraciones
         ConectarBD objConect = new ConectarBD();
         DataSet ds = new DataSet();
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
         string cadenaSql = "";
+        #endregion
 
         public DataSet obtenerArticulos()
         {
@@ -30,7 +32,20 @@ namespace ADBISYS.Entidades
                 throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
             }
         }
-
+        public DataSet obtenerArticulos(String Id_Articulo)
+        {
+            try
+            {
+                cadenaSql = "EXEC dbo.adp_obtener_articulos";
+                cadenaSql = cadenaSql + " @Id_Articulo = " + fg.fcSql(Id_Articulo,"STRING");
+                ds = objConect.ejecutarQuerySelect(cadenaSql);
+                return ds;
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+        }
         public DataSet obtenerInfoRubros()
         {
             try
@@ -45,7 +60,6 @@ namespace ADBISYS.Entidades
             }
 
         }
-
         public DataSet validarExistenciaArticulo(string codigo)
         {
             try
@@ -59,7 +73,6 @@ namespace ADBISYS.Entidades
                 throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
             }
         }
-
         public void eliminarArticulo(string id_articulo)
         {
             try

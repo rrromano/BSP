@@ -24,6 +24,8 @@ namespace ADBISYS.Formularios.Ventas
             //una vez que lo encuentres se debe generar una nueva instancia de ese nuevo articulo
             //se llama a la funcion cargarArticuloEnGrilla(articulo) pasandole por parametro la nueva instancia
         }
+
+        #region Buscar Articulo
         private void txtCodigoArticulo_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -32,9 +34,11 @@ namespace ADBISYS.Formularios.Ventas
                 {
                     //SI APRETO ENTER EJECUTO ESTE CODIGO
 
+                    DataSet DsArticulo = new DataSet();
                     Entidades.Articulo articulo = new ADBISYS.Entidades.Articulo();
-                    articulo = obtenerArticulo(txtCodigoArticulo.Text);
-                    cargarArticuloEnGrilla(articulo);
+                    DsArticulo = articulo.obtenerArticulos(txtCodigoArticulo.Text);
+                    cargarArticuloEnGrilla(DsArticulo);
+                    grdItemsCompra = fg.formatoGrilla(grdItemsCompra, 1);
                 }
             }
             catch (Exception ex)
@@ -43,22 +47,15 @@ namespace ADBISYS.Formularios.Ventas
             }
         }
 
-        private void cargarArticuloEnGrilla(ADBISYS.Entidades.Articulo articulo)
+        private void cargarArticuloEnGrilla(DataSet DsArticulo)
         {
             //GUARDO EN LA GRILLA EL ARTICULO QUE RECIBO POR PARAMETRO
-            throw new NotImplementedException();
+            if (DsArticulo.Tables[0].Rows.Count > 0)
+            {
+                grdItemsCompra.DataSource = DsArticulo.Tables[0];
+            }
         }
-
-        private ADBISYS.Entidades.Articulo obtenerArticulo(String codigo)
-        {
-            String sSQL = "";
-            DataSet Ds = new DataSet();
-
-            sSQL = "EXEC dbo.adp_obtenerArticulo ";
-            sSQL = sSQL + " @Id_Articulo = " + fg.fcSql(codigo, "STRING");
-
-            Ds = venta.obtenerVentas(fg.appFechaSistema());
-        }
+        #endregion
 
         #region Form_Load
         private void frmNuevaVenta_Load(object sender, EventArgs e)

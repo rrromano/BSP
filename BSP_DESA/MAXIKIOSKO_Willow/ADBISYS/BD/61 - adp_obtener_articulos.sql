@@ -5,7 +5,7 @@ If Exists ( Select 1 From SysObjects Where Name = 'adp_obtener_articulos')
 Go 
 
 -- SP PARA OBTENER LOS DIFERENTES ARTICULOS.
-Create procedure dbo.adp_obtener_articulos
+Create procedure dbo.adp_obtener_articulos (@Id_Articulo As NUMERIC(20) = NULL)
 as
 
 BEGIN TRY
@@ -23,6 +23,7 @@ BEGIN TRY
 	FROM ARTICULOS A
 		INNER JOIN RUBROS B ON (A.RUBRO = B.ID_RUBRO)
 		WHERE A.ESTADO = 1
+		  AND A.ID_Articulo = ISNULL(@Id_Articulo, A.ID_Articulo)
 
 	SET NOCOUNT OFF
 	
