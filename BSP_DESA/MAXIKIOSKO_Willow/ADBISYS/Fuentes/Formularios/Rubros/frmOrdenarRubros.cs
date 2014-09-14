@@ -16,7 +16,6 @@ namespace ADBISYS.Formularios.Rubros
     {
         ConectarBD objConect = new ConectarBD();
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
-        string cadenaSql = "";
         public string campo;
         public bool Ascendente = true;
         

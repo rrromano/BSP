@@ -42,6 +42,8 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.txtCantidad = new System.Windows.Forms.TextBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.btnEliminarArticulo = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdItemsCompra)).BeginInit();
@@ -49,12 +51,13 @@
             this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txtCodigoArticulo);
-            this.groupBox1.Location = new System.Drawing.Point(132, 9);
+            this.groupBox1.Location = new System.Drawing.Point(128, 9);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(535, 90);
             this.groupBox1.TabIndex = 0;
@@ -65,7 +68,7 @@
             // 
             this.txtCodigoArticulo.Font = new System.Drawing.Font("Verdana", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCodigoArticulo.Location = new System.Drawing.Point(21, 35);
-            this.txtCodigoArticulo.MaxLength = 50;
+            this.txtCodigoArticulo.MaxLength = 20;
             this.txtCodigoArticulo.Name = "txtCodigoArticulo";
             this.txtCodigoArticulo.Size = new System.Drawing.Size(493, 35);
             this.txtCodigoArticulo.TabIndex = 0;
@@ -76,26 +79,27 @@
             this.groupBox3.Controls.Add(this.grdItemsCompra);
             this.groupBox3.Location = new System.Drawing.Point(10, 105);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(768, 374);
+            this.groupBox3.Size = new System.Drawing.Size(918, 374);
             this.groupBox3.TabIndex = 50;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Items Compra";
             // 
             // grdItemsCompra
             // 
+            this.grdItemsCompra.BackgroundColor = System.Drawing.Color.White;
             this.grdItemsCompra.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdItemsCompra.Location = new System.Drawing.Point(15, 28);
             this.grdItemsCompra.Name = "grdItemsCompra";
             this.grdItemsCompra.RowTemplate.Height = 24;
-            this.grdItemsCompra.Size = new System.Drawing.Size(736, 330);
+            this.grdItemsCompra.Size = new System.Drawing.Size(887, 330);
             this.grdItemsCompra.TabIndex = 0;
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.btnBuscarArticulo);
-            this.groupBox4.Location = new System.Drawing.Point(673, 9);
+            this.groupBox4.Location = new System.Drawing.Point(669, 9);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(105, 90);
+            this.groupBox4.Size = new System.Drawing.Size(107, 90);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             // 
@@ -112,7 +116,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.lblTotalVenta);
-            this.groupBox2.Location = new System.Drawing.Point(561, 485);
+            this.groupBox2.Location = new System.Drawing.Point(711, 485);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(217, 108);
             this.groupBox2.TabIndex = 81;
@@ -172,7 +176,7 @@
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.txtCantidad);
-            this.groupBox6.Location = new System.Drawing.Point(10, 9);
+            this.groupBox6.Location = new System.Drawing.Point(12, 9);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(110, 90);
             this.groupBox6.TabIndex = 6;
@@ -192,11 +196,31 @@
             this.txtCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtCantidad.TabIndexChanged += new System.EventHandler(this.txtCantidad_TabIndexChanged);
             // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.btnEliminarArticulo);
+            this.groupBox7.Location = new System.Drawing.Point(782, 9);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(146, 90);
+            this.groupBox7.TabIndex = 82;
+            this.groupBox7.TabStop = false;
+            // 
+            // btnEliminarArticulo
+            // 
+            this.btnEliminarArticulo.Enabled = false;
+            this.btnEliminarArticulo.Location = new System.Drawing.Point(18, 22);
+            this.btnEliminarArticulo.Name = "btnEliminarArticulo";
+            this.btnEliminarArticulo.Size = new System.Drawing.Size(112, 58);
+            this.btnEliminarArticulo.TabIndex = 0;
+            this.btnEliminarArticulo.Text = "Eliminar";
+            this.btnEliminarArticulo.UseVisualStyleBackColor = true;
+            // 
             // frmNuevaVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(814, 605);
+            this.ClientSize = new System.Drawing.Size(944, 605);
+            this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox2);
@@ -220,6 +244,7 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -239,5 +264,7 @@
         private System.Windows.Forms.Button btnConfirmarVenta;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.TextBox txtCantidad;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Button btnEliminarArticulo;
     }
 }

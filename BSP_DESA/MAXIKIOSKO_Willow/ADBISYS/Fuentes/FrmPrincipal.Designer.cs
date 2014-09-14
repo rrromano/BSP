@@ -33,10 +33,6 @@
             this.StripPrincipal = new System.Windows.Forms.MenuStrip();
             this.ventasTS = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevaVentaTSMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.ventaErroneaTSMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.cargarVentaErróneaTSMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.confVentaErroneaTSMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.ventasDelDíaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.articulosTS = new System.Windows.Forms.ToolStripMenuItem();
             this.modifArticuloTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.actPrecioArticuloTSMI = new System.Windows.Forms.ToolStripMenuItem();
@@ -99,9 +95,7 @@
             // ventasTS
             // 
             this.ventasTS.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nuevaVentaTSMI,
-            this.ventaErroneaTSMI,
-            this.ventasDelDíaToolStripMenuItem});
+            this.nuevaVentaTSMI});
             this.ventasTS.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ventasTS.Name = "ventasTS";
             this.ventasTS.Size = new System.Drawing.Size(86, 27);
@@ -113,33 +107,6 @@
             this.nuevaVentaTSMI.Size = new System.Drawing.Size(266, 28);
             this.nuevaVentaTSMI.Text = "Agregar / Modificar";
             this.nuevaVentaTSMI.Click += new System.EventHandler(this.nuevaVentaTSMI_Click);
-            // 
-            // ventaErroneaTSMI
-            // 
-            this.ventaErroneaTSMI.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cargarVentaErróneaTSMI,
-            this.confVentaErroneaTSMI});
-            this.ventaErroneaTSMI.Name = "ventaErroneaTSMI";
-            this.ventaErroneaTSMI.Size = new System.Drawing.Size(266, 28);
-            this.ventaErroneaTSMI.Text = "Ventas Erróneas";
-            // 
-            // cargarVentaErróneaTSMI
-            // 
-            this.cargarVentaErróneaTSMI.Name = "cargarVentaErróneaTSMI";
-            this.cargarVentaErróneaTSMI.Size = new System.Drawing.Size(326, 28);
-            this.cargarVentaErróneaTSMI.Text = "Cargar Venta Errónea";
-            // 
-            // confVentaErroneaTSMI
-            // 
-            this.confVentaErroneaTSMI.Name = "confVentaErroneaTSMI";
-            this.confVentaErroneaTSMI.Size = new System.Drawing.Size(326, 28);
-            this.confVentaErroneaTSMI.Text = "Confirmar / Desconfirmar";
-            // 
-            // ventasDelDíaToolStripMenuItem
-            // 
-            this.ventasDelDíaToolStripMenuItem.Name = "ventasDelDíaToolStripMenuItem";
-            this.ventasDelDíaToolStripMenuItem.Size = new System.Drawing.Size(266, 28);
-            this.ventasDelDíaToolStripMenuItem.Text = "Ventas del Día";
             // 
             // articulosTS
             // 
@@ -470,10 +437,6 @@
         private System.Windows.Forms.ToolStripMenuItem modifProveedoresTSMI;
         private System.Windows.Forms.ToolStripMenuItem modifRubrosTSMI;
         private System.Windows.Forms.ToolStripMenuItem nuevaVentaTSMI;
-        private System.Windows.Forms.ToolStripMenuItem ventaErroneaTSMI;
-        private System.Windows.Forms.ToolStripMenuItem cargarVentaErróneaTSMI;
-        private System.Windows.Forms.ToolStripMenuItem confVentaErroneaTSMI;
-        private System.Windows.Forms.ToolStripMenuItem ventasDelDíaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem adminUsuarioTSMI;
         private System.Windows.Forms.ToolStripMenuItem comprasTS;
         private System.Windows.Forms.ToolStripMenuItem tipoMovimientoCajaToolStripMenuItem;

@@ -16,7 +16,6 @@ namespace ADBISYS.FuncionesGenerales
     {
         ConectarBD conexion = new ConectarBD();
         DataSet dataSet = new DataSet();
-        String query;
         public string mensajeErrorCatch = "No se puede realizar la accion pedida. Por favor, intente más tarde.";
 
         public DateTime appFechaSistema()
@@ -445,6 +444,25 @@ namespace ADBISYS.FuncionesGenerales
         public void mostrarErrorTryCatch(Exception ex)
         {
             MessageBox.Show("Error: " + ex.Message);
+        }
+
+        internal string DevolverCadenaCon2Decimales(string p)
+        {
+            string cadenaDespuesDeLaComa = "";
+            string result = ""; 
+            cadenaDespuesDeLaComa = p.Substring(p.IndexOf(",") + 1, p.Length - p.IndexOf(",") - 1);
+
+            if (cadenaDespuesDeLaComa.Length == 1)
+            {
+                result = p + "0";
+            }
+
+            if (cadenaDespuesDeLaComa.Length >= 3)
+            {
+                result = p + ",00";
+            }
+
+            return result;
         }
     }
 }

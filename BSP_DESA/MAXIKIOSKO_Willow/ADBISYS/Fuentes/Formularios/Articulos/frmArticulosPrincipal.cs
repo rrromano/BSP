@@ -63,20 +63,20 @@ namespace ADBISYS.Formularios.Articulos
                         grdArticulos.DataSource = null;
                     }
                 }
-                //else
-                //{
-                //    cadenaSql = "EXEC adp_busqueda_compras";
-                //    cadenaSql = cadenaSql + " @tabla = " + fg.fcSql("COMPRAS", "String");
-                //    cadenaSql = cadenaSql + ",@campo_tabla = " + fg.fcSql(obtenerCampoTabla().ToString(), "String");
-                //    cadenaSql = cadenaSql + ",@texto = " + fg.fcSql(textoAnterior, "String").Replace(",", ".");
+                else
+                {
+                    cadenaSql = "EXEC adp_busqueda_articulos";
+                    cadenaSql = cadenaSql + " @tabla = " + fg.fcSql("ARTICULOS", "String");
+                    cadenaSql = cadenaSql + ",@campo_tabla = " + fg.fcSql(obtenerCampoTabla().ToString(), "String");
+                    cadenaSql = cadenaSql + ",@texto = " + fg.fcSql(textoAnterior, "String").Replace(",", ".");
 
-                //    ds = objConect.ejecutarQuerySelect(cadenaSql);
-                //    if (ds.Tables[0].Rows.Count > 0)
-                //    {
-                //        grdArticulos.DataSource = ds.Tables[0];
-                //    }
+                    ds = objConect.ejecutarQuerySelect(cadenaSql);
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        grdArticulos.DataSource = ds.Tables[0];
+                    }
 
-                //}
+                }
 
                 if ((filaSeleccionada > 0) && (celdaSeleccionada > 0) && (filaSeleccionada <= grdArticulos.Rows.Count - 1))
                 {
@@ -87,6 +87,27 @@ namespace ADBISYS.Formularios.Articulos
             {
                 MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
+            }
+        }
+
+        private object obtenerCampoTabla()
+        {
+            try
+            {
+                foreach (KeyValuePair<string, string> campo in campos_tabla)
+                {
+                    if (campoAnterior == campo.Value)
+                    {
+                        return (campo.Key);
+                    }
+                }
+                return "ok";
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return "error";
             }
         }
 
@@ -329,6 +350,107 @@ namespace ADBISYS.Formularios.Articulos
             else
             {
                 btnEliminar.Focus();
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            buscarArticulo();
+        }
+
+        private void buscarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            buscarArticulo();
+        }
+
+        private void buscarArticulo()
+        {
+            Entidades.Articulo entArticulo = new ADBISYS.Entidades.Articulo();
+            ds = entArticulo.obtenerArticulos();
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                mostrarFormularioBusquedaArticulos();
+                llenarGrilla();
+                grdArticulos = fg.formatoGrilla(grdArticulos, 1);
+                grdArticulos.Focus();
+            }
+            else
+            {
+                MessageBox.Show("No existen Artículos.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnBuscar.Focus();
+            }
+        }
+
+        private void mostrarFormularioBusquedaArticulos()
+        {
+            frmBusquedaArticulo buscarArticulo = new frmBusquedaArticulo();
+            buscarArticulo.campo = campoAnterior;
+            buscarArticulo.texto = textoAnterior;
+            buscarArticulo.estoyBuscando = EstoyBuscando;
+            buscarArticulo.ShowDialog();
+            EstoyBuscando = buscarArticulo.estoyBuscando;
+            campoAnterior = buscarArticulo.campo;
+            textoAnterior = buscarArticulo.texto;
+            campos_tabla = buscarArticulo.campos_tabla;
+            actualizarLabelFiltroBusqueda();
+            return;
+        }
+
+        private void actualizarLabelFiltroBusqueda()
+        {
+            if (EstoyBuscando == true)
+            {
+                lbFiltroBusqueda.Text = "FILTRO DE BÚSQUEDA --> CAMPO: " + campoAnterior + ", TEXTO: " + textoAnterior + ".";
+            }
+            else
+            {
+                lbFiltroBusqueda.Text = "SIN FILTRO DE BÚSQUEDA.";
+            }
+        }
+
+        private void btnOrdenar_Click(object sender, EventArgs e)
+        {
+            ordenamientoArticulos();
+        }
+
+        private void ordenarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ordenamientoArticulos();
+        }
+
+        private void ordenamientoArticulos()
+        {
+            if (grdArticulos.DataSource != null)
+            {
+                mostrarFormularioOrdenarArticulos();
+                grdArticulos.Focus();
+            }
+            else
+            {
+                MessageBox.Show("No existen Articulos.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnOrdenar.Focus();
+            }
+        }
+
+        private void mostrarFormularioOrdenarArticulos()
+        {
+            frmOrdenarArticulo ordenarArticulos = new frmOrdenarArticulo();
+            ordenarArticulos.Ascendente = ordenamiento;
+            ordenarArticulos.campo = campoOrdenamiento;
+            ordenarArticulos.ShowDialog();
+            campoOrdenamiento = ordenarArticulos.campo;
+            ordenamiento = ordenarArticulos.Ascendente;
+            DataGridViewColumn columna = grdArticulos.Columns[campoOrdenamiento];
+            if (campoOrdenamiento != "")
+            {
+                if (ordenamiento == true)
+                {
+                    grdArticulos.Sort(columna, ListSortDirection.Ascending);
+                }
+                if (ordenamiento == false)
+                {
+                    grdArticulos.Sort(columna, ListSortDirection.Descending);
+                }
             }
         }
 

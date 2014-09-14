@@ -94,5 +94,20 @@ namespace ADBISYS.Entidades
                 throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
             }
         }
+
+        public DataSet obtenerCamposArticulos()
+        {
+            try
+            {
+                cadenaSql = "EXEC adp_cboBusqueda_Articulos";
+                ds = objConect.ejecutarQuerySelect(cadenaSql);
+                return ds;
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+
+        }
     }
 }
