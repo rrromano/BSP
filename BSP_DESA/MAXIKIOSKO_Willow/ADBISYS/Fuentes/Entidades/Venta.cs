@@ -14,12 +14,18 @@ namespace ADBISYS.Entidades
 {
     class Venta
     {
+        #region propiedades
+
         private Int32 id;
         private long cantidad_Articulos;
         private double importe;
         private int estado;
         private DateTime fecha_Venta;
         private String hora_Venta;
+
+        #endregion
+
+        #region Getters&Setters
 
         public Int32 m_Id_Venta
         {
@@ -57,6 +63,9 @@ namespace ADBISYS.Entidades
             set { hora_Venta = value; }
         }
 
+        #endregion
+
+        #region Metodos públicos
         //internal List<Venta> obtenerVentas(DateTime Fecha)
         internal DataSet obtenerVentas (DateTime Fecha)
         {
@@ -93,5 +102,87 @@ namespace ADBISYS.Entidades
                 throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
             }
         }
+        
+        public void guardarVentaYSusArticulos ()
+        {
+            try
+            {
+                FuncionesGenerales.FuncionesGenerales fg = new ADBISYS.FuncionesGenerales.FuncionesGenerales();
+                ConectarBD Conex = new ConectarBD();
+                String Hora = System.DateTime.Now.TimeOfDay.ToString().Substring(0, 8);
+                String sSQL;
+                String login = Properties.Settings.Default.UsuarioLogueado.ToString();
+
+                sSQL = "EXEC dbo.adp_insertarVentaYArticulos ";
+                sSQL = sSQL + " @FECHA_VENTA = " + fg.fcSql(fg.appFechaSistema().ToString(), "DATETIME");
+                sSQL = sSQL + " ,@HORA_VENTA = " + fg.fcSql(Hora, "STRING");
+                if (login != "")
+                { sSQL = sSQL + " ,@USUARIO_VENTA = " + fg.fcSql(login, "String"); }
+
+                Conex.ejecutarQuery(sSQL);
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+        }
+
+        public void borrarArticulosVenta_Temporal()
+        {
+            try
+            {
+                ConectarBD Conex = new ConectarBD();
+                String sSQL;
+                sSQL = "EXEC dbo.adp_BorrarArticulosVenta_Temporal";
+                Conex.ejecutarQuery(sSQL);
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+        }
+
+        public void eliminarVenta(string codigo)
+        {
+            try
+            {
+                FuncionesGenerales.FuncionesGenerales fg = new ADBISYS.FuncionesGenerales.FuncionesGenerales();
+                ConectarBD Conex = new ConectarBD();
+                String sSQL = "";
+                String login = Properties.Settings.Default.UsuarioLogueado.ToString();
+
+                sSQL = "EXEC dbo.adp_eliminarVenta ";
+                sSQL = sSQL + " @Id_Venta = " + fg.fcSql(codigo,"INTEGER");
+                if (login != "")
+                { sSQL = sSQL + " ,@LOGIN = " + fg.fcSql(login, "String"); }
+
+                Conex.ejecutarQuery(sSQL);
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+        }
+
+        public void actualizaMovimientoVentas(DateTime Fecha)
+        {
+            try
+            {
+                FuncionesGenerales.FuncionesGenerales fg = new ADBISYS.FuncionesGenerales.FuncionesGenerales();
+                ConectarBD Conex = new ConectarBD();
+                String sSQL = "";
+
+                sSQL = "EXEC dbo.adp_ActualizarMovimientosCaja_Venta ";
+                sSQL = sSQL + " @FECHA = " + fg.fcSql(Fecha.ToString(), "Datetime");
+                Conex.ejecutarQuery(sSQL);
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+        }
+
+        #endregion
+
     }
 }

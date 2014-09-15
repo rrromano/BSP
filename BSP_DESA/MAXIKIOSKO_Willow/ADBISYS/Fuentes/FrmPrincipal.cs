@@ -14,6 +14,7 @@ using ADBISYS.Formularios.Proveedores;
 using ADBISYS.Formularios.Rubros;
 using ADBISYS.Formularios.Compras;
 using ADBISYS.Formularios.Articulos;
+using ADBISYS.Formularios.Reportes;
 
 // RR 2014-03-22: Comienzo del sistema ADBISYS.
 
@@ -602,6 +603,7 @@ namespace ADBISYS
 
         private void nuevaVentaTSMI_Click(object sender, EventArgs e)
         {
+            if (!(cajaIniciada())) {return;}
             Formularios.Ventas.frmVentasPrincipal ventas = new ADBISYS.Formularios.Ventas.frmVentasPrincipal();
             ventas.Show();
         }
@@ -633,6 +635,38 @@ namespace ADBISYS
         {
             frmArticulosPrincipal articulos = new frmArticulosPrincipal();
             articulos.Show();
+        }
+
+        private void cajaDiariaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Properties.Settings.Default.UsuarioLogueado == "")
+                {
+                    MessageBox.Show("Debe iniciar sesión.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                
+                Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmReporteCajaDiaria);
+                if (frm != null)
+                {
+                    frm.WindowState = FormWindowState.Normal;
+                    frm.BringToFront();
+                    return;
+                }
+                
+                mostrarFormularioReporteCajaDiaria();
+        }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void mostrarFormularioReporteCajaDiaria()
+        {
+            frmReporteCajaDiaria repoCajaDiaria = new frmReporteCajaDiaria();
+            repoCajaDiaria.Show();
         }
     }
 }

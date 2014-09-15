@@ -244,6 +244,18 @@
     <Compile Include="Formularios\Proveedores\frmProveedoresPrincipal.Designer.cs">
       <DependentUpon>frmProveedoresPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Reportes\frmItemsEliminados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Reportes\frmItemsEliminados.Designer.cs">
+      <DependentUpon>frmItemsEliminados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Reportes\frmReporteCajaDiaria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Reportes\frmReporteCajaDiaria.Designer.cs">
+      <DependentUpon>frmReporteCajaDiaria.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Rubros\frmBusquedaRubro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -388,6 +400,12 @@
     <EmbeddedResource Include="Formularios\Proveedores\frmProveedoresPrincipal.resx">
       <DependentUpon>frmProveedoresPrincipal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Reportes\frmItemsEliminados.resx">
+      <DependentUpon>frmItemsEliminados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Reportes\frmReporteCajaDiaria.resx">
+      <DependentUpon>frmReporteCajaDiaria.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Rubros\frmBusquedaRubro.resx">
       <DependentUpon>frmBusquedaRubro.cs</DependentUpon>
     </EmbeddedResource>
@@ -431,9 +449,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Formularios\Reportes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

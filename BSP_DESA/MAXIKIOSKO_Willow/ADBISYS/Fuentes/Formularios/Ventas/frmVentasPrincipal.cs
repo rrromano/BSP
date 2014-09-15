@@ -26,12 +26,14 @@ namespace ADBISYS.Formularios.Ventas
         Boolean ordenamiento = true;
         Dictionary<string, string> campos_tabla = new Dictionary<string, string>();
         #endregion
+
         #region InitializeComponent
         public frmVentasPrincipal()
         {
             InitializeComponent();
         }
         #endregion
+
         #region Load_Form
         private void frmVentasPrincipal_Load(object sender, EventArgs e)
         {
@@ -45,6 +47,7 @@ namespace ADBISYS.Formularios.Ventas
             }
         }
         #endregion
+
         #region Actualizar Grilla
 
         private void btnActualizar_Click(object sender, EventArgs e)
@@ -58,6 +61,7 @@ namespace ADBISYS.Formularios.Ventas
                 fg.mostrarErrorTryCatch(ex);
             }
         }
+
         private void actualizarGrilla()
         {
             try
@@ -72,6 +76,7 @@ namespace ADBISYS.Formularios.Ventas
         }
 
         #endregion
+
         #region Llegar Grilla
         private void llenarGrilla()
         {
@@ -122,11 +127,14 @@ namespace ADBISYS.Formularios.Ventas
             }
         }
         #endregion
+
         #region Nueva Venta
+
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             nuevaVenta();
         }
+
         private void nuevaVenta()
         {
             try
@@ -141,6 +149,7 @@ namespace ADBISYS.Formularios.Ventas
                 fg.mostrarErrorTryCatch(e);
             }
         }
+
         private void mostrarFormularioNuevaVenta()
         {
             try
@@ -156,13 +165,94 @@ namespace ADBISYS.Formularios.Ventas
                 fg.mostrarErrorTryCatch(e);
             }
         }
+
         #endregion
+
+        #region Eliminar Venta
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                eliminarVenta();
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
+        }
+
+        private void eliminarVenta()
+        {
+            try
+            {
+                if (grdVentas.DataSource != null)
+                {
+                    if (notFilaSeleccionada()) return;
+
+                    celdaSeleccionada = grdVentas.CurrentCellAddress.X;
+                    filaSeleccionada = grdVentas.CurrentCellAddress.Y;
+
+                    String codigo = grdVentas.Rows[filaSeleccionada].Cells["CÓDIGO"].Value.ToString();
+                    String importe = grdVentas.Rows[filaSeleccionada].Cells["IMPORTE"].Value.ToString();
+                    String fecha_modif = grdVentas.Rows[filaSeleccionada].Cells["FECHA_MODIF"].Value.ToString();
+
+                    if (MessageBox.Show("¿Está seguro que desea eliminar la Venta " + codigo + " del día " + fecha_modif + " con importe: $" + importe + "?", "Eliminar Compra.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        Entidades.Venta Venta = new Venta();
+                        Venta.eliminarVenta(codigo);
+                        Venta.actualizaMovimientoVentas(fg.appFechaSistema());
+                        grdVentas.Focus();
+                    }
+                    else
+                    {
+                        btnEliminar.Focus();
+                    }
+
+                    llenarGrilla();
+                    grdVentas = fg.formatoGrilla(grdVentas, 1);
+                    btnEliminar.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("No existen Compras.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
+        }
+
+        #endregion
+
         #region Salir
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
         #endregion
+
+        private bool notFilaSeleccionada()
+        {
+            try
+            {
+                if (grdVentas.SelectedRows.Count != 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar una Venta.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
+            }
+        }
 
     }
 }

@@ -15,9 +15,16 @@ namespace ADBISYS.Formularios.Articulos
 {
     public partial class frmActMasivaArticulo : Form
     {
+
+        #region Declaraciones
+
         String rubroAnterior = "";
         Dictionary<int, string> colRubros = new Dictionary<int, string>();
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
+
+        #endregion
+
+        #region InitializeComponent
 
         public frmActMasivaArticulo()
         {
@@ -25,10 +32,74 @@ namespace ADBISYS.Formularios.Articulos
             txtPrecioPorcentaje.Focus();
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        #endregion
+
+        #region Load_Form
+
+        private void frmActMasivaArticulo_Load(object sender, EventArgs e)
         {
-            this.Close();
+            try
+            {
+                cargarComboRubro();
+                cargarComboAumentarDisminuir();
+                RBporcentaje.Checked = true;
+                cboRubro.SelectedIndex = 0;
+                cboAumentarDisminuir.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+        #endregion
+
+        #region Cargar Combos
+
+        private void cargarComboRubro()
+        {
+            try
+            {
+                DataSet Ds = new DataSet();
+                rubroAnterior = cboRubro.Text;
+                cboRubro.Items.Clear();
+                colRubros.Clear();
+
+                Entidades.Proveedores entProveedores = new Entidades.Proveedores();
+                Ds = entProveedores.obtenerInfoRubros();
+
+                cboRubro.Items.Add("[TODOS]");
+
+                foreach (DataRow dataRow in Ds.Tables[0].Rows)
+                {
+                    cboRubro.Items.Add(dataRow["DESCRIPCION"]);
+                    colRubros.Add(int.Parse(dataRow["ID_RUBRO"].ToString()), dataRow["DESCRIPCION"].ToString());
+                }
+                cboRubro.Text = rubroAnterior;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        private void cargarComboAumentarDisminuir()
+        {
+            try
+            {
+                cboAumentarDisminuir.Items.Add("Aumentar");
+                cboAumentarDisminuir.Items.Add("Disminuir");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        #endregion
+
+        #region Actualizacion Masiva
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
@@ -225,68 +296,26 @@ namespace ADBISYS.Formularios.Articulos
             }
         }
 
-        private void cargarComboRubro()
-        {
-            try
-            {
-                DataSet Ds = new DataSet();
-                rubroAnterior = cboRubro.Text;
-                cboRubro.Items.Clear();
-                colRubros.Clear();
+        #endregion
 
-                Entidades.Proveedores entProveedores = new Entidades.Proveedores();
-                Ds = entProveedores.obtenerInfoRubros();
-
-                cboRubro.Items.Add("[TODOS]");
-
-                foreach (DataRow dataRow in Ds.Tables[0].Rows)
-                {
-                    cboRubro.Items.Add(dataRow["DESCRIPCION"]);
-                    colRubros.Add(int.Parse(dataRow["ID_RUBRO"].ToString()), dataRow["DESCRIPCION"].ToString());
-                }
-                cboRubro.Text = rubroAnterior;
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-        }
-
-        private void frmActMasivaArticulo_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                cargarComboRubro();
-                cargarComboAumentarDisminuir();
-                RBporcentaje.Checked = true;
-                cboRubro.SelectedIndex = 0;
-                cboAumentarDisminuir.SelectedIndex = 0;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void cargarComboAumentarDisminuir()
-        {
-            try
-            {
-                cboAumentarDisminuir.Items.Add("Aumentar");
-                cboAumentarDisminuir.Items.Add("Disminuir");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        #region Controls KeyPress
 
         private void txtPrecioPorcentaje_KeyPress(object sender, KeyPressEventArgs e)
         {
             fg.keyPressNumerosDecimales(e, txtPrecioPorcentaje);
             fg.keyPressNumericoDiezDosDecimales(e, txtPrecioPorcentaje.Text.Length, txtPrecioPorcentaje.Text);
         }
+
+        #endregion
+
+        #region Salir/Cancelar
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        #endregion
     }
 }
 

@@ -66,6 +66,7 @@
             this.maquinaTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.horaTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.cajaDiariaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StripPrincipal.SuspendLayout();
             this.statusStripPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -231,6 +232,8 @@
             // 
             // reportesTS
             // 
+            this.reportesTS.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cajaDiariaToolStripMenuItem});
             this.reportesTS.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reportesTS.Name = "reportesTS";
             this.reportesTS.Size = new System.Drawing.Size(106, 27);
@@ -377,6 +380,13 @@
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // cajaDiariaToolStripMenuItem
+            // 
+            this.cajaDiariaToolStripMenuItem.Name = "cajaDiariaToolStripMenuItem";
+            this.cajaDiariaToolStripMenuItem.Size = new System.Drawing.Size(186, 28);
+            this.cajaDiariaToolStripMenuItem.Text = "Caja Diaria";
+            this.cajaDiariaToolStripMenuItem.Click += new System.EventHandler(this.cajaDiariaToolStripMenuItem_Click);
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
@@ -443,6 +453,7 @@
         private System.Windows.Forms.ToolStripMenuItem agregarModificarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem agregarModificarToolStripMenuItem1;
         private System.Windows.Forms.ToolStripStatusLabel cajaTTS;
+        private System.Windows.Forms.ToolStripMenuItem cajaDiariaToolStripMenuItem;
 
 
 

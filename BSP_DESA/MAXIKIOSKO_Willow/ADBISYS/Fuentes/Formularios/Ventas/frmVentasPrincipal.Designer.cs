@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVentasPrincipal));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grdVentas = new System.Windows.Forms.DataGridView();
             this.btnActualizar = new System.Windows.Forms.Button();
             this.lbFiltroBusqueda = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
@@ -48,10 +49,9 @@
             this.ordenarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salidaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.grdVentas = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdVentas)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -70,6 +70,16 @@
             this.groupBox1.Size = new System.Drawing.Size(1094, 592);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
+            // 
+            // grdVentas
+            // 
+            this.grdVentas.BackgroundColor = System.Drawing.Color.White;
+            this.grdVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdVentas.Location = new System.Drawing.Point(18, 105);
+            this.grdVentas.Name = "grdVentas";
+            this.grdVentas.RowTemplate.Height = 24;
+            this.grdVentas.Size = new System.Drawing.Size(1058, 454);
+            this.grdVentas.TabIndex = 9;
             // 
             // btnActualizar
             // 
@@ -141,6 +151,7 @@
             this.btnEliminar.Text = "&Eliminar";
             this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnModificar
             // 
@@ -243,16 +254,6 @@
             this.salirToolStripMenuItem.Size = new System.Drawing.Size(124, 28);
             this.salirToolStripMenuItem.Text = "Salir";
             // 
-            // grdVentas
-            // 
-            this.grdVentas.BackgroundColor = System.Drawing.Color.White;
-            this.grdVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdVentas.Location = new System.Drawing.Point(18, 105);
-            this.grdVentas.Name = "grdVentas";
-            this.grdVentas.RowTemplate.Height = 24;
-            this.grdVentas.Size = new System.Drawing.Size(1058, 454);
-            this.grdVentas.TabIndex = 9;
-            // 
             // frmVentasPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
@@ -268,9 +269,9 @@
             this.Load += new System.EventHandler(this.frmVentasPrincipal_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdVentas)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdVentas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

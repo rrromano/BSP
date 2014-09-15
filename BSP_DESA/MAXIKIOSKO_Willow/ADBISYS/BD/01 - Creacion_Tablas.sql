@@ -377,7 +377,7 @@ INSERT INTO USUARIOS(Username,Pass,Descripcion,sino_bloqueado)
 PRINT 'SE CREÓ CORRECTAMENTE EL USUARIO ADMIN.'
 -- ============================================================================================
 -- ============================================================================================
-INSERT INTO PARAMETROS_GENERALES (Fecha_Sistema, Estado_Caja,fecha_modif,login_modif,term_modif) VALUES (GETDATE(), 0, GETDATE(), 'BSP', 'BSP')
+INSERT INTO PARAMETROS_GENERALES (Fecha_Sistema, Estado_Caja,fecha_modif,login_modif,term_modif) VALUES (CONVERT(DATETIME,CONVERT(VARCHAR,GETDATE(),112)), 0, GETDATE(), 'BSP', 'BSP')
 -- ============================================================================================
 -- ============================================================================================
 INSERT INTO ESTADO_COMPRAS (Estado, Descripcion, fecha_modif, login_modif, term_modif) VALUES (0, 'ELIMINADO', GETDATE(), 'BSP', 'BSP')

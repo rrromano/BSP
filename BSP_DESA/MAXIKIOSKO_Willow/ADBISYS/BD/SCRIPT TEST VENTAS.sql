@@ -6,7 +6,8 @@ USE WIAdbisys
   --TESTS VENTAS
 
   --SELECT * FROM ARTICULOS_VENTAS
-
+  IF EXISTS(SELECT 1 FROM ARTICULOS_VENTAS)
+    DELETE ARTICULOS_VENTAS
   IF EXISTS(SELECT 1 FROM VENTAS)
     DELETE VENTAS
   IF EXISTS(SELECT 1 FROM TMP_ARTICULOS_VENTAS)
@@ -18,19 +19,20 @@ USE WIAdbisys
   
   DBCC CHECKIDENT ('VENTAS', RESEED,0)
   DBCC CHECKIDENT ('RUBROS', RESEED,0)
+  DBCC CHECKIDENT ('TMP_ARTICULOS_VENTAS', RESEED,0)
     
-  INSERT INTO VENTAS (Cantidad_Articulos,Importe,Estado,Fecha_Venta,Hora_Venta,fecha_modif,login_modif,term_modif)
-  VALUES (3, '501.12', 1, CONVERT(VARCHAR,CONVERT(VARCHAR,GETDATE(),112)), '00:00:01', GETDATE(), 'BSP', HOST_NAME() )
-  INSERT INTO VENTAS (Cantidad_Articulos,Importe,Estado,Fecha_Venta,Hora_Venta,fecha_modif,login_modif,term_modif)
-  VALUES (1, '100', 1, CONVERT(VARCHAR,CONVERT(VARCHAR,GETDATE(),112)), '00:00:02', GETDATE(), 'BSP', HOST_NAME() )
-  INSERT INTO VENTAS (Cantidad_Articulos,Importe,Estado,Fecha_Venta,Hora_Venta,fecha_modif,login_modif,term_modif)
-  VALUES (5, '200.14', 1, CONVERT(VARCHAR,CONVERT(VARCHAR,GETDATE(),112)), '00:00:03', GETDATE(), 'BSP', HOST_NAME() )
-  INSERT INTO VENTAS (Cantidad_Articulos,Importe,Estado,Fecha_Venta,Hora_Venta,fecha_modif,login_modif,term_modif)
-  VALUES (6, '150.17', 1, CONVERT(VARCHAR,CONVERT(VARCHAR,GETDATE(),112)), '00:00:04', GETDATE(), 'BSP', HOST_NAME() )
-  INSERT INTO VENTAS (Cantidad_Articulos,Importe,Estado,Fecha_Venta,Hora_Venta,fecha_modif,login_modif,term_modif)
-  VALUES (1, '15.15', 1, CONVERT(VARCHAR,CONVERT(VARCHAR,GETDATE(),112)), '00:00:05', GETDATE(), 'BSP', HOST_NAME() )
-  INSERT INTO VENTAS (Cantidad_Articulos,Importe,Estado,Fecha_Venta,Hora_Venta,fecha_modif,login_modif,term_modif)
-  VALUES (2, '14.3', 1, CONVERT(VARCHAR,CONVERT(VARCHAR,GETDATE(),112)), '00:00:06', GETDATE(), 'BSP', HOST_NAME() )
+  --INSERT INTO VENTAS (Cantidad_Articulos,Importe,Estado,Fecha_Venta,Hora_Venta,fecha_modif,login_modif,term_modif)
+  --VALUES (3, '501.12', 1, CONVERT(VARCHAR,CONVERT(VARCHAR,GETDATE(),112)), '00:00:01', GETDATE(), 'BSP', HOST_NAME() )
+  --INSERT INTO VENTAS (Cantidad_Articulos,Importe,Estado,Fecha_Venta,Hora_Venta,fecha_modif,login_modif,term_modif)
+  --VALUES (1, '100', 1, CONVERT(VARCHAR,CONVERT(VARCHAR,GETDATE(),112)), '00:00:02', GETDATE(), 'BSP', HOST_NAME() )
+  --INSERT INTO VENTAS (Cantidad_Articulos,Importe,Estado,Fecha_Venta,Hora_Venta,fecha_modif,login_modif,term_modif)
+  --VALUES (5, '200.14', 1, CONVERT(VARCHAR,CONVERT(VARCHAR,GETDATE(),112)), '00:00:03', GETDATE(), 'BSP', HOST_NAME() )
+  --INSERT INTO VENTAS (Cantidad_Articulos,Importe,Estado,Fecha_Venta,Hora_Venta,fecha_modif,login_modif,term_modif)
+  --VALUES (6, '150.17', 1, CONVERT(VARCHAR,CONVERT(VARCHAR,GETDATE(),112)), '00:00:04', GETDATE(), 'BSP', HOST_NAME() )
+  --INSERT INTO VENTAS (Cantidad_Articulos,Importe,Estado,Fecha_Venta,Hora_Venta,fecha_modif,login_modif,term_modif)
+  --VALUES (1, '15.15', 1, CONVERT(VARCHAR,CONVERT(VARCHAR,GETDATE(),112)), '00:00:05', GETDATE(), 'BSP', HOST_NAME() )
+  --INSERT INTO VENTAS (Cantidad_Articulos,Importe,Estado,Fecha_Venta,Hora_Venta,fecha_modif,login_modif,term_modif)
+  --VALUES (2, '14.3', 1, CONVERT(VARCHAR,CONVERT(VARCHAR,GETDATE(),112)), '00:00:06', GETDATE(), 'BSP', HOST_NAME() )
 
   INSERT INTO RUBROS (Descripcion, Estado, fecha_modif, login_modif, term_modif)
   VALUES ('DESODORANTES', 1, GETDATE(), 'BSP', HOST_NAME() )

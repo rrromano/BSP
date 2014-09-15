@@ -13,18 +13,30 @@ namespace ADBISYS.Formularios.Ventas
 {
     public partial class frmNuevaVenta : Form
     {
+        #region Declaraciones
+
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
+
+        #endregion
+
+        #region InitailizeComponent
+
         public frmNuevaVenta()
         {
             InitializeComponent();
         }
+
+        #endregion
+
+        #region Buscar Articulo
+
         private void btnBuscarArticulo_Click(object sender, EventArgs e)
         {
             //va a abrir un formulario nuevo donde vas a buscar al articulo 
             //una vez que lo encuentres se debe generar una nueva instancia de ese nuevo articulo
             //se llama a la funcion cargarArticuloEnGrilla(articulo) pasandole por parametro la nueva instancia
         }
-        #region Buscar Articulo
+
         private void txtCodigoArticulo_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -60,10 +72,12 @@ namespace ADBISYS.Formularios.Ventas
                 fg.mostrarErrorTryCatch(ex);
             }
         }
+
         private void buscarArticuloYGuardarVentaTemporal()
         {
             MessageBox.Show("NO ENCONTRE EL ARTICULO ENTONCES MUESTRO FORMULARIO DE BUSQUEDA DE ARTICULOS");
         }
+
         private void guardarArticuloVentaTemporal(DataSet DsArticulo)
         {
             try
@@ -81,6 +95,7 @@ namespace ADBISYS.Formularios.Ventas
                 fg.mostrarErrorTryCatch(ex);
             }
         }
+
         private void cargarArticulosEnGrilla()
         {
             try
@@ -109,6 +124,7 @@ namespace ADBISYS.Formularios.Ventas
                 fg.mostrarErrorTryCatch(ex);
             }
         }
+
         private void actualizarPrecioTotalVenta(DataSet DsArticulosVenta)
         {
             try
@@ -129,6 +145,7 @@ namespace ADBISYS.Formularios.Ventas
                 fg.mostrarErrorTryCatch(ex);
             }
         }
+
         #endregion
 
         #region Form_Load
@@ -186,14 +203,16 @@ namespace ADBISYS.Formularios.Ventas
         #endregion
 
         #region Confirmar Venta
+
         private void btnConfirmarVenta_Click(object sender, EventArgs e)
         {
             try
             {
-                guardarArticulosVenta();
-                guardarVenta();
-                borrarArticulosVentaTemporal();
+                Entidades.Venta Venta = new Entidades.Venta();
+                Venta.guardarVentaYSusArticulos();
+                Venta.actualizaMovimientoVentas(fg.appFechaSistema());
                 ponerValoresEnDefault();
+                MessageBox.Show("Venta confirmada correctamente.", "Venta Confirmada.", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -201,27 +220,34 @@ namespace ADBISYS.Formularios.Ventas
             }
         }
 
-        private void borrarArticulosVentaTemporal()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void guardarVenta()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void guardarArticulosVenta()
-        {
-            throw new NotImplementedException();
-        }
         #endregion
 
         #region Salir
+
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            this.Close();
+            try
+            {
+                if (grdItemsCompra.RowCount > 0)
+                {
+                    Boolean deseaContinuar = (MessageBox.Show("Se cerrará el formulario sin confirmar la Venta. ¿Desea continuar de todos modos?", "Cancelar Venta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
+
+                    if (!(deseaContinuar))
+                    {
+                        return;
+                    }
+                }
+
+                Entidades.Venta Venta = new Entidades.Venta();
+                Venta.borrarArticulosVenta_Temporal();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
         }
+
         #endregion
     }
 }
