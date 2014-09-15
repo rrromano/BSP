@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReporteCajaDiaria));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnItemsEliminados = new System.Windows.Forms.Button();
             this.btnGenerarReporte = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -46,7 +46,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btnItemsEliminados);
             this.groupBox1.Controls.Add(this.btnGenerarReporte);
             this.groupBox1.Controls.Add(this.btnSalir);
             this.groupBox1.Controls.Add(this.groupBox3);
@@ -57,18 +57,19 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // button1
+            // btnItemsEliminados
             // 
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button1.Location = new System.Drawing.Point(587, 30);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(191, 67);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "&Items Eliminados";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnItemsEliminados.Enabled = false;
+            this.btnItemsEliminados.Image = ((System.Drawing.Image)(resources.GetObject("btnItemsEliminados.Image")));
+            this.btnItemsEliminados.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnItemsEliminados.Location = new System.Drawing.Point(587, 30);
+            this.btnItemsEliminados.Name = "btnItemsEliminados";
+            this.btnItemsEliminados.Size = new System.Drawing.Size(191, 67);
+            this.btnItemsEliminados.TabIndex = 1;
+            this.btnItemsEliminados.Text = "&Items Eliminados";
+            this.btnItemsEliminados.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnItemsEliminados.UseVisualStyleBackColor = true;
+            this.btnItemsEliminados.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnGenerarReporte
             // 
@@ -146,6 +147,7 @@
             this.dtpFechaCaja.Name = "dtpFechaCaja";
             this.dtpFechaCaja.Size = new System.Drawing.Size(197, 29);
             this.dtpFechaCaja.TabIndex = 1;
+            this.dtpFechaCaja.ValueChanged += new System.EventHandler(this.dtpFechaCaja_ValueChanged);
             // 
             // frmReporteCajaDiaria
             // 
@@ -177,7 +179,7 @@
         private System.Windows.Forms.DataGridView grdMovimientosCaja;
         private System.Windows.Forms.Button btnGenerarReporte;
         private System.Windows.Forms.Button btnSalir;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnItemsEliminados;
         private System.Windows.Forms.Button btnBuscar;
     }
 }

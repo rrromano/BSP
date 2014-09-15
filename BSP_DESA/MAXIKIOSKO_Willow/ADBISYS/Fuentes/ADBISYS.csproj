@@ -55,6 +55,7 @@
     <Compile Include="Entidades\MovimientoCaja.cs" />
     <Compile Include="Entidades\ParametrosGenerales.cs" />
     <Compile Include="Entidades\Proveedores.cs" />
+    <Compile Include="Entidades\Reportes.cs" />
     <Compile Include="Entidades\Rubros.cs" />
     <Compile Include="Entidades\TipoMovimientoCaja.cs" />
     <Compile Include="Entidades\Venta.cs" />

@@ -30,16 +30,16 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmItemsEliminados));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.cboItemsEliminados = new System.Windows.Forms.ComboBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.grdMovimientosCaja = new System.Windows.Forms.DataGridView();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.cboItemsEliminados = new System.Windows.Forms.ComboBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.grdItemsEliminados = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdMovimientosCaja)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdItemsEliminados)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -53,16 +53,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Seleccione una Opción:";
             // 
-            // groupBox2
+            // btnBuscar
             // 
-            this.groupBox2.Controls.Add(this.btnSalir);
-            this.groupBox2.Controls.Add(this.groupBox3);
-            this.groupBox2.Controls.Add(this.groupBox1);
-            this.groupBox2.Location = new System.Drawing.Point(18, 6);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(797, 437);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
+            this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
+            this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnBuscar.Location = new System.Drawing.Point(357, 26);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(48, 39);
+            this.btnBuscar.TabIndex = 2;
+            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // cboItemsEliminados
             // 
@@ -74,35 +75,16 @@
             this.cboItemsEliminados.Size = new System.Drawing.Size(292, 30);
             this.cboItemsEliminados.TabIndex = 1;
             // 
-            // groupBox3
+            // groupBox2
             // 
-            this.groupBox3.Controls.Add(this.grdMovimientosCaja);
-            this.groupBox3.Location = new System.Drawing.Point(16, 101);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(763, 317);
-            this.groupBox3.TabIndex = 1;
-            this.groupBox3.TabStop = false;
-            // 
-            // grdMovimientosCaja
-            // 
-            this.grdMovimientosCaja.BackgroundColor = System.Drawing.Color.White;
-            this.grdMovimientosCaja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdMovimientosCaja.Location = new System.Drawing.Point(18, 30);
-            this.grdMovimientosCaja.Name = "grdMovimientosCaja";
-            this.grdMovimientosCaja.RowTemplate.Height = 24;
-            this.grdMovimientosCaja.Size = new System.Drawing.Size(728, 269);
-            this.grdMovimientosCaja.TabIndex = 1;
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
-            this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnBuscar.Location = new System.Drawing.Point(357, 26);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(48, 39);
-            this.btnBuscar.TabIndex = 2;
-            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.groupBox2.Controls.Add(this.btnSalir);
+            this.groupBox2.Controls.Add(this.groupBox3);
+            this.groupBox2.Controls.Add(this.groupBox1);
+            this.groupBox2.Location = new System.Drawing.Point(18, 6);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(797, 437);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
             // 
             // btnSalir
             // 
@@ -117,6 +99,25 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.grdItemsEliminados);
+            this.groupBox3.Location = new System.Drawing.Point(16, 101);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(763, 317);
+            this.groupBox3.TabIndex = 1;
+            this.groupBox3.TabStop = false;
+            // 
+            // grdItemsEliminados
+            // 
+            this.grdItemsEliminados.BackgroundColor = System.Drawing.Color.White;
+            this.grdItemsEliminados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdItemsEliminados.Location = new System.Drawing.Point(18, 30);
+            this.grdItemsEliminados.Name = "grdItemsEliminados";
+            this.grdItemsEliminados.RowTemplate.Height = 24;
+            this.grdItemsEliminados.Size = new System.Drawing.Size(728, 269);
+            this.grdItemsEliminados.TabIndex = 1;
+            // 
             // frmItemsEliminados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
@@ -126,16 +127,17 @@
             this.Font = new System.Drawing.Font("Verdana", 10.8F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmItemsEliminados";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Item\'s Eliminados";
+            this.Load += new System.EventHandler(this.frmItemsEliminados_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdMovimientosCaja)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdItemsEliminados)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -146,7 +148,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox cboItemsEliminados;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.DataGridView grdMovimientosCaja;
+        private System.Windows.Forms.DataGridView grdItemsEliminados;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnSalir;
     }

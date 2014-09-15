@@ -16,7 +16,6 @@ namespace ADBISYS.Formularios.Reportes
     {
         ConectarBD objConect = new ConectarBD();
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
-        string cadenaSql = "";
         DataSet Ds = new DataSet();
         
         public frmReporteCajaDiaria()
@@ -26,7 +25,7 @@ namespace ADBISYS.Formularios.Reportes
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -37,11 +36,23 @@ namespace ADBISYS.Formularios.Reportes
             {
                 grdMovimientosCaja.DataSource = Ds.Tables[0];
                 grdMovimientosCaja = fg.formatoGrilla(grdMovimientosCaja, 1);
+
+                Entidades.Reportes reporte = new Entidades.Reportes();
+                Ds = reporte.obtenerItemsEliminados(DateTime.Parse(dtpFechaCaja.Text.ToString()),"");
+                if (Ds.Tables[0].Rows.Count > 0)
+                {
+                    btnItemsEliminados.Enabled = true;
+                }
+                else
+                {
+                    btnItemsEliminados.Enabled = false;
+                }
             }
             else
             {
-                MessageBox.Show("No existen Movimientos de Caja para la Fecha " + dtpFechaCaja.Text.ToString() + ".", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 grdMovimientosCaja.DataSource = null;
+                btnItemsEliminados.Enabled = false;
+                MessageBox.Show("No existen Movimientos de Caja para la Fecha " + dtpFechaCaja.Text.ToString() + ".", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 dtpFechaCaja.Focus();
             }
         }
@@ -55,7 +66,37 @@ namespace ADBISYS.Formularios.Reportes
         private void button1_Click(object sender, EventArgs e)
         {
             frmItemsEliminados itemsEliminados = new frmItemsEliminados();
+            itemsEliminados.fecha = dtpFechaCaja.Text;
             itemsEliminados.ShowDialog();
+        }
+
+        private void dtpFechaCaja_ValueChanged(object sender, EventArgs e)
+        {
+            Entidades.Caja caja = new Entidades.Caja();
+            Ds = caja.obtenerMovimientosCaja(DateTime.Parse(dtpFechaCaja.Text.ToString()));
+            if (Ds.Tables[0].Rows.Count > 0)
+            {
+                grdMovimientosCaja.DataSource = Ds.Tables[0];
+                grdMovimientosCaja = fg.formatoGrilla(grdMovimientosCaja, 1);
+
+                Entidades.Reportes reporte = new Entidades.Reportes();
+                Ds = reporte.obtenerItemsEliminados(DateTime.Parse(dtpFechaCaja.Text.ToString()), "");
+                if (Ds.Tables[0].Rows.Count > 0)
+                {
+                    btnItemsEliminados.Enabled = true;
+                }
+                else
+                {
+                    btnItemsEliminados.Enabled = false;
+                }
+            }
+            else
+            {
+                grdMovimientosCaja.DataSource = null;
+                btnItemsEliminados.Enabled = false;
+                MessageBox.Show("No existen Movimientos de Caja para la Fecha " + dtpFechaCaja.Text.ToString() + ".", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dtpFechaCaja.Focus();
+            }
         }
     }
 }
