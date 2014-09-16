@@ -16,6 +16,8 @@ namespace ADBISYS.Formularios.Ventas
         #region Declaraciones
 
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
+        Int32 filaSeleccionada = 0;
+        Int32 columnaSeleccionada = 0;
 
         #endregion
 
@@ -24,6 +26,22 @@ namespace ADBISYS.Formularios.Ventas
         public frmNuevaVenta()
         {
             InitializeComponent();
+        }
+
+        #endregion
+
+        #region Form_Load
+
+        private void frmNuevaVenta_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                ponerValoresEnDefault();
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
         }
 
         #endregion
@@ -61,7 +79,7 @@ namespace ADBISYS.Formularios.Ventas
                         buscarArticuloYGuardarVentaTemporal();
                     }
                     cargarArticulosEnGrilla();
-                    grdItemsCompra = fg.formatoGrilla(grdItemsCompra, 1);
+                    grdItemsVenta = fg.formatoGrilla(grdItemsVenta, 1);
 
                     txtCodigoArticulo.Text = String.Empty;
                     txtCodigoArticulo.Focus();
@@ -96,6 +114,10 @@ namespace ADBISYS.Formularios.Ventas
             }
         }
 
+        #endregion
+
+        #region Cargar Artículo en Grilla
+
         private void cargarArticulosEnGrilla()
         {
             try
@@ -113,7 +135,7 @@ namespace ADBISYS.Formularios.Ventas
                 DsArticulosVenta = Conex.ejecutarQuerySelect(sSQL);
                 if (DsArticulosVenta.Tables[0].Rows.Count > 0)
                 {
-                    grdItemsCompra.DataSource = DsArticulosVenta.Tables[0];
+                    grdItemsVenta.DataSource = DsArticulosVenta.Tables[0];
                 }
 
                 actualizarPrecioTotalVenta(DsArticulosVenta);
@@ -124,6 +146,10 @@ namespace ADBISYS.Formularios.Ventas
                 fg.mostrarErrorTryCatch(ex);
             }
         }
+
+        #endregion
+
+        #region Actualizar Precio Total Venta
 
         private void actualizarPrecioTotalVenta(DataSet DsArticulosVenta)
         {
@@ -138,7 +164,7 @@ namespace ADBISYS.Formularios.Ventas
                 }
 
                 lblTotalVenta.Text = fg.DevolverCadenaCon2Decimales(valorTotalCompra.ToString());
-                
+
             }
             catch (Exception ex)
             {
@@ -148,18 +174,110 @@ namespace ADBISYS.Formularios.Ventas
 
         #endregion
 
-        #region Form_Load
-        private void frmNuevaVenta_Load(object sender, EventArgs e)
+        #region Actualizar Grilla
+
+        private void actualizarGrilla()
         {
             try
             {
-                ponerValoresEnDefault();
+                if (grdItemsVenta.Rows.Count == 0)
+                {
+                    grdItemsVenta.DataSource = null;
+                }
+
+                grdItemsVenta = fg.formatoGrilla(grdItemsVenta, 1);
             }
             catch (Exception ex)
             {
                 fg.mostrarErrorTryCatch(ex);
             }
         }
+
+        #endregion
+
+        #region Eliminar Articulo Venta
+
+        private void btnEliminarArticulo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Boolean encontreUnRegistros = false;
+
+                foreach (DataGridViewRow row in grdItemsVenta.Rows)
+                {
+                    CheckBox ck = (CheckBox)row.Cells[0].Value;
+                    if (ck.Checked)
+                    {
+                        grdItemsVenta.Rows.RemoveAt(row.Index);
+                        actualizarGrilla();
+                        encontreUnRegistros = true;
+                    }
+                }
+
+                if (!(encontreUnRegistros))
+                {
+                    MessageBox.Show("Debe seleccionar el artículo que desea cancelar.", "Cancelar Artículo Venta.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                //filaSeleccionada = e.RowIndex;
+                //columnaSeleccionada = e.ColumnIndex;
+
+                //if (columnaSeleccionada == 0)
+                //{
+                //    grdItemsVenta.Rows.RemoveAt(filaSeleccionada);
+                //    actualizarGrilla();
+                //}
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
+        }
+
+        private void grdItemsVenta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                Boolean encontreUnRegistros = false;
+
+                foreach (DataGridViewRow row in grdItemsVenta.Rows)
+                {
+                    //CheckBox ck = (CheckBox)row.Cells["Seleccionar"].Value;
+                    //if (ck.Checked)
+
+                    DataGridViewCheckBoxCell oCell;
+                    oCell = row.Cells["Seleccionar"] as DataGridViewCheckBoxCell;
+                    bool bChecked = (null != oCell && null != oCell.Value && true == (bool)oCell.Value);
+                    if (true == bChecked)
+                    {
+                        encontreUnRegistros = true;
+                    }
+                }
+
+                if (encontreUnRegistros)
+                {
+                    btnEliminarArticulo.Enabled = true;
+                }
+                else
+                {
+                    btnEliminarArticulo.Enabled = false;
+                }
+
+                //filaSeleccionada = e.RowIndex;
+                //columnaSeleccionada = e.ColumnIndex;
+
+                //if (columnaSeleccionada == 0)
+                //{
+                //    grdItemsVenta.Rows.RemoveAt(filaSeleccionada);
+                //    actualizarGrilla();
+                //}
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
+        }
+
         #endregion
 
         #region Poner Valores En Default
@@ -169,7 +287,7 @@ namespace ADBISYS.Formularios.Ventas
             {
                 txtCantidad.Text = "1";
                 lblTotalVenta.Text = "0,00";
-                grdItemsCompra.DataSource = null;
+                grdItemsVenta.DataSource = null;
                 txtCodigoArticulo.Focus();
             }
             catch (Exception ex)
@@ -228,7 +346,7 @@ namespace ADBISYS.Formularios.Ventas
         {
             try
             {
-                if (grdItemsCompra.RowCount > 0)
+                if (grdItemsVenta.RowCount > 0)
                 {
                     Boolean deseaContinuar = (MessageBox.Show("Se cerrará el formulario sin confirmar la Venta. ¿Desea continuar de todos modos?", "Cancelar Venta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
 
@@ -249,5 +367,8 @@ namespace ADBISYS.Formularios.Ventas
         }
 
         #endregion
+
+
+
     }
 }

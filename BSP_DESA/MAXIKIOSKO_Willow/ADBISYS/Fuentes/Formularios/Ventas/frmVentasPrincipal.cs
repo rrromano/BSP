@@ -15,7 +15,7 @@ namespace ADBISYS.Formularios.Ventas
     public partial class frmVentasPrincipal : Form
     {
 
-        #region fmrVentasPrincipal Declaraciones
+        #region Declaraciones
         ConectarBD objConect = new ConectarBD();
         DataSet ds = new DataSet();
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
@@ -78,6 +78,7 @@ namespace ADBISYS.Formularios.Ventas
         #endregion
 
         #region Llegar Grilla
+
         private void llenarGrilla()
         {
             try
@@ -126,6 +127,7 @@ namespace ADBISYS.Formularios.Ventas
                 return;
             }
         }
+
         #endregion
 
         #region Nueva Venta

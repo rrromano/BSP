@@ -32,7 +32,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtCodigoArticulo = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.grdItemsCompra = new System.Windows.Forms.DataGridView();
+            this.grdItemsVenta = new System.Windows.Forms.DataGridView();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnBuscarArticulo = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -44,9 +44,10 @@
             this.txtCantidad = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.btnEliminarArticulo = new System.Windows.Forms.Button();
+            this.Seleccionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdItemsCompra)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdItemsVenta)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -76,7 +77,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.grdItemsCompra);
+            this.groupBox3.Controls.Add(this.grdItemsVenta);
             this.groupBox3.Location = new System.Drawing.Point(10, 105);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(918, 374);
@@ -84,15 +85,18 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Items Compra";
             // 
-            // grdItemsCompra
+            // grdItemsVenta
             // 
-            this.grdItemsCompra.BackgroundColor = System.Drawing.Color.White;
-            this.grdItemsCompra.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdItemsCompra.Location = new System.Drawing.Point(15, 28);
-            this.grdItemsCompra.Name = "grdItemsCompra";
-            this.grdItemsCompra.RowTemplate.Height = 24;
-            this.grdItemsCompra.Size = new System.Drawing.Size(887, 330);
-            this.grdItemsCompra.TabIndex = 0;
+            this.grdItemsVenta.BackgroundColor = System.Drawing.Color.White;
+            this.grdItemsVenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdItemsVenta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Seleccionar});
+            this.grdItemsVenta.Location = new System.Drawing.Point(15, 28);
+            this.grdItemsVenta.Name = "grdItemsVenta";
+            this.grdItemsVenta.RowTemplate.Height = 24;
+            this.grdItemsVenta.Size = new System.Drawing.Size(887, 330);
+            this.grdItemsVenta.TabIndex = 0;
+            this.grdItemsVenta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdItemsVenta_CellContentClick);
             // 
             // groupBox4
             // 
@@ -214,6 +218,15 @@
             this.btnEliminarArticulo.TabIndex = 0;
             this.btnEliminarArticulo.Text = "Eliminar";
             this.btnEliminarArticulo.UseVisualStyleBackColor = true;
+            this.btnEliminarArticulo.Click += new System.EventHandler(this.btnEliminarArticulo_Click);
+            // 
+            // Seleccionar
+            // 
+            this.Seleccionar.Frozen = true;
+            this.Seleccionar.HeaderText = "";
+            this.Seleccionar.Name = "Seleccionar";
+            this.Seleccionar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Seleccionar.Width = 70;
             // 
             // frmNuevaVenta
             // 
@@ -237,7 +250,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdItemsCompra)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdItemsVenta)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -254,7 +267,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtCodigoArticulo;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.DataGridView grdItemsCompra;
+        private System.Windows.Forms.DataGridView grdItemsVenta;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button btnBuscarArticulo;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -266,5 +279,6 @@
         private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Button btnEliminarArticulo;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Seleccionar;
     }
 }
