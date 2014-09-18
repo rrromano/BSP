@@ -656,7 +656,7 @@ namespace ADBISYS
                 }
                 
                 mostrarFormularioReporteCajaDiaria();
-        }
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -667,6 +667,38 @@ namespace ADBISYS
         {
             frmReporteCajaDiaria repoCajaDiaria = new frmReporteCajaDiaria();
             repoCajaDiaria.Show();
+        }
+
+        private void comprasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Properties.Settings.Default.UsuarioLogueado == "")
+                {
+                    MessageBox.Show("Debe iniciar sesión.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmReporteCompras);
+                if (frm != null)
+                {
+                    frm.WindowState = FormWindowState.Normal;
+                    frm.BringToFront();
+                    return;
+                }
+
+                mostrarFormularioReporteCompras();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void mostrarFormularioReporteCompras()
+        {
+            frmReporteCompras repoCompras = new frmReporteCompras();
+            repoCompras.Show();
         }
     }
 }

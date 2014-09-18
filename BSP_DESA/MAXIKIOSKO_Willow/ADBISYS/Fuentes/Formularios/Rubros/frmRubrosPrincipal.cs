@@ -221,18 +221,8 @@ namespace ADBISYS.Formularios.Rubros
                 try
                 {
                     Entidades.Rubros entRubros = new ADBISYS.Entidades.Rubros();
-
-                    ds = entRubros.verificoRubroDelProveedor(id_Rubro);
-                    if (ds.Tables[0].Rows.Count == 1)
-                    {
-                        MessageBox.Show("No se puede eliminar el Rubro " + id_Rubro + "-" + descripcion_rubro + " porque existe un proveedor que lo tiene asignado.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-                    else
-                    {
-                        entRubros.eliminarRubro(id_Rubro);
-                        grdRubros.Focus();
-                    }
+                    entRubros.eliminarRubro(id_Rubro);
+                    grdRubros.Focus();
                 }
                 catch (Exception e)
                 {

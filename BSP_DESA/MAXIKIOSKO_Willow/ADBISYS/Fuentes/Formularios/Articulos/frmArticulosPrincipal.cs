@@ -338,8 +338,19 @@ namespace ADBISYS.Formularios.Articulos
                 try
                 {
                     Entidades.Articulo entArticulo = new ADBISYS.Entidades.Articulo();
-                    entArticulo.eliminarArticulo(articulo_codigo);
-                    grdArticulos.Focus();
+                    DataSet ds = new DataSet(); 
+                    ds = entArticulo.verificoArticuloEnVentas(articulo_codigo);
+
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        MessageBox.Show("No se puede eliminar el Artículo " + articulo_codigo + " - " + descripcion + " porque existen Ventas asociadas al mismo.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    else
+                    {
+                        entArticulo.eliminarArticulo(articulo_codigo);
+                        grdArticulos.Focus();
+                    }
                 }
                 catch (Exception e)
                 {

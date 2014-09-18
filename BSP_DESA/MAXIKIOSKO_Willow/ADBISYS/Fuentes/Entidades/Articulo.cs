@@ -107,7 +107,20 @@ namespace ADBISYS.Entidades
             {
                 throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
             }
+        }
 
+        public DataSet verificoArticuloEnVentas(string codigo)
+        {
+            try
+            {
+                cadenaSql = "EXEC adp_verificar_articulo_ventas @Id_Articulo = " + fg.fcSql(codigo, "String");
+                ds = objConect.ejecutarQuerySelect(cadenaSql);
+                return ds;
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
         }
     }
 }
