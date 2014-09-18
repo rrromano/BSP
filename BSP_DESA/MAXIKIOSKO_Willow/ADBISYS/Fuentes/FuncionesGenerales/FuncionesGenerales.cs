@@ -84,11 +84,11 @@ namespace ADBISYS.FuncionesGenerales
             Grilla.Font = new Font("Verdana",11);
 
             Grilla.StandardTab = true;
-            Grilla.ReadOnly = true;
             Grilla.RowHeadersVisible = false;
             Grilla.MultiSelect = false;
             Grilla.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
+            if (Formato == 9) { Grilla.ReadOnly = false; } else { Grilla.ReadOnly = true;}
 
             for(int i=0;i < Grilla.Columns.Count;i++)
             {

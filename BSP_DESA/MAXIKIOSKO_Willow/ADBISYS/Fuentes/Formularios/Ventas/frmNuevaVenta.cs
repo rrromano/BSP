@@ -37,6 +37,7 @@ namespace ADBISYS.Formularios.Ventas
             try
             {
                 ponerValoresEnDefault();
+                actualizarGrilla();
             }
             catch (Exception ex)
             {
@@ -79,7 +80,7 @@ namespace ADBISYS.Formularios.Ventas
                         buscarArticuloYGuardarVentaTemporal();
                     }
                     cargarArticulosEnGrilla();
-                    grdItemsVenta = fg.formatoGrilla(grdItemsVenta, 1);
+                    grdItemsVenta = fg.formatoGrilla(grdItemsVenta, 9);
 
                     txtCodigoArticulo.Text = String.Empty;
                     txtCodigoArticulo.Focus();
@@ -183,9 +184,10 @@ namespace ADBISYS.Formularios.Ventas
                 if (grdItemsVenta.Rows.Count == 0)
                 {
                     grdItemsVenta.DataSource = null;
+                    //grdItemsVenta.Rows[1].Cells["SELECCIONAR"].Visible = false;
                 }
 
-                grdItemsVenta = fg.formatoGrilla(grdItemsVenta, 1);
+                grdItemsVenta = fg.formatoGrilla(grdItemsVenta, 9);
             }
             catch (Exception ex)
             {
@@ -197,6 +199,41 @@ namespace ADBISYS.Formularios.Ventas
 
         #region Eliminar Articulo Venta
 
+        private void grdItemsVenta_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (grdItemsVenta.Columns[e.ColumnIndex].Name == "SELECCIONAR")
+            {
+                // Se toma la fila seleccionada
+                DataGridViewRow row = grdItemsVenta.Rows[e.RowIndex];
+                // Se selecciona la celda del checkbox
+                DataGridViewCheckBoxCell cellSelecion = row.Cells["SELECCIONAR"] as DataGridViewCheckBoxCell;
+
+                Boolean HayArticuloSeleccionado = false;
+
+                foreach (DataGridViewRow fila in grdItemsVenta.Rows)
+                {
+                    DataGridViewCheckBoxCell celda = fila.Cells["SELECCIONAR"] as DataGridViewCheckBoxCell;
+                    if (Convert.ToBoolean(celda.Value))//Columna de checks
+                    {
+                        HayArticuloSeleccionado = true;
+                    }
+                }
+
+                // Se valida si esta checkeada
+                if (Convert.ToBoolean(cellSelecion.Value))
+                {
+                    btnEliminarArticulo.Enabled = true;
+                }
+                else
+                {
+                    if (!(HayArticuloSeleccionado))
+                    {
+                        btnEliminarArticulo.Enabled = false;
+                    }
+                }
+            }
+        }
+
         private void btnEliminarArticulo_Click(object sender, EventArgs e)
         {
             try
@@ -205,8 +242,12 @@ namespace ADBISYS.Formularios.Ventas
 
                 foreach (DataGridViewRow row in grdItemsVenta.Rows)
                 {
-                    CheckBox ck = (CheckBox)row.Cells[0].Value;
-                    if (ck.Checked)
+                    DataGridViewCheckBoxCell celda = row.Cells["SELECCIONAR"] as DataGridViewCheckBoxCell;
+
+                    //if (Convert.ToBoolean(celda.Value))//Columna de checks
+                    //CheckBox ck = (CheckBox)row.Cells[0].Value;
+                    //if (ck.Checked)
+                    if (Convert.ToBoolean(celda.Value))
                     {
                         grdItemsVenta.Rows.RemoveAt(row.Index);
                         actualizarGrilla();
@@ -238,30 +279,46 @@ namespace ADBISYS.Formularios.Ventas
         {
             try
             {
-                Boolean encontreUnRegistros = false;
+                //Boolean encontreUnRegistros = false;
 
-                foreach (DataGridViewRow row in grdItemsVenta.Rows)
+                filaSeleccionada = e.RowIndex;
+                columnaSeleccionada = e.ColumnIndex;
+
+                if (columnaSeleccionada != 0)
                 {
-                    //CheckBox ck = (CheckBox)row.Cells["Seleccionar"].Value;
-                    //if (ck.Checked)
-
-                    DataGridViewCheckBoxCell oCell;
-                    oCell = row.Cells["Seleccionar"] as DataGridViewCheckBoxCell;
-                    bool bChecked = (null != oCell && null != oCell.Value && true == (bool)oCell.Value);
-                    if (true == bChecked)
-                    {
-                        encontreUnRegistros = true;
-                    }
+                    return;
                 }
 
-                if (encontreUnRegistros)
-                {
-                    btnEliminarArticulo.Enabled = true;
-                }
-                else
-                {
-                    btnEliminarArticulo.Enabled = false;
-                }
+                //foreach (DataGridViewRow row in grdItemsVenta.Rows)
+                //{
+                //    if (row.Cells["SELECCIONAR"].Value.Equals(true))//Columna de checks
+                //    {
+                //        grdItemsVenta.Rows.RemoveAt(filaSeleccionada);
+                //    }
+                //}
+
+                //foreach (DataGridViewRow row in grdItemsVenta.Rows)
+                //{
+                //    //CheckBox ck = (CheckBox)row.Cells["Seleccionar"].Value;
+                //    //if (ck.Checked)
+
+                //    DataGridViewCheckBoxCell oCell;
+                //    oCell = row.Cells["Seleccionar"] as DataGridViewCheckBoxCell;
+                //    bool bChecked = (null != oCell && null != oCell.Value && true == (bool)oCell.Value);
+                //    if (true == bChecked)
+                //    {
+                //        encontreUnRegistros = true;
+                //    }
+                //}
+
+                //if (encontreUnRegistros)
+                //{
+                //    btnEliminarArticulo.Enabled = true;
+                //}
+                //else
+                //{
+                //    btnEliminarArticulo.Enabled = false;
+                //}
 
                 //filaSeleccionada = e.RowIndex;
                 //columnaSeleccionada = e.ColumnIndex;
@@ -370,5 +427,12 @@ namespace ADBISYS.Formularios.Ventas
 
 
 
+        private void grdItemsVenta_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (grdItemsVenta.IsCurrentCellDirty)
+            {
+                grdItemsVenta.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
     }
 }
