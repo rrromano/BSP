@@ -160,7 +160,7 @@ namespace ADBISYS.Formularios.Caja
 
                 if (Ds.Tables[0].Rows.Count > 0)
                 {
-                    MessageBox.Show("Ya existe un Tipo de Movimiento " + fg.fcSql(txtTipoMovimiento.Text, "STRING") + ".", "Alta de Tipo de Movimiento Caja.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Ya existe un Tipo de Movimiento " + fg.fcSql(txtTipoMovimiento.Text.Trim(), "STRING") + ".", "Alta de Tipo de Movimiento Caja.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtTipoMovimiento.Focus();
                     return true;
                 }

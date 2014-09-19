@@ -130,7 +130,7 @@ namespace ADBISYS.Formularios.Articulos
 
             if (chkCargaMasiva.Checked == true)
             {
-                MessageBox.Show("Se dió de Alta correctamente el Artículo: " + txtCodigo.Text + " - " + txtDescripcion.Text + ".", "Alta de Artículo.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Se dió de Alta correctamente el Artículo: " + txtCodigo.Text.Trim() + " - " + txtDescripcion.Text.Trim() + ".", "Alta de Artículo.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 limpiarCampos();
                 return;
             }
@@ -170,7 +170,7 @@ namespace ADBISYS.Formularios.Articulos
 
             if (ds.Tables[0].Rows.Count > 0)
             {
-                MessageBox.Show("Ya existe un Artículo con Código: " + txtCodigo.Text + ".", "Alta de Artículo.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Ya existe un Artículo con Código: " + txtCodigo.Text.Trim() + ".", "Alta de Artículo.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtCodigo.Focus();
                 return true;
             }
