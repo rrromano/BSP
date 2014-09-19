@@ -175,8 +175,6 @@ create table TMP_ARTICULOS_VENTAS(
 	Cantidad	      numeric(10)           not null
 )
 GO
-ALTER TABLE TMP_ARTICULOS_VENTAS ADD CONSTRAINT FK_ID_ARTICULO_TMP_ARTICULOS_VENTAS
-	FOREIGN KEY(ID_Articulo) REFERENCES ARTICULOS(ID_Articulo)
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA TMP_ARTICULOS_VENTAS.'
 GO
 --=============================================================================================
