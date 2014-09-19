@@ -50,6 +50,7 @@
             this.modifRubrosTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.reportesTS = new System.Windows.Forms.ToolStripMenuItem();
             this.cajaDiariaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.comprasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ingresarTS = new System.Windows.Forms.ToolStripMenuItem();
             this.iniciarSesiónTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.adminUsuarioTSMI = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,7 +68,7 @@
             this.maquinaTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.horaTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.comprasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ventasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StripPrincipal.SuspendLayout();
             this.statusStripPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -235,7 +236,8 @@
             // 
             this.reportesTS.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cajaDiariaToolStripMenuItem,
-            this.comprasToolStripMenuItem});
+            this.comprasToolStripMenuItem,
+            this.ventasToolStripMenuItem});
             this.reportesTS.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reportesTS.Name = "reportesTS";
             this.reportesTS.Size = new System.Drawing.Size(106, 27);
@@ -247,6 +249,13 @@
             this.cajaDiariaToolStripMenuItem.Size = new System.Drawing.Size(186, 28);
             this.cajaDiariaToolStripMenuItem.Text = "Caja Diaria";
             this.cajaDiariaToolStripMenuItem.Click += new System.EventHandler(this.cajaDiariaToolStripMenuItem_Click);
+            // 
+            // comprasToolStripMenuItem
+            // 
+            this.comprasToolStripMenuItem.Name = "comprasToolStripMenuItem";
+            this.comprasToolStripMenuItem.Size = new System.Drawing.Size(186, 28);
+            this.comprasToolStripMenuItem.Text = "Compras";
+            this.comprasToolStripMenuItem.Click += new System.EventHandler(this.comprasToolStripMenuItem_Click);
             // 
             // ingresarTS
             // 
@@ -389,12 +398,12 @@
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // comprasToolStripMenuItem
+            // ventasToolStripMenuItem
             // 
-            this.comprasToolStripMenuItem.Name = "comprasToolStripMenuItem";
-            this.comprasToolStripMenuItem.Size = new System.Drawing.Size(186, 28);
-            this.comprasToolStripMenuItem.Text = "Compras";
-            this.comprasToolStripMenuItem.Click += new System.EventHandler(this.comprasToolStripMenuItem_Click);
+            this.ventasToolStripMenuItem.Name = "ventasToolStripMenuItem";
+            this.ventasToolStripMenuItem.Size = new System.Drawing.Size(186, 28);
+            this.ventasToolStripMenuItem.Text = "Ventas";
+            this.ventasToolStripMenuItem.Click += new System.EventHandler(this.ventasToolStripMenuItem_Click);
             // 
             // FrmPrincipal
             // 
@@ -464,6 +473,7 @@
         private System.Windows.Forms.ToolStripStatusLabel cajaTTS;
         private System.Windows.Forms.ToolStripMenuItem cajaDiariaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem comprasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ventasToolStripMenuItem;
 
 
 
