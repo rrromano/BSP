@@ -21,7 +21,8 @@ namespace ADBISYS.Entidades
         {
             try
             {
-                cadenaSql = "EXEC adp_obtener_compras @fecha_sistema = " + fg.fcSql(fecha_sistema.ToString(),"Datetime");
+                cadenaSql = "EXEC adp_obtener_compras @fechaDesde = " + fg.fcSql(fecha_sistema.ToString(), "Datetime");
+                cadenaSql = cadenaSql + ", @fechaHasta = " + fg.fcSql(fecha_sistema.ToString(), "Datetime");
                 ds = objConect.ejecutarQuerySelect(cadenaSql);
                 return ds;
             }

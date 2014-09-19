@@ -30,24 +30,24 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReporteCompras));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnGenerarReporte = new System.Windows.Forms.Button();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.btnGenerarReporte = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.dtpFechaHasta = new System.Windows.Forms.DateTimePicker();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.grdCompras = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnBuscar = new System.Windows.Forms.Button();
             this.dtpFechaDesde = new System.Windows.Forms.DateTimePicker();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.dtpFechaHasta = new System.Windows.Forms.DateTimePicker();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCompras)).BeginInit();
             this.groupBox2.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -63,17 +63,15 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
-            // btnGenerarReporte
+            // groupBox6
             // 
-            this.btnGenerarReporte.Image = ((System.Drawing.Image)(resources.GetObject("btnGenerarReporte.Image")));
-            this.btnGenerarReporte.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnGenerarReporte.Location = new System.Drawing.Point(231, 28);
-            this.btnGenerarReporte.Name = "btnGenerarReporte";
-            this.btnGenerarReporte.Size = new System.Drawing.Size(191, 67);
-            this.btnGenerarReporte.TabIndex = 1;
-            this.btnGenerarReporte.Text = "&Generar Reporte";
-            this.btnGenerarReporte.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnGenerarReporte.UseVisualStyleBackColor = true;
+            this.groupBox6.Controls.Add(this.btnSalir);
+            this.groupBox6.Controls.Add(this.btnGenerarReporte);
+            this.groupBox6.Location = new System.Drawing.Point(338, 516);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(440, 114);
+            this.groupBox6.TabIndex = 3;
+            this.groupBox6.TabStop = false;
             // 
             // btnSalir
             // 
@@ -87,6 +85,57 @@
             this.btnSalir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
+            // btnGenerarReporte
+            // 
+            this.btnGenerarReporte.Image = ((System.Drawing.Image)(resources.GetObject("btnGenerarReporte.Image")));
+            this.btnGenerarReporte.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnGenerarReporte.Location = new System.Drawing.Point(231, 28);
+            this.btnGenerarReporte.Name = "btnGenerarReporte";
+            this.btnGenerarReporte.Size = new System.Drawing.Size(191, 67);
+            this.btnGenerarReporte.TabIndex = 1;
+            this.btnGenerarReporte.Text = "&Generar Reporte";
+            this.btnGenerarReporte.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnGenerarReporte.UseVisualStyleBackColor = true;
+            this.btnGenerarReporte.Click += new System.EventHandler(this.btnGenerarReporte_Click);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.btnBuscar);
+            this.groupBox5.Location = new System.Drawing.Point(679, 18);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(99, 98);
+            this.groupBox5.TabIndex = 2;
+            this.groupBox5.TabStop = false;
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
+            this.btnBuscar.Location = new System.Drawing.Point(21, 30);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(60, 49);
+            this.btnBuscar.TabIndex = 1;
+            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.dtpFechaHasta);
+            this.groupBox4.Location = new System.Drawing.Point(355, 18);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(306, 98);
+            this.groupBox4.TabIndex = 1;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Fecha Hasta:";
+            // 
+            // dtpFechaHasta
+            // 
+            this.dtpFechaHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaHasta.Location = new System.Drawing.Point(57, 39);
+            this.dtpFechaHasta.Name = "dtpFechaHasta";
+            this.dtpFechaHasta.Size = new System.Drawing.Size(197, 29);
+            this.dtpFechaHasta.TabIndex = 1;
             // 
             // groupBox3
             // 
@@ -118,16 +167,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Fecha Desde:";
             // 
-            // btnBuscar
-            // 
-            this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
-            this.btnBuscar.Location = new System.Drawing.Point(21, 30);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(60, 49);
-            this.btnBuscar.TabIndex = 1;
-            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnBuscar.UseVisualStyleBackColor = true;
-            // 
             // dtpFechaDesde
             // 
             this.dtpFechaDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -135,43 +174,6 @@
             this.dtpFechaDesde.Name = "dtpFechaDesde";
             this.dtpFechaDesde.Size = new System.Drawing.Size(197, 29);
             this.dtpFechaDesde.TabIndex = 1;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.dtpFechaHasta);
-            this.groupBox4.Location = new System.Drawing.Point(355, 18);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(306, 98);
-            this.groupBox4.TabIndex = 1;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Fecha Hasta:";
-            // 
-            // dtpFechaHasta
-            // 
-            this.dtpFechaHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaHasta.Location = new System.Drawing.Point(57, 39);
-            this.dtpFechaHasta.Name = "dtpFechaHasta";
-            this.dtpFechaHasta.Size = new System.Drawing.Size(197, 29);
-            this.dtpFechaHasta.TabIndex = 1;
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.btnBuscar);
-            this.groupBox5.Location = new System.Drawing.Point(679, 18);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(99, 98);
-            this.groupBox5.TabIndex = 2;
-            this.groupBox5.TabStop = false;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.btnSalir);
-            this.groupBox6.Controls.Add(this.btnGenerarReporte);
-            this.groupBox6.Location = new System.Drawing.Point(338, 516);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(440, 114);
-            this.groupBox6.TabIndex = 3;
-            this.groupBox6.TabStop = false;
             // 
             // frmReporteCompras
             // 
@@ -182,17 +184,17 @@
             this.Font = new System.Drawing.Font("Verdana", 10.8F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmReporteCompras";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reporte de Compras";
             this.groupBox1.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdCompras)).EndInit();
             this.groupBox2.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

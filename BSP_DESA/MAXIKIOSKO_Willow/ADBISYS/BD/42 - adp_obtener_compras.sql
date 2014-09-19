@@ -4,8 +4,9 @@ If Exists ( Select 1 From SysObjects Where Name = 'adp_obtener_compras')
   Drop Procedure dbo.adp_obtener_compras
 Go 
 
--- SP PARA OBTENER LAS DIFERENTES COMPRAS DEL DÍA
-Create procedure dbo.adp_obtener_compras (@fecha_sistema datetime)
+-- SP PARA OBTENER LAS DIFERENTES COMPRAS ENTRE LAS FECHAS RECIBIDAS COMO PARÁMETRO.
+Create procedure dbo.adp_obtener_compras (@fechaDesde datetime,
+																					@fechaHasta datetime)
 as
 
 BEGIN TRY
@@ -23,7 +24,7 @@ BEGIN TRY
 	FROM COMPRAS A
 		INNER JOIN PROVEEDORES B ON (A.Id_Proveedor = B.ID_Proveedor)
 		WHERE A.ESTADO = 1
-			AND A.Fecha_Compra = @fecha_sistema
+			AND A.Fecha_Compra between @fechaDesde and @fechaHasta
 
 	SET NOCOUNT OFF
 	
