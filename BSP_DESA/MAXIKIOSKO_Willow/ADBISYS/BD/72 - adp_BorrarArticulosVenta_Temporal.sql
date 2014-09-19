@@ -16,7 +16,7 @@ BEGIN TRY
   	  DELETE TMP_ARTICULOS_VENTAS 
   	  WHERE ID_Item_Venta = ISNULL(@Id_ItemVenta, ID_Item_Venta) 
   	
-  	If @Id_ItemVenta IS NOT NULL  
+  	If @Id_ItemVenta IS NULL  
   	  BEGIN
   	    DBCC CHECKIDENT ('TMP_ARTICULOS_VENTAS', RESEED,0)
       END

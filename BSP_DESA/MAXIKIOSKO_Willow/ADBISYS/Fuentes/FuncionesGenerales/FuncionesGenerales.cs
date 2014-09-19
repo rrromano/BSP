@@ -35,6 +35,44 @@ namespace ADBISYS.FuncionesGenerales
                 throw new System.ArgumentException("[Error] -  [" + e.Message.ToString() + "]");
             }
         }
+        public DataGridView eliminarBotones(DataGridView dataGridView, String tipo)
+        {
+            if (tipo == "SELECCIONAR")
+            {
+                if (dataGridView.Columns["SELECCIONAR"] != null)
+                {
+                    dataGridView.Columns.Remove(dataGridView.Columns["Seleccionar"]);
+                    dataGridView.DataSource = null;
+                }
+            }
+            return dataGridView;
+        }
+
+        public DataGridView agregarBotones(DataGridView dataGridView, String tipo)
+        {
+            if (tipo == "SELECCIONAR")
+            {
+                DataGridViewCheckBoxColumn ColumnaSeleccionar = new DataGridViewCheckBoxColumn();
+                ColumnaSeleccionar.HeaderText = "SEL";
+                ColumnaSeleccionar.Name = "SELECCIONAR";
+                ColumnaSeleccionar.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                ColumnaSeleccionar.FlatStyle = FlatStyle.Standard;
+                ColumnaSeleccionar.DisplayIndex = dataGridView.Columns.Count;
+                ColumnaSeleccionar.CellTemplate.Style.BackColor = Color.Honeydew;
+                ColumnaSeleccionar.Width = 80;
+                if (dataGridView.Columns["SELECCIONAR"] == null)
+                {
+                    dataGridView.Columns.Add(ColumnaSeleccionar);
+                }
+                else
+                {
+                    dataGridView.Columns.Remove(dataGridView.Columns["Seleccionar"]);
+                    dataGridView.Columns.Add(ColumnaSeleccionar);
+                }
+            }
+
+            return dataGridView;
+        }
 
         public string fcSql(string cadena, string tipoDato)
         {

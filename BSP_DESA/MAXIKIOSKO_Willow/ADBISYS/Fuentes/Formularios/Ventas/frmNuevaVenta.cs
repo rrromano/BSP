@@ -123,20 +123,32 @@ namespace ADBISYS.Formularios.Ventas
         {
             try
             {
-                //GUARDO EN LA GRILLA EL ARTICULO QUE RECIBO POR PARAMETRO
                 ConectarBD Conex = new ConectarBD();
                 DataSet DsArticulosVenta = new DataSet();
                 String sSQL;
+                DataGridView aux = new DataGridView();
+
                 sSQL = "EXEC dbo.adp_obtenerArticulosVenta_Temporal ";
                 DsArticulosVenta = Conex.ejecutarQuerySelect(sSQL);
 
                 if (DsArticulosVenta.Tables[0].Rows.Count > 0)
                 {
+                    if (grdItemsVenta.Rows.Count != 0)
+                    {
+                        aux.DataSource = grdItemsVenta.DataSource;
+                    }
+
+                    grdItemsVenta.DataSource = null;
+                    grdItemsVenta = fg.agregarBotones(grdItemsVenta, "SELECCIONAR");
                     grdItemsVenta.DataSource = DsArticulosVenta.Tables[0];
+                }
+                else
+                {
+                    grdItemsVenta = fg.eliminarBotones(grdItemsVenta, "SELECCIONAR");
+                    grdItemsVenta.DataSource = null;
                 }
 
                 actualizarPrecioTotalVenta(DsArticulosVenta);
-
             }
             catch (Exception ex)
             {
@@ -240,18 +252,29 @@ namespace ADBISYS.Formularios.Ventas
 
                     if (Convert.ToBoolean(celda.Value))
                     {
-                        grdItemsVenta.Rows.RemoveAt(row.Index);
                         encontreUnRegistros = true;
-                        Venta.borrarArticulosVenta_Temporal(Int64.Parse(row.Cells[1].Value.ToString()));
+                        Venta.borrarArticulosVenta_Temporal(Int64.Parse(grdItemsVenta.Rows[row.Index].Cells["ID"].Value.ToString()));
+                        //grdItemsVenta.Rows.RemoveAt(row.Index);
+                        //i = 0;
                     }
                 }
 
+                grdItemsVenta.DataSource = null;
+                cargarArticulosEnGrilla();
                 actualizarGrilla();
 
                 if (!(encontreUnRegistros))
                 {
                     MessageBox.Show("Debe seleccionar el artículo que desea cancelar.", "Cancelar Artículo Venta.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+
+
+                if (grdItemsVenta.Rows.Count == 0)
+                {
+                    Venta.borrarArticulosVenta_Temporal();
+                    btnEliminarArticulo.Enabled = false;
+                }
+
             }
             catch (Exception ex)
             {
@@ -408,7 +431,6 @@ namespace ADBISYS.Formularios.Ventas
         }
 
         #endregion
-
 
 
         private void grdItemsVenta_CurrentCellDirtyStateChanged(object sender, EventArgs e)

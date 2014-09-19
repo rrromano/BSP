@@ -44,7 +44,6 @@
             this.txtCantidad = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.btnEliminarArticulo = new System.Windows.Forms.Button();
-            this.SELECCIONAR = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdItemsVenta)).BeginInit();
@@ -89,8 +88,6 @@
             // 
             this.grdItemsVenta.BackgroundColor = System.Drawing.Color.White;
             this.grdItemsVenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdItemsVenta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.SELECCIONAR});
             this.grdItemsVenta.Location = new System.Drawing.Point(15, 28);
             this.grdItemsVenta.Name = "grdItemsVenta";
             this.grdItemsVenta.RowTemplate.Height = 24;
@@ -222,15 +219,6 @@
             this.btnEliminarArticulo.UseVisualStyleBackColor = true;
             this.btnEliminarArticulo.Click += new System.EventHandler(this.btnEliminarArticulo_Click);
             // 
-            // SELECCIONAR
-            // 
-            this.SELECCIONAR.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.SELECCIONAR.HeaderText = "Sel";
-            this.SELECCIONAR.MinimumWidth = 50;
-            this.SELECCIONAR.Name = "SELECCIONAR";
-            this.SELECCIONAR.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.SELECCIONAR.Width = 50;
-            // 
             // frmNuevaVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
@@ -282,6 +270,5 @@
         private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Button btnEliminarArticulo;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn SELECCIONAR;
     }
 }
