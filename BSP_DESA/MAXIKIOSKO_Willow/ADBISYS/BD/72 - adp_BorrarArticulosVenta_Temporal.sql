@@ -4,18 +4,22 @@ If Exists ( Select 1 From SysObjects Where Name = 'adp_BorrarArticulosVenta_Temp
   Drop Procedure adp_BorrarArticulosVenta_Temporal
 Go 
 
--- SP PARA TODOS LOS REGISTROS DE TMP_ARTICULOS_VENTAS 
-Create procedure dbo.adp_BorrarArticulosVenta_Temporal 
+-- SP PARA BORRAR UNO O TODOS LOS REGISTROS DE TMP_ARTICULOS_VENTAS 
+Create procedure dbo.adp_BorrarArticulosVenta_Temporal (@Id_ItemVenta NUMERIC(30) = NULL)
 as
 
 BEGIN TRY
     
 	  SET NOCOUNT ON
   	
-  	IF EXISTS(SELECT 1 FROM TMP_ARTICULOS_VENTAS)
-  	  DELETE TMP_ARTICULOS_VENTAS
+  	IF EXISTS(SELECT 1 FROM TMP_ARTICULOS_VENTAS WHERE ID_Item_Venta = ISNULL(@Id_ItemVenta, ID_Item_Venta))
+  	  DELETE TMP_ARTICULOS_VENTAS 
+  	  WHERE ID_Item_Venta = ISNULL(@Id_ItemVenta, ID_Item_Venta) 
   	
-  	DBCC CHECKIDENT ('TMP_ARTICULOS_VENTAS', RESEED,0)
+  	If @Id_ItemVenta IS NOT NULL  
+  	  BEGIN
+  	    DBCC CHECKIDENT ('TMP_ARTICULOS_VENTAS', RESEED,0)
+      END
   	
 	  SET NOCOUNT OFF
   	

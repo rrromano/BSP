@@ -124,16 +124,12 @@ namespace ADBISYS.Formularios.Ventas
             try
             {
                 //GUARDO EN LA GRILLA EL ARTICULO QUE RECIBO POR PARAMETRO
-                //if (DsArticulo.Tables[0].Rows.Count > 0)
-                //{
-                //    grdItemsCompra.DataSource = DsArticulo.Tables[0];
-                //}
-
                 ConectarBD Conex = new ConectarBD();
                 DataSet DsArticulosVenta = new DataSet();
                 String sSQL;
                 sSQL = "EXEC dbo.adp_obtenerArticulosVenta_Temporal ";
                 DsArticulosVenta = Conex.ejecutarQuerySelect(sSQL);
+
                 if (DsArticulosVenta.Tables[0].Rows.Count > 0)
                 {
                     grdItemsVenta.DataSource = DsArticulosVenta.Tables[0];
@@ -184,7 +180,6 @@ namespace ADBISYS.Formularios.Ventas
                 if (grdItemsVenta.Rows.Count == 0)
                 {
                     grdItemsVenta.DataSource = null;
-                    //grdItemsVenta.Rows[1].Cells["SELECCIONAR"].Visible = false;
                 }
 
                 grdItemsVenta = fg.formatoGrilla(grdItemsVenta, 9);
@@ -203,24 +198,22 @@ namespace ADBISYS.Formularios.Ventas
         {
             if (grdItemsVenta.Columns[e.ColumnIndex].Name == "SELECCIONAR")
             {
-                // Se toma la fila seleccionada
-                DataGridViewRow row = grdItemsVenta.Rows[e.RowIndex];
-                // Se selecciona la celda del checkbox
-                DataGridViewCheckBoxCell cellSelecion = row.Cells["SELECCIONAR"] as DataGridViewCheckBoxCell;
+
+                DataGridViewRow row = grdItemsVenta.Rows[e.RowIndex]; // Se toma la fila seleccionada
+                DataGridViewCheckBoxCell cellSelecion = row.Cells["SELECCIONAR"] as DataGridViewCheckBoxCell; // Se selecciona la celda del checkbox
 
                 Boolean HayArticuloSeleccionado = false;
 
                 foreach (DataGridViewRow fila in grdItemsVenta.Rows)
                 {
                     DataGridViewCheckBoxCell celda = fila.Cells["SELECCIONAR"] as DataGridViewCheckBoxCell;
-                    if (Convert.ToBoolean(celda.Value))//Columna de checks
+                    if (Convert.ToBoolean(celda.Value)) //Columna de checks
                     {
                         HayArticuloSeleccionado = true;
                     }
                 }
 
-                // Se valida si esta checkeada
-                if (Convert.ToBoolean(cellSelecion.Value))
+                if (Convert.ToBoolean(cellSelecion.Value)) // Se valida si esta checkeada
                 {
                     btnEliminarArticulo.Enabled = true;
                 }
@@ -239,35 +232,26 @@ namespace ADBISYS.Formularios.Ventas
             try
             {
                 Boolean encontreUnRegistros = false;
+                Entidades.Venta Venta = new Entidades.Venta();
 
                 foreach (DataGridViewRow row in grdItemsVenta.Rows)
                 {
                     DataGridViewCheckBoxCell celda = row.Cells["SELECCIONAR"] as DataGridViewCheckBoxCell;
 
-                    //if (Convert.ToBoolean(celda.Value))//Columna de checks
-                    //CheckBox ck = (CheckBox)row.Cells[0].Value;
-                    //if (ck.Checked)
                     if (Convert.ToBoolean(celda.Value))
                     {
                         grdItemsVenta.Rows.RemoveAt(row.Index);
-                        actualizarGrilla();
                         encontreUnRegistros = true;
+                        Venta.borrarArticulosVenta_Temporal(Int64.Parse(row.Cells[1].Value.ToString()));
                     }
                 }
+
+                actualizarGrilla();
 
                 if (!(encontreUnRegistros))
                 {
                     MessageBox.Show("Debe seleccionar el artículo que desea cancelar.", "Cancelar Artículo Venta.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
-                //filaSeleccionada = e.RowIndex;
-                //columnaSeleccionada = e.ColumnIndex;
-
-                //if (columnaSeleccionada == 0)
-                //{
-                //    grdItemsVenta.Rows.RemoveAt(filaSeleccionada);
-                //    actualizarGrilla();
-                //}
             }
             catch (Exception ex)
             {

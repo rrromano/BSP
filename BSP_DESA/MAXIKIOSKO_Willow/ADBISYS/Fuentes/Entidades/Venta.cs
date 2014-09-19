@@ -142,6 +142,23 @@ namespace ADBISYS.Entidades
             }
         }
 
+        public void borrarArticulosVenta_Temporal(Int64 Id_ItemVenta)
+        {
+            try
+            {
+                FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
+                ConectarBD Conex = new ConectarBD();
+                String sSQL;
+                sSQL = "EXEC dbo.adp_BorrarArticulosVenta_Temporal ";
+                sSQL = sSQL + " @Id_ItemVenta = " + fg.fcSql(Id_ItemVenta.ToString(), "INTEGER");
+                Conex.ejecutarQuery(sSQL);
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+        }
+
         public void eliminarVenta(string codigo)
         {
             try
