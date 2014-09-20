@@ -30,22 +30,22 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReporteCajaDiaria));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnItemsEliminados = new System.Windows.Forms.Button();
-            this.btnGenerarReporte = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.btnGenerarReporte = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.grdMovimientosCaja = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.dtpFechaCaja = new System.Windows.Forms.DateTimePicker();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMovimientosCaja)).BeginInit();
             this.groupBox2.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -59,6 +59,15 @@
             this.groupBox1.Size = new System.Drawing.Size(799, 646);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.btnItemsEliminados);
+            this.groupBox5.Location = new System.Drawing.Point(545, 18);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(233, 115);
+            this.groupBox5.TabIndex = 1;
+            this.groupBox5.TabStop = false;
             // 
             // btnItemsEliminados
             // 
@@ -74,18 +83,15 @@
             this.btnItemsEliminados.UseVisualStyleBackColor = true;
             this.btnItemsEliminados.Click += new System.EventHandler(this.button1_Click);
             // 
-            // btnGenerarReporte
+            // groupBox4
             // 
-            this.btnGenerarReporte.Image = ((System.Drawing.Image)(resources.GetObject("btnGenerarReporte.Image")));
-            this.btnGenerarReporte.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnGenerarReporte.Location = new System.Drawing.Point(227, 28);
-            this.btnGenerarReporte.Name = "btnGenerarReporte";
-            this.btnGenerarReporte.Size = new System.Drawing.Size(191, 67);
-            this.btnGenerarReporte.TabIndex = 1;
-            this.btnGenerarReporte.Text = "&Generar Reporte";
-            this.btnGenerarReporte.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnGenerarReporte.UseVisualStyleBackColor = true;
-            this.btnGenerarReporte.Click += new System.EventHandler(this.btnGenerarReporte_Click);
+            this.groupBox4.Controls.Add(this.btnSalir);
+            this.groupBox4.Controls.Add(this.btnGenerarReporte);
+            this.groupBox4.Location = new System.Drawing.Point(340, 516);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(438, 112);
+            this.groupBox4.TabIndex = 2;
+            this.groupBox4.TabStop = false;
             // 
             // btnSalir
             // 
@@ -99,6 +105,20 @@
             this.btnSalir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnGenerarReporte
+            // 
+            this.btnGenerarReporte.Enabled = false;
+            this.btnGenerarReporte.Image = ((System.Drawing.Image)(resources.GetObject("btnGenerarReporte.Image")));
+            this.btnGenerarReporte.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnGenerarReporte.Location = new System.Drawing.Point(227, 28);
+            this.btnGenerarReporte.Name = "btnGenerarReporte";
+            this.btnGenerarReporte.Size = new System.Drawing.Size(191, 67);
+            this.btnGenerarReporte.TabIndex = 1;
+            this.btnGenerarReporte.Text = "&Generar Reporte";
+            this.btnGenerarReporte.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnGenerarReporte.UseVisualStyleBackColor = true;
+            this.btnGenerarReporte.Click += new System.EventHandler(this.btnGenerarReporte_Click);
             // 
             // groupBox3
             // 
@@ -151,25 +171,6 @@
             this.dtpFechaCaja.TabIndex = 1;
             this.dtpFechaCaja.ValueChanged += new System.EventHandler(this.dtpFechaCaja_ValueChanged);
             // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.btnSalir);
-            this.groupBox4.Controls.Add(this.btnGenerarReporte);
-            this.groupBox4.Location = new System.Drawing.Point(340, 516);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(438, 112);
-            this.groupBox4.TabIndex = 2;
-            this.groupBox4.TabStop = false;
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.btnItemsEliminados);
-            this.groupBox5.Location = new System.Drawing.Point(545, 18);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(233, 115);
-            this.groupBox5.TabIndex = 1;
-            this.groupBox5.TabStop = false;
-            // 
             // frmReporteCajaDiaria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
@@ -184,11 +185,11 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reporte de Caja Diaria";
             this.groupBox1.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdMovimientosCaja)).EndInit();
             this.groupBox2.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -36,6 +36,7 @@ namespace ADBISYS.Formularios.Reportes
             {
                 grdMovimientosCaja.DataSource = Ds.Tables[0];
                 grdMovimientosCaja = fg.formatoGrilla(grdMovimientosCaja, 1);
+                btnGenerarReporte.Enabled = true;
 
                 Entidades.Reportes reporte = new Entidades.Reportes();
                 Ds = reporte.obtenerItemsEliminados(DateTime.Parse(dtpFechaCaja.Text.ToString()),"");
@@ -52,6 +53,7 @@ namespace ADBISYS.Formularios.Reportes
             {
                 grdMovimientosCaja.DataSource = null;
                 btnItemsEliminados.Enabled = false;
+                btnGenerarReporte.Enabled = false;
                 MessageBox.Show("No existen Movimientos de Caja para la Fecha " + dtpFechaCaja.Text.ToString() + ".", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 dtpFechaCaja.Focus();
             }
@@ -78,6 +80,7 @@ namespace ADBISYS.Formularios.Reportes
             {
                 grdMovimientosCaja.DataSource = Ds.Tables[0];
                 grdMovimientosCaja = fg.formatoGrilla(grdMovimientosCaja, 1);
+                btnGenerarReporte.Enabled = true;
 
                 Entidades.Reportes reporte = new Entidades.Reportes();
                 Ds = reporte.obtenerItemsEliminados(DateTime.Parse(dtpFechaCaja.Text.ToString()), "");
@@ -94,6 +97,7 @@ namespace ADBISYS.Formularios.Reportes
             {
                 grdMovimientosCaja.DataSource = null;
                 btnItemsEliminados.Enabled = false;
+                btnGenerarReporte.Enabled = false;
                 MessageBox.Show("No existen Movimientos de Caja para la Fecha " + dtpFechaCaja.Text.ToString() + ".", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 dtpFechaCaja.Focus();
             }

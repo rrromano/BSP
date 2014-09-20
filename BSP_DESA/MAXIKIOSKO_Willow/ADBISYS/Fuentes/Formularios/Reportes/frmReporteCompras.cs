@@ -45,22 +45,26 @@ namespace ADBISYS.Formularios.Reportes
             {
                 grdCompras.DataSource = Ds.Tables[0];
                 grdCompras = fg.formatoGrilla(grdCompras, 1);
+                btnGenerarReporte.Enabled = true;
             }
             else
             {
                 if (dtpFechaDesde.Text == dtpFechaHasta.Text)
                 {
+                    grdCompras.DataSource = null;
+                    btnGenerarReporte.Enabled = false;
                     MessageBox.Show("No existen Compras para la Fecha " + dtpFechaDesde.Text.ToString() + ".", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     dtpFechaDesde.Focus();
                     return;
                 }
                 else
                 {
+                    grdCompras.DataSource = null;
+                    btnGenerarReporte.Enabled = false;
                     MessageBox.Show("No existen Compras entre las Fechas " + dtpFechaDesde.Text.ToString() + " y " + dtpFechaHasta.Text.ToString() + ".", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     dtpFechaDesde.Focus();
                     return;
                 }
-
             }
         }
 

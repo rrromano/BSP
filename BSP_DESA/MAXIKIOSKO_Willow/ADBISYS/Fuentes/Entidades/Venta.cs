@@ -67,7 +67,7 @@ namespace ADBISYS.Entidades
 
         #region Metodos públicos
         //internal List<Venta> obtenerVentas(DateTime Fecha)
-        internal DataSet obtenerVentas (DateTime Fecha)
+        internal DataSet obtenerVentas (DateTime fecha)
         {
             try
             {
@@ -78,7 +78,8 @@ namespace ADBISYS.Entidades
                 
                 //List<Venta> VentasDelDia = new List<Venta>();
 
-                cadenaSql = "EXEC dbo.adp_obtener_ventas @d_16_fecha = " + fg.fcSql(Fecha.ToString(), "DATETIME");
+                cadenaSql = "EXEC dbo.adp_obtener_ventas @fechaDesde = " + fg.fcSql(fecha.ToString(), "DATETIME");
+                cadenaSql = cadenaSql + ", @fechaHasta = " + fg.fcSql(fecha.ToString(), "DATETIME");
                 Ds = objConect.ejecutarQuerySelect(cadenaSql);
 
                 return Ds;

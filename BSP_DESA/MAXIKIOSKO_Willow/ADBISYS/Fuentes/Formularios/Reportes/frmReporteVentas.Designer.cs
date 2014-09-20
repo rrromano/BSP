@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReporteVentas));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.btnVisualizar = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnGenerarReporte = new System.Windows.Forms.Button();
@@ -38,19 +40,17 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dtpFechaHasta = new System.Windows.Forms.DateTimePicker();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.grdCompras = new System.Windows.Forms.DataGridView();
+            this.grdVentas = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dtpFechaDesde = new System.Windows.Forms.DateTimePicker();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdCompras)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdVentas)).BeginInit();
             this.groupBox2.SuspendLayout();
-            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -66,6 +66,28 @@
             this.groupBox1.Size = new System.Drawing.Size(799, 650);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.btnVisualizar);
+            this.groupBox7.Location = new System.Drawing.Point(588, 18);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(190, 98);
+            this.groupBox7.TabIndex = 3;
+            this.groupBox7.TabStop = false;
+            // 
+            // btnVisualizar
+            // 
+            this.btnVisualizar.Enabled = false;
+            this.btnVisualizar.Image = ((System.Drawing.Image)(resources.GetObject("btnVisualizar.Image")));
+            this.btnVisualizar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnVisualizar.Location = new System.Drawing.Point(25, 25);
+            this.btnVisualizar.Name = "btnVisualizar";
+            this.btnVisualizar.Size = new System.Drawing.Size(147, 58);
+            this.btnVisualizar.TabIndex = 1;
+            this.btnVisualizar.Text = "&Visualizar";
+            this.btnVisualizar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnVisualizar.UseVisualStyleBackColor = true;
             // 
             // groupBox6
             // 
@@ -92,6 +114,7 @@
             // 
             // btnGenerarReporte
             // 
+            this.btnGenerarReporte.Enabled = false;
             this.btnGenerarReporte.Image = ((System.Drawing.Image)(resources.GetObject("btnGenerarReporte.Image")));
             this.btnGenerarReporte.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnGenerarReporte.Location = new System.Drawing.Point(231, 28);
@@ -101,6 +124,7 @@
             this.btnGenerarReporte.Text = "&Generar Reporte";
             this.btnGenerarReporte.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnGenerarReporte.UseVisualStyleBackColor = true;
+            this.btnGenerarReporte.Click += new System.EventHandler(this.btnGenerarReporte_Click);
             // 
             // groupBox5
             // 
@@ -120,6 +144,7 @@
             this.btnBuscar.TabIndex = 1;
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // groupBox4
             // 
@@ -141,7 +166,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.grdCompras);
+            this.groupBox3.Controls.Add(this.grdVentas);
             this.groupBox3.Location = new System.Drawing.Point(19, 132);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(759, 378);
@@ -149,15 +174,15 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Ventas";
             // 
-            // grdCompras
+            // grdVentas
             // 
-            this.grdCompras.BackgroundColor = System.Drawing.Color.White;
-            this.grdCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdCompras.Location = new System.Drawing.Point(19, 31);
-            this.grdCompras.Name = "grdCompras";
-            this.grdCompras.RowTemplate.Height = 24;
-            this.grdCompras.Size = new System.Drawing.Size(720, 325);
-            this.grdCompras.TabIndex = 0;
+            this.grdVentas.BackgroundColor = System.Drawing.Color.White;
+            this.grdVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdVentas.Location = new System.Drawing.Point(19, 31);
+            this.grdVentas.Name = "grdVentas";
+            this.grdVentas.RowTemplate.Height = 24;
+            this.grdVentas.Size = new System.Drawing.Size(720, 325);
+            this.grdVentas.TabIndex = 0;
             // 
             // groupBox2
             // 
@@ -177,27 +202,6 @@
             this.dtpFechaDesde.Size = new System.Drawing.Size(166, 29);
             this.dtpFechaDesde.TabIndex = 1;
             // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.button1);
-            this.groupBox7.Location = new System.Drawing.Point(588, 18);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(190, 98);
-            this.groupBox7.TabIndex = 3;
-            this.groupBox7.TabStop = false;
-            // 
-            // button1
-            // 
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button1.Location = new System.Drawing.Point(25, 25);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(147, 58);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "&Visualizar";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // frmReporteVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
@@ -207,18 +211,18 @@
             this.Font = new System.Drawing.Font("Verdana", 10.8F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmReporteVentas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reporte de Ventas";
             this.groupBox1.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdCompras)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdVentas)).EndInit();
             this.groupBox2.ResumeLayout(false);
-            this.groupBox7.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -234,10 +238,10 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.DateTimePicker dtpFechaHasta;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.DataGridView grdCompras;
+        private System.Windows.Forms.DataGridView grdVentas;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DateTimePicker dtpFechaDesde;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnVisualizar;
     }
 }

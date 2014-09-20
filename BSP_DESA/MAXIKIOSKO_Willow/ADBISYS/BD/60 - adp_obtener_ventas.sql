@@ -4,8 +4,9 @@ If Exists ( Select 1 From SysObjects Where Name = 'adp_obtener_ventas')
   Drop Procedure adp_obtener_ventas
 Go 
 
--- SP PARA OBTENER LAS DIFERENTES VENTAS DEL DÍA
-Create procedure dbo.adp_obtener_ventas (@D_16_FECHA datetime)
+-- SP PARA OBTENER LAS DIFERENTES VENTAS ENTRE LAS FECHAS RECIBIDAS COMO PARÁMETRO.
+Create procedure dbo.adp_obtener_ventas (@fechaDesde datetime,
+																				 @fechaHasta datetime)
 as
 
 BEGIN TRY
@@ -21,7 +22,7 @@ BEGIN TRY
 	FROM VENTAS A
 	--	INNER JOIN ARTICULOS_VENTAS B ON (A.ID_Venta = B.ID_Venta)
 		WHERE A.ESTADO = 1
-			AND A.FECHA_VENTA = ISNULL(@D_16_FECHA, A.FECHA_VENTA) 
+			AND A.FECHA_VENTA between @fechaDesde and @fechaHasta
       
 	SET NOCOUNT OFF
 	

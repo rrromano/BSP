@@ -26,16 +26,38 @@ namespace ADBISYS.Formularios.Reportes
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
 
         private void frmItemsEliminados_Load(object sender, EventArgs e)
         {
             cargarComboItemsEliminados();
+            cboItemsEliminados.Text = "TODOS";
+            llenarGrillaTodos();
+        }
+
+        private void llenarGrillaTodos()
+        {
+            Entidades.Reportes reporte = new Entidades.Reportes();
+            Ds = reporte.obtenerItemsEliminados(DateTime.Parse(fecha), "");
+
+            if (Ds.Tables[0].Rows.Count > 0)
+            {
+                grdItemsEliminados.DataSource = Ds.Tables[0];
+                grdItemsEliminados = fg.formatoGrilla(grdItemsEliminados, 1);
+                cboItemsEliminados.Focus();
+            }
+            else
+            {
+                MessageBox.Show("No existen Items eliminados para la fecha " + fecha + ".", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                cboItemsEliminados.Focus();
+                return;
+            }
         }
 
         private void cargarComboItemsEliminados()
         {
+            cboItemsEliminados.Items.Add("TODOS");
             cboItemsEliminados.Items.Add("RUBROS");
             cboItemsEliminados.Items.Add("PROVEEDORES");
             cboItemsEliminados.Items.Add("MOVIMIENTOS DE CAJA");
@@ -46,25 +68,33 @@ namespace ADBISYS.Formularios.Reportes
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            Entidades.Reportes reporte = new Entidades.Reportes();
-            Ds = reporte.obtenerItemsEliminados(DateTime.Parse(fecha),cboItemsEliminados.Text);
-            if (Ds.Tables[0].Rows.Count > 0)
+            if (cboItemsEliminados.Text == "TODOS")
             {
-                grdItemsEliminados.DataSource = Ds.Tables[0];
-                grdItemsEliminados = fg.formatoGrilla(grdItemsEliminados, 1);
-                cboItemsEliminados.Focus();
+                llenarGrillaTodos();
             }
             else
             {
-                if ((cboItemsEliminados.Text == "COMPRAS") || (cboItemsEliminados.Text == "VENTAS"))
+                Entidades.Reportes reporte = new Entidades.Reportes();
+                Ds = reporte.obtenerItemsEliminados(DateTime.Parse(fecha), cboItemsEliminados.Text);
+                if (Ds.Tables[0].Rows.Count > 0)
                 {
-                    MessageBox.Show("No existen " + cboItemsEliminados.Text.ToLower() + " eliminadas para la fecha " + fecha + ".", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    grdItemsEliminados.DataSource = Ds.Tables[0];
+                    grdItemsEliminados = fg.formatoGrilla(grdItemsEliminados, 1);
+                    cboItemsEliminados.Focus();
                 }
-                else 
+                else
                 {
-                    MessageBox.Show("No existen " + cboItemsEliminados.Text.ToLower() + " eliminados para la fecha " + fecha + ".", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if ((cboItemsEliminados.Text == "COMPRAS") || (cboItemsEliminados.Text == "VENTAS"))
+                    {
+                        MessageBox.Show("No existen " + cboItemsEliminados.Text.ToLower() + " eliminadas para la fecha " + fecha + ".", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No existen " + cboItemsEliminados.Text.ToLower() + " eliminados para la fecha " + fecha + ".", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    cboItemsEliminados.Focus();
+                    return;
                 }
-                cboItemsEliminados.Focus();
             }
         }
     }

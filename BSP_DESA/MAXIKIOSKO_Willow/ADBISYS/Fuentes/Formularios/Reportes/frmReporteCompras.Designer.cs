@@ -88,6 +88,7 @@
             // 
             // btnGenerarReporte
             // 
+            this.btnGenerarReporte.Enabled = false;
             this.btnGenerarReporte.Image = ((System.Drawing.Image)(resources.GetObject("btnGenerarReporte.Image")));
             this.btnGenerarReporte.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnGenerarReporte.Location = new System.Drawing.Point(231, 28);

@@ -77,7 +77,7 @@ namespace ADBISYS.Formularios.Ventas
 
         #endregion
 
-        #region Llegar Grilla
+        #region Llenar Grilla
 
         private void llenarGrilla()
         {

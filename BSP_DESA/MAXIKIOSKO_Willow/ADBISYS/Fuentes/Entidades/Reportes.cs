@@ -15,8 +15,8 @@ namespace ADBISYS.Entidades
         DataSet Ds = new DataSet();
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
         String sSQL = "";
-        
-        public DataSet obtenerItemsEliminados(DateTime fecha, string tabla) 
+
+        public DataSet obtenerItemsEliminados(DateTime fecha, string tabla)
         {
             try
             {
@@ -39,6 +39,22 @@ namespace ADBISYS.Entidades
             {
                 sSQL = "EXEC adp_obtener_compras @fechaDesde = " + fg.fcSql(fechaDesde.ToString(), "Datetime");
                 sSQL = sSQL + ", @fechaHasta = " + fg.fcSql(fechaHasta.ToString(), "Datetime");
+                Ds = con.ejecutarQuerySelect(sSQL);
+
+                return Ds;
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+        }
+
+        public DataSet verificarExistenciaVentas(DateTime fechaDesde, DateTime fechaHasta)
+        {
+            try
+            {
+                sSQL = "EXEC dbo.adp_obtener_ventas @fechaDesde = " + fg.fcSql(fechaDesde.ToString(), "DATETIME");
+                sSQL = sSQL + ", @fechaHasta = " + fg.fcSql(fechaHasta.ToString(), "DATETIME");
                 Ds = con.ejecutarQuerySelect(sSQL);
 
                 return Ds;

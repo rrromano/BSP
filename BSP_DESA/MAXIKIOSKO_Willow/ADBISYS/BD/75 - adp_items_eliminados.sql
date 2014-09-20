@@ -15,7 +15,8 @@ BEGIN TRY
 	SET NOCOUNT ON
 
 --==============================================================
-		SELECT UPPER(convert(varchar,ID_RUBRO))	AS 'CÓDIGO',
+		SELECT 'RUBROS' AS 'ITEM',
+					 UPPER(convert(varchar,ID_RUBRO))	AS 'CÓDIGO',
  					 UPPER(DESCRIPCION)		AS 'DESCRIPCIÓN',
 					 convert(varchar,FECHA_MODIF,120) AS 'FECHA_MODIF',
 					 UPPER(LOGIN_MODIF)		AS 'LOGIN_MODIF',
@@ -32,7 +33,8 @@ BEGIN TRY
 ----------------------------------------------------------------
 		UNION
 ----------------------------------------------------------------
-		SELECT UPPER(convert(varchar,ID_Proveedor))	AS 'CÓDIGO',
+		SELECT 'PROVEEDORES' AS 'ITEM',
+					 UPPER(convert(varchar,ID_Proveedor))	AS 'CÓDIGO',
  					 UPPER(Nombre)				AS 'DESCRIPCIÓN',
 					 convert(varchar,FECHA_MODIF,120) AS 'FECHA_MODIF',
 					 UPPER(LOGIN_MODIF)		AS 'LOGIN_MODIF',
@@ -49,7 +51,8 @@ BEGIN TRY
 ----------------------------------------------------------------
 		UNION
 ----------------------------------------------------------------
-		SELECT UPPER(convert(varchar,ID_TipoMovimiento))	AS 'CÓDIGO',
+		SELECT 'MOVIMIENTOS DE CAJA' AS 'ITEM',
+					 UPPER(convert(varchar,ID_TipoMovimiento))	AS 'CÓDIGO',
  					 UPPER(Descripcion)				AS 'DESCRIPCIÓN',
 					 convert(varchar,FECHA_MODIF,120) AS 'FECHA_MODIF',
 					 UPPER(LOGIN_MODIF)				AS 'LOGIN_MODIF',
@@ -66,7 +69,8 @@ BEGIN TRY
 ----------------------------------------------------------------
 		UNION
 ----------------------------------------------------------------								
-		SELECT UPPER(convert(varchar,ID_Articulo))	AS 'CÓDIGO',
+		SELECT 'ARTÍCULOS' AS 'ITEM',
+					 UPPER(convert(varchar,ID_Articulo))	AS 'CÓDIGO',
  					 UPPER(Descripcion)	AS 'DESCRIPCIÓN',
 					 convert(varchar,FECHA_MODIF,120) AS 'FECHA_MODIF',
 					 UPPER(LOGIN_MODIF)	AS 'LOGIN_MODIF',
@@ -82,7 +86,8 @@ BEGIN TRY
 ----------------------------------------------------------------
 		UNION
 ----------------------------------------------------------------								
-		SELECT UPPER(convert(varchar,Id_Compra))	AS 'CÓDIGO',
+		SELECT 'COMPRAS' AS 'ITEM',
+					 UPPER(convert(varchar,Id_Compra))	AS 'CÓDIGO',
  					 UPPER(B.Nombre) + ' - $' + convert(varchar(11),Importe)	AS 'DESCRIPCIÓN',
 					 convert(varchar,A.FECHA_MODIF,120) AS 'FECHA_MODIF',
 					 UPPER(A.LOGIN_MODIF)	AS 'LOGIN_MODIF',
@@ -100,8 +105,9 @@ BEGIN TRY
 ----------------------------------------------------------------
 		UNION
 ----------------------------------------------------------------								
-		SELECT UPPER(ID_Venta)		AS 'CÓDIGO',
- 					 'Cant: ' + CONVERT(VARCHAR(10),Cantidad_Articulos) + ' - $' + CONVERT(VARCHAR(11),Importe)			AS 'DESCRIPCIÓN',
+		SELECT 'VENTAS' AS 'ITEM',
+					 UPPER(ID_Venta)		AS 'CÓDIGO',
+ 					 'Cant. Art: ' + CONVERT(VARCHAR(10),Cantidad_Articulos) + ' - $' + CONVERT(VARCHAR(11),Importe) AS 'DESCRIPCIÓN',
 					 convert(varchar,FECHA_MODIF,120) AS 'FECHA_MODIF',
 					 UPPER(LOGIN_MODIF)	AS 'LOGIN_MODIF',
 					 UPPER(TERM_MODIF)	AS 'TERM_MODIF'
