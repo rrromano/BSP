@@ -78,5 +78,15 @@ namespace ADBISYS.Formularios.Reportes
             }
             return false;
         }
+
+        private void frmReporteCompras_Load(object sender, EventArgs e)
+        {
+            vaciarImporte();
+        }
+
+        private void vaciarImporte()
+        {
+            lblTotal.Text = "0,00";
+        }
     }
 }

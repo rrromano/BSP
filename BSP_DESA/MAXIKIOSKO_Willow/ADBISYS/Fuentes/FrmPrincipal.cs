@@ -15,6 +15,7 @@ using ADBISYS.Formularios.Rubros;
 using ADBISYS.Formularios.Compras;
 using ADBISYS.Formularios.Articulos;
 using ADBISYS.Formularios.Reportes;
+using ADBISYS.Formularios.Ventas;
 
 // RR 2014-03-22: Comienzo del sistema ADBISYS.
 
@@ -603,7 +604,30 @@ namespace ADBISYS
 
         private void nuevaVentaTSMI_Click(object sender, EventArgs e)
         {
-            if (!(cajaIniciada())) {return;}
+            try
+            {
+                Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmVentasPrincipal);
+
+                if (frm != null)
+                {
+                    frm.WindowState = FormWindowState.Normal;
+                    frm.BringToFront();
+                    return;
+                }
+                else
+                {
+                    mostrarFormularioVentas();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void mostrarFormularioVentas()
+        {
+            if (!(cajaIniciada())) { return; }
             Formularios.Ventas.frmVentasPrincipal ventas = new ADBISYS.Formularios.Ventas.frmVentasPrincipal();
             ventas.Show();
         }

@@ -80,5 +80,15 @@ namespace ADBISYS.Formularios.Reportes
             MessageBox.Show("Debemos generar el reporte");
             return;
         }
+
+        private void frmReporteVentas_Load(object sender, EventArgs e)
+        {
+            vaciarImporte();
+        }
+
+        private void vaciarImporte()
+        {
+            lblTotal.Text = "0,00";
+        }
     }
 }

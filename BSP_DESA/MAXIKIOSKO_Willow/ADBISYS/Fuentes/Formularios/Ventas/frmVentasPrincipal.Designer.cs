@@ -65,9 +65,9 @@
             this.groupBox1.Controls.Add(this.btnEliminar);
             this.groupBox1.Controls.Add(this.btnModificar);
             this.groupBox1.Controls.Add(this.btnNuevo);
-            this.groupBox1.Location = new System.Drawing.Point(16, 36);
+            this.groupBox1.Location = new System.Drawing.Point(16, 31);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1094, 592);
+            this.groupBox1.Size = new System.Drawing.Size(893, 598);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             // 
@@ -78,7 +78,7 @@
             this.grdVentas.Location = new System.Drawing.Point(18, 105);
             this.grdVentas.Name = "grdVentas";
             this.grdVentas.RowTemplate.Height = 24;
-            this.grdVentas.Size = new System.Drawing.Size(1058, 454);
+            this.grdVentas.Size = new System.Drawing.Size(855, 454);
             this.grdVentas.TabIndex = 9;
             // 
             // btnActualizar
@@ -87,7 +87,7 @@
             this.btnActualizar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnActualizar.Location = new System.Drawing.Point(18, 28);
             this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(146, 69);
+            this.btnActualizar.Size = new System.Drawing.Size(117, 69);
             this.btnActualizar.TabIndex = 1;
             this.btnActualizar.Text = "&Actualizar";
             this.btnActualizar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -97,7 +97,7 @@
             // lbFiltroBusqueda
             // 
             this.lbFiltroBusqueda.AutoSize = true;
-            this.lbFiltroBusqueda.Location = new System.Drawing.Point(14, 562);
+            this.lbFiltroBusqueda.Location = new System.Drawing.Point(14, 566);
             this.lbFiltroBusqueda.Name = "lbFiltroBusqueda";
             this.lbFiltroBusqueda.Size = new System.Drawing.Size(279, 23);
             this.lbFiltroBusqueda.TabIndex = 8;
@@ -107,9 +107,9 @@
             // 
             this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
             this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSalir.Location = new System.Drawing.Point(930, 28);
+            this.btnSalir.Location = new System.Drawing.Point(756, 28);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(146, 69);
+            this.btnSalir.Size = new System.Drawing.Size(117, 69);
             this.btnSalir.TabIndex = 7;
             this.btnSalir.Text = "&Salir";
             this.btnSalir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -120,9 +120,9 @@
             // 
             this.btnOrdenar.Image = ((System.Drawing.Image)(resources.GetObject("btnOrdenar.Image")));
             this.btnOrdenar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnOrdenar.Location = new System.Drawing.Point(778, 28);
+            this.btnOrdenar.Location = new System.Drawing.Point(633, 28);
             this.btnOrdenar.Name = "btnOrdenar";
-            this.btnOrdenar.Size = new System.Drawing.Size(146, 69);
+            this.btnOrdenar.Size = new System.Drawing.Size(117, 69);
             this.btnOrdenar.TabIndex = 6;
             this.btnOrdenar.Text = "&Ordenar";
             this.btnOrdenar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -132,9 +132,9 @@
             // 
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnBuscar.Location = new System.Drawing.Point(626, 28);
+            this.btnBuscar.Location = new System.Drawing.Point(510, 28);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(146, 69);
+            this.btnBuscar.Size = new System.Drawing.Size(117, 69);
             this.btnBuscar.TabIndex = 5;
             this.btnBuscar.Text = "&Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -144,9 +144,9 @@
             // 
             this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnEliminar.Location = new System.Drawing.Point(474, 28);
+            this.btnEliminar.Location = new System.Drawing.Point(387, 28);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(146, 69);
+            this.btnEliminar.Size = new System.Drawing.Size(117, 69);
             this.btnEliminar.TabIndex = 4;
             this.btnEliminar.Text = "&Eliminar";
             this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -157,9 +157,9 @@
             // 
             this.btnModificar.Image = ((System.Drawing.Image)(resources.GetObject("btnModificar.Image")));
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnModificar.Location = new System.Drawing.Point(322, 28);
+            this.btnModificar.Location = new System.Drawing.Point(264, 28);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(146, 69);
+            this.btnModificar.Size = new System.Drawing.Size(117, 69);
             this.btnModificar.TabIndex = 3;
             this.btnModificar.Text = "&Modificar";
             this.btnModificar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -169,9 +169,9 @@
             // 
             this.btnNuevo.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevo.Image")));
             this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnNuevo.Location = new System.Drawing.Point(170, 28);
+            this.btnNuevo.Location = new System.Drawing.Point(141, 28);
             this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(146, 69);
+            this.btnNuevo.Size = new System.Drawing.Size(117, 69);
             this.btnNuevo.TabIndex = 2;
             this.btnNuevo.Text = "&Nuevo";
             this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -187,7 +187,7 @@
             this.salidaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1126, 31);
+            this.menuStrip1.Size = new System.Drawing.Size(927, 31);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -258,7 +258,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1126, 636);
+            this.ClientSize = new System.Drawing.Size(927, 651);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
