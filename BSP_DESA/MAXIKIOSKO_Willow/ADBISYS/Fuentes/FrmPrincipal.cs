@@ -756,5 +756,35 @@ namespace ADBISYS
             frmReporteVentas repoVentas = new frmReporteVentas();
             repoVentas.Show();
         }
+
+        private void nuevaVentaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmNuevaVenta);
+
+                if (frm != null)
+                {
+                    frm.WindowState = FormWindowState.Normal;
+                    frm.BringToFront();
+                    return;
+                }
+                else
+                {
+                    mostrarFormularioNuevaVenta();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void mostrarFormularioNuevaVenta()
+        {
+            frmNuevaVenta nuevaVenta = new frmNuevaVenta();
+            nuevaVenta.Show();
+        }
     }
 }

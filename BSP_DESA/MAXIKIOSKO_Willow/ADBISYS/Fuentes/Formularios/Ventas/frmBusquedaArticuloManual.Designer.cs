@@ -57,7 +57,7 @@
             this.groupBox2.Location = new System.Drawing.Point(17, 25);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(620, 88);
-            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Articulo";
             // 

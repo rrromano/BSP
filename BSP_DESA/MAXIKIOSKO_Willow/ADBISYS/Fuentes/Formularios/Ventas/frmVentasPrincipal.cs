@@ -134,7 +134,25 @@ namespace ADBISYS.Formularios.Ventas
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            nuevaVenta();
+            try
+            {
+                Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmNuevaVenta);
+
+                if (frm != null)
+                {
+                    frm.WindowState = FormWindowState.Normal;
+                    frm.BringToFront();
+                    return;
+                }
+                else
+                {
+                    nuevaVenta();
+                }
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
         }
 
         private void nuevaVenta()
@@ -159,7 +177,7 @@ namespace ADBISYS.Formularios.Ventas
                 celdaSeleccionada = grdVentas.CurrentCellAddress.X;
                 filaSeleccionada = grdVentas.CurrentCellAddress.Y;
                 frmNuevaVenta nuevaVenta = new frmNuevaVenta();
-                nuevaVenta.ShowDialog();
+                nuevaVenta.Show();
                 nuevaVenta.Select();
             }
             catch (Exception e)

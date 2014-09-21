@@ -51,6 +51,7 @@
             this.reportesTS = new System.Windows.Forms.ToolStripMenuItem();
             this.cajaDiariaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comprasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ventasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ingresarTS = new System.Windows.Forms.ToolStripMenuItem();
             this.iniciarSesiónTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.adminUsuarioTSMI = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,7 +69,7 @@
             this.maquinaTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.horaTSS = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.ventasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nuevaVentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StripPrincipal.SuspendLayout();
             this.statusStripPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -98,6 +99,7 @@
             // ventasTS
             // 
             this.ventasTS.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nuevaVentaToolStripMenuItem,
             this.nuevaVentaTSMI});
             this.ventasTS.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ventasTS.Name = "ventasTS";
@@ -107,8 +109,8 @@
             // nuevaVentaTSMI
             // 
             this.nuevaVentaTSMI.Name = "nuevaVentaTSMI";
-            this.nuevaVentaTSMI.Size = new System.Drawing.Size(266, 28);
-            this.nuevaVentaTSMI.Text = "Agregar / Modificar";
+            this.nuevaVentaTSMI.Size = new System.Drawing.Size(284, 28);
+            this.nuevaVentaTSMI.Text = "Visualizar / Modificar";
             this.nuevaVentaTSMI.Click += new System.EventHandler(this.nuevaVentaTSMI_Click);
             // 
             // articulosTS
@@ -257,6 +259,13 @@
             this.comprasToolStripMenuItem.Text = "Compras";
             this.comprasToolStripMenuItem.Click += new System.EventHandler(this.comprasToolStripMenuItem_Click);
             // 
+            // ventasToolStripMenuItem
+            // 
+            this.ventasToolStripMenuItem.Name = "ventasToolStripMenuItem";
+            this.ventasToolStripMenuItem.Size = new System.Drawing.Size(186, 28);
+            this.ventasToolStripMenuItem.Text = "Ventas";
+            this.ventasToolStripMenuItem.Click += new System.EventHandler(this.ventasToolStripMenuItem_Click);
+            // 
             // ingresarTS
             // 
             this.ingresarTS.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -398,12 +407,12 @@
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // ventasToolStripMenuItem
+            // nuevaVentaToolStripMenuItem
             // 
-            this.ventasToolStripMenuItem.Name = "ventasToolStripMenuItem";
-            this.ventasToolStripMenuItem.Size = new System.Drawing.Size(186, 28);
-            this.ventasToolStripMenuItem.Text = "Ventas";
-            this.ventasToolStripMenuItem.Click += new System.EventHandler(this.ventasToolStripMenuItem_Click);
+            this.nuevaVentaToolStripMenuItem.Name = "nuevaVentaToolStripMenuItem";
+            this.nuevaVentaToolStripMenuItem.Size = new System.Drawing.Size(284, 28);
+            this.nuevaVentaToolStripMenuItem.Text = "Nueva Venta";
+            this.nuevaVentaToolStripMenuItem.Click += new System.EventHandler(this.nuevaVentaToolStripMenuItem_Click);
             // 
             // FrmPrincipal
             // 
@@ -474,6 +483,7 @@
         private System.Windows.Forms.ToolStripMenuItem cajaDiariaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem comprasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ventasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nuevaVentaToolStripMenuItem;
 
 
 

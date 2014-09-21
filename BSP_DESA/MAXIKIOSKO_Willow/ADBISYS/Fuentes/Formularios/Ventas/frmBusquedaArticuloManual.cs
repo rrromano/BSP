@@ -18,6 +18,7 @@ namespace ADBISYS.Formularios.Ventas
         public frmBusquedaArticuloManual()
         {
             InitializeComponent();
+            txtDescripcionArticulo.Focus();
         }
 
         private void frmBusquedaArticuloManual_Load(object sender, EventArgs e)
@@ -36,6 +37,13 @@ namespace ADBISYS.Formularios.Ventas
         {
             try
             {
+
+                if (txtDescripcionArticulo.Text.Trim() == "") 
+                {
+                    grdResultados.DataSource = null;
+                    return;
+                }
+
                 DataSet DsArticulo = new DataSet();
                 Entidades.Articulo articulo = new ADBISYS.Entidades.Articulo();
                 DsArticulo = articulo.BusquedaManualArticulo(txtDescripcionArticulo.Text);
@@ -44,6 +52,11 @@ namespace ADBISYS.Formularios.Ventas
                 {
                     grdResultados.DataSource = DsArticulo.Tables[0];
                     actualizarGrillaResultados();
+                }
+                else
+                {
+                    grdResultados.DataSource = null;
+                    return;
                 }
             }
             catch (Exception ex)

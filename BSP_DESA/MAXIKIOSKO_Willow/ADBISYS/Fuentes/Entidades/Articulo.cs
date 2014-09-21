@@ -111,8 +111,7 @@ namespace ADBISYS.Entidades
         {
             try
             {
-                cadenaSql = "EXEC dbo.adp_busquedaArticuloPorDescripcion";
-                cadenaSql = cadenaSql + " @DescripcionArticulo = " + fg.fcSql(Descripcion_Articulo, "STRING");
+                cadenaSql = "EXEC dbo.adp_busquedaArticuloPorDescripcion @DescripcionArticulo = " + fg.fcSql(Descripcion_Articulo, "STRING");
                 ds = objConect.ejecutarQuerySelect(cadenaSql);
                 return ds;
             }
