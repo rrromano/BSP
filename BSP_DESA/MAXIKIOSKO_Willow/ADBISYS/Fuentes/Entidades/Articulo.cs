@@ -60,11 +60,11 @@ namespace ADBISYS.Entidades
             }
 
         }
-        public DataSet validarExistenciaArticulo(string codigo)
+        public DataSet validarExistenciaArticulo(String Codigo)
         {
             try
             {
-                cadenaSql = "EXEC adp_verificoExistencia_articulo @Codigo = " + fg.fcSql(codigo, "String");
+                cadenaSql = "EXEC adp_verificoExistencia_articulo @Codigo = " + fg.fcSql(Codigo, "String");
                 ds = objConect.ejecutarQuerySelect(cadenaSql);
                 return ds;
             }
@@ -73,20 +73,20 @@ namespace ADBISYS.Entidades
                 throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
             }
         }
-        public void eliminarArticulo(string id_articulo)
+        public void eliminarArticulo(String Id_articulo)
         {
             try
             {
                 string usuario = Properties.Settings.Default.UsuarioLogueado.ToString();
                 
                 // Primero paso los articulos a la tabla Articulos_Eliminados.
-                cadenaSql = "EXEC adp_articulos_eliminados @Id_articulo = " + fg.fcSql(id_articulo, "String");
+                cadenaSql = "EXEC adp_articulos_eliminados @Id_articulo = " + fg.fcSql(Id_articulo, "String");
                 if (usuario != "")
                 { cadenaSql = cadenaSql + ",@Articulo_Login = " + fg.fcSql(usuario, "String"); }
                 objConect.ejecutarQuery(cadenaSql);
 
                 // Se eliminan los articulos (delete).
-                cadenaSql = "EXEC adp_eliminar_articulo @Id_articulo = " + fg.fcSql(id_articulo, "String");
+                cadenaSql = "EXEC adp_eliminar_articulo @Id_articulo = " + fg.fcSql(Id_articulo, "String");
                 objConect.ejecutarQuery(cadenaSql);
             }
             catch (Exception e)
@@ -94,12 +94,25 @@ namespace ADBISYS.Entidades
                 throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
             }
         }
-
         public DataSet obtenerCamposArticulos()
         {
             try
             {
                 cadenaSql = "EXEC adp_cboBusqueda_Articulos";
+                ds = objConect.ejecutarQuerySelect(cadenaSql);
+                return ds;
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+        }
+        public DataSet BusquedaManualArticulo(String Descripcion_Articulo)
+        {
+            try
+            {
+                cadenaSql = "EXEC dbo.adp_busquedaArticuloPorDescripcion";
+                cadenaSql = cadenaSql + " @DescripcionArticulo = " + fg.fcSql(Descripcion_Articulo, "STRING");
                 ds = objConect.ejecutarQuerySelect(cadenaSql);
                 return ds;
             }

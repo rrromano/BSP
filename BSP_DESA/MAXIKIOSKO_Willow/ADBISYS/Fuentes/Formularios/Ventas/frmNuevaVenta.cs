@@ -54,6 +54,21 @@ namespace ADBISYS.Formularios.Ventas
             //va a abrir un formulario nuevo donde vas a buscar al articulo 
             //una vez que lo encuentres se debe generar una nueva instancia de ese nuevo articulo
             //se llama a la funcion cargarArticuloEnGrilla(articulo) pasandole por parametro la nueva instancia
+
+            buscquedaArticuloManual();
+        }
+
+        private void buscquedaArticuloManual()
+        {
+            try
+            {
+                frmBusquedaArticuloManual busqueda = new frmBusquedaArticuloManual();
+                busqueda.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
         }
 
         private void txtCodigoArticulo_KeyPress(object sender, KeyPressEventArgs e)

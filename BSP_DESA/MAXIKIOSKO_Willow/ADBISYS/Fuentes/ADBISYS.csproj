@@ -299,6 +299,12 @@
     <Compile Include="Formularios\Rubros\frmRubrosPrincipal.Designer.cs">
       <DependentUpon>frmRubrosPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Ventas\frmBusquedaArticuloManual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Ventas\frmBusquedaArticuloManual.Designer.cs">
+      <DependentUpon>frmBusquedaArticuloManual.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Ventas\frmNuevaVenta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -439,6 +445,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Rubros\frmRubrosPrincipal.resx">
       <DependentUpon>frmRubrosPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Ventas\frmBusquedaArticuloManual.resx">
+      <DependentUpon>frmBusquedaArticuloManual.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Ventas\frmNuevaVenta.resx">
       <DependentUpon>frmNuevaVenta.cs</DependentUpon>

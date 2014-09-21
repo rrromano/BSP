@@ -73,6 +73,7 @@ sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\72 - adp_Borr
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\73 - adp_eliminarVenta.sql"
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\74 - adp_ActualizarMovimientosCaja_Venta.sql"
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\75 - adp_items_eliminados.sql"
+sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\76 - adp_busquedaArticuloPorDescripcion.sql"
 ECHO.
 ECHO PROCESO FINALIZADO
 ECHO. 

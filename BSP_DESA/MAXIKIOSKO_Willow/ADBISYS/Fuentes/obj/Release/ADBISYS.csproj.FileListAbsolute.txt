@@ -118,3 +118,5 @@ C:\Users\FURRUTIA\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Rel
 C:\Users\FURRUTIA\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Release\ADBISYS.Formularios.Reportes.frmItemsEliminados.resources
 C:\Users\FURRUTIA\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Release\ADBISYS.Formularios.Reportes.frmReporteCajaDiaria.resources
 C:\Users\FURRUTIA\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Release\ADBISYS.Formularios.Reportes.frmReporteCompras.resources
+C:\Users\FURRUTIA\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Release\ADBISYS.Formularios.Reportes.frmReporteVentas.resources
+C:\Users\FURRUTIA\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Release\ADBISYS.Formularios.Ventas.frmBusquedaArticuloManual.resources
