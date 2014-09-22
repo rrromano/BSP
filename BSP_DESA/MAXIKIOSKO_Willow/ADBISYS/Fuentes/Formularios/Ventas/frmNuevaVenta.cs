@@ -64,6 +64,13 @@ namespace ADBISYS.Formularios.Ventas
             {
                 frmBusquedaArticuloManual busqueda = new frmBusquedaArticuloManual();
                 busqueda.ShowDialog();
+
+                cargarArticulosEnGrilla();
+                grdItemsVenta = fg.formatoGrilla(grdItemsVenta, 9);
+
+                txtCodigoArticulo.Text = String.Empty;
+                txtCodigoArticulo.Focus();
+
             }
             catch (Exception ex)
             {
@@ -82,13 +89,16 @@ namespace ADBISYS.Formularios.Ventas
                 {
                     //SI APRETO ENTER EJECUTO ESTE CODIGO
 
+                    
                     DataSet DsArticulo = new DataSet();
-                    Entidades.Articulo articulo = new ADBISYS.Entidades.Articulo();
-                    DsArticulo = articulo.obtenerArticulos(txtCodigoArticulo.Text);
+                    Entidades.Articulo Articulo = new Entidades.Articulo();
+                    Entidades.Venta Venta = new Entidades.Venta();
+
+                    DsArticulo = Articulo.obtenerArticulos(txtCodigoArticulo.Text);
 
                     if (DsArticulo.Tables[0].Rows.Count > 0)
                     {
-                        guardarArticuloVentaTemporal(DsArticulo);
+                        Venta.guardarArticuloVentaTemporal(Int32.Parse(txtCodigoArticulo.Text), Int32.Parse(txtCantidad.Text));
                     }
                     else
                     {
@@ -109,10 +119,17 @@ namespace ADBISYS.Formularios.Ventas
 
         private void buscarArticuloYGuardarVentaTemporal()
         {
-            MessageBox.Show("NO ENCONTRE EL ARTICULO ENTONCES MUESTRO FORMULARIO DE BUSQUEDA DE ARTICULOS");
+            try
+            {
+                buscquedaArticuloManual();
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
         }
 
-        private void guardarArticuloVentaTemporal(DataSet DsArticulo)
+        private void guardarArticuloVentaTemporal()
         {
             try
             {
@@ -311,45 +328,6 @@ namespace ADBISYS.Formularios.Ventas
                     return;
                 }
 
-                //foreach (DataGridViewRow row in grdItemsVenta.Rows)
-                //{
-                //    if (row.Cells["SELECCIONAR"].Value.Equals(true))//Columna de checks
-                //    {
-                //        grdItemsVenta.Rows.RemoveAt(filaSeleccionada);
-                //    }
-                //}
-
-                //foreach (DataGridViewRow row in grdItemsVenta.Rows)
-                //{
-                //    //CheckBox ck = (CheckBox)row.Cells["Seleccionar"].Value;
-                //    //if (ck.Checked)
-
-                //    DataGridViewCheckBoxCell oCell;
-                //    oCell = row.Cells["Seleccionar"] as DataGridViewCheckBoxCell;
-                //    bool bChecked = (null != oCell && null != oCell.Value && true == (bool)oCell.Value);
-                //    if (true == bChecked)
-                //    {
-                //        encontreUnRegistros = true;
-                //    }
-                //}
-
-                //if (encontreUnRegistros)
-                //{
-                //    btnEliminarArticulo.Enabled = true;
-                //}
-                //else
-                //{
-                //    btnEliminarArticulo.Enabled = false;
-                //}
-
-                //filaSeleccionada = e.RowIndex;
-                //columnaSeleccionada = e.ColumnIndex;
-
-                //if (columnaSeleccionada == 0)
-                //{
-                //    grdItemsVenta.Rows.RemoveAt(filaSeleccionada);
-                //    actualizarGrilla();
-                //}
             }
             catch (Exception ex)
             {
@@ -407,8 +385,9 @@ namespace ADBISYS.Formularios.Ventas
             {
                 Entidades.Venta Venta = new Entidades.Venta();
                 Venta.guardarVentaYSusArticulos();
-                Venta.actualizaMovimientoVentas(fg.appFechaSistema());
                 ponerValoresEnDefault();
+                fg.eliminarBotones(grdItemsVenta, "SELECCIONAR");
+                Venta.actualizaMovimientoVentas(fg.appFechaSistema());
                 MessageBox.Show("Venta confirmada correctamente.", "Venta Confirmada.", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)

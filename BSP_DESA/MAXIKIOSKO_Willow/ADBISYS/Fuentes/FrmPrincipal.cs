@@ -783,6 +783,7 @@ namespace ADBISYS
 
         private void mostrarFormularioNuevaVenta()
         {
+            if (!(cajaIniciada())) { return; }
             frmNuevaVenta nuevaVenta = new frmNuevaVenta();
             nuevaVenta.Show();
         }

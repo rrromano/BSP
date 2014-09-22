@@ -49,11 +49,43 @@ namespace ADBISYS.Entidades
             }
         }
 
+        public DataSet obtenerTotalCompras(DateTime fechaDesde, DateTime fechaHasta)
+        {
+            try
+            {
+                sSQL = "EXEC adp_obtenerTotal_compras @fechaDesde = " + fg.fcSql(fechaDesde.ToString(), "Datetime");
+                sSQL = sSQL + ", @fechaHasta = " + fg.fcSql(fechaHasta.ToString(), "Datetime");
+                Ds = con.ejecutarQuerySelect(sSQL);
+
+                return Ds;
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+        }
+
         public DataSet verificarExistenciaVentas(DateTime fechaDesde, DateTime fechaHasta)
         {
             try
             {
                 sSQL = "EXEC dbo.adp_obtener_ventas @fechaDesde = " + fg.fcSql(fechaDesde.ToString(), "DATETIME");
+                sSQL = sSQL + ", @fechaHasta = " + fg.fcSql(fechaHasta.ToString(), "DATETIME");
+                Ds = con.ejecutarQuerySelect(sSQL);
+
+                return Ds;
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+        }
+
+        public DataSet obtenerTotalVentas(DateTime fechaDesde, DateTime fechaHasta)
+        {
+            try
+            {
+                sSQL = "EXEC dbo.adp_obtenerTotal_ventas @fechaDesde = " + fg.fcSql(fechaDesde.ToString(), "DATETIME");
                 sSQL = sSQL + ", @fechaHasta = " + fg.fcSql(fechaHasta.ToString(), "DATETIME");
                 Ds = con.ejecutarQuerySelect(sSQL);
 

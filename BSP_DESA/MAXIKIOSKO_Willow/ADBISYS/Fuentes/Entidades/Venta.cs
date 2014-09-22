@@ -65,6 +65,9 @@ namespace ADBISYS.Entidades
 
         #endregion
 
+
+        FuncionesGenerales.FuncionesGenerales fg = new ADBISYS.FuncionesGenerales.FuncionesGenerales();
+
         #region Metodos públicos
         //internal List<Venta> obtenerVentas(DateTime Fecha)
         internal DataSet obtenerVentas (DateTime fecha)
@@ -74,7 +77,6 @@ namespace ADBISYS.Entidades
                 String cadenaSql = "";
                 DataSet Ds = new DataSet();
                 ConectarBD objConect = new ConectarBD();
-                FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
                 
                 //List<Venta> VentasDelDia = new List<Venta>();
 
@@ -108,7 +110,6 @@ namespace ADBISYS.Entidades
         {
             try
             {
-                FuncionesGenerales.FuncionesGenerales fg = new ADBISYS.FuncionesGenerales.FuncionesGenerales();
                 ConectarBD Conex = new ConectarBD();
                 String Hora = System.DateTime.Now.TimeOfDay.ToString().Substring(0, 8);
                 String sSQL;
@@ -147,7 +148,6 @@ namespace ADBISYS.Entidades
         {
             try
             {
-                FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
                 ConectarBD Conex = new ConectarBD();
                 String sSQL;
                 sSQL = "EXEC dbo.adp_BorrarArticulosVenta_Temporal ";
@@ -164,7 +164,6 @@ namespace ADBISYS.Entidades
         {
             try
             {
-                FuncionesGenerales.FuncionesGenerales fg = new ADBISYS.FuncionesGenerales.FuncionesGenerales();
                 ConectarBD Conex = new ConectarBD();
                 String sSQL = "";
                 String login = Properties.Settings.Default.UsuarioLogueado.ToString();
@@ -186,7 +185,6 @@ namespace ADBISYS.Entidades
         {
             try
             {
-                FuncionesGenerales.FuncionesGenerales fg = new ADBISYS.FuncionesGenerales.FuncionesGenerales();
                 ConectarBD Conex = new ConectarBD();
                 String sSQL = "";
 
@@ -201,6 +199,24 @@ namespace ADBISYS.Entidades
         }
 
         #endregion
+
+        public void guardarArticuloVentaTemporal(Int64 IdArticulo, Int32 Cantidad)
+        {
+            try
+            {
+                ConectarBD Conex = new ConectarBD();
+                String sSQL;
+                sSQL = "EXEC dbo.adp_insertarArticuloVenta_Temporal ";
+                sSQL = sSQL + " @Id_Articulo = " + fg.fcSql(IdArticulo.ToString(), "INTEGER");
+                sSQL = sSQL + " ,@Cantidad = " + fg.fcSql(Cantidad.ToString(), "INTEGER");
+
+                Conex.ejecutarQuery(sSQL);
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
+        }
 
     }
 }

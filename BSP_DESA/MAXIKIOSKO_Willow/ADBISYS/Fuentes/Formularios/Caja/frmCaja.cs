@@ -248,7 +248,7 @@ namespace ADBISYS.Formularios.Caja
             DataSet Ds = new DataSet();
             Ds.Reset();
             Ds = caja.obtenerCierreParcialCaja(fg.appFechaSistema());
-            txtCierreParcial.Text = Ds.Tables[0].Rows[0]["Cierre_Parcial"].ToString();
+            lblCierreParcial.Text = Ds.Tables[0].Rows[0]["Cierre_Parcial"].ToString();
         }
 
         private void actualizarToolStripMenuItem_Click(object sender, EventArgs e)

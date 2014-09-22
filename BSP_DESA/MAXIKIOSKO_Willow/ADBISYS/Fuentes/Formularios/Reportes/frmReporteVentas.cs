@@ -40,6 +40,7 @@ namespace ADBISYS.Formularios.Reportes
                 grdVentas = fg.formatoGrilla(grdVentas, 1);
                 btnGenerarReporte.Enabled = true;
                 btnVisualizar.Enabled = true;
+                actualizarLabelTotal();
             }
             else
             {
@@ -48,6 +49,7 @@ namespace ADBISYS.Formularios.Reportes
                     grdVentas.DataSource = null;
                     btnGenerarReporte.Enabled = false;
                     btnVisualizar.Enabled = false;
+                    vaciarImporte();
                     MessageBox.Show("No existen Ventas para la Fecha " + dtpFechaDesde.Text.ToString() + ".", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     dtpFechaDesde.Focus();
                     return;
@@ -57,11 +59,24 @@ namespace ADBISYS.Formularios.Reportes
                     grdVentas.DataSource = null;
                     btnGenerarReporte.Enabled = false;
                     btnVisualizar.Enabled = false;
+                    vaciarImporte();
                     MessageBox.Show("No existen Ventas entre las Fechas " + dtpFechaDesde.Text.ToString() + " y " + dtpFechaHasta.Text.ToString() + ".", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     dtpFechaDesde.Focus();
                     return;
                 }
             }
+        }
+
+        private void actualizarLabelTotal()
+        {
+            Entidades.Reportes entRepo = new ADBISYS.Entidades.Reportes();
+            Ds = entRepo.obtenerTotalVentas(DateTime.Parse(dtpFechaDesde.Text.ToString()), DateTime.Parse(dtpFechaHasta.Text.ToString()));
+
+            if (Ds.Tables[0].Rows.Count > 0)
+            {
+                lblTotal.Text = Ds.Tables[0].Rows[0]["IMPORTE"].ToString();
+            }
+            return;
         }
 
         private bool validarFechas()

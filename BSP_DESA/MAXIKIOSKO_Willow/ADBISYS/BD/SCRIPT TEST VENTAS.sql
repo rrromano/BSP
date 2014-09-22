@@ -62,3 +62,26 @@ USE WIAdbisys
 
 
 --END CATCH
+
+--USE WIAdbisys
+--GO
+
+--DECLARE @I NUMERIC(38)
+--SET @I  = 5000
+
+--PRINT 'ENTRO AL WHILE'
+
+--WHILE 1 = 1
+--BEGIN
+
+--  SET @I = @I + 1
+
+--  IF @I < 50000
+--  BEGIN
+--    INSERT INTO ARTICULOS (ID_Articulo, Descripcion, Precio_Venta, Rubro, Estado, fecha_modif, login_modif, term_modif)
+--    VALUES (@I ,'ATICULO DE PRUEBA NUMERO ' + CONVERT(VARCHAR,@I) , '1000', 5, 1, GETDATE(), 'BSP', HOST_NAME() )
+--  END
+  
+--END
+
+--PRINT 'SALI DEL WHILE'

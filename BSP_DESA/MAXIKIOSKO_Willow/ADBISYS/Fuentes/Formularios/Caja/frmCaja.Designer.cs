@@ -51,13 +51,12 @@
             this.ordenarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.salidaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblTotalParcial = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtCierreParcial = new System.Windows.Forms.TextBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.lblCierreParcial = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMovsCaja)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -264,40 +263,33 @@
             this.salirToolStripMenuItem2.Text = "Salir";
             this.salirToolStripMenuItem2.Click += new System.EventHandler(this.salirToolStripMenuItem2_Click);
             // 
-            // lblTotalParcial
+            // groupBox8
             // 
-            this.lblTotalParcial.AutoSize = true;
-            this.lblTotalParcial.Location = new System.Drawing.Point(324, 26);
-            this.lblTotalParcial.Name = "lblTotalParcial";
-            this.lblTotalParcial.Size = new System.Drawing.Size(179, 23);
-            this.lblTotalParcial.TabIndex = 2;
-            this.lblTotalParcial.Text = "CIERRE PARCIAL:";
+            this.groupBox8.Controls.Add(this.lblCierreParcial);
+            this.groupBox8.Location = new System.Drawing.Point(493, 554);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(301, 114);
+            this.groupBox8.TabIndex = 8;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Cierre Parcial";
             // 
-            // groupBox2
+            // lblCierreParcial
             // 
-            this.groupBox2.Controls.Add(this.txtCierreParcial);
-            this.groupBox2.Controls.Add(this.lblTotalParcial);
-            this.groupBox2.Location = new System.Drawing.Point(16, 554);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(778, 64);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            // 
-            // txtCierreParcial
-            // 
-            this.txtCierreParcial.Enabled = false;
-            this.txtCierreParcial.Location = new System.Drawing.Point(522, 23);
-            this.txtCierreParcial.Name = "txtCierreParcial";
-            this.txtCierreParcial.Size = new System.Drawing.Size(235, 29);
-            this.txtCierreParcial.TabIndex = 3;
+            this.lblCierreParcial.AutoSize = true;
+            this.lblCierreParcial.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCierreParcial.Location = new System.Drawing.Point(106, 43);
+            this.lblCierreParcial.Name = "lblCierreParcial";
+            this.lblCierreParcial.Size = new System.Drawing.Size(113, 36);
+            this.lblCierreParcial.TabIndex = 0;
+            this.lblCierreParcial.Text = "TOTAL";
             // 
             // frmCaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(813, 638);
-            this.Controls.Add(this.groupBox2);
+            this.ClientSize = new System.Drawing.Size(813, 686);
+            this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -313,8 +305,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdMovsCaja)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -344,8 +336,7 @@
         private System.Windows.Forms.ToolStripMenuItem buscarToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem ordenarToolStripMenuItem1;
         private System.Windows.Forms.Label lbFiltroBusqueda;
-        private System.Windows.Forms.Label lblTotalParcial;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtCierreParcial;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.Label lblCierreParcial;
     }
 }

@@ -12,7 +12,11 @@ namespace ADBISYS.Formularios.Ventas
     public partial class frmBusquedaArticuloManual : Form
     {
         #region Declaraciones
+
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
+        Int32 filaSeleccionada = 0;
+        Int32 columnaSeleccionada = 0;
+
         #endregion
 
         public frmBusquedaArticuloManual()
@@ -69,7 +73,7 @@ namespace ADBISYS.Formularios.Ventas
         {
             try
             {
-                grdResultados = fg.formatoGrilla(grdResultados, 2);
+                grdResultados = fg.formatoGrilla(grdResultados, 1);
                 txtDescripcionArticulo.Focus();
             }
             catch (Exception ex)
@@ -82,10 +86,34 @@ namespace ADBISYS.Formularios.Ventas
         {
             try
             {
-                //foreach (DataGridViewRow row in grdResultados.Rows.)
-                //{ 
+                //MessageBox.Show("Seleccionó ID: " + DsArt.Tables[0].Rows[0]["CÓDIGO"].ToString() + " DESCRIPCION: " + DsArt.Tables[0].Rows[0]["DESCRIPCIÓN"].ToString());
+
+                Entidades.Articulo Articulo = new Entidades.Articulo();
+                Entidades.Venta Venta = new Entidades.Venta();
+
+                DataSet DsArticulo = new DataSet();
                 
-                //}
+                Int64 IdArticulo;
+                Int32 Cantidad;
+
+                IdArticulo = Int64.Parse(grdResultados.Rows[filaSeleccionada].Cells["ID"].Value.ToString());
+
+                DsArticulo = Articulo.obtenerArticulos(IdArticulo.ToString());
+
+
+                if (DsArticulo.Tables[0].Rows.Count > 0)
+                {
+                    IdArticulo = Int64.Parse(DsArticulo.Tables[0].Rows[0]["CÓDIGO"].ToString());
+                    Cantidad = Int32.Parse(txtCantidad.Text);
+                    Venta.guardarArticuloVentaTemporal(IdArticulo, Cantidad);
+                }
+                else
+                {
+                    MessageBox.Show("Artículo inexistente en la Base de Datos");
+                }
+
+                this.Hide();
+
             }
             catch (Exception ex)
             {
@@ -93,11 +121,25 @@ namespace ADBISYS.Formularios.Ventas
             }
         }
 
-        private void grdResultados_SelectionChanged(object sender, EventArgs e)
+        private void btnNuevoArticulo_Click(object sender, EventArgs e)
         {
             try
             {
-                //DataGridViewRow row = grdResultados.SelectedRow;
+                Formularios.Articulos.frmNuevoArticulo nuevoArt = new ADBISYS.Formularios.Articulos.frmNuevoArticulo();
+                nuevoArt.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
+        }
+
+        private void grdResultados_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                filaSeleccionada = e.RowIndex;
+                columnaSeleccionada = e.ColumnIndex;
             }
             catch (Exception ex)
             {
