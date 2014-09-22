@@ -30,32 +30,39 @@ namespace ADBISYS.Formularios.Reportes
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            Entidades.Caja caja = new Entidades.Caja();
-            Ds = caja.obtenerMovimientosCaja(DateTime.Parse(dtpFechaCaja.Text.ToString()));
-            if (Ds.Tables[0].Rows.Count > 0)
+            try
             {
-                grdMovimientosCaja.DataSource = Ds.Tables[0];
-                grdMovimientosCaja = fg.formatoGrilla(grdMovimientosCaja, 1);
-                btnGenerarReporte.Enabled = true;
-
-                Entidades.Reportes reporte = new Entidades.Reportes();
-                Ds = reporte.obtenerItemsEliminados(DateTime.Parse(dtpFechaCaja.Text.ToString()),"");
+                Entidades.Caja caja = new Entidades.Caja();
+                Ds = caja.obtenerMovimientosCaja(DateTime.Parse(dtpFechaCaja.Text.ToString()));
                 if (Ds.Tables[0].Rows.Count > 0)
                 {
-                    btnItemsEliminados.Enabled = true;
+                    grdMovimientosCaja.DataSource = Ds.Tables[0];
+                    grdMovimientosCaja = fg.formatoGrilla(grdMovimientosCaja, 1);
+                    btnGenerarReporte.Enabled = true;
+
+                    Entidades.Reportes reporte = new Entidades.Reportes();
+                    Ds = reporte.obtenerItemsEliminados(DateTime.Parse(dtpFechaCaja.Text.ToString()),"");
+                    if (Ds.Tables[0].Rows.Count > 0)
+                    {
+                        btnItemsEliminados.Enabled = true;
+                    }
+                    else
+                    {
+                        btnItemsEliminados.Enabled = false;
+                    }
                 }
                 else
                 {
+                    grdMovimientosCaja.DataSource = null;
                     btnItemsEliminados.Enabled = false;
+                    btnGenerarReporte.Enabled = false;
+                    MessageBox.Show("No existen Movimientos de Caja para la Fecha " + dtpFechaCaja.Text.ToString() + ".", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dtpFechaCaja.Focus();
                 }
             }
-            else
+            catch (Exception r)
             {
-                grdMovimientosCaja.DataSource = null;
-                btnItemsEliminados.Enabled = false;
-                btnGenerarReporte.Enabled = false;
-                MessageBox.Show("No existen Movimientos de Caja para la Fecha " + dtpFechaCaja.Text.ToString() + ".", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                dtpFechaCaja.Focus();
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -65,41 +72,55 @@ namespace ADBISYS.Formularios.Reportes
             return;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            frmItemsEliminados itemsEliminados = new frmItemsEliminados();
-            itemsEliminados.fecha = dtpFechaCaja.Text;
-            itemsEliminados.ShowDialog();
-        }
-
         private void dtpFechaCaja_ValueChanged(object sender, EventArgs e)
         {
-            Entidades.Caja caja = new Entidades.Caja();
-            Ds = caja.obtenerMovimientosCaja(DateTime.Parse(dtpFechaCaja.Text.ToString()));
-            if (Ds.Tables[0].Rows.Count > 0)
+            try
             {
-                grdMovimientosCaja.DataSource = Ds.Tables[0];
-                grdMovimientosCaja = fg.formatoGrilla(grdMovimientosCaja, 1);
-                btnGenerarReporte.Enabled = true;
-
-                Entidades.Reportes reporte = new Entidades.Reportes();
-                Ds = reporte.obtenerItemsEliminados(DateTime.Parse(dtpFechaCaja.Text.ToString()), "");
+                Entidades.Caja caja = new Entidades.Caja();
+                Ds = caja.obtenerMovimientosCaja(DateTime.Parse(dtpFechaCaja.Text.ToString()));
                 if (Ds.Tables[0].Rows.Count > 0)
                 {
-                    btnItemsEliminados.Enabled = true;
+                    grdMovimientosCaja.DataSource = Ds.Tables[0];
+                    grdMovimientosCaja = fg.formatoGrilla(grdMovimientosCaja, 1);
+                    btnGenerarReporte.Enabled = true;
+
+                    Entidades.Reportes reporte = new Entidades.Reportes();
+                    Ds = reporte.obtenerItemsEliminados(DateTime.Parse(dtpFechaCaja.Text.ToString()), "");
+                    if (Ds.Tables[0].Rows.Count > 0)
+                    {
+                        btnItemsEliminados.Enabled = true;
+                    }
+                    else
+                    {
+                        btnItemsEliminados.Enabled = false;
+                    }
                 }
                 else
                 {
+                    grdMovimientosCaja.DataSource = null;
                     btnItemsEliminados.Enabled = false;
+                    btnGenerarReporte.Enabled = false;
+                    MessageBox.Show("No existen Movimientos de Caja para la Fecha " + dtpFechaCaja.Text.ToString() + ".", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dtpFechaCaja.Focus();
                 }
             }
-            else
+            catch (Exception r)
             {
-                grdMovimientosCaja.DataSource = null;
-                btnItemsEliminados.Enabled = false;
-                btnGenerarReporte.Enabled = false;
-                MessageBox.Show("No existen Movimientos de Caja para la Fecha " + dtpFechaCaja.Text.ToString() + ".", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                dtpFechaCaja.Focus();
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnItemsEliminados_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmItemsEliminados itemsEliminados = new frmItemsEliminados();
+                itemsEliminados.fecha = dtpFechaCaja.Text;
+                itemsEliminados.ShowDialog();
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -156,3 +156,5 @@ C:\Users\FURRUTIA\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Deb
 C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Debug\ADBISYS.Formularios.Reportes.frmReporteVentas.resources
 C:\Users\FURRUTIA\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Debug\ADBISYS.Formularios.Reportes.frmReporteVentas.resources
 C:\Users\FURRUTIA\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Debug\ADBISYS.Formularios.Ventas.frmBusquedaArticuloManual.resources
+C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Debug\ADBISYS.Formularios.Reportes.frmVisualizarVenta.resources
+C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Debug\ADBISYS.Formularios.Ventas.frmBusquedaArticuloManual.resources

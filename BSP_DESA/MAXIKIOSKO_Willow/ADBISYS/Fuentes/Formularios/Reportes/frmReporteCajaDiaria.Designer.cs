@@ -81,7 +81,7 @@
             this.btnItemsEliminados.Text = "&Items Eliminados";
             this.btnItemsEliminados.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnItemsEliminados.UseVisualStyleBackColor = true;
-            this.btnItemsEliminados.Click += new System.EventHandler(this.button1_Click);
+            this.btnItemsEliminados.Click += new System.EventHandler(this.btnItemsEliminados_Click);
             // 
             // groupBox4
             // 

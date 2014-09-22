@@ -263,7 +263,7 @@
             this.grdCompras.RowTemplate.Height = 24;
             this.grdCompras.Size = new System.Drawing.Size(1058, 454);
             this.grdCompras.TabIndex = 8;
-            this.grdCompras.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdCompras_CellMouseDoubleClick);
+            this.grdCompras.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdCompras_CellDoubleClick);
             this.grdCompras.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdCompras_KeyDown);
             // 
             // frmComprasPrincipal

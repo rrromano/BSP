@@ -252,18 +252,6 @@ namespace ADBISYS.Formularios.Articulos
             }
         }
 
-        private void grdArticulos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                modificarArticulo();
-            }
-            catch (Exception r)
-            {
-                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void grdArticulos_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -451,6 +439,18 @@ namespace ADBISYS.Formularios.Articulos
                 {
                     grdArticulos.Sort(columna, ListSortDirection.Descending);
                 }
+            }
+        }
+
+        private void grdArticulos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                modificarArticulo();
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

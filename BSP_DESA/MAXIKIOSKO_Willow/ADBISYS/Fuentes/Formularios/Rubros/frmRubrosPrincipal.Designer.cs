@@ -263,6 +263,7 @@
             this.grdRubros.RowTemplate.Height = 24;
             this.grdRubros.Size = new System.Drawing.Size(820, 454);
             this.grdRubros.TabIndex = 8;
+            this.grdRubros.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdRubros_CellDoubleClick);
             this.grdRubros.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdRubros_KeyDown);
             // 
             // frmRubrosPrincipal

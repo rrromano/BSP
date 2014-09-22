@@ -128,7 +128,7 @@
             this.grdTipoMovCaja.RowTemplate.Height = 24;
             this.grdTipoMovCaja.Size = new System.Drawing.Size(820, 454);
             this.grdTipoMovCaja.TabIndex = 8;
-            this.grdTipoMovCaja.DoubleClick += new System.EventHandler(this.grdTipoMovCaja_DoubleClick);
+            this.grdTipoMovCaja.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdTipoMovCaja_CellDoubleClick);
             this.grdTipoMovCaja.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdTipoMovCaja_KeyDown);
             // 
             // btnSalir

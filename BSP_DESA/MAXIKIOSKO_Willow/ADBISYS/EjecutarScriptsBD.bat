@@ -30,6 +30,7 @@ sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\28 - adp_FecS
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\29 - adp_obtener_rubros.sql"
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\30 - adp_modificar_rubro.sql"
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\31 - adp_eliminar_rubro.sql"
+sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\32 - adp_obtenerTotal_compras.sql"	
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\33 - adp_cboBusqueda_rubros.sql"
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\34 - adp_busqueda_rubros.sql"
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\35 - adp_obtenerId_TipoMovimientoCaja.sql"
@@ -75,6 +76,8 @@ sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\74 - adp_Actu
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\75 - adp_items_eliminados.sql"
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\76 - adp_busquedaArticuloPorDescripcion.sql"
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\77 - adp_obtenerTotal_ventas.sql"
+sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\78 - adp_obtenerInfoVenta.sql"
+sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\79 - adp_obtenerArticulosVenta.sql"
 ECHO.
 ECHO PROCESO FINALIZADO
 ECHO. 

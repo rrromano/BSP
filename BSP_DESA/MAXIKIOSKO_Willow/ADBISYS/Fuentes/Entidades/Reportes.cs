@@ -96,5 +96,35 @@ namespace ADBISYS.Entidades
                 throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
             }
         }
+
+        public DataSet obtenerVenta(string codigo)
+        {
+            try
+            {
+                sSQL = "EXEC dbo.adp_obtenerInfoVenta @codigo_venta = " + fg.fcSql(codigo.ToString(), "STRING");
+                Ds = con.ejecutarQuerySelect(sSQL);
+
+                return Ds;
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+        }
+
+        public DataSet obtenerArticulosVenta(string codigo)
+        {
+            try
+            {
+                sSQL = "EXEC dbo.adp_obtenerArticulosVenta @codigo_venta = " + fg.fcSql(codigo.ToString(), "STRING");
+                Ds = con.ejecutarQuerySelect(sSQL);
+
+                return Ds;
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+        }
     }
 }

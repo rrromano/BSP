@@ -263,7 +263,7 @@
             this.grdArticulos.RowTemplate.Height = 24;
             this.grdArticulos.Size = new System.Drawing.Size(1058, 454);
             this.grdArticulos.TabIndex = 8;
-            this.grdArticulos.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdArticulos_CellContentDoubleClick);
+            this.grdArticulos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdArticulos_CellDoubleClick);
             this.grdArticulos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdArticulos_KeyDown);
             // 
             // frmArticulosPrincipal

@@ -36,51 +36,65 @@ namespace ADBISYS.Formularios.Reportes
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (validarFechas()) return;
-
-            Entidades.Reportes entRepo = new ADBISYS.Entidades.Reportes();
-            Ds = entRepo.verificarExistenciaCompras(DateTime.Parse(dtpFechaDesde.Text.ToString()), DateTime.Parse(dtpFechaHasta.Text.ToString()));
-
-            if (Ds.Tables[0].Rows.Count > 0)
+            try
             {
-                grdCompras.DataSource = Ds.Tables[0];
-                grdCompras = fg.formatoGrilla(grdCompras, 1);
-                btnGenerarReporte.Enabled = true;
-                actualizarLabelTotal();
-            }
-            else
-            {
-                if (dtpFechaDesde.Text == dtpFechaHasta.Text)
+                if (validarFechas()) return;
+
+                Entidades.Reportes entRepo = new ADBISYS.Entidades.Reportes();
+                Ds = entRepo.verificarExistenciaCompras(DateTime.Parse(dtpFechaDesde.Text.ToString()), DateTime.Parse(dtpFechaHasta.Text.ToString()));
+
+                if (Ds.Tables[0].Rows.Count > 0)
                 {
-                    grdCompras.DataSource = null;
-                    btnGenerarReporte.Enabled = false;
-                    vaciarImporte();
-                    MessageBox.Show("No existen Compras para la Fecha " + dtpFechaDesde.Text.ToString() + ".", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    dtpFechaDesde.Focus();
-                    return;
+                    grdCompras.DataSource = Ds.Tables[0];
+                    grdCompras = fg.formatoGrilla(grdCompras, 1);
+                    btnGenerarReporte.Enabled = true;
+                    actualizarLabelTotal();
                 }
                 else
                 {
-                    grdCompras.DataSource = null;
-                    btnGenerarReporte.Enabled = false;
-                    vaciarImporte();
-                    MessageBox.Show("No existen Compras entre las Fechas " + dtpFechaDesde.Text.ToString() + " y " + dtpFechaHasta.Text.ToString() + ".", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    dtpFechaDesde.Focus();
-                    return;
+                    if (dtpFechaDesde.Text == dtpFechaHasta.Text)
+                    {
+                        grdCompras.DataSource = null;
+                        btnGenerarReporte.Enabled = false;
+                        vaciarImporte();
+                        MessageBox.Show("No existen Compras para la Fecha " + dtpFechaDesde.Text.ToString() + ".", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        dtpFechaDesde.Focus();
+                        return;
+                    }
+                    else
+                    {
+                        grdCompras.DataSource = null;
+                        btnGenerarReporte.Enabled = false;
+                        vaciarImporte();
+                        MessageBox.Show("No existen Compras entre las Fechas " + dtpFechaDesde.Text.ToString() + " y " + dtpFechaHasta.Text.ToString() + ".", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        dtpFechaDesde.Focus();
+                        return;
+                    }
                 }
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void actualizarLabelTotal()
         {
-            Entidades.Reportes entRepo = new ADBISYS.Entidades.Reportes();
-            Ds = entRepo.obtenerTotalCompras(DateTime.Parse(dtpFechaDesde.Text.ToString()), DateTime.Parse(dtpFechaHasta.Text.ToString()));
-
-            if (Ds.Tables[0].Rows.Count > 0)
+            try
             {
-                lblTotal.Text = Ds.Tables[0].Rows[0]["IMPORTE"].ToString();
+                Entidades.Reportes entRepo = new ADBISYS.Entidades.Reportes();
+                Ds = entRepo.obtenerTotalCompras(DateTime.Parse(dtpFechaDesde.Text.ToString()), DateTime.Parse(dtpFechaHasta.Text.ToString()));
+
+                if (Ds.Tables[0].Rows.Count > 0)
+                {
+                    lblTotal.Text = Ds.Tables[0].Rows[0]["IMPORTE"].ToString();
+                }
+                return;
             }
-            return;
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private bool validarFechas()

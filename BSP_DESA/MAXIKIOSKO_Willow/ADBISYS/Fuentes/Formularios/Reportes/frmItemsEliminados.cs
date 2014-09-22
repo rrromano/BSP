@@ -38,44 +38,11 @@ namespace ADBISYS.Formularios.Reportes
 
         private void llenarGrillaTodos()
         {
-            Entidades.Reportes reporte = new Entidades.Reportes();
-            Ds = reporte.obtenerItemsEliminados(DateTime.Parse(fecha), "");
-
-            if (Ds.Tables[0].Rows.Count > 0)
-            {
-                grdItemsEliminados.DataSource = Ds.Tables[0];
-                grdItemsEliminados = fg.formatoGrilla(grdItemsEliminados, 1);
-                cboItemsEliminados.Focus();
-            }
-            else
-            {
-                MessageBox.Show("No existen Items eliminados para la fecha " + fecha + ".", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                cboItemsEliminados.Focus();
-                return;
-            }
-        }
-
-        private void cargarComboItemsEliminados()
-        {
-            cboItemsEliminados.Items.Add("TODOS");
-            cboItemsEliminados.Items.Add("RUBROS");
-            cboItemsEliminados.Items.Add("PROVEEDORES");
-            cboItemsEliminados.Items.Add("MOVIMIENTOS DE CAJA");
-            cboItemsEliminados.Items.Add("ARTICULOS");
-            cboItemsEliminados.Items.Add("COMPRAS");
-            cboItemsEliminados.Items.Add("VENTAS");
-        }
-
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-            if (cboItemsEliminados.Text == "TODOS")
-            {
-                llenarGrillaTodos();
-            }
-            else
+            try
             {
                 Entidades.Reportes reporte = new Entidades.Reportes();
-                Ds = reporte.obtenerItemsEliminados(DateTime.Parse(fecha), cboItemsEliminados.Text);
+                Ds = reporte.obtenerItemsEliminados(DateTime.Parse(fecha), "");
+
                 if (Ds.Tables[0].Rows.Count > 0)
                 {
                     grdItemsEliminados.DataSource = Ds.Tables[0];
@@ -84,17 +51,71 @@ namespace ADBISYS.Formularios.Reportes
                 }
                 else
                 {
-                    if ((cboItemsEliminados.Text == "COMPRAS") || (cboItemsEliminados.Text == "VENTAS"))
-                    {
-                        MessageBox.Show("No existen " + cboItemsEliminados.Text.ToLower() + " eliminadas para la fecha " + fecha + ".", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No existen " + cboItemsEliminados.Text.ToLower() + " eliminados para la fecha " + fecha + ".", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    MessageBox.Show("No existen Items eliminados para la fecha " + fecha + ".", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     cboItemsEliminados.Focus();
                     return;
                 }
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cargarComboItemsEliminados()
+        {
+            try
+            {
+                cboItemsEliminados.Items.Add("TODOS");
+                cboItemsEliminados.Items.Add("RUBROS");
+                cboItemsEliminados.Items.Add("PROVEEDORES");
+                cboItemsEliminados.Items.Add("MOVIMIENTOS DE CAJA");
+                cboItemsEliminados.Items.Add("ARTICULOS");
+                cboItemsEliminados.Items.Add("COMPRAS");
+                cboItemsEliminados.Items.Add("VENTAS");
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cboItemsEliminados.Text == "TODOS")
+                {
+                    llenarGrillaTodos();
+                }
+                else
+                {
+                    Entidades.Reportes reporte = new Entidades.Reportes();
+                    Ds = reporte.obtenerItemsEliminados(DateTime.Parse(fecha), cboItemsEliminados.Text);
+                    if (Ds.Tables[0].Rows.Count > 0)
+                    {
+                        grdItemsEliminados.DataSource = Ds.Tables[0];
+                        grdItemsEliminados = fg.formatoGrilla(grdItemsEliminados, 1);
+                        cboItemsEliminados.Focus();
+                    }
+                    else
+                    {
+                        if ((cboItemsEliminados.Text == "COMPRAS") || (cboItemsEliminados.Text == "VENTAS"))
+                        {
+                            MessageBox.Show("No existen " + cboItemsEliminados.Text.ToLower() + " eliminadas para la fecha " + fecha + ".", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("No existen " + cboItemsEliminados.Text.ToLower() + " eliminados para la fecha " + fecha + ".", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        cboItemsEliminados.Focus();
+                        return;
+                    }
+                }
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

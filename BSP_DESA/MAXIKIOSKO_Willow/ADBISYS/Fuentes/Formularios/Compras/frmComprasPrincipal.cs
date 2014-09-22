@@ -182,11 +182,6 @@ namespace ADBISYS.Formularios.Compras
             }
         }
 
-        private void grdCompras_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            modificarCompra();
-        }
-
         private void grdCompras_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Return)
@@ -394,6 +389,11 @@ namespace ADBISYS.Formularios.Compras
             {
                 MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void grdCompras_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            modificarCompra();
         }
     }
 }

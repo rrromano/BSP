@@ -380,5 +380,17 @@ namespace ADBISYS.Formularios.Rubros
                 MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void grdRubros_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                modificarRubro();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

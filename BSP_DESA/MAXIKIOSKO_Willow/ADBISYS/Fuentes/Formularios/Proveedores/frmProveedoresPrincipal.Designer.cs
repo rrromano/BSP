@@ -180,7 +180,7 @@
             this.grdProveedores.RowTemplate.Height = 24;
             this.grdProveedores.Size = new System.Drawing.Size(1079, 454);
             this.grdProveedores.TabIndex = 8;
-            this.grdProveedores.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProveedores_CellContentDoubleClick);
+            this.grdProveedores.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProveedores_CellDoubleClick);
             this.grdProveedores.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdProveedores_KeyDown);
             // 
             // menuStrip1
@@ -262,7 +262,7 @@
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 28);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(124, 28);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 

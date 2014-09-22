@@ -282,18 +282,6 @@ namespace ADBISYS.Formularios.Caja
             }
         }
 
-        private void grdTipoMovCaja_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                modificarTipoMovCaja();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void grdTipoMovCaja_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -504,6 +492,18 @@ namespace ADBISYS.Formularios.Caja
                 {
                     grdTipoMovCaja.Sort(columna, ListSortDirection.Descending);
                 }
+            }
+        }
+
+        private void grdTipoMovCaja_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                modificarTipoMovCaja();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

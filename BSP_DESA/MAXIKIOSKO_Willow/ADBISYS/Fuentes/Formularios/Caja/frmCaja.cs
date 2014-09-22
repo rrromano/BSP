@@ -146,11 +146,6 @@ namespace ADBISYS.Formularios.Caja
             this.Close();
         }
 
-        private void grdMovsCaja_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            modificarMovCaja();
-        }
-
         private void modificarMovCaja()
         {
             try
@@ -385,6 +380,18 @@ namespace ADBISYS.Formularios.Caja
         private void buscarToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             buscarMovimiento();
+        }
+
+        private void grdMovsCaja_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                modificarMovCaja();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

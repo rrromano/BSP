@@ -105,13 +105,14 @@
             this.btnVisualizar.Enabled = false;
             this.btnVisualizar.Image = ((System.Drawing.Image)(resources.GetObject("btnVisualizar.Image")));
             this.btnVisualizar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnVisualizar.Location = new System.Drawing.Point(25, 25);
+            this.btnVisualizar.Location = new System.Drawing.Point(20, 25);
             this.btnVisualizar.Name = "btnVisualizar";
-            this.btnVisualizar.Size = new System.Drawing.Size(147, 58);
+            this.btnVisualizar.Size = new System.Drawing.Size(152, 58);
             this.btnVisualizar.TabIndex = 1;
             this.btnVisualizar.Text = "&Visualizar";
             this.btnVisualizar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnVisualizar.UseVisualStyleBackColor = true;
+            this.btnVisualizar.Click += new System.EventHandler(this.btnVisualizar_Click);
             // 
             // groupBox6
             // 
@@ -120,7 +121,7 @@
             this.groupBox6.Location = new System.Drawing.Point(338, 516);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(440, 114);
-            this.groupBox6.TabIndex = 4;
+            this.groupBox6.TabIndex = 5;
             this.groupBox6.TabStop = false;
             // 
             // btnSalir
@@ -194,7 +195,7 @@
             this.groupBox3.Location = new System.Drawing.Point(19, 132);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(759, 378);
-            this.groupBox3.TabIndex = 5;
+            this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Ventas";
             // 
@@ -207,6 +208,8 @@
             this.grdVentas.RowTemplate.Height = 24;
             this.grdVentas.Size = new System.Drawing.Size(720, 325);
             this.grdVentas.TabIndex = 0;
+            this.grdVentas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdVentas_CellDoubleClick);
+            this.grdVentas.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdVentas_KeyDown);
             // 
             // groupBox2
             // 

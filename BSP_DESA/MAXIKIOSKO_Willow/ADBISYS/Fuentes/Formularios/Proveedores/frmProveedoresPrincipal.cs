@@ -233,18 +233,6 @@ namespace ADBISYS.Formularios.Proveedores
             }
         }
 
-        private void grdProveedores_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                modificarProveedor();
-            }
-            catch (Exception r)
-            {
-                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             try
@@ -560,6 +548,18 @@ namespace ADBISYS.Formularios.Proveedores
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void grdProveedores_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                modificarProveedor();
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
