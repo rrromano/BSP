@@ -89,7 +89,6 @@ namespace ADBISYS.Formularios.Ventas
                 {
                     //SI APRETO ENTER EJECUTO ESTE CODIGO
 
-                    
                     DataSet DsArticulo = new DataSet();
                     Entidades.Articulo Articulo = new Entidades.Articulo();
                     Entidades.Venta Venta = new Entidades.Venta();

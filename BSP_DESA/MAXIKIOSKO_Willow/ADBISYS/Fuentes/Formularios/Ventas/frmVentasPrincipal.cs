@@ -105,7 +105,7 @@ namespace ADBISYS.Formularios.Ventas
                 else
                 {
                     cadenaSql = "EXEC adp_busqueda_ventas";
-                    cadenaSql = cadenaSql + " @tabla = " + fg.fcSql("COMPRAS", "String");
+                    cadenaSql = cadenaSql + " @tabla = " + fg.fcSql("VENTAS", "String");
                     cadenaSql = cadenaSql + ",@campo_tabla = " + fg.fcSql(fg.obtenerCampoTabla(campoAnterior, campos_tabla).ToString(), "String");
                     cadenaSql = cadenaSql + ",@texto = " + fg.fcSql(textoAnterior, "String").Replace(",", ".");
 
@@ -271,6 +271,64 @@ namespace ADBISYS.Formularios.Ventas
             {
                 MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return true;
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                modificarVenta();
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
+        }
+
+        private void modificarVenta()
+        {
+            try
+            {
+                if (grdVentas.DataSource != null)
+                {
+                    if (notFilaSeleccionada()) return;
+                    mostrarFormularioModificarVenta();
+                    llenarGrilla();
+                    grdVentas = fg.formatoGrilla(grdVentas, 1);
+                    grdVentas.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("No se han realizado ventas en el día de hoy.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btnModificar.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
+        }
+
+        private void mostrarFormularioModificarVenta()
+        {
+            try
+            {
+                celdaSeleccionada = grdVentas.CurrentCellAddress.X;
+                filaSeleccionada = grdVentas.CurrentCellAddress.Y;
+
+
+                Entidades.Venta ventaModif = new Entidades.Venta();
+
+                ventaModif.m_Id_Venta = Int64.Parse(grdVentas.Rows[filaSeleccionada].Cells["CÓDIGO"].Value.ToString());
+                ventaModif.cargarDatosVenta();
+
+                frmModificarVenta modificarVenta = new frmModificarVenta(ventaModif);
+                modificarVenta.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
             }
         }
 

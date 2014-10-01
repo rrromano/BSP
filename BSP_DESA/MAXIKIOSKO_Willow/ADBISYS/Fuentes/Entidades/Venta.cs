@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
@@ -7,39 +6,41 @@ using System.Drawing;
 using System.Windows.Forms;
 using ADBISYS.Conexion;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 namespace ADBISYS.Entidades
 {
-    class Venta
+    public class Venta
     {
         #region propiedades
 
-        private Int32 id;
-        private long cantidad_Articulos;
-        private double importe;
+        private Int64 id;
+        private Int32 cantidad_articulos;
+        private Double importe;
         private int estado;
-        private DateTime fecha_Venta;
-        private String hora_Venta;
+        private DateTime fecha_venta;
+        private String hora_venta;
+        private List<Articulo_Venta> articulos_venta;
 
         #endregion
 
         #region Getters&Setters
 
-        public Int32 m_Id_Venta
+        public Int64 m_Id_Venta
         {
             get { return id; }
             set { id = value; }
         }
 
-        public long m_Cantidad_Articulos
+        public Int32 m_cantidad_articulos
         {
-            get { return cantidad_Articulos; }
-            set { cantidad_Articulos = value; }
+            get { return cantidad_articulos; }
+            set { cantidad_articulos = value; }
         }
 
-        public double m_importe
+        public Double m_importe
         {
             get { return importe; }
             set { importe = value; }
@@ -51,16 +52,22 @@ namespace ADBISYS.Entidades
             set { estado = value; }
         }
 
-        public DateTime m_Fecha_Venta
+        public DateTime m_fecha_venta
         {
-            get { return fecha_Venta; }
-            set { fecha_Venta = value; }
+            get { return fecha_venta; }
+            set { fecha_venta = value; }
         }
 
-        public String m_Hora_Venta
+        public String m_hora_venta
         {
-            get { return hora_Venta; }
-            set { hora_Venta = value; }
+            get { return hora_venta; }
+            set { hora_venta = value; }
+        }
+
+        public List<Articulo_Venta> m_articulos_venta
+        {
+            get { return articulos_venta; }
+            set { articulos_venta = value; }
         }
 
         #endregion
@@ -105,7 +112,74 @@ namespace ADBISYS.Entidades
                 throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
             }
         }
-        
+
+        public void cargarDatosVenta()
+        {
+            try
+            {
+                ConectarBD conect = new ConectarBD();
+                DataSet dataSet = new DataSet();
+                String sSQL;
+
+                sSQL = "EXEC dbo.adp_obtenerDatosVenta ";
+                sSQL = sSQL + " @Id_Venta = " + fg.fcSql(this.m_Id_Venta.ToString(), "STRING");
+
+                dataSet = conect.ejecutarQuerySelect(sSQL);
+
+                foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                {
+                    Articulo_Venta articulo_venta = new Articulo_Venta();
+
+                    this.m_cantidad_articulos = Int32.Parse(dataRow["CANTIDAD_ARTICULOS"].ToString());
+                    this.m_importe = Double.Parse(dataRow["IMPORTE"].ToString());
+                    this.m_estado = Int32.Parse(dataRow["ESTADO"].ToString());
+                    this.m_fecha_venta = DateTime.Parse(dataRow["FECHA_VENTA"].ToString());
+                    this.m_hora_venta = dataRow["HORA_VENTA"].ToString();
+                    this.cargarArticulosVenta();
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+        }
+
+        public void cargarArticulosVenta()
+        {
+            try
+            {
+                ConectarBD conect = new ConectarBD();
+                DataSet dataSet = new DataSet();
+                String sSQL;
+
+                sSQL = "EXEC dbo.adp_obtenerArticulosVenta2 ";
+                sSQL = sSQL + " @Id_Venta = " + fg.fcSql(this.m_Id_Venta.ToString(), "STRING");
+
+                dataSet = conect.ejecutarQuerySelect(sSQL);
+
+                this.m_articulos_venta = new List<Articulo_Venta>();
+
+                foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                {
+                    Articulo_Venta articulo_venta = new Articulo_Venta();
+
+                    articulo_venta.m_id_venta = Int64.Parse(dataRow["ID_VENTA"].ToString());
+                    articulo_venta.m_id_item_venta = Int32.Parse(dataRow["ID_ITEM_VENTA"].ToString());
+                    articulo_venta.m_id_articulo = Int32.Parse(dataRow["ID_ARTICULO"].ToString());
+                    articulo_venta.m_cantidad = Int32.Parse(dataRow["CANTIDAD"].ToString());
+                    articulo_venta.m_precio_venta = Double.Parse(dataRow["PRECIO_VENTA"].ToString());
+
+                    this.m_articulos_venta.Add(articulo_venta);
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+        }
+
         public void guardarVentaYSusArticulos ()
         {
             try
