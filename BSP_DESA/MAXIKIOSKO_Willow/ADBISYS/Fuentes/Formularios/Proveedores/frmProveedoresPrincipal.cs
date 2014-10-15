@@ -86,6 +86,7 @@ namespace ADBISYS.Formularios.Proveedores
                 filaSeleccionada = grdProveedores.CurrentCellAddress.Y;
                 frmNuevoProveedor nuevoProveedor = new frmNuevoProveedor();
                 nuevoProveedor.ShowDialog();
+                this.btnActualizar.PerformClick();
             }
             catch (Exception e)
             {
@@ -192,7 +193,8 @@ namespace ADBISYS.Formularios.Proveedores
                 modificarProveedor.proveedor_telefono = grdProveedores.Rows[filaSeleccionada].Cells["TELÉFONO"].Value.ToString();
                 modificarProveedor.proveedor_cuit = grdProveedores.Rows[filaSeleccionada].Cells["CUIT"].Value.ToString();
 
-                modificarProveedor.ShowDialog(); 
+                modificarProveedor.ShowDialog();
+                this.btnActualizar.PerformClick();
             }
             catch (Exception e)
             {

@@ -13,6 +13,7 @@ namespace ADBISYS.Formularios.Ventas
 {
     public partial class frmNuevaVenta : Form
     {
+
         #region Declaraciones
 
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
@@ -66,7 +67,13 @@ namespace ADBISYS.Formularios.Ventas
                 busqueda.ShowDialog();
 
                 cargarArticulosEnGrilla();
+
+                //=============================================================
+                //IMPORTANTE: HAY QUE HACER QUE LA GRILLA SEA READONLY = FALSE
+                //=============================================================
                 grdItemsVenta = fg.formatoGrilla(grdItemsVenta, 9);
+                //grdItemsVenta = fg.formatoGrilla(grdItemsVenta, 1);
+                //=============================================================
 
                 txtCodigoArticulo.Text = String.Empty;
                 txtCodigoArticulo.Focus();
@@ -97,14 +104,14 @@ namespace ADBISYS.Formularios.Ventas
 
                     if (DsArticulo.Tables[0].Rows.Count > 0)
                     {
-                        Venta.guardarArticuloVentaTemporal(Int32.Parse(txtCodigoArticulo.Text), Int32.Parse(txtCantidad.Text));
+                        Venta.guardarArticuloVentaTemporal(UInt64.Parse(txtCodigoArticulo.Text), Int32.Parse(txtCantidad.Text));
                     }
                     else
                     {
                         buscarArticuloYGuardarVentaTemporal();
                     }
                     cargarArticulosEnGrilla();
-                    grdItemsVenta = fg.formatoGrilla(grdItemsVenta, 9);
+                    //grdItemsVenta = fg.formatoGrilla(grdItemsVenta, 9);
 
                     txtCodigoArticulo.Text = String.Empty;
                     txtCodigoArticulo.Focus();
@@ -172,6 +179,11 @@ namespace ADBISYS.Formularios.Ventas
                     grdItemsVenta.DataSource = null;
                     grdItemsVenta = fg.agregarBotones(grdItemsVenta, "SELECCIONAR");
                     grdItemsVenta.DataSource = DsArticulosVenta.Tables[0];
+
+                    for (int i = 0; i <= grdItemsVenta.Rows.Count - 1; i++)
+                    {
+                        grdItemsVenta.Rows[i].Cells["SELECCIONAR"].ReadOnly = false;
+                    }
                 }
                 else
                 {
@@ -200,7 +212,7 @@ namespace ADBISYS.Formularios.Ventas
 
                 foreach (DataRow dataRow in DsArticulosVenta.Tables[0].Rows)
                 {
-                    valorTotalCompra = valorTotalCompra + Double.Parse(dataRow["PRECIO_VENTA"].ToString());
+                    valorTotalCompra = valorTotalCompra + Double.Parse(dataRow["PRECIO_TOTAL"].ToString());
                 }
 
                 lblTotalVenta.Text = fg.DevolverCadenaCon2Decimales(valorTotalCompra.ToString());
@@ -225,7 +237,13 @@ namespace ADBISYS.Formularios.Ventas
                     grdItemsVenta.DataSource = null;
                 }
 
+                //=============================================================
+                //IMPORTANTE: HAY QUE HACER QUE LA GRILLA SEA READONLY = FALSE
+                //=============================================================
                 grdItemsVenta = fg.formatoGrilla(grdItemsVenta, 9);
+                //grdItemsVenta = fg.formatoGrilla(grdItemsVenta, 1);
+                //=============================================================
+
             }
             catch (Exception ex)
             {
@@ -236,39 +254,6 @@ namespace ADBISYS.Formularios.Ventas
         #endregion
 
         #region Eliminar Articulo Venta
-
-        private void grdItemsVenta_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            if (grdItemsVenta.Columns[e.ColumnIndex].Name == "SELECCIONAR")
-            {
-
-                DataGridViewRow row = grdItemsVenta.Rows[e.RowIndex]; // Se toma la fila seleccionada
-                DataGridViewCheckBoxCell cellSelecion = row.Cells["SELECCIONAR"] as DataGridViewCheckBoxCell; // Se selecciona la celda del checkbox
-
-                Boolean HayArticuloSeleccionado = false;
-
-                foreach (DataGridViewRow fila in grdItemsVenta.Rows)
-                {
-                    DataGridViewCheckBoxCell celda = fila.Cells["SELECCIONAR"] as DataGridViewCheckBoxCell;
-                    if (Convert.ToBoolean(celda.Value)) //Columna de checks
-                    {
-                        HayArticuloSeleccionado = true;
-                    }
-                }
-
-                if (Convert.ToBoolean(cellSelecion.Value)) // Se valida si esta checkeada
-                {
-                    btnEliminarArticulo.Enabled = true;
-                }
-                else
-                {
-                    if (!(HayArticuloSeleccionado))
-                    {
-                        btnEliminarArticulo.Enabled = false;
-                    }
-                }
-            }
-        }
 
         private void btnEliminarArticulo_Click(object sender, EventArgs e)
         {
@@ -284,7 +269,7 @@ namespace ADBISYS.Formularios.Ventas
                     if (Convert.ToBoolean(celda.Value))
                     {
                         encontreUnRegistros = true;
-                        Venta.borrarArticulosVenta_Temporal(Int64.Parse(grdItemsVenta.Rows[row.Index].Cells["ID"].Value.ToString()));
+                        Venta.borrarArticulosVenta_Temporal(UInt64.Parse(grdItemsVenta.Rows[row.Index].Cells["ID"].Value.ToString()));
                         //grdItemsVenta.Rows.RemoveAt(row.Index);
                         //i = 0;
                     }
@@ -313,30 +298,10 @@ namespace ADBISYS.Formularios.Ventas
             }
         }
 
-        private void grdItemsVenta_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                //Boolean encontreUnRegistros = false;
-
-                filaSeleccionada = e.RowIndex;
-                columnaSeleccionada = e.ColumnIndex;
-
-                if (columnaSeleccionada != 0)
-                {
-                    return;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                fg.mostrarErrorTryCatch(ex);
-            }
-        }
-
         #endregion
 
         #region Poner Valores En Default
+
         private void ponerValoresEnDefault()
         {
             try
@@ -351,6 +316,7 @@ namespace ADBISYS.Formularios.Ventas
                 fg.mostrarErrorTryCatch(ex);
             }
         }
+
         #endregion
 
         #region TabIndexChanged
@@ -382,11 +348,14 @@ namespace ADBISYS.Formularios.Ventas
         {
             try
             {
+                if (!(validarConfirmarVenta())) { return; }
                 Entidades.Venta Venta = new Entidades.Venta();
                 Venta.guardarVentaYSusArticulos();
                 ponerValoresEnDefault();
                 fg.eliminarBotones(grdItemsVenta, "SELECCIONAR");
                 Venta.actualizaMovimientoVentas(fg.appFechaSistema());
+                frmVentasPrincipal form = new frmVentasPrincipal();
+
                 MessageBox.Show("Venta confirmada correctamente.", "Venta Confirmada.", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -394,6 +363,112 @@ namespace ADBISYS.Formularios.Ventas
                 fg.mostrarErrorTryCatch(ex);
             }
         }
+
+        private bool validarConfirmarVenta()
+        {
+            try
+            {
+                if (grdItemsVenta.Rows.Count > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("No se puede confirmar la venta ya que no se han seleccionados los artículos correspondiente a la misma.", "Venta No Confirmada.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region Click Grilla ItemsVenta
+
+        private void grdItemsVenta_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                filaSeleccionada = e.RowIndex;
+                columnaSeleccionada = e.ColumnIndex;
+
+                if (grdItemsVenta.Columns[columnaSeleccionada].Name != "SELECCIONAR")
+                {
+                    grdItemsVenta.Columns[columnaSeleccionada].ReadOnly = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
+        }
+
+        //===================================================================================
+        //MUY IMPORTANTE EL EVENTO CurrentCellDirtyStateChanged. NO ELIMINAR!
+        //===================================================================================
+        private void grdItemsVenta_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (grdItemsVenta.IsCurrentCellDirty)
+                {
+                    grdItemsVenta.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
+        }
+        //===================================================================================
+
+        //===================================================================================
+        //MUY IMPORTANTE EL EVENTO CellValueChanged. NO ELIMINAR!
+        //===================================================================================
+        private void grdItemsVenta_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (grdItemsVenta.Columns[e.ColumnIndex].Name == "SELECCIONAR")
+                {
+
+                    DataGridViewRow row = grdItemsVenta.Rows[e.RowIndex]; // Se toma la fila seleccionada
+                    DataGridViewCheckBoxCell cellSelecion = row.Cells["SELECCIONAR"] as DataGridViewCheckBoxCell; // Se selecciona la celda del checkbox
+
+                    Boolean HayArticuloSeleccionado = false;
+
+                    foreach (DataGridViewRow fila in grdItemsVenta.Rows)
+                    {
+                        DataGridViewCheckBoxCell celda = fila.Cells["SELECCIONAR"] as DataGridViewCheckBoxCell;
+                        if (Convert.ToBoolean(celda.Value)) //Columna de checks
+                        {
+                            HayArticuloSeleccionado = true;
+                        }
+                    }
+
+                    if (Convert.ToBoolean(cellSelecion.Value)) // Se valida si esta checkeada
+                    {
+                        btnEliminarArticulo.Enabled = true;
+                    }
+                    else
+                    {
+                        if (!(HayArticuloSeleccionado))
+                        {
+                            btnEliminarArticulo.Enabled = false;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
+        }
+        //===================================================================================
 
         #endregion
 
@@ -403,18 +478,6 @@ namespace ADBISYS.Formularios.Ventas
         {
             try
             {
-                if (grdItemsVenta.RowCount > 0)
-                {
-                    Boolean deseaContinuar = (MessageBox.Show("Se cerrará el formulario sin confirmar la Venta. ¿Desea continuar de todos modos?", "Cancelar Venta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
-
-                    if (!(deseaContinuar))
-                    {
-                        return;
-                    }
-                }
-
-                Entidades.Venta Venta = new Entidades.Venta();
-                Venta.borrarArticulosVenta_Temporal();
                 this.Close();
             }
             catch (Exception ex)
@@ -423,15 +486,48 @@ namespace ADBISYS.Formularios.Ventas
             }
         }
 
-        #endregion
-
-
-        private void grdItemsVenta_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        private void frmNuevaVenta_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (grdItemsVenta.IsCurrentCellDirty)
+            try
             {
-                grdItemsVenta.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                if (!(Salir()))
+                {
+                    e.Cancel = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
             }
         }
+
+        private bool Salir()
+        {
+            try
+            {
+                if (grdItemsVenta.RowCount > 0)
+                {
+                    Boolean deseaContinuar = (MessageBox.Show("Se cerrará el formulario sin confirmar la Venta. ¿Desea continuar de todos modos?", "Cancelar Venta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
+
+                    if (!(deseaContinuar))
+                    {
+                        return false;
+                    }
+                }
+
+                Entidades.Venta Venta = new Entidades.Venta();
+                Venta.borrarArticulosVenta_Temporal();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+                return false;
+            }
+        }
+
+        #endregion
+
     }
 }

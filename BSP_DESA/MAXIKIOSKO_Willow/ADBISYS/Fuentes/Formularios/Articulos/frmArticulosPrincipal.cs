@@ -163,6 +163,7 @@ namespace ADBISYS.Formularios.Articulos
             filaSeleccionada = grdArticulos.CurrentCellAddress.Y;
             frmNuevoArticulo nuevoArticulo = new frmNuevoArticulo();
             nuevoArticulo.ShowDialog();
+            this.btnActualizar.PerformClick();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)

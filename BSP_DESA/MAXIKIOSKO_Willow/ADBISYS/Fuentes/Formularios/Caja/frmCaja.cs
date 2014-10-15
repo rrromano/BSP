@@ -185,7 +185,8 @@ namespace ADBISYS.Formularios.Caja
                 }
                 
                 frmModificarMovCaja modifCaja = new frmModificarMovCaja(movCaja);
-                modifCaja.ShowDialog(); 
+                modifCaja.ShowDialog();
+                this.btnActualizar.PerformClick();
             }
             catch (Exception e)
             {

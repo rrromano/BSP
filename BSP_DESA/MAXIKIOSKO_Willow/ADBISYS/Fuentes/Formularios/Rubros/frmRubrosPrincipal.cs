@@ -107,6 +107,7 @@ namespace ADBISYS.Formularios.Rubros
             filaSeleccionada = grdRubros.CurrentCellAddress.Y;
             frmNuevoRubro nuevoRubro = new frmNuevoRubro();
             nuevoRubro.ShowDialog();
+            this.btnActualizar.PerformClick();
         }
 
         private void frmRubrosPrincipal_Load(object sender, EventArgs e)
@@ -151,6 +152,7 @@ namespace ADBISYS.Formularios.Rubros
             modificarRubro.rubro_codigo = grdRubros.Rows[filaSeleccionada].Cells["CÓDIGO"].Value.ToString();
             modificarRubro.rubro_descripcion = grdRubros.Rows[filaSeleccionada].Cells["DESCRIPCIÓN"].Value.ToString();
             modificarRubro.ShowDialog();
+            this.btnActualizar.PerformClick();
         }
 
         private bool notFilaSeleccionada()

@@ -136,22 +136,27 @@ namespace ADBISYS.Formularios.Ventas
         {
             try
             {
-                Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmNuevaVenta);
-
-                if (frm != null)
-                {
-                    frm.WindowState = FormWindowState.Normal;
-                    frm.BringToFront();
-                    return;
-                }
-                else
-                {
-                    nuevaVenta();
-                }
+                abrirFormularioNuevaVenta();
             }
             catch (Exception ex)
             {
                 fg.mostrarErrorTryCatch(ex);
+            }
+        }
+
+        private void abrirFormularioNuevaVenta()
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmNuevaVenta);
+
+            if (frm != null)
+            {
+                frm.WindowState = FormWindowState.Normal;
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                nuevaVenta();
             }
         }
 
@@ -177,8 +182,11 @@ namespace ADBISYS.Formularios.Ventas
                 celdaSeleccionada = grdVentas.CurrentCellAddress.X;
                 filaSeleccionada = grdVentas.CurrentCellAddress.Y;
                 frmNuevaVenta nuevaVenta = new frmNuevaVenta();
-                nuevaVenta.Show();
+                //nuevaVenta.Show();
+                nuevaVenta.ShowDialog();
                 nuevaVenta.Select();
+
+                this.btnActualizar.PerformClick();
             }
             catch (Exception e)
             {
@@ -316,20 +324,61 @@ namespace ADBISYS.Formularios.Ventas
             {
                 celdaSeleccionada = grdVentas.CurrentCellAddress.X;
                 filaSeleccionada = grdVentas.CurrentCellAddress.Y;
-
-
+                
                 Entidades.Venta ventaModif = new Entidades.Venta();
 
-                ventaModif.m_Id_Venta = Int64.Parse(grdVentas.Rows[filaSeleccionada].Cells["CÓDIGO"].Value.ToString());
+                ventaModif.m_Id_Venta = UInt64.Parse(grdVentas.Rows[filaSeleccionada].Cells["CÓDIGO"].Value.ToString());
                 ventaModif.cargarDatosVenta();
 
                 frmModificarVenta modificarVenta = new frmModificarVenta(ventaModif);
                 modificarVenta.ShowDialog();
+                this.btnActualizar.PerformClick();
             }
             catch (Exception ex)
             {
                 fg.mostrarErrorTryCatch(ex);
             }
+        }
+
+        private void nuevoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                abrirFormularioNuevaVenta();
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
+        }
+
+        private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                modificarVenta();
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
+        }
+
+        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                eliminarVenta();
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

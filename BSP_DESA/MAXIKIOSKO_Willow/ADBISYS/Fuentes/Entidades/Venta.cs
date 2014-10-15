@@ -16,7 +16,7 @@ namespace ADBISYS.Entidades
     {
         #region propiedades
 
-        private Int64 id;
+        private UInt64 id;
         private Int32 cantidad_articulos;
         private Double importe;
         private int estado;
@@ -28,7 +28,7 @@ namespace ADBISYS.Entidades
 
         #region Getters&Setters
 
-        public Int64 m_Id_Venta
+        public UInt64 m_Id_Venta
         {
             get { return id; }
             set { id = value; }
@@ -122,7 +122,7 @@ namespace ADBISYS.Entidades
                 String sSQL;
 
                 sSQL = "EXEC dbo.adp_obtenerDatosVenta ";
-                sSQL = sSQL + " @Id_Venta = " + fg.fcSql(this.m_Id_Venta.ToString(), "STRING");
+                sSQL = sSQL + " @Id_Venta = " + fg.fcSql(this.m_Id_Venta.ToString(), "INTEGER");
 
                 dataSet = conect.ejecutarQuerySelect(sSQL);
 
@@ -154,7 +154,7 @@ namespace ADBISYS.Entidades
                 String sSQL;
 
                 sSQL = "EXEC dbo.adp_obtenerArticulosVenta2 ";
-                sSQL = sSQL + " @Id_Venta = " + fg.fcSql(this.m_Id_Venta.ToString(), "STRING");
+                sSQL = sSQL + " @Id_Venta = " + fg.fcSql(this.m_Id_Venta.ToString(), "INTEGER");
 
                 dataSet = conect.ejecutarQuerySelect(sSQL);
 
@@ -164,9 +164,9 @@ namespace ADBISYS.Entidades
                 {
                     Articulo_Venta articulo_venta = new Articulo_Venta();
 
-                    articulo_venta.m_id_venta = Int64.Parse(dataRow["ID_VENTA"].ToString());
-                    articulo_venta.m_id_item_venta = Int32.Parse(dataRow["ID_ITEM_VENTA"].ToString());
-                    articulo_venta.m_id_articulo = Int32.Parse(dataRow["ID_ARTICULO"].ToString());
+                    articulo_venta.m_id_venta = UInt64.Parse(dataRow["ID_VENTA"].ToString());
+                    articulo_venta.m_id_item_venta = UInt64.Parse(dataRow["ID_ITEM_VENTA"].ToString());
+                    articulo_venta.m_id_articulo = UInt64.Parse(dataRow["ID_ARTICULO"].ToString());
                     articulo_venta.m_cantidad = Int32.Parse(dataRow["CANTIDAD"].ToString());
                     articulo_venta.m_precio_venta = Double.Parse(dataRow["PRECIO_VENTA"].ToString());
 
@@ -218,7 +218,7 @@ namespace ADBISYS.Entidades
             }
         }
 
-        public void borrarArticulosVenta_Temporal(Int64 Id_ItemVenta)
+        public void borrarArticulosVenta_Temporal(UInt64 Id_ItemVenta)
         {
             try
             {
@@ -274,7 +274,7 @@ namespace ADBISYS.Entidades
 
         #endregion
 
-        public void guardarArticuloVentaTemporal(Int64 IdArticulo, Int32 Cantidad)
+        public void guardarArticuloVentaTemporal(UInt64 IdArticulo, Int32 Cantidad)
         {
             try
             {
@@ -292,5 +292,26 @@ namespace ADBISYS.Entidades
             }
         }
 
+
+        internal void actualizarVenta (UInt64 id_venta)
+        {
+            try
+            {
+                ConectarBD Conex = new ConectarBD();
+                String sSQL;
+                String login = Properties.Settings.Default.UsuarioLogueado.ToString();
+
+                sSQL = "EXEC dbo.adp_modificarVenta ";
+                sSQL = sSQL + " @Id_Venta = " + fg.fcSql(id_venta.ToString(), "INTEGER");
+                if (login != "")
+                { sSQL = sSQL + " ,@USUARIO_VENTA = " + fg.fcSql(login, "String"); }
+
+                Conex.ejecutarQuery(sSQL);                
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
+        }
     }
 }

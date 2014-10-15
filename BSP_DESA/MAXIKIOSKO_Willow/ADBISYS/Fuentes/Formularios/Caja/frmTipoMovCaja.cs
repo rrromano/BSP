@@ -46,6 +46,7 @@ namespace ADBISYS.Formularios.Caja
         {
             frmNuevoMovCaja nuevoMov = new frmNuevoMovCaja();
             nuevoMov.ShowDialog();
+            this.btnActualizar.PerformClick();
             llenarGrillaTipoMovimientosCaja();
             grdTipoMovCaja = fg.formatoGrilla(grdTipoMovCaja, 1);
             grdTipoMovCaja.Focus();
@@ -166,6 +167,7 @@ namespace ADBISYS.Formularios.Caja
 
                 frmModificarTipoMovCaja modifTipoMovCaja = new frmModificarTipoMovCaja(TipoMovCaja);
                 modifTipoMovCaja.ShowDialog();
+                this.btnActualizar.PerformClick();
             }
             catch (Exception e)
             {

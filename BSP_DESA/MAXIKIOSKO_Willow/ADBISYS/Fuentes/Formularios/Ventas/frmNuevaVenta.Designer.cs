@@ -93,9 +93,9 @@
             this.grdItemsVenta.RowTemplate.Height = 24;
             this.grdItemsVenta.Size = new System.Drawing.Size(887, 330);
             this.grdItemsVenta.TabIndex = 0;
+            this.grdItemsVenta.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdItemsVenta_CellClick);
             this.grdItemsVenta.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdItemsVenta_CellValueChanged);
             this.grdItemsVenta.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdItemsVenta_CurrentCellDirtyStateChanged);
-            this.grdItemsVenta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdItemsVenta_CellContentClick);
             // 
             // groupBox4
             // 
@@ -160,8 +160,8 @@
             this.btnConfirmarVenta.Text = "&Confirmar";
             this.btnConfirmarVenta.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnConfirmarVenta.UseVisualStyleBackColor = true;
-            this.btnConfirmarVenta.Click += new System.EventHandler(this.btnConfirmarVenta_Click);
             this.btnConfirmarVenta.TabIndexChanged += new System.EventHandler(this.btnConfirmarVenta_TabIndexChanged);
+            this.btnConfirmarVenta.Click += new System.EventHandler(this.btnConfirmarVenta_Click);
             // 
             // btnSalir
             // 
@@ -173,8 +173,8 @@
             this.btnSalir.TabIndex = 1;
             this.btnSalir.Text = "&Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             this.btnSalir.TabIndexChanged += new System.EventHandler(this.btnSalir_TabIndexChanged);
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // groupBox6
             // 
@@ -237,6 +237,7 @@
             this.Name = "frmNuevaVenta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nueva Venta";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmNuevaVenta_FormClosing);
             this.Load += new System.EventHandler(this.frmNuevaVenta_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

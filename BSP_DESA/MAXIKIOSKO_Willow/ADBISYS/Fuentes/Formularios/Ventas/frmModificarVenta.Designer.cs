@@ -36,28 +36,43 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblTotalVenta = new System.Windows.Forms.Label();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.GroupBoxBotonEliminar = new System.Windows.Forms.GroupBox();
             this.btnEliminarArticulo = new System.Windows.Forms.Button();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.groupBoxCantidadAlta = new System.Windows.Forms.GroupBox();
             this.txtCantidad = new System.Windows.Forms.TextBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.GroupBoxBotonBusqueda = new System.Windows.Forms.GroupBox();
             this.btnBuscarArticulo = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.GroupBoxCodArticulo = new System.Windows.Forms.GroupBox();
             this.txtCodigoArticulo = new System.Windows.Forms.TextBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.chkAgregarItem = new System.Windows.Forms.CheckBox();
+            this.groupBoxDesc = new System.Windows.Forms.GroupBox();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.groupBoxCant = new System.Windows.Forms.GroupBox();
+            this.txtCantidadModif = new System.Windows.Forms.TextBox();
+            this.groupBoxAceptar = new System.Windows.Forms.GroupBox();
+            this.btnAceptar = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblLeyendaModifVenta = new System.Windows.Forms.Label();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdItemsVenta)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.GroupBoxBotonEliminar.SuspendLayout();
+            this.groupBoxCantidadAlta.SuspendLayout();
+            this.GroupBoxBotonBusqueda.SuspendLayout();
+            this.GroupBoxCodArticulo.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            this.groupBoxDesc.SuspendLayout();
+            this.groupBoxCant.SuspendLayout();
+            this.groupBoxAceptar.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.grdItemsVenta);
-            this.groupBox3.Location = new System.Drawing.Point(12, 105);
+            this.groupBox3.Location = new System.Drawing.Point(12, 219);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(918, 374);
             this.groupBox3.TabIndex = 51;
@@ -73,12 +88,15 @@
             this.grdItemsVenta.RowTemplate.Height = 24;
             this.grdItemsVenta.Size = new System.Drawing.Size(887, 330);
             this.grdItemsVenta.TabIndex = 0;
+            this.grdItemsVenta.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdItemsVenta_CellClick);
+            this.grdItemsVenta.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdItemsVenta_CellValueChanged);
+            this.grdItemsVenta.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdItemsVenta_CurrentCellDirtyStateChanged);
             // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.btnConfirmarModificacionVenta);
             this.groupBox5.Controls.Add(this.btnSalir);
-            this.groupBox5.Location = new System.Drawing.Point(12, 485);
+            this.groupBox5.Location = new System.Drawing.Point(12, 699);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(383, 108);
             this.groupBox5.TabIndex = 52;
@@ -114,7 +132,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.lblTotalVenta);
-            this.groupBox2.Location = new System.Drawing.Point(715, 485);
+            this.groupBox2.Location = new System.Drawing.Point(715, 699);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(217, 108);
             this.groupBox2.TabIndex = 82;
@@ -131,14 +149,14 @@
             this.lblTotalVenta.TabIndex = 0;
             this.lblTotalVenta.Text = "TOTAL";
             // 
-            // groupBox7
+            // GroupBoxBotonEliminar
             // 
-            this.groupBox7.Controls.Add(this.btnEliminarArticulo);
-            this.groupBox7.Location = new System.Drawing.Point(782, 9);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(146, 90);
-            this.groupBox7.TabIndex = 86;
-            this.groupBox7.TabStop = false;
+            this.GroupBoxBotonEliminar.Controls.Add(this.btnEliminarArticulo);
+            this.GroupBoxBotonEliminar.Location = new System.Drawing.Point(782, 74);
+            this.GroupBoxBotonEliminar.Name = "GroupBoxBotonEliminar";
+            this.GroupBoxBotonEliminar.Size = new System.Drawing.Size(146, 90);
+            this.GroupBoxBotonEliminar.TabIndex = 86;
+            this.GroupBoxBotonEliminar.TabStop = false;
             // 
             // btnEliminarArticulo
             // 
@@ -151,15 +169,15 @@
             this.btnEliminarArticulo.UseVisualStyleBackColor = true;
             this.btnEliminarArticulo.Click += new System.EventHandler(this.btnEliminarArticulo_Click);
             // 
-            // groupBox6
+            // groupBoxCantidadAlta
             // 
-            this.groupBox6.Controls.Add(this.txtCantidad);
-            this.groupBox6.Location = new System.Drawing.Point(12, 9);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(110, 90);
-            this.groupBox6.TabIndex = 85;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Cantidad";
+            this.groupBoxCantidadAlta.Controls.Add(this.txtCantidad);
+            this.groupBoxCantidadAlta.Location = new System.Drawing.Point(12, 74);
+            this.groupBoxCantidadAlta.Name = "groupBoxCantidadAlta";
+            this.groupBoxCantidadAlta.Size = new System.Drawing.Size(110, 90);
+            this.groupBoxCantidadAlta.TabIndex = 85;
+            this.groupBoxCantidadAlta.TabStop = false;
+            this.groupBoxCantidadAlta.Text = "Cantidad";
             // 
             // txtCantidad
             // 
@@ -172,14 +190,14 @@
             this.txtCantidad.Text = "1";
             this.txtCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // groupBox4
+            // GroupBoxBotonBusqueda
             // 
-            this.groupBox4.Controls.Add(this.btnBuscarArticulo);
-            this.groupBox4.Location = new System.Drawing.Point(669, 9);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(107, 90);
-            this.groupBox4.TabIndex = 84;
-            this.groupBox4.TabStop = false;
+            this.GroupBoxBotonBusqueda.Controls.Add(this.btnBuscarArticulo);
+            this.GroupBoxBotonBusqueda.Location = new System.Drawing.Point(669, 74);
+            this.GroupBoxBotonBusqueda.Name = "GroupBoxBotonBusqueda";
+            this.GroupBoxBotonBusqueda.Size = new System.Drawing.Size(107, 90);
+            this.GroupBoxBotonBusqueda.TabIndex = 84;
+            this.GroupBoxBotonBusqueda.TabStop = false;
             // 
             // btnBuscarArticulo
             // 
@@ -191,15 +209,15 @@
             this.btnBuscarArticulo.UseVisualStyleBackColor = true;
             this.btnBuscarArticulo.Click += new System.EventHandler(this.btnBuscarArticulo_Click);
             // 
-            // groupBox1
+            // GroupBoxCodArticulo
             // 
-            this.groupBox1.Controls.Add(this.txtCodigoArticulo);
-            this.groupBox1.Location = new System.Drawing.Point(128, 9);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(535, 90);
-            this.groupBox1.TabIndex = 83;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Código de Artículo";
+            this.GroupBoxCodArticulo.Controls.Add(this.txtCodigoArticulo);
+            this.GroupBoxCodArticulo.Location = new System.Drawing.Point(128, 74);
+            this.GroupBoxCodArticulo.Name = "GroupBoxCodArticulo";
+            this.GroupBoxCodArticulo.Size = new System.Drawing.Size(535, 90);
+            this.GroupBoxCodArticulo.TabIndex = 83;
+            this.GroupBoxCodArticulo.TabStop = false;
+            this.GroupBoxCodArticulo.Text = "Código de Artículo";
             // 
             // txtCodigoArticulo
             // 
@@ -209,37 +227,153 @@
             this.txtCodigoArticulo.Name = "txtCodigoArticulo";
             this.txtCodigoArticulo.Size = new System.Drawing.Size(493, 35);
             this.txtCodigoArticulo.TabIndex = 0;
+            this.txtCodigoArticulo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoArticulo_KeyPress);
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.chkAgregarItem);
+            this.groupBox8.Location = new System.Drawing.Point(12, 163);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(340, 49);
+            this.groupBox8.TabIndex = 87;
+            this.groupBox8.TabStop = false;
+            // 
+            // chkAgregarItem
+            // 
+            this.chkAgregarItem.AutoSize = true;
+            this.chkAgregarItem.Location = new System.Drawing.Point(12, 16);
+            this.chkAgregarItem.Name = "chkAgregarItem";
+            this.chkAgregarItem.Size = new System.Drawing.Size(322, 27);
+            this.chkAgregarItem.TabIndex = 0;
+            this.chkAgregarItem.Text = "Agregar nuevo item a la venta";
+            this.chkAgregarItem.UseVisualStyleBackColor = true;
+            this.chkAgregarItem.CheckedChanged += new System.EventHandler(this.chkAgregarItem_CheckedChanged);
+            // 
+            // groupBoxDesc
+            // 
+            this.groupBoxDesc.Controls.Add(this.txtDescripcion);
+            this.groupBoxDesc.Location = new System.Drawing.Point(12, 599);
+            this.groupBoxDesc.Name = "groupBoxDesc";
+            this.groupBoxDesc.Size = new System.Drawing.Size(648, 97);
+            this.groupBoxDesc.TabIndex = 88;
+            this.groupBoxDesc.TabStop = false;
+            this.groupBoxDesc.Text = "Descripción Item";
+            // 
+            // txtDescripcion
+            // 
+            this.txtDescripcion.Font = new System.Drawing.Font("Verdana", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescripcion.Location = new System.Drawing.Point(15, 38);
+            this.txtDescripcion.MaxLength = 3;
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(615, 35);
+            this.txtDescripcion.TabIndex = 1;
+            this.txtDescripcion.Text = "1";
+            this.txtDescripcion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // groupBoxCant
+            // 
+            this.groupBoxCant.Controls.Add(this.txtCantidadModif);
+            this.groupBoxCant.Location = new System.Drawing.Point(666, 599);
+            this.groupBoxCant.Name = "groupBoxCant";
+            this.groupBoxCant.Size = new System.Drawing.Size(110, 97);
+            this.groupBoxCant.TabIndex = 89;
+            this.groupBoxCant.TabStop = false;
+            this.groupBoxCant.Text = "Cantidad";
+            // 
+            // txtCantidadModif
+            // 
+            this.txtCantidadModif.Font = new System.Drawing.Font("Verdana", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCantidadModif.Location = new System.Drawing.Point(27, 35);
+            this.txtCantidadModif.MaxLength = 3;
+            this.txtCantidadModif.Name = "txtCantidadModif";
+            this.txtCantidadModif.Size = new System.Drawing.Size(55, 35);
+            this.txtCantidadModif.TabIndex = 0;
+            this.txtCantidadModif.Text = "1";
+            this.txtCantidadModif.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // groupBoxAceptar
+            // 
+            this.groupBoxAceptar.Controls.Add(this.btnAceptar);
+            this.groupBoxAceptar.Location = new System.Drawing.Point(782, 599);
+            this.groupBoxAceptar.Name = "groupBoxAceptar";
+            this.groupBoxAceptar.Size = new System.Drawing.Size(150, 97);
+            this.groupBoxAceptar.TabIndex = 90;
+            this.groupBoxAceptar.TabStop = false;
+            // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Enabled = false;
+            this.btnAceptar.Location = new System.Drawing.Point(16, 28);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(112, 58);
+            this.btnAceptar.TabIndex = 0;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.lblLeyendaModifVenta);
+            this.groupBox1.Location = new System.Drawing.Point(12, 5);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(918, 61);
+            this.groupBox1.TabIndex = 91;
+            this.groupBox1.TabStop = false;
+            // 
+            // lblLeyendaModifVenta
+            // 
+            this.lblLeyendaModifVenta.Font = new System.Drawing.Font("Verdana", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLeyendaModifVenta.Location = new System.Drawing.Point(70, 23);
+            this.lblLeyendaModifVenta.Name = "lblLeyendaModifVenta";
+            this.lblLeyendaModifVenta.Size = new System.Drawing.Size(779, 25);
+            this.lblLeyendaModifVenta.TabIndex = 0;
+            this.lblLeyendaModifVenta.Text = "Modificación Venta ";
+            this.lblLeyendaModifVenta.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmModificarVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 605);
-            this.Controls.Add(this.groupBox7);
-            this.Controls.Add(this.groupBox6);
-            this.Controls.Add(this.groupBox4);
+            this.ClientSize = new System.Drawing.Size(943, 819);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBoxAceptar);
+            this.Controls.Add(this.groupBoxCant);
+            this.Controls.Add(this.groupBoxDesc);
+            this.Controls.Add(this.groupBox8);
+            this.Controls.Add(this.GroupBoxBotonEliminar);
+            this.Controls.Add(this.groupBoxCantidadAlta);
+            this.Controls.Add(this.GroupBoxBotonBusqueda);
+            this.Controls.Add(this.GroupBoxCodArticulo);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox3);
             this.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmModificarVenta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modificar Venta";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmModificarVenta_FormClosing);
             this.Load += new System.EventHandler(this.frmModificarVenta_Load);
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdItemsVenta)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
+            this.GroupBoxBotonEliminar.ResumeLayout(false);
+            this.groupBoxCantidadAlta.ResumeLayout(false);
+            this.groupBoxCantidadAlta.PerformLayout();
+            this.GroupBoxBotonBusqueda.ResumeLayout(false);
+            this.GroupBoxCodArticulo.ResumeLayout(false);
+            this.GroupBoxCodArticulo.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            this.groupBoxDesc.ResumeLayout(false);
+            this.groupBoxDesc.PerformLayout();
+            this.groupBoxCant.ResumeLayout(false);
+            this.groupBoxCant.PerformLayout();
+            this.groupBoxAceptar.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -253,13 +387,23 @@
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lblTotalVenta;
-        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.GroupBox GroupBoxBotonEliminar;
         private System.Windows.Forms.Button btnEliminarArticulo;
-        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox groupBoxCantidadAlta;
         private System.Windows.Forms.TextBox txtCantidad;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox GroupBoxBotonBusqueda;
         private System.Windows.Forms.Button btnBuscarArticulo;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox GroupBoxCodArticulo;
         private System.Windows.Forms.TextBox txtCodigoArticulo;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.CheckBox chkAgregarItem;
+        private System.Windows.Forms.GroupBox groupBoxDesc;
+        private System.Windows.Forms.GroupBox groupBoxCant;
+        private System.Windows.Forms.TextBox txtCantidadModif;
+        private System.Windows.Forms.GroupBox groupBoxAceptar;
+        private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.TextBox txtDescripcion;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label lblLeyendaModifVenta;
     }
 }

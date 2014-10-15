@@ -431,7 +431,6 @@
             this.Text = "Maxikosko WILLOW - BSP - Brothers Systems Programmers - ADBISYS 1.0";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmPrincipal_Load);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmPrincipal_FormClosed);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmPrincipal_FormClosing);
             this.StripPrincipal.ResumeLayout(false);
             this.StripPrincipal.PerformLayout();

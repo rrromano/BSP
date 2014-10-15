@@ -73,7 +73,7 @@ namespace ADBISYS.Formularios.Ventas
         {
             try
             {
-                grdResultados = fg.formatoGrilla(grdResultados, 1);
+                grdResultados = fg.formatoGrilla(grdResultados, 2);
                 txtDescripcionArticulo.Focus();
             }
             catch (Exception ex)
@@ -86,6 +86,9 @@ namespace ADBISYS.Formularios.Ventas
         {
             try
             {
+
+                if (!(validarBusqueda())) { return; }
+
                 //MessageBox.Show("Seleccionó ID: " + DsArt.Tables[0].Rows[0]["CÓDIGO"].ToString() + " DESCRIPCION: " + DsArt.Tables[0].Rows[0]["DESCRIPCIÓN"].ToString());
 
                 Entidades.Articulo Articulo = new Entidades.Articulo();
@@ -93,17 +96,17 @@ namespace ADBISYS.Formularios.Ventas
 
                 DataSet DsArticulo = new DataSet();
                 
-                Int64 IdArticulo;
+                UInt64 IdArticulo;
                 Int32 Cantidad;
 
-                IdArticulo = Int64.Parse(grdResultados.Rows[filaSeleccionada].Cells["ID"].Value.ToString());
+                IdArticulo = UInt64.Parse(grdResultados.Rows[filaSeleccionada].Cells["ID"].Value.ToString());
 
                 DsArticulo = Articulo.obtenerArticulos(IdArticulo.ToString());
 
 
                 if (DsArticulo.Tables[0].Rows.Count > 0)
                 {
-                    IdArticulo = Int64.Parse(DsArticulo.Tables[0].Rows[0]["CÓDIGO"].ToString());
+                    IdArticulo = UInt64.Parse(DsArticulo.Tables[0].Rows[0]["CÓDIGO"].ToString());
                     Cantidad = Int32.Parse(txtCantidad.Text);
                     Venta.guardarArticuloVentaTemporal(IdArticulo, Cantidad);
                 }
@@ -112,12 +115,30 @@ namespace ADBISYS.Formularios.Ventas
                     MessageBox.Show("Artículo inexistente en la Base de Datos");
                 }
 
-                this.Hide();
+                this.Close();
 
             }
             catch (Exception ex)
             {
                 fg.mostrarErrorTryCatch(ex);
+            }
+        }
+
+        private bool validarBusqueda()
+        {
+            try
+            {
+                if (grdResultados.Rows.Count == 0)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+                return false;
             }
         }
 
@@ -140,6 +161,23 @@ namespace ADBISYS.Formularios.Ventas
             {
                 filaSeleccionada = e.RowIndex;
                 columnaSeleccionada = e.ColumnIndex;
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
+        }
+
+        private void grdResultados_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Int32 selectedCellCount = grdResultados.GetCellCount(DataGridViewElementStates.Selected);
+                if (selectedCellCount > 0)
+                {
+                    filaSeleccionada = grdResultados.SelectedCells[1].RowIndex;
+                    columnaSeleccionada = grdResultados.SelectedCells[1].ColumnIndex;
+                }
             }
             catch (Exception ex)
             {

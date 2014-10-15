@@ -31,19 +31,19 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBusquedaArticuloManual));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.txtCantidad = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnNuevoArticulo = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtDescripcionArticulo = new System.Windows.Forms.TextBox();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.grdResultados = new System.Windows.Forms.DataGridView();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.txtCantidad = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdResultados)).BeginInit();
-            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -57,6 +57,27 @@
             this.groupBox1.Size = new System.Drawing.Size(877, 501);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.txtCantidad);
+            this.groupBox6.Location = new System.Drawing.Point(17, 23);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(110, 90);
+            this.groupBox6.TabIndex = 8;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Cantidad";
+            // 
+            // txtCantidad
+            // 
+            this.txtCantidad.Font = new System.Drawing.Font("Verdana", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCantidad.Location = new System.Drawing.Point(27, 35);
+            this.txtCantidad.MaxLength = 3;
+            this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.Size = new System.Drawing.Size(55, 35);
+            this.txtCantidad.TabIndex = 0;
+            this.txtCantidad.Text = "1";
+            this.txtCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // groupBox3
             // 
@@ -117,34 +138,14 @@
             this.grdResultados.Location = new System.Drawing.Point(17, 122);
             this.grdResultados.Name = "grdResultados";
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.MediumSeaGreen;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             this.grdResultados.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.grdResultados.RowTemplate.Height = 24;
             this.grdResultados.Size = new System.Drawing.Size(841, 362);
             this.grdResultados.TabIndex = 1;
             this.grdResultados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdResultados_CellClick);
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.txtCantidad);
-            this.groupBox6.Location = new System.Drawing.Point(17, 23);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(110, 90);
-            this.groupBox6.TabIndex = 8;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Cantidad";
-            // 
-            // txtCantidad
-            // 
-            this.txtCantidad.Font = new System.Drawing.Font("Verdana", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCantidad.Location = new System.Drawing.Point(27, 35);
-            this.txtCantidad.MaxLength = 3;
-            this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(55, 35);
-            this.txtCantidad.TabIndex = 0;
-            this.txtCantidad.Text = "1";
-            this.txtCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.grdResultados.SelectionChanged += new System.EventHandler(this.grdResultados_SelectionChanged);
             // 
             // frmBusquedaArticuloManual
             // 
@@ -160,12 +161,12 @@
             this.Text = "Búsqueda Manual de Artículo";
             this.Load += new System.EventHandler(this.frmBusquedaArticuloManual_Load);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdResultados)).EndInit();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
 
         }

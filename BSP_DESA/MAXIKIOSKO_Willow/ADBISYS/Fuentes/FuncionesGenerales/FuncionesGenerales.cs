@@ -487,20 +487,25 @@ namespace ADBISYS.FuncionesGenerales
         internal string DevolverCadenaCon2Decimales(string p)
         {
             string cadenaDespuesDeLaComa = "";
-            string result = ""; 
+
             cadenaDespuesDeLaComa = p.Substring(p.IndexOf(",") + 1, p.Length - p.IndexOf(",") - 1);
+
+            if (p.IndexOf(",") == -1) //ESTO QUIERE DECIR QUE NO TIENE ","
+            {
+                return p + ",00";
+            }
 
             if (cadenaDespuesDeLaComa.Length == 1)
             {
-                result = p + "0";
+                return p + "0";
             }
 
             if (cadenaDespuesDeLaComa.Length >= 3)
             {
-                result = p + ",00";
+                return p + ",00";
             }
 
-            return result;
+            return p;
         }
     }
 }

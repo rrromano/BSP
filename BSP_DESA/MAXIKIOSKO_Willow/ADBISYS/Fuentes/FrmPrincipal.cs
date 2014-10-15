@@ -574,11 +574,6 @@ namespace ADBISYS
             frmActMasivaArt.ShowDialog();
         }
 
-        private void FrmPrincipal_FormClosed(object sender, FormClosedEventArgs e)
-        {
-
-        }
-
         private void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
             try

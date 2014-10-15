@@ -114,6 +114,7 @@ namespace ADBISYS.Formularios.Compras
             filaSeleccionada = grdCompras.CurrentCellAddress.Y;
             frmNuevaCompra nuevaCompra = new frmNuevaCompra();
             nuevaCompra.ShowDialog();
+            this.btnActualizar.PerformClick();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -159,6 +160,7 @@ namespace ADBISYS.Formularios.Compras
             modificarCompra.compra_importe = grdCompras.Rows[filaSeleccionada].Cells["IMPORTE"].Value.ToString().Replace(",",".");
 
             modificarCompra.ShowDialog();
+            this.btnActualizar.PerformClick();
         }
 
         private bool notFilaSeleccionada()
