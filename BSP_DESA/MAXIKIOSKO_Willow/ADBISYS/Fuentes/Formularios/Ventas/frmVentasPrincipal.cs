@@ -381,5 +381,16 @@ namespace ADBISYS.Formularios.Ventas
 
         }
 
+        private void grdVentas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                modificarVenta();
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
+        }
     }
 }

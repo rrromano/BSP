@@ -37,6 +37,8 @@ namespace ADBISYS.Formularios.Ventas
         {
             try
             {
+                Entidades.Venta Venta = new Entidades.Venta();
+                Venta.borrarArticulosVenta_Temporal();
                 ponerValoresEnDefault();
                 actualizarGrilla();
             }
@@ -114,6 +116,7 @@ namespace ADBISYS.Formularios.Ventas
                     //grdItemsVenta = fg.formatoGrilla(grdItemsVenta, 9);
 
                     txtCodigoArticulo.Text = String.Empty;
+                    txtCantidad.Text = "1";
                     txtCodigoArticulo.Focus();
                 }
             }
@@ -288,8 +291,9 @@ namespace ADBISYS.Formularios.Ventas
                 if (grdItemsVenta.Rows.Count == 0)
                 {
                     Venta.borrarArticulosVenta_Temporal();
-                    btnEliminarArticulo.Enabled = false;
                 }
+
+                btnEliminarArticulo.Enabled = false;
 
             }
             catch (Exception ex)
@@ -374,7 +378,7 @@ namespace ADBISYS.Formularios.Ventas
                 }
                 else
                 {
-                    MessageBox.Show("No se puede confirmar la venta ya que no se han seleccionados los artículos correspondiente a la misma.", "Venta No Confirmada.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No se puede confirmar la venta ya que no se han seleccionado artículos.", "Venta No Confirmada.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return false;
                 }
             }

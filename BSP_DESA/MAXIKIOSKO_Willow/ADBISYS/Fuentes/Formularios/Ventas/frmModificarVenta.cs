@@ -141,6 +141,7 @@ namespace ADBISYS.Formularios.Ventas
                     //grdItemsVenta = fg.formatoGrilla(grdItemsVenta, 9);
 
                     txtCodigoArticulo.Text = String.Empty;
+                    txtCantidad.Text = "1";
                     txtCodigoArticulo.Focus();
                 }
             }
