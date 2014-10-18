@@ -182,8 +182,7 @@ namespace ADBISYS.Formularios.Ventas
                 celdaSeleccionada = grdVentas.CurrentCellAddress.X;
                 filaSeleccionada = grdVentas.CurrentCellAddress.Y;
                 frmNuevaVenta nuevaVenta = new frmNuevaVenta();
-                //nuevaVenta.Show();
-                nuevaVenta.ShowDialog();
+                nuevaVenta.Show();
                 nuevaVenta.Select();
 
                 this.btnActualizar.PerformClick();
@@ -300,6 +299,11 @@ namespace ADBISYS.Formularios.Ventas
             {
                 if (grdVentas.DataSource != null)
                 {
+                    if (Properties.Settings.Default.UsuarioLogueado == "")
+                    {
+                        MessageBox.Show("Debe iniciar sesión.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }                    
                     if (notFilaSeleccionada()) return;
                     mostrarFormularioModificarVenta();
                     llenarGrilla();
@@ -390,6 +394,15 @@ namespace ADBISYS.Formularios.Ventas
             catch (Exception ex)
             {
                 fg.mostrarErrorTryCatch(ex);
+            }
+        }
+
+        private void grdVentas_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                e.SuppressKeyPress = true;
+                modificarVenta();
             }
         }
     }

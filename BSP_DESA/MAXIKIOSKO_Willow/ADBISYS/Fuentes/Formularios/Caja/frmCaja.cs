@@ -394,5 +394,17 @@ namespace ADBISYS.Formularios.Caja
                 MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void frmCaja_Activated(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.UsuarioLogueado != "")
+            {
+                grpGanancia.Visible = true;
+            }
+            else
+            {
+                grpGanancia.Visible = false;
+            }
+        }
     }
 }

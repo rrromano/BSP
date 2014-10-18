@@ -82,7 +82,7 @@ namespace ADBISYS.Formularios.Ventas
             }
         }
 
-        private void btnAceptar_Click(object sender, EventArgs e)
+        private void aceptarArticulo()
         {
             try
             {
@@ -95,9 +95,11 @@ namespace ADBISYS.Formularios.Ventas
                 Entidades.Venta Venta = new Entidades.Venta();
 
                 DataSet DsArticulo = new DataSet();
-                
+
                 UInt64 IdArticulo;
                 Int32 Cantidad;
+
+                if (txtCantidad.Text.Trim() == "") { txtCantidad.Text = "1"; }
 
                 IdArticulo = UInt64.Parse(grdResultados.Rows[filaSeleccionada].Cells["ID"].Value.ToString());
 
@@ -122,6 +124,11 @@ namespace ADBISYS.Formularios.Ventas
             {
                 fg.mostrarErrorTryCatch(ex);
             }
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            aceptarArticulo();
         }
 
         private bool validarBusqueda()
@@ -182,6 +189,25 @@ namespace ADBISYS.Formularios.Ventas
             catch (Exception ex)
             {
                 fg.mostrarErrorTryCatch(ex);
+            }
+        }
+
+        private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            fg.keyPressNumeros(e);
+        }
+
+        private void grdResultados_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            aceptarArticulo();
+        }
+
+        private void grdResultados_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                e.SuppressKeyPress = true;
+                aceptarArticulo();
             }
         }
     }

@@ -53,10 +53,13 @@
             this.salirToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.lblCierreParcial = new System.Windows.Forms.Label();
+            this.grpGanancia = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMovsCaja)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox8.SuspendLayout();
+            this.grpGanancia.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -205,7 +208,7 @@
             this.salidaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(813, 31);
+            this.menuStrip1.Size = new System.Drawing.Size(811, 31);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -266,9 +269,9 @@
             // groupBox8
             // 
             this.groupBox8.Controls.Add(this.lblCierreParcial);
-            this.groupBox8.Location = new System.Drawing.Point(493, 554);
+            this.groupBox8.Location = new System.Drawing.Point(569, 553);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(301, 114);
+            this.groupBox8.Size = new System.Drawing.Size(225, 100);
             this.groupBox8.TabIndex = 8;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Cierre Parcial";
@@ -277,18 +280,40 @@
             // 
             this.lblCierreParcial.AutoSize = true;
             this.lblCierreParcial.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCierreParcial.Location = new System.Drawing.Point(106, 43);
+            this.lblCierreParcial.Location = new System.Drawing.Point(53, 37);
             this.lblCierreParcial.Name = "lblCierreParcial";
             this.lblCierreParcial.Size = new System.Drawing.Size(113, 36);
             this.lblCierreParcial.TabIndex = 0;
             this.lblCierreParcial.Text = "TOTAL";
+            // 
+            // grpGanancia
+            // 
+            this.grpGanancia.Controls.Add(this.label1);
+            this.grpGanancia.Location = new System.Drawing.Point(327, 553);
+            this.grpGanancia.Name = "grpGanancia";
+            this.grpGanancia.Size = new System.Drawing.Size(225, 100);
+            this.grpGanancia.TabIndex = 9;
+            this.grpGanancia.TabStop = false;
+            this.grpGanancia.Text = "Ganancia";
+            this.grpGanancia.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(53, 37);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(113, 36);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "TOTAL";
             // 
             // frmCaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(813, 686);
+            this.ClientSize = new System.Drawing.Size(811, 668);
+            this.Controls.Add(this.grpGanancia);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
@@ -299,6 +324,7 @@
             this.Name = "frmCaja";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Movimientos Caja";
+            this.Activated += new System.EventHandler(this.frmCaja_Activated);
             this.Load += new System.EventHandler(this.frmCaja_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -307,6 +333,8 @@
             this.menuStrip1.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
+            this.grpGanancia.ResumeLayout(false);
+            this.grpGanancia.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -338,5 +366,7 @@
         private System.Windows.Forms.Label lbFiltroBusqueda;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.Label lblCierreParcial;
+        private System.Windows.Forms.GroupBox grpGanancia;
+        private System.Windows.Forms.Label label1;
     }
 }

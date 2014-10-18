@@ -57,10 +57,10 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txtCodigoArticulo);
-            this.groupBox1.Location = new System.Drawing.Point(128, 9);
+            this.groupBox1.Location = new System.Drawing.Point(134, 9);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(535, 90);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Código de Artículo";
             // 
@@ -71,16 +71,16 @@
             this.txtCodigoArticulo.MaxLength = 20;
             this.txtCodigoArticulo.Name = "txtCodigoArticulo";
             this.txtCodigoArticulo.Size = new System.Drawing.Size(493, 35);
-            this.txtCodigoArticulo.TabIndex = 0;
+            this.txtCodigoArticulo.TabIndex = 1;
             this.txtCodigoArticulo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoArticulo_KeyPress);
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.grdItemsVenta);
-            this.groupBox3.Location = new System.Drawing.Point(10, 105);
+            this.groupBox3.Location = new System.Drawing.Point(16, 105);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(918, 374);
-            this.groupBox3.TabIndex = 50;
+            this.groupBox3.Size = new System.Drawing.Size(918, 378);
+            this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Items Compra";
             // 
@@ -91,8 +91,8 @@
             this.grdItemsVenta.Location = new System.Drawing.Point(15, 28);
             this.grdItemsVenta.Name = "grdItemsVenta";
             this.grdItemsVenta.RowTemplate.Height = 24;
-            this.grdItemsVenta.Size = new System.Drawing.Size(887, 330);
-            this.grdItemsVenta.TabIndex = 0;
+            this.grdItemsVenta.Size = new System.Drawing.Size(887, 334);
+            this.grdItemsVenta.TabIndex = 1;
             this.grdItemsVenta.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdItemsVenta_CellClick);
             this.grdItemsVenta.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdItemsVenta_CellValueChanged);
             this.grdItemsVenta.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdItemsVenta_CurrentCellDirtyStateChanged);
@@ -100,29 +100,29 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.btnBuscarArticulo);
-            this.groupBox4.Location = new System.Drawing.Point(669, 9);
+            this.groupBox4.Location = new System.Drawing.Point(675, 9);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(107, 90);
-            this.groupBox4.TabIndex = 1;
+            this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
             // 
             // btnBuscarArticulo
             // 
             this.btnBuscarArticulo.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscarArticulo.Image")));
-            this.btnBuscarArticulo.Location = new System.Drawing.Point(18, 22);
+            this.btnBuscarArticulo.Location = new System.Drawing.Point(18, 21);
             this.btnBuscarArticulo.Name = "btnBuscarArticulo";
             this.btnBuscarArticulo.Size = new System.Drawing.Size(73, 58);
-            this.btnBuscarArticulo.TabIndex = 0;
+            this.btnBuscarArticulo.TabIndex = 1;
             this.btnBuscarArticulo.UseVisualStyleBackColor = true;
             this.btnBuscarArticulo.Click += new System.EventHandler(this.btnBuscarArticulo_Click);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.lblTotalVenta);
-            this.groupBox2.Location = new System.Drawing.Point(711, 485);
+            this.groupBox2.Location = new System.Drawing.Point(717, 485);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(217, 108);
-            this.groupBox2.TabIndex = 81;
+            this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Total";
             // 
@@ -130,7 +130,7 @@
             // 
             this.lblTotalVenta.AutoSize = true;
             this.lblTotalVenta.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalVenta.Location = new System.Drawing.Point(52, 43);
+            this.lblTotalVenta.Location = new System.Drawing.Point(55, 43);
             this.lblTotalVenta.Name = "lblTotalVenta";
             this.lblTotalVenta.Size = new System.Drawing.Size(113, 36);
             this.lblTotalVenta.TabIndex = 0;
@@ -140,10 +140,10 @@
             // 
             this.groupBox5.Controls.Add(this.btnConfirmarVenta);
             this.groupBox5.Controls.Add(this.btnSalir);
-            this.groupBox5.Location = new System.Drawing.Point(10, 485);
+            this.groupBox5.Location = new System.Drawing.Point(16, 485);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(383, 108);
-            this.groupBox5.TabIndex = 2;
+            this.groupBox5.Size = new System.Drawing.Size(335, 108);
+            this.groupBox5.TabIndex = 5;
             this.groupBox5.TabStop = false;
             this.groupBox5.TabIndexChanged += new System.EventHandler(this.groupBox5_TabIndexChanged);
             // 
@@ -152,11 +152,11 @@
             this.btnConfirmarVenta.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmarVenta.Image = ((System.Drawing.Image)(resources.GetObject("btnConfirmarVenta.Image")));
             this.btnConfirmarVenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConfirmarVenta.Location = new System.Drawing.Point(206, 28);
+            this.btnConfirmarVenta.Location = new System.Drawing.Point(174, 24);
             this.btnConfirmarVenta.Margin = new System.Windows.Forms.Padding(4);
             this.btnConfirmarVenta.Name = "btnConfirmarVenta";
             this.btnConfirmarVenta.Size = new System.Drawing.Size(146, 69);
-            this.btnConfirmarVenta.TabIndex = 0;
+            this.btnConfirmarVenta.TabIndex = 1;
             this.btnConfirmarVenta.Text = "&Confirmar";
             this.btnConfirmarVenta.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnConfirmarVenta.UseVisualStyleBackColor = true;
@@ -167,10 +167,10 @@
             // 
             this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
             this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalir.Location = new System.Drawing.Point(31, 28);
+            this.btnSalir.Location = new System.Drawing.Point(15, 24);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(146, 69);
-            this.btnSalir.TabIndex = 1;
+            this.btnSalir.TabIndex = 2;
             this.btnSalir.Text = "&Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.TabIndexChanged += new System.EventHandler(this.btnSalir_TabIndexChanged);
@@ -179,7 +179,7 @@
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.txtCantidad);
-            this.groupBox6.Location = new System.Drawing.Point(12, 9);
+            this.groupBox6.Location = new System.Drawing.Point(18, 9);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(110, 90);
             this.groupBox6.TabIndex = 6;
@@ -198,23 +198,24 @@
             this.txtCantidad.Text = "1";
             this.txtCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtCantidad.TabIndexChanged += new System.EventHandler(this.txtCantidad_TabIndexChanged);
+            this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
             // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.btnEliminarArticulo);
-            this.groupBox7.Location = new System.Drawing.Point(782, 9);
+            this.groupBox7.Location = new System.Drawing.Point(788, 9);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(146, 90);
-            this.groupBox7.TabIndex = 82;
+            this.groupBox7.TabIndex = 3;
             this.groupBox7.TabStop = false;
             // 
             // btnEliminarArticulo
             // 
             this.btnEliminarArticulo.Enabled = false;
-            this.btnEliminarArticulo.Location = new System.Drawing.Point(18, 22);
+            this.btnEliminarArticulo.Location = new System.Drawing.Point(18, 21);
             this.btnEliminarArticulo.Name = "btnEliminarArticulo";
             this.btnEliminarArticulo.Size = new System.Drawing.Size(112, 58);
-            this.btnEliminarArticulo.TabIndex = 0;
+            this.btnEliminarArticulo.TabIndex = 1;
             this.btnEliminarArticulo.Text = "Eliminar";
             this.btnEliminarArticulo.UseVisualStyleBackColor = true;
             this.btnEliminarArticulo.Click += new System.EventHandler(this.btnEliminarArticulo_Click);
@@ -223,7 +224,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 605);
+            this.ClientSize = new System.Drawing.Size(952, 605);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);

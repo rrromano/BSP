@@ -67,8 +67,8 @@ namespace ADBISYS.Formularios.Ventas
                 //======================================================================================
                 //SE CARGAN EN LA GRILLA LOS REGISTROS DE LA TABLA TMP_ARTICULOS_VENTAS ****************
                 //======================================================================================
-                cargarArticulosEnGrilla();
                 grdItemsVenta = fg.formatoGrilla(grdItemsVenta, 9);
+                cargarArticulosEnGrilla();
 
                 //======================================================================================
                 //ACTUALIZACIÓN DEL PRECIO TOTAL DE LA VENTA *******************************************
@@ -77,6 +77,7 @@ namespace ADBISYS.Formularios.Ventas
 
                 txtCodigoArticulo.Text = String.Empty;
                 txtCodigoArticulo.Focus();
+
             }
             catch (Exception ex)
             {
@@ -126,6 +127,8 @@ namespace ADBISYS.Formularios.Ventas
                     DataSet DsArticulo = new DataSet();
                     Entidades.Articulo Articulo = new Entidades.Articulo();
                     //Entidades.Venta Venta = new Entidades.Venta();
+
+                    if (txtCantidad.Text.Trim() == "") { txtCantidad.Text = "1"; }
 
                     DsArticulo = Articulo.obtenerArticulos(txtCodigoArticulo.Text);
 
@@ -684,6 +687,37 @@ namespace ADBISYS.Formularios.Ventas
                 }
 
                 actualizarPrecioTotalVenta();
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
+            }
+        }
+
+        private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            fg.keyPressNumeros(e);
+        }
+
+        private void grdItemsVenta_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                filaSeleccionada = grdItemsVenta.CurrentCellAddress.Y;
+                columnaSeleccionada = grdItemsVenta.CurrentCellAddress.X;
+
+                if (filaSeleccionada == -1) { return; }
+
+                if (grdItemsVenta.Columns[columnaSeleccionada].Name != "SELECCIONAR")
+                {
+                    grdItemsVenta.Columns[columnaSeleccionada].ReadOnly = true;
+
+                    txtDescripcion.Enabled = false;
+                    txtCantidadModif.Enabled = true;
+                    btnAceptar.Enabled = true;
+                    txtDescripcion.Text = grdItemsVenta.Rows[filaSeleccionada].Cells["DESCRIPCIÓN"].Value.ToString();
+                    txtCantidadModif.Text = grdItemsVenta.Rows[filaSeleccionada].Cells["CANTIDAD"].Value.ToString();
+                }
             }
             catch (Exception ex)
             {

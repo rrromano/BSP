@@ -81,6 +81,7 @@
             this.grdVentas.Size = new System.Drawing.Size(855, 454);
             this.grdVentas.TabIndex = 9;
             this.grdVentas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdVentas_CellDoubleClick);
+            this.grdVentas.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdVentas_KeyDown);
             // 
             // btnActualizar
             // 

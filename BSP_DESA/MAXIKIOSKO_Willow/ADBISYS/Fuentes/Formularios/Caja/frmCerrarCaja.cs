@@ -71,6 +71,14 @@ namespace ADBISYS.Formularios.Caja
             {
                 llenarGrillaMovimientosCierreCaja();
                 grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 1);
+                if (Properties.Settings.Default.UsuarioLogueado != "")
+                {
+                    grpGanancia.Visible = true;
+                }
+                else
+                {
+                    grpGanancia.Visible = false;
+                }
                 actualizarCierreParcial();
             }
             catch (Exception r)
@@ -85,7 +93,7 @@ namespace ADBISYS.Formularios.Caja
             DataSet Ds = new DataSet();
             Ds.Reset();
             Ds = caja.obtenerCierreParcialCaja(fg.appFechaSistema());
-            txtCierreParcial.Text = Ds.Tables[0].Rows[0]["Cierre_Parcial"].ToString();
+            lblTotalParcial.Text = Ds.Tables[0].Rows[0]["Cierre_Parcial"].ToString();
         }
 
         private void llenarGrillaMovimientosCierreCaja()

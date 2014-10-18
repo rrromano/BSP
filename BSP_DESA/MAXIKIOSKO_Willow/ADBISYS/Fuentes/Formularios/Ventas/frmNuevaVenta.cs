@@ -38,6 +38,7 @@ namespace ADBISYS.Formularios.Ventas
             try
             {
                 Entidades.Venta Venta = new Entidades.Venta();
+                btnConfirmarVenta.Focus();
                 Venta.borrarArticulosVenta_Temporal();
                 ponerValoresEnDefault();
                 actualizarGrilla();
@@ -101,7 +102,8 @@ namespace ADBISYS.Formularios.Ventas
                     DataSet DsArticulo = new DataSet();
                     Entidades.Articulo Articulo = new Entidades.Articulo();
                     Entidades.Venta Venta = new Entidades.Venta();
-
+                    if (txtCantidad.Text.Trim() == "") { txtCantidad.Text = "1"; }
+                    
                     DsArticulo = Articulo.obtenerArticulos(txtCodigoArticulo.Text);
 
                     if (DsArticulo.Tables[0].Rows.Count > 0)
@@ -532,6 +534,11 @@ namespace ADBISYS.Formularios.Ventas
         }
 
         #endregion
+
+        private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            fg.keyPressNumeros(e);
+        }
 
     }
 }
