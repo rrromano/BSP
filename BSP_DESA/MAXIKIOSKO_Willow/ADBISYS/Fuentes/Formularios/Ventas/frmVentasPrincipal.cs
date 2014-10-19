@@ -167,7 +167,7 @@ namespace ADBISYS.Formularios.Ventas
                 mostrarFormularioNuevaVenta();
                 llenarGrilla();
                 grdVentas = fg.formatoGrilla(grdVentas, 1);
-                grdVentas.Focus();
+                //grdVentas.Focus();
             }
             catch (Exception e)
             {
@@ -403,6 +403,18 @@ namespace ADBISYS.Formularios.Ventas
             {
                 e.SuppressKeyPress = true;
                 modificarVenta();
+            }
+        }
+
+        private void actualizarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                actualizarGrilla();
+            }
+            catch (Exception ex)
+            {
+                fg.mostrarErrorTryCatch(ex);
             }
         }
     }

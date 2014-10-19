@@ -30,23 +30,23 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCerrarCaja));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpGanancia = new System.Windows.Forms.GroupBox();
+            this.lblGanancia = new System.Windows.Forms.Label();
+            this.grpCierreParcial = new System.Windows.Forms.GroupBox();
             this.lblTotalParcial = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnCerrarCaja = new System.Windows.Forms.Button();
             this.grdMovsCaja = new System.Windows.Forms.DataGridView();
-            this.grpGanancia = new System.Windows.Forms.GroupBox();
-            this.lblGanancia = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdMovsCaja)).BeginInit();
             this.grpGanancia.SuspendLayout();
+            this.grpCierreParcial.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdMovsCaja)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.grpGanancia);
-            this.groupBox2.Controls.Add(this.groupBox1);
+            this.groupBox2.Controls.Add(this.grpCierreParcial);
             this.groupBox2.Controls.Add(this.btnCancelar);
             this.groupBox2.Controls.Add(this.btnCerrarCaja);
             this.groupBox2.Controls.Add(this.grdMovsCaja);
@@ -56,15 +56,36 @@
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             // 
-            // groupBox1
+            // grpGanancia
             // 
-            this.groupBox1.Controls.Add(this.lblTotalParcial);
-            this.groupBox1.Location = new System.Drawing.Point(22, 358);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(225, 100);
-            this.groupBox1.TabIndex = 19;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Cierre Parcial";
+            this.grpGanancia.Controls.Add(this.lblGanancia);
+            this.grpGanancia.Location = new System.Drawing.Point(253, 358);
+            this.grpGanancia.Name = "grpGanancia";
+            this.grpGanancia.Size = new System.Drawing.Size(230, 100);
+            this.grpGanancia.TabIndex = 20;
+            this.grpGanancia.TabStop = false;
+            this.grpGanancia.Text = "Ganancia";
+            this.grpGanancia.Visible = false;
+            // 
+            // lblGanancia
+            // 
+            this.lblGanancia.AutoSize = true;
+            this.lblGanancia.Font = new System.Drawing.Font("Verdana", 18F);
+            this.lblGanancia.Location = new System.Drawing.Point(57, 39);
+            this.lblGanancia.Name = "lblGanancia";
+            this.lblGanancia.Size = new System.Drawing.Size(113, 36);
+            this.lblGanancia.TabIndex = 4;
+            this.lblGanancia.Text = "TOTAL";
+            // 
+            // grpCierreParcial
+            // 
+            this.grpCierreParcial.Controls.Add(this.lblTotalParcial);
+            this.grpCierreParcial.Location = new System.Drawing.Point(22, 358);
+            this.grpCierreParcial.Name = "grpCierreParcial";
+            this.grpCierreParcial.Size = new System.Drawing.Size(225, 100);
+            this.grpCierreParcial.TabIndex = 19;
+            this.grpCierreParcial.TabStop = false;
+            this.grpCierreParcial.Text = "Cierre Parcial";
             // 
             // lblTotalParcial
             // 
@@ -112,27 +133,6 @@
             this.grdMovsCaja.Size = new System.Drawing.Size(461, 318);
             this.grdMovsCaja.TabIndex = 14;
             // 
-            // grpGanancia
-            // 
-            this.grpGanancia.Controls.Add(this.lblGanancia);
-            this.grpGanancia.Location = new System.Drawing.Point(258, 358);
-            this.grpGanancia.Name = "grpGanancia";
-            this.grpGanancia.Size = new System.Drawing.Size(225, 100);
-            this.grpGanancia.TabIndex = 20;
-            this.grpGanancia.TabStop = false;
-            this.grpGanancia.Text = "Ganancia";
-            this.grpGanancia.Visible = false;
-            // 
-            // lblGanancia
-            // 
-            this.lblGanancia.AutoSize = true;
-            this.lblGanancia.Font = new System.Drawing.Font("Verdana", 18F);
-            this.lblGanancia.Location = new System.Drawing.Point(57, 39);
-            this.lblGanancia.Name = "lblGanancia";
-            this.lblGanancia.Size = new System.Drawing.Size(113, 36);
-            this.lblGanancia.TabIndex = 4;
-            this.lblGanancia.Text = "TOTAL";
-            // 
             // frmCerrarCaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
@@ -150,11 +150,11 @@
             this.Text = "Cierre de Caja";
             this.Activated += new System.EventHandler(this.frmCerrarCaja_Activated);
             this.groupBox2.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdMovsCaja)).EndInit();
             this.grpGanancia.ResumeLayout(false);
             this.grpGanancia.PerformLayout();
+            this.grpCierreParcial.ResumeLayout(false);
+            this.grpCierreParcial.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdMovsCaja)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -165,7 +165,7 @@
         private System.Windows.Forms.Button btnCerrarCaja;
         private System.Windows.Forms.DataGridView grdMovsCaja;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpCierreParcial;
         private System.Windows.Forms.Label lblTotalParcial;
         private System.Windows.Forms.GroupBox grpGanancia;
         private System.Windows.Forms.Label lblGanancia;

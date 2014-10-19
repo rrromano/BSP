@@ -74,10 +74,12 @@ namespace ADBISYS.Formularios.Caja
                 if (Properties.Settings.Default.UsuarioLogueado != "")
                 {
                     grpGanancia.Visible = true;
+                    grpCierreParcial.Location = new Point(22,358);
                 }
                 else
                 {
                     grpGanancia.Visible = false;
+                    grpCierreParcial.Location = new Point(137,358);
                 }
                 actualizarCierreParcial();
             }
