@@ -780,7 +780,7 @@ namespace ADBISYS
         {
             if (!(cajaIniciada())) { return; }
             frmNuevaVenta nuevaVenta = new frmNuevaVenta();
-            nuevaVenta.Show();
+            nuevaVenta.ShowDialog();
         }
     }
 }

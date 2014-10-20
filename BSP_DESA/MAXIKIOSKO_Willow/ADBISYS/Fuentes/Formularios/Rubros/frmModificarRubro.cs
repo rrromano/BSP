@@ -31,7 +31,7 @@ namespace ADBISYS.Formularios.Rubros
 
         private void txtDescripcion_KeyPress(object sender, KeyPressEventArgs e)
         {
-            fg.keyPressLetras(e);
+            //fg.keyPressLetras(e);
             e.KeyChar = fg.keyPressMayusculas(e);
         }
 
@@ -46,7 +46,7 @@ namespace ADBISYS.Formularios.Rubros
         private void modificoRubro()
         {
             Entidades.Rubros entRubros = new ADBISYS.Entidades.Rubros();
-            entRubros.modificarRubro(txtCodigo.Text, txtDescripcion.Text);
+            entRubros.modificarRubro(txtCodigo.Text, txtDescripcion.Text.Trim());
         }
 
         private bool validoCampos()

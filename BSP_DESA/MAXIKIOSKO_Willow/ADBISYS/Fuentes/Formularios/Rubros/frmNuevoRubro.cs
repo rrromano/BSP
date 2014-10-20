@@ -30,7 +30,7 @@ namespace ADBISYS.Formularios.Rubros
 
         private void txtDescripcion_KeyPress(object sender, KeyPressEventArgs e)
         {
-            fg.keyPressLetras(e);
+            //fg.keyPressLetras(e);
             e.KeyChar = fg.keyPressMayusculas(e);
         }
 
@@ -57,7 +57,7 @@ namespace ADBISYS.Formularios.Rubros
             try
             {
                 Entidades.Rubros entRubros = new ADBISYS.Entidades.Rubros();
-                entRubros.nuevoRubro(txtDescripcion.Text);
+                entRubros.nuevoRubro(txtDescripcion.Text.Trim());
                 this.Hide();
             }
             catch (Exception e)

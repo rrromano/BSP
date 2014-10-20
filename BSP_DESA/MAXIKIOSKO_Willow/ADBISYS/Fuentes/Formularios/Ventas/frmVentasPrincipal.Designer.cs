@@ -67,7 +67,7 @@
             this.groupBox1.Controls.Add(this.btnNuevo);
             this.groupBox1.Location = new System.Drawing.Point(16, 31);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(893, 598);
+            this.groupBox1.Size = new System.Drawing.Size(893, 584);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             // 
@@ -78,7 +78,7 @@
             this.grdVentas.Location = new System.Drawing.Point(18, 105);
             this.grdVentas.Name = "grdVentas";
             this.grdVentas.RowTemplate.Height = 24;
-            this.grdVentas.Size = new System.Drawing.Size(855, 454);
+            this.grdVentas.Size = new System.Drawing.Size(855, 446);
             this.grdVentas.TabIndex = 9;
             this.grdVentas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdVentas_CellDoubleClick);
             this.grdVentas.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdVentas_KeyDown);
@@ -99,7 +99,7 @@
             // lbFiltroBusqueda
             // 
             this.lbFiltroBusqueda.AutoSize = true;
-            this.lbFiltroBusqueda.Location = new System.Drawing.Point(14, 566);
+            this.lbFiltroBusqueda.Location = new System.Drawing.Point(14, 554);
             this.lbFiltroBusqueda.Name = "lbFiltroBusqueda";
             this.lbFiltroBusqueda.Size = new System.Drawing.Size(279, 23);
             this.lbFiltroBusqueda.TabIndex = 8;
@@ -129,6 +129,7 @@
             this.btnOrdenar.Text = "&Ordenar";
             this.btnOrdenar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnOrdenar.UseVisualStyleBackColor = true;
+            this.btnOrdenar.Click += new System.EventHandler(this.btnOrdenar_Click);
             // 
             // btnBuscar
             // 
@@ -211,42 +212,44 @@
             // actualizarToolStripMenuItem
             // 
             this.actualizarToolStripMenuItem.Name = "actualizarToolStripMenuItem";
-            this.actualizarToolStripMenuItem.Size = new System.Drawing.Size(175, 28);
+            this.actualizarToolStripMenuItem.Size = new System.Drawing.Size(174, 28);
             this.actualizarToolStripMenuItem.Text = "&Actualizar";
             this.actualizarToolStripMenuItem.Click += new System.EventHandler(this.actualizarToolStripMenuItem_Click);
             // 
             // nuevoToolStripMenuItem1
             // 
             this.nuevoToolStripMenuItem1.Name = "nuevoToolStripMenuItem1";
-            this.nuevoToolStripMenuItem1.Size = new System.Drawing.Size(175, 28);
+            this.nuevoToolStripMenuItem1.Size = new System.Drawing.Size(174, 28);
             this.nuevoToolStripMenuItem1.Text = "Nuevo";
             this.nuevoToolStripMenuItem1.Click += new System.EventHandler(this.nuevoToolStripMenuItem1_Click);
             // 
             // modificarToolStripMenuItem
             // 
             this.modificarToolStripMenuItem.Name = "modificarToolStripMenuItem";
-            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(175, 28);
+            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(174, 28);
             this.modificarToolStripMenuItem.Text = "Modificar";
             this.modificarToolStripMenuItem.Click += new System.EventHandler(this.modificarToolStripMenuItem_Click);
             // 
             // eliminarToolStripMenuItem
             // 
             this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
-            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(175, 28);
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(174, 28);
             this.eliminarToolStripMenuItem.Text = "Eliminar";
             this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
             // 
             // buscarToolStripMenuItem
             // 
             this.buscarToolStripMenuItem.Name = "buscarToolStripMenuItem";
-            this.buscarToolStripMenuItem.Size = new System.Drawing.Size(175, 28);
+            this.buscarToolStripMenuItem.Size = new System.Drawing.Size(174, 28);
             this.buscarToolStripMenuItem.Text = "Buscar";
+            this.buscarToolStripMenuItem.Click += new System.EventHandler(this.buscarToolStripMenuItem_Click);
             // 
             // ordenarToolStripMenuItem
             // 
             this.ordenarToolStripMenuItem.Name = "ordenarToolStripMenuItem";
             this.ordenarToolStripMenuItem.Size = new System.Drawing.Size(175, 28);
             this.ordenarToolStripMenuItem.Text = "Ordenar";
+            this.ordenarToolStripMenuItem.Click += new System.EventHandler(this.ordenarToolStripMenuItem_Click);
             // 
             // salidaToolStripMenuItem
             // 
@@ -266,7 +269,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(927, 651);
+            this.ClientSize = new System.Drawing.Size(927, 636);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

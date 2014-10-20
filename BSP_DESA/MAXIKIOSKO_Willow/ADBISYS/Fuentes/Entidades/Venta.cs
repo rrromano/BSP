@@ -14,6 +14,11 @@ namespace ADBISYS.Entidades
 {
     public class Venta
     {
+        ConectarBD objConect = new ConectarBD();
+        DataSet ds = new DataSet();
+        FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
+        string cadenaSql = "";
+        
         #region propiedades
 
         private UInt64 id;
@@ -71,9 +76,6 @@ namespace ADBISYS.Entidades
         }
 
         #endregion
-
-
-        FuncionesGenerales.FuncionesGenerales fg = new ADBISYS.FuncionesGenerales.FuncionesGenerales();
 
         #region Metodos públicos
         //internal List<Venta> obtenerVentas(DateTime Fecha)
@@ -313,5 +315,21 @@ namespace ADBISYS.Entidades
                 fg.mostrarErrorTryCatch(ex);
             }
         }
+
+        public DataSet obtenerCamposVentas()
+        {
+            try
+            {
+                cadenaSql = "EXEC adp_cboBusqueda_Ventas";
+                ds = objConect.ejecutarQuerySelect(cadenaSql);
+                return ds;
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+
+        }
+
     }
 }

@@ -73,14 +73,14 @@
             this.groupBox1.Controls.Add(this.btnActualizar);
             this.groupBox1.Location = new System.Drawing.Point(16, 28);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(778, 520);
+            this.groupBox1.Size = new System.Drawing.Size(778, 482);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
             // lbFiltroBusqueda
             // 
             this.lbFiltroBusqueda.AutoSize = true;
-            this.lbFiltroBusqueda.Location = new System.Drawing.Point(15, 490);
+            this.lbFiltroBusqueda.Location = new System.Drawing.Point(15, 449);
             this.lbFiltroBusqueda.Name = "lbFiltroBusqueda";
             this.lbFiltroBusqueda.Size = new System.Drawing.Size(279, 23);
             this.lbFiltroBusqueda.TabIndex = 9;
@@ -119,7 +119,7 @@
             this.grdMovsCaja.Location = new System.Drawing.Point(19, 103);
             this.grdMovsCaja.Name = "grdMovsCaja";
             this.grdMovsCaja.RowTemplate.Height = 24;
-            this.grdMovsCaja.Size = new System.Drawing.Size(738, 381);
+            this.grdMovsCaja.Size = new System.Drawing.Size(738, 342);
             this.grdMovsCaja.TabIndex = 7;
             this.grdMovsCaja.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdMovsCaja_CellDoubleClick);
             this.grdMovsCaja.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdMovsCaja_KeyDown);
@@ -269,7 +269,7 @@
             // groupBox8
             // 
             this.groupBox8.Controls.Add(this.lblCierreParcial);
-            this.groupBox8.Location = new System.Drawing.Point(569, 553);
+            this.groupBox8.Location = new System.Drawing.Point(569, 517);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(225, 100);
             this.groupBox8.TabIndex = 8;
@@ -289,7 +289,7 @@
             // grpGanancia
             // 
             this.grpGanancia.Controls.Add(this.label1);
-            this.grpGanancia.Location = new System.Drawing.Point(327, 553);
+            this.grpGanancia.Location = new System.Drawing.Point(327, 517);
             this.grpGanancia.Name = "grpGanancia";
             this.grpGanancia.Size = new System.Drawing.Size(225, 100);
             this.grpGanancia.TabIndex = 9;
@@ -312,7 +312,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(811, 668);
+            this.ClientSize = new System.Drawing.Size(811, 636);
             this.Controls.Add(this.grpGanancia);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox1);

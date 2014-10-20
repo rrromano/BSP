@@ -165,7 +165,7 @@ namespace ADBISYS.Formularios.Rubros
                 }
                 else
                 {
-                    MessageBox.Show("Debe seleccionar un Proveedor.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Debe seleccionar un Rubro.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return true;
                 }
             }

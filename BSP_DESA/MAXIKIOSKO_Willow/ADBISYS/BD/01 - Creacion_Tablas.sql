@@ -196,8 +196,8 @@ GO
 --=============================================================================================
 create table VENTAS(
 	ID_Venta            numeric(30) identity not null,
-	Cantidad_Articulos  numeric(10)          not null,
-	Importe             numeric(10,2)        not null, 
+	Importe             numeric(10,2)        not null,
+	Cantidad_Articulos  numeric(10)          not null,	 
 	Estado		          numeric(1)           not null, 
 	Fecha_Venta         datetime             not null,
 	Hora_Venta          varchar(8)           not null,

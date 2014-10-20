@@ -108,6 +108,7 @@ namespace ADBISYS.Formularios.Ventas
                     cadenaSql = cadenaSql + " @tabla = " + fg.fcSql("VENTAS", "String");
                     cadenaSql = cadenaSql + ",@campo_tabla = " + fg.fcSql(fg.obtenerCampoTabla(campoAnterior, campos_tabla).ToString(), "String");
                     cadenaSql = cadenaSql + ",@texto = " + fg.fcSql(textoAnterior, "String").Replace(",", ".");
+                    cadenaSql = cadenaSql + ",@fecha = " + fg.fcSql(fg.appFechaSistema().ToString(), "Datetime");
 
                     ds = objConect.ejecutarQuerySelect(cadenaSql);
                     if (ds.Tables[0].Rows.Count > 0)
@@ -182,7 +183,7 @@ namespace ADBISYS.Formularios.Ventas
                 celdaSeleccionada = grdVentas.CurrentCellAddress.X;
                 filaSeleccionada = grdVentas.CurrentCellAddress.Y;
                 frmNuevaVenta nuevaVenta = new frmNuevaVenta();
-                nuevaVenta.Show();
+                nuevaVenta.ShowDialog();
                 nuevaVenta.Select();
 
                 this.btnActualizar.PerformClick();
@@ -382,7 +383,7 @@ namespace ADBISYS.Formularios.Ventas
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-
+            buscarVenta();
         }
 
         private void grdVentas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -415,6 +416,102 @@ namespace ADBISYS.Formularios.Ventas
             catch (Exception ex)
             {
                 fg.mostrarErrorTryCatch(ex);
+            }
+        }
+
+        private void buscarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            buscarVenta();
+        }
+
+        private void buscarVenta()
+        {
+            Entidades.Venta entVenta = new ADBISYS.Entidades.Venta();
+            ds = entVenta.obtenerVentas(fg.appFechaSistema());
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                mostrarFormularioBusquedaVentas();
+                llenarGrilla();
+                grdVentas = fg.formatoGrilla(grdVentas, 1);
+                grdVentas.Focus();
+            }
+            else
+            {
+                MessageBox.Show("No existen Ventas.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnBuscar.Focus();
+            }
+        }
+
+        private void mostrarFormularioBusquedaVentas()
+        {
+            frmBusquedaVenta buscarVenta = new frmBusquedaVenta();
+            buscarVenta.campo = campoAnterior;
+            buscarVenta.texto = textoAnterior;
+            buscarVenta.estoyBuscando = EstoyBuscando;
+            buscarVenta.ShowDialog();
+            EstoyBuscando = buscarVenta.estoyBuscando;
+            campoAnterior = buscarVenta.campo;
+            textoAnterior = buscarVenta.texto;
+            campos_tabla = buscarVenta.campos_tabla;
+            actualizarLabelFiltroBusqueda();
+            return;
+        }
+
+        private void actualizarLabelFiltroBusqueda()
+        {
+            if (EstoyBuscando == true)
+            {
+                lbFiltroBusqueda.Text = "FILTRO DE BÚSQUEDA --> CAMPO: " + campoAnterior + ", TEXTO: " + textoAnterior + ".";
+            }
+            else
+            {
+                lbFiltroBusqueda.Text = "SIN FILTRO DE BÚSQUEDA.";
+            }
+        }
+
+        private void btnOrdenar_Click(object sender, EventArgs e)
+        {
+            ordenamientoVentas();
+        }
+
+        private void ordenarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ordenamientoVentas();
+        }
+
+        private void ordenamientoVentas()
+        {
+            if (grdVentas.DataSource != null)
+            {
+                mostrarFormularioOrdenarVentas();
+                grdVentas.Focus();
+            }
+            else
+            {
+                MessageBox.Show("No existen Ventas.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnOrdenar.Focus();
+            }
+        }
+
+        private void mostrarFormularioOrdenarVentas()
+        {
+            frmOrdenarVentas ordenarVentas = new frmOrdenarVentas();
+            ordenarVentas.Ascendente = ordenamiento;
+            ordenarVentas.campo = campoOrdenamiento;
+            ordenarVentas.ShowDialog();
+            campoOrdenamiento = ordenarVentas.campo;
+            ordenamiento = ordenarVentas.Ascendente;
+            DataGridViewColumn columna = grdVentas.Columns[campoOrdenamiento];
+            if (campoOrdenamiento != "")
+            {
+                if (ordenamiento == true)
+                {
+                    grdVentas.Sort(columna, ListSortDirection.Ascending);
+                }
+                if (ordenamiento == false)
+                {
+                    grdVentas.Sort(columna, ListSortDirection.Descending);
+                }
             }
         }
     }

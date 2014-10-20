@@ -332,6 +332,12 @@
     <Compile Include="Formularios\Ventas\frmBusquedaArticuloManual.Designer.cs">
       <DependentUpon>frmBusquedaArticuloManual.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Ventas\frmBusquedaVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Ventas\frmBusquedaVenta.Designer.cs">
+      <DependentUpon>frmBusquedaVenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Ventas\frmModificarVenta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -343,6 +349,12 @@
     </Compile>
     <Compile Include="Formularios\Ventas\frmNuevaVenta.Designer.cs">
       <DependentUpon>frmNuevaVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Ventas\frmOrdenarVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Ventas\frmOrdenarVentas.Designer.cs">
+      <DependentUpon>frmOrdenarVentas.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Ventas\frmVentasPrincipal.cs">
       <SubType>Form</SubType>
@@ -485,11 +497,17 @@
     <EmbeddedResource Include="Formularios\Ventas\frmBusquedaArticuloManual.resx">
       <DependentUpon>frmBusquedaArticuloManual.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Ventas\frmBusquedaVenta.resx">
+      <DependentUpon>frmBusquedaVenta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Ventas\frmModificarVenta.resx">
       <DependentUpon>frmModificarVenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Ventas\frmNuevaVenta.resx">
       <DependentUpon>frmNuevaVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Ventas\frmOrdenarVentas.resx">
+      <DependentUpon>frmOrdenarVentas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Ventas\frmVentasPrincipal.resx">
       <DependentUpon>frmVentasPrincipal.cs</DependentUpon>

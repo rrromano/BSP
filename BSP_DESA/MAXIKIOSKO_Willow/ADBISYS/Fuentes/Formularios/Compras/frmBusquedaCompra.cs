@@ -105,6 +105,7 @@ namespace ADBISYS.Formularios.Compras
                 cadenaSql = cadenaSql + " @tabla = " + fg.fcSql("COMPRAS", "String");
                 cadenaSql = cadenaSql + ",@campo_tabla = " + fg.fcSql(obtenerCampoTabla().ToString(), "String");
                 cadenaSql = cadenaSql + ",@texto = " + fg.fcSql(txtTexto.Text, "String").Replace(",",".");
+                cadenaSql = cadenaSql + ",@fecha = " + fg.fcSql(fg.appFechaSistema().ToString(), "Datetime");
 
                 Ds.Reset();
                 Ds = objConect.ejecutarQuerySelect(cadenaSql);

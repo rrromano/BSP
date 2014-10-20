@@ -8,7 +8,8 @@ Go
 
 Create procedure adp_busqueda_compras @tabla       varchar(255),
 																			@campo_tabla varchar(255),
-																			@texto			 varchar(255)
+																			@texto			 varchar(255),
+																			@fecha			 varchar(8)
 as
 
 BEGIN TRY
@@ -23,7 +24,7 @@ BEGIN TRY
 										 convert(varchar,A.FECHA_COMPRA,120) AS FECHA_COMPRA,
 										 convert(varchar,A.fecha_modif,120) AS FECHA_MODIF,
 										 UPPER(A.login_modif) AS LOGIN_MODIF,
-										 UPPER(A.term_modif)  AS TERM_MODIF from ' + @tabla + ' A INNER JOIN PROVEEDORES B ON (A.ID_PROVEEDOR = B.ID_PROVEEDOR) WHERE A.ESTADO = 1 AND B.NOMBRE LIKE ''' + @texto + '%''')
+										 UPPER(A.term_modif)  AS TERM_MODIF from ' + @tabla + ' A INNER JOIN PROVEEDORES B ON (A.ID_PROVEEDOR = B.ID_PROVEEDOR) WHERE A.ESTADO = 1 AND A.FECHA_COMPRA = convert(varchar,' + @fecha + ',120) AND B.NOMBRE LIKE ''' + @texto + '%''')
 		end else
 		begin
 			exec ('select  UPPER(Id_Compra)			AS CÓDIGO,
@@ -32,7 +33,7 @@ BEGIN TRY
 										 convert(varchar,A.FECHA_COMPRA,120) AS FECHA_COMPRA,
 										 convert(varchar,A.fecha_modif,120) AS FECHA_MODIF,
 										 UPPER(A.login_modif) AS LOGIN_MODIF,
-										 UPPER(A.term_modif)  AS TERM_MODIF from ' + @tabla + ' A INNER JOIN PROVEEDORES B ON (A.ID_PROVEEDOR = B.ID_PROVEEDOR)' + ' WHERE A.ESTADO = 1 AND ' + @campo_tabla + ' like ''' + @texto + '%''')
+										 UPPER(A.term_modif)  AS TERM_MODIF from ' + @tabla + ' A INNER JOIN PROVEEDORES B ON (A.ID_PROVEEDOR = B.ID_PROVEEDOR)' + ' WHERE A.ESTADO = 1 AND A.FECHA_COMPRA = convert(varchar,' + @fecha + ',120) AND ' + @campo_tabla + ' like ''' + @texto + '%''')
 		end
 							
   PRINT 'FIN ACTUALIZACIÓN OK'

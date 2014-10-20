@@ -83,6 +83,8 @@ sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\81 - adp_obte
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\82 - adp_InsertaTodosLosArticulosDeVenta_Temporal.sql"
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\82 - adp_modificarVenta.sql"
 sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\83 - adp_modificarVenta.sql"
+sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\84 - adp_cboBusqueda_ventas.sql"
+sqlcmd -S .\SQLSERVER2008 -U bsp -P bspadmin -d "WIAdbisys" -i "BD\85 - adp_busqueda_ventas.sql"
 ECHO.
 ECHO PROCESO FINALIZADO
 ECHO. 
