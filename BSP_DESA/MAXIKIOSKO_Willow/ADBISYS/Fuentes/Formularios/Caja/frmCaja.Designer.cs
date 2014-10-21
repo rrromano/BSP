@@ -54,7 +54,7 @@
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.lblCierreParcial = new System.Windows.Forms.Label();
             this.grpGanancia = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblGanancia = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMovsCaja)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -288,7 +288,7 @@
             // 
             // grpGanancia
             // 
-            this.grpGanancia.Controls.Add(this.label1);
+            this.grpGanancia.Controls.Add(this.lblGanancia);
             this.grpGanancia.Location = new System.Drawing.Point(327, 517);
             this.grpGanancia.Name = "grpGanancia";
             this.grpGanancia.Size = new System.Drawing.Size(225, 100);
@@ -297,15 +297,15 @@
             this.grpGanancia.Text = "Ganancia";
             this.grpGanancia.Visible = false;
             // 
-            // label1
+            // lblGanancia
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(53, 37);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(113, 36);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "TOTAL";
+            this.lblGanancia.AutoSize = true;
+            this.lblGanancia.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGanancia.Location = new System.Drawing.Point(53, 37);
+            this.lblGanancia.Name = "lblGanancia";
+            this.lblGanancia.Size = new System.Drawing.Size(113, 36);
+            this.lblGanancia.TabIndex = 0;
+            this.lblGanancia.Text = "TOTAL";
             // 
             // frmCaja
             // 
@@ -367,6 +367,6 @@
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.Label lblCierreParcial;
         private System.Windows.Forms.GroupBox grpGanancia;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblGanancia;
     }
 }

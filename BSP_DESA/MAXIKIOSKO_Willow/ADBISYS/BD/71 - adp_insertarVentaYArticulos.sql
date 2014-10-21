@@ -67,13 +67,15 @@ BEGIN TRY
 	                                ID_Item_Venta, 
 	                                ID_Articulo, 
 	                                Cantidad,
-	                                Precio_Venta)
+	                                Precio_Venta,
+	                                Precio_Compra)
   	
 	  SELECT  @ID_MAX_VENTA, 
 	          B.ID_Item_Venta,
 	          B.ID_Articulo,
 	          B.Cantidad,
-	          A.Precio_Venta
+	          A.Precio_Venta,
+	          A.Precio_Compra
 	  FROM ARTICULOS A
 		  INNER JOIN TMP_ARTICULOS_VENTAS B ON (A.ID_Articulo = B.ID_Articulo)
     WHERE A.ESTADO = 1

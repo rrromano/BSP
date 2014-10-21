@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReporteVentas));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.lblTotal = new System.Windows.Forms.Label();
+            this.lblGanancia = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.btnVisualizar = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -73,23 +73,23 @@
             // 
             // groupBox8
             // 
-            this.groupBox8.Controls.Add(this.lblTotal);
+            this.groupBox8.Controls.Add(this.lblGanancia);
             this.groupBox8.Location = new System.Drawing.Point(19, 516);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(301, 114);
             this.groupBox8.TabIndex = 6;
             this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Total";
+            this.groupBox8.Text = "Ganancia";
             // 
-            // lblTotal
+            // lblGanancia
             // 
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(97, 43);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(113, 36);
-            this.lblTotal.TabIndex = 0;
-            this.lblTotal.Text = "TOTAL";
+            this.lblGanancia.AutoSize = true;
+            this.lblGanancia.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGanancia.Location = new System.Drawing.Point(97, 43);
+            this.lblGanancia.Name = "lblGanancia";
+            this.lblGanancia.Size = new System.Drawing.Size(113, 36);
+            this.lblGanancia.TabIndex = 0;
+            this.lblGanancia.Text = "TOTAL";
             // 
             // groupBox7
             // 
@@ -274,6 +274,6 @@
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Button btnVisualizar;
         private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.Label lblTotal;
+        private System.Windows.Forms.Label lblGanancia;
     }
 }

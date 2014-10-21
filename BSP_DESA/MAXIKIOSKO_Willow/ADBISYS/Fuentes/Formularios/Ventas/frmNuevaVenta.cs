@@ -539,6 +539,5 @@ namespace ADBISYS.Formularios.Ventas
         {
             fg.keyPressNumeros(e);
         }
-
     }
 }

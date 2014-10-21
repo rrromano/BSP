@@ -133,14 +133,15 @@ GO
 ------------------------------------ TABLE ARTICULOS ------------------------------------------
 --=============================================================================================
 create table ARTICULOS(
-	ID_Articulo  numeric(20)   not null, 
-	Descripcion  varchar(255)  not null,
-	Precio_Venta numeric(10,2) not null,
-	Rubro        int           not null,
-	Estado			 numeric(1)		 not null,
-	fecha_modif  datetime      null,
-	login_modif  varchar(255)  null,
-	term_modif   varchar(255)  null
+	ID_Articulo   numeric(20)   not null, 
+	Descripcion   varchar(255)  not null,
+	Precio_Venta  numeric(10,2) not null,
+	Precio_Compra numeric(10,2) not null,
+	Rubro         int           not null,
+	Estado			  numeric(1)		not null,
+	fecha_modif   datetime      null,
+	login_modif   varchar(255)  null,
+	term_modif    varchar(255)  null
 )
 GO
 ALTER TABLE ARTICULOS ADD PRIMARY KEY(ID_Articulo)
@@ -154,14 +155,15 @@ GO
 ------------------------------------ TABLE ARTICULOS_ELIMINADOS -------------------------------
 --=============================================================================================
 create table ARTICULOS_ELIMINADOS(
-	ID_Articulo  numeric(20)   not null, 
-	Descripcion  varchar(255)  not null,
-	Precio_Venta numeric(10,2) not null,
-	Rubro        int           not null,
-	Estado			 numeric(1)		 not null,
-	fecha_modif  datetime      null,
-	login_modif  varchar(255)  null,
-	term_modif   varchar(255)  null
+	ID_Articulo   numeric(20)   not null, 
+	Descripcion   varchar(255)  not null,
+	Precio_Venta  numeric(10,2) not null,
+	Precio_Compra numeric(10,2) not null,
+	Rubro         int           not null,
+	Estado			  numeric(1)		not null,
+	fecha_modif   datetime      null,
+	login_modif   varchar(255)  null,
+	term_modif    varchar(255)  null
 )
 GO	
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA ARTICULOS_ELIMINADOS.'
@@ -215,11 +217,12 @@ GO
 ------------------------------------ TABLE ARTICULOS_VENTAS -------------------------------
 --=============================================================================================
 create table ARTICULOS_VENTAS(
-	ID_Venta        numeric(30)	not null, 
-	ID_Item_Venta	  numeric(20)	not null,
-	ID_Articulo     numeric(20)	not null, 
-	Cantidad	      numeric(10)	not null,
-	Precio_Venta    numeric(10,2)	not null  --Agrego el precio para que quede registrado a que precio se vendió el articulo ese día, ya que mañana ese artículo puede cambiar.
+	ID_Venta        numeric(30)		not null, 
+	ID_Item_Venta	  numeric(20)		not null,
+	ID_Articulo     numeric(20)		not null, 
+	Cantidad	      numeric(10)		not null,
+	Precio_Venta    numeric(10,2)	not null, --Agrego el precio de venta para que quede registrado a que precio se vendió el articulo ese día, ya que mañana ese artículo puede cambiar.
+	Precio_Compra   numeric(10,2)	not null  --Agrego el precio de compra para que quede registrado a que precio se compró el articulo, ya que mañana ese artículo puede cambiar.
 )
 GO
 ALTER TABLE ARTICULOS_VENTAS ADD PRIMARY KEY(ID_Venta,ID_Item_Venta)

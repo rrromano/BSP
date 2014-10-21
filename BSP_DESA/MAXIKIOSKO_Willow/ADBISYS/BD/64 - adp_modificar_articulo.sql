@@ -9,6 +9,7 @@ Go
 Create procedure adp_modificar_articulo (@Articulo_ID_Articulo		numeric(20),
 																				 @Articulo_Descripcion		varchar(255),
 																				 @Articulo_Precio_Venta		numeric(10,2),
+																				 @Articulo_Precio_Compra	numeric(10,2),
 																				 @Articulo_Rubro					numeric(20),
 																				 @Articulo_Login					varchar(255) = null)
 as
@@ -20,6 +21,7 @@ BEGIN TRY
 	UPDATE ARTICULOS 
 		SET DESCRIPCION = @Articulo_Descripcion,
 				PRECIO_VENTA = @Articulo_Precio_Venta,
+				PRECIO_COMPRA = @Articulo_Precio_Compra,
 				RUBRO = @Articulo_Rubro,
 			  FECHA_MODIF	= GETDATE(),
 			  LOGIN_MODIF	= @Articulo_Login,

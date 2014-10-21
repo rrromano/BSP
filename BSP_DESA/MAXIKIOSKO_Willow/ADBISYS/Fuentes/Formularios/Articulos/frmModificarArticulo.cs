@@ -19,7 +19,7 @@ namespace ADBISYS.Formularios.Articulos
         DataSet ds = new DataSet();
         FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
         string cadenaSql, rubroAnterior, usuario = "";
-        public string articulo_codigo, articulo_desccripcion, articulo_precioVenta, articulo_rubro = "";
+        public string articulo_codigo, articulo_desccripcion, articulo_precioVenta, articulo_precioCompra, articulo_rubro = "";
         Dictionary<int, string> rubros = new Dictionary<int, string>();
         
         public frmModificarArticulo()
@@ -43,6 +43,7 @@ namespace ADBISYS.Formularios.Articulos
             txtCodigo.Text = articulo_codigo;
             txtDescripcion.Text = articulo_desccripcion;
             txtPrecioVenta.Text = articulo_precioVenta;
+            txtPrecioCompra.Text = articulo_precioCompra;
             cboRubro.Text = articulo_rubro;
             txtDescripcion.Focus();
         }
@@ -88,6 +89,7 @@ namespace ADBISYS.Formularios.Articulos
         {
             txtDescripcion.Text = "";
             txtPrecioVenta.Text = "";
+            txtPrecioCompra.Text = "";
             cboRubro.Text = null;
             txtDescripcion.Focus();
         }
@@ -118,6 +120,7 @@ namespace ADBISYS.Formularios.Articulos
             cadenaSql = cadenaSql + " @Articulo_ID_Articulo = " + fg.fcSql(txtCodigo.Text.Trim(), "String");
             cadenaSql = cadenaSql + ",@Articulo_Descripcion = " + fg.fcSql(txtDescripcion.Text.Trim(), "String");
             cadenaSql = cadenaSql + ",@Articulo_Precio_Venta = " + fg.fcSql(txtPrecioVenta.Text.Replace(",", "."), "Double");
+            cadenaSql = cadenaSql + ",@Articulo_Precio_Compra = " + fg.fcSql(txtPrecioCompra.Text.Replace(",", "."), "Double");
             cadenaSql = cadenaSql + ",@Articulo_Rubro = " + obtenerIdRubro().ToString();
             cadenaSql = cadenaSql + ",@Articulo_Login = " + fg.fcSql(usuario, "String");
 
@@ -171,6 +174,19 @@ namespace ADBISYS.Formularios.Articulos
                 return true;
             }
 
+            if (fg.esUnNumeroDecimal(txtPrecioCompra.Text) == false)
+            {
+                MessageBox.Show("El Precio Compra ingresado es inválido.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtPrecioCompra.Focus();
+                return true;
+            }
+            if (double.Parse(txtPrecioCompra.Text.ToString()) == 0)
+            {
+                MessageBox.Show("El Precio Compra ingresado es inválido.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtPrecioCompra.Focus();
+                return true;
+            }
+
             return false;
         }
 
@@ -187,6 +203,13 @@ namespace ADBISYS.Formularios.Articulos
             {
                 MessageBox.Show("El campo Precio Venta es obligatorio.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtPrecioVenta.Focus();
+                return true;
+            }
+
+            if (txtPrecioCompra.Text == "")
+            {
+                MessageBox.Show("El campo Precio Compra es obligatorio.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtPrecioCompra.Focus();
                 return true;
             }
 

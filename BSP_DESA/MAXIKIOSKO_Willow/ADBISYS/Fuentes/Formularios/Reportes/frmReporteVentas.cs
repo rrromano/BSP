@@ -43,7 +43,7 @@ namespace ADBISYS.Formularios.Reportes
                     grdVentas = fg.formatoGrilla(grdVentas, 1);
                     btnGenerarReporte.Enabled = true;
                     btnVisualizar.Enabled = true;
-                    actualizarLabelTotal();
+                    //actualizarLabelTotal();
                 }
                 else
                 {
@@ -75,24 +75,24 @@ namespace ADBISYS.Formularios.Reportes
             }
         }
 
-        private void actualizarLabelTotal()
-        {
-            try
-            {
-                Entidades.Reportes entRepo = new ADBISYS.Entidades.Reportes();
-                Ds = entRepo.obtenerTotalVentas(DateTime.Parse(dtpFechaDesde.Text.ToString()), DateTime.Parse(dtpFechaHasta.Text.ToString()));
+        //private void actualizarLabelTotal()
+        //{
+        //    try
+        //    {
+        //        Entidades.Reportes entRepo = new ADBISYS.Entidades.Reportes();
+        //        Ds = entRepo.obtenerTotalVentas(DateTime.Parse(dtpFechaDesde.Text.ToString()), DateTime.Parse(dtpFechaHasta.Text.ToString()));
 
-                if (Ds.Tables[0].Rows.Count > 0)
-                {
-                    lblTotal.Text = Ds.Tables[0].Rows[0]["IMPORTE"].ToString();
-                }
-                return;
-            }
-            catch (Exception r)
-            {
-                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        //        if (Ds.Tables[0].Rows.Count > 0)
+        //        {
+        //            lblGanancia.Text = Ds.Tables[0].Rows[0]["IMPORTE"].ToString();
+        //        }
+        //        return;
+        //    }
+        //    catch (Exception r)
+        //    {
+        //        MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
 
         private bool validarFechas()
         {
@@ -140,7 +140,7 @@ namespace ADBISYS.Formularios.Reportes
 
         private void vaciarImporte()
         {
-            lblTotal.Text = "0,00";
+            lblGanancia.Text = "0,00";
         }
 
         private void btnVisualizar_Click(object sender, EventArgs e)

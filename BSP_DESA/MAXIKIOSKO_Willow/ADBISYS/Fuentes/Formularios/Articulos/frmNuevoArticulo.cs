@@ -71,6 +71,7 @@ namespace ADBISYS.Formularios.Articulos
             txtCodigo.Text = "";
             txtDescripcion.Text = "";
             txtPrecioVenta.Text = "";
+            txtPrecioCompra.Text = "";
             cboRubro.Text = null;
             txtCodigo.Focus();
         }
@@ -123,6 +124,7 @@ namespace ADBISYS.Formularios.Articulos
             cadenaSql = cadenaSql + " @Articulo_ID_Articulo = " + fg.fcSql(txtCodigo.Text.Trim(), "String");
             cadenaSql = cadenaSql + ",@Articulo_Descripcion = " + fg.fcSql(txtDescripcion.Text.Trim(), "String");
             cadenaSql = cadenaSql + ",@Articulo_Precio_Venta = " + fg.fcSql(txtPrecioVenta.Text.Replace(",","."), "Double");
+            cadenaSql = cadenaSql + ",@Articulo_Precio_Compra = " + fg.fcSql(txtPrecioCompra.Text.Replace(",", "."), "Double");
             cadenaSql = cadenaSql + ",@Articulo_Rubro = " + obtenerIdRubro().ToString();
             cadenaSql = cadenaSql + ",@Articulo_Login = " + fg.fcSql(usuario, "String");
 
@@ -215,6 +217,19 @@ namespace ADBISYS.Formularios.Articulos
                 return true;
             }
 
+            if (fg.esUnNumeroDecimal(txtPrecioCompra.Text) == false)
+            {
+                MessageBox.Show("El Precio Compra ingresado es inválido.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtPrecioCompra.Focus();
+                return true;
+            }
+            if (double.Parse(txtPrecioCompra.Text.ToString()) == 0)
+            {
+                MessageBox.Show("El Precio Compra ingresado es inválido.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtPrecioCompra.Focus();
+                return true;
+            }
+
             return false;
         }
 
@@ -241,6 +256,13 @@ namespace ADBISYS.Formularios.Articulos
                 return true;
             }
 
+            if (txtPrecioCompra.Text == "")
+            {
+                MessageBox.Show("El campo Precio Compra es obligatorio.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtPrecioCompra.Focus();
+                return true;
+            }
+
             if (cboRubro.Text == "")
             {
                 MessageBox.Show("Debe seleccionar un Rubro.", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -249,6 +271,12 @@ namespace ADBISYS.Formularios.Articulos
             }
 
             return false;
+        }
+
+        private void txtPrecioCompra_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            fg.keyPressNumerosDecimales(e, txtPrecioCompra);
+            fg.keyPressNumericoDiezDosDecimales(e, txtPrecioCompra.Text.Length, txtPrecioCompra.Text);
         }
     }
 }

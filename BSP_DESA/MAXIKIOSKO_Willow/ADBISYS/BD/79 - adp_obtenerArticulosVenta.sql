@@ -17,6 +17,7 @@ BEGIN TRY
 	        UPPER(B.DESCRIPCION)	AS 'DESCRIPCIÓN',
 	        A.Cantidad AS 'CANTIDAD',
 	        A.Precio_Venta AS 'PRECIO_VENTA',
+	        A.Precio_Compra AS 'PRECIO_COMPRA',
 	        C.Descripcion AS 'RUBRO'	        
 	        
 	FROM ARTICULOS_VENTAS A

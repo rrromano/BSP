@@ -8,6 +8,7 @@ Go
 Create procedure adp_nuevo_articulo (@Articulo_ID_Articulo		numeric(20),
 																		 @Articulo_Descripcion		varchar(255),
 																		 @Articulo_Precio_Venta		numeric(10,2),
+																		 @Articulo_Precio_Compra	numeric(10,2),
 																		 @Articulo_Rubro					numeric(20),
 																		 @Articulo_Login					varchar(255) = null)
 as
@@ -19,6 +20,7 @@ BEGIN TRY
 	INSERT INTO ARTICULOS(ID_Articulo,
 												Descripcion,
 												Precio_Venta,
+												Precio_Compra,
 												Rubro,
 												Estado,
 												fecha_modif,
@@ -28,6 +30,7 @@ BEGIN TRY
 	VALUES (@Articulo_ID_Articulo,
 					UPPER(@Articulo_Descripcion),
 					@Articulo_Precio_Venta,
+					@Articulo_Precio_Compra,
 					@Articulo_Rubro,
 					1,
 					GETDATE(),

@@ -223,6 +223,7 @@ namespace ADBISYS.Formularios.Articulos
                 modificarArticulo.articulo_codigo = grdArticulos.Rows[filaSeleccionada].Cells["CÓDIGO"].Value.ToString();
                 modificarArticulo.articulo_desccripcion = grdArticulos.Rows[filaSeleccionada].Cells["DESCRIPCIÓN"].Value.ToString();
                 modificarArticulo.articulo_precioVenta = grdArticulos.Rows[filaSeleccionada].Cells["PRECIO_VENTA"].Value.ToString();
+                modificarArticulo.articulo_precioCompra = grdArticulos.Rows[filaSeleccionada].Cells["PRECIO_COMPRA"].Value.ToString();
                 modificarArticulo.articulo_rubro = grdArticulos.Rows[filaSeleccionada].Cells["RUBRO"].Value.ToString();
                 modificarArticulo.ShowDialog();
             }

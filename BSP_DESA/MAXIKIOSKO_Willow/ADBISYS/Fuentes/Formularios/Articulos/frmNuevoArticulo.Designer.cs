@@ -44,12 +44,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.txtPrecioCompra = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtPrecioCompra);
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.txtDescripcion);
             this.groupBox1.Controls.Add(this.label3);
@@ -65,36 +69,36 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Location = new System.Drawing.Point(23, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(494, 432);
+            this.groupBox1.Size = new System.Drawing.Size(518, 474);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.chkCargaMasiva);
-            this.groupBox2.Location = new System.Drawing.Point(27, 239);
+            this.groupBox2.Location = new System.Drawing.Point(27, 283);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(440, 76);
-            this.groupBox2.TabIndex = 6;
+            this.groupBox2.Size = new System.Drawing.Size(465, 76);
+            this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             // 
             // chkCargaMasiva
             // 
             this.chkCargaMasiva.AutoSize = true;
-            this.chkCargaMasiva.Location = new System.Drawing.Point(84, 30);
+            this.chkCargaMasiva.Location = new System.Drawing.Point(93, 30);
             this.chkCargaMasiva.Name = "chkCargaMasiva";
             this.chkCargaMasiva.Size = new System.Drawing.Size(280, 27);
-            this.chkCargaMasiva.TabIndex = 6;
+            this.chkCargaMasiva.TabIndex = 7;
             this.chkCargaMasiva.Text = "Carga Masiva de Artículos";
             this.chkCargaMasiva.UseVisualStyleBackColor = true;
             // 
             // txtDescripcion
             // 
             this.txtDescripcion.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescripcion.Location = new System.Drawing.Point(158, 87);
+            this.txtDescripcion.Location = new System.Drawing.Point(173, 84);
             this.txtDescripcion.MaxLength = 255;
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(309, 29);
+            this.txtDescripcion.Size = new System.Drawing.Size(319, 29);
             this.txtDescripcion.TabIndex = 2;
             this.txtDescripcion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescripcion_KeyPress);
             // 
@@ -102,7 +106,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(23, 90);
+            this.label3.Location = new System.Drawing.Point(23, 87);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(122, 23);
             this.label3.TabIndex = 8;
@@ -112,10 +116,10 @@
             // 
             this.btnLimpiar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiar.Image")));
             this.btnLimpiar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnLimpiar.Location = new System.Drawing.Point(173, 336);
+            this.btnLimpiar.Location = new System.Drawing.Point(186, 380);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(143, 67);
-            this.btnLimpiar.TabIndex = 8;
+            this.btnLimpiar.TabIndex = 9;
             this.btnLimpiar.Text = "&Limpiar";
             this.btnLimpiar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnLimpiar.UseVisualStyleBackColor = true;
@@ -124,10 +128,10 @@
             // btnNuevoRubro
             // 
             this.btnNuevoRubro.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevoRubro.Image")));
-            this.btnNuevoRubro.Location = new System.Drawing.Point(422, 193);
+            this.btnNuevoRubro.Location = new System.Drawing.Point(447, 233);
             this.btnNuevoRubro.Name = "btnNuevoRubro";
             this.btnNuevoRubro.Size = new System.Drawing.Size(45, 31);
-            this.btnNuevoRubro.TabIndex = 5;
+            this.btnNuevoRubro.TabIndex = 6;
             this.btnNuevoRubro.UseVisualStyleBackColor = true;
             this.btnNuevoRubro.Click += new System.EventHandler(this.btnNuevoRubro_Click);
             // 
@@ -135,10 +139,10 @@
             // 
             this.btnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptar.Image")));
             this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnAceptar.Location = new System.Drawing.Point(322, 336);
+            this.btnAceptar.Location = new System.Drawing.Point(347, 380);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(145, 67);
-            this.btnAceptar.TabIndex = 7;
+            this.btnAceptar.TabIndex = 8;
             this.btnAceptar.Text = "&Aceptar";
             this.btnAceptar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAceptar.UseVisualStyleBackColor = true;
@@ -148,10 +152,10 @@
             // 
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCancelar.Location = new System.Drawing.Point(27, 336);
+            this.btnCancelar.Location = new System.Drawing.Point(27, 380);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(140, 67);
-            this.btnCancelar.TabIndex = 9;
+            this.btnCancelar.TabIndex = 10;
             this.btnCancelar.Text = "&Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -162,28 +166,28 @@
             this.cboRubro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboRubro.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboRubro.FormattingEnabled = true;
-            this.cboRubro.Location = new System.Drawing.Point(158, 193);
+            this.cboRubro.Location = new System.Drawing.Point(173, 234);
             this.cboRubro.Name = "cboRubro";
-            this.cboRubro.Size = new System.Drawing.Size(258, 30);
-            this.cboRubro.TabIndex = 4;
+            this.cboRubro.Size = new System.Drawing.Size(268, 30);
+            this.cboRubro.TabIndex = 5;
             // 
             // txtPrecioVenta
             // 
             this.txtPrecioVenta.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrecioVenta.Location = new System.Drawing.Point(158, 140);
+            this.txtPrecioVenta.Location = new System.Drawing.Point(173, 134);
             this.txtPrecioVenta.MaxLength = 11;
             this.txtPrecioVenta.Name = "txtPrecioVenta";
-            this.txtPrecioVenta.Size = new System.Drawing.Size(309, 29);
+            this.txtPrecioVenta.Size = new System.Drawing.Size(319, 29);
             this.txtPrecioVenta.TabIndex = 3;
             this.txtPrecioVenta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioVenta_KeyPress);
             // 
             // txtCodigo
             // 
             this.txtCodigo.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigo.Location = new System.Drawing.Point(158, 34);
+            this.txtCodigo.Location = new System.Drawing.Point(173, 34);
             this.txtCodigo.MaxLength = 19;
             this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(309, 29);
+            this.txtCodigo.Size = new System.Drawing.Size(319, 29);
             this.txtCodigo.TabIndex = 1;
             this.txtCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigo_KeyPress);
             // 
@@ -201,7 +205,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(23, 196);
+            this.label2.Location = new System.Drawing.Point(23, 240);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 23);
             this.label2.TabIndex = 1;
@@ -211,17 +215,37 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(23, 143);
+            this.label5.Location = new System.Drawing.Point(23, 137);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(129, 23);
             this.label5.TabIndex = 4;
             this.label5.Text = "Precio Venta";
             // 
+            // txtPrecioCompra
+            // 
+            this.txtPrecioCompra.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrecioCompra.Location = new System.Drawing.Point(173, 184);
+            this.txtPrecioCompra.MaxLength = 11;
+            this.txtPrecioCompra.Name = "txtPrecioCompra";
+            this.txtPrecioCompra.Size = new System.Drawing.Size(319, 29);
+            this.txtPrecioCompra.TabIndex = 4;
+            this.txtPrecioCompra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioCompra_KeyPress);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(23, 187);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(149, 23);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Precio Compra";
+            // 
             // frmNuevoArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(538, 463);
+            this.ClientSize = new System.Drawing.Size(564, 506);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Verdana", 10.8F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -258,5 +282,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.CheckBox chkCargaMasiva;
+        private System.Windows.Forms.TextBox txtPrecioCompra;
+        private System.Windows.Forms.Label label4;
     }
 }
