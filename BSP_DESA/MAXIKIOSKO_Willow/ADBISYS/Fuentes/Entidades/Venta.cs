@@ -328,8 +328,26 @@ namespace ADBISYS.Entidades
             {
                 throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
             }
-
         }
 
+        public DataSet obtenerGanancia(DateTime fechaDesde, DateTime fechaHasta)
+        {
+            try
+            {
+                ConectarBD con = new ConectarBD();
+                DataSet ds = new DataSet();
+                FuncionesGenerales.FuncionesGenerales fg = new FuncionesGenerales.FuncionesGenerales();
+                String cadenaSql = "";
+
+                cadenaSql = "EXEC adp_obtener_ganancia @FECHA_DESDE = " + fg.fcSql(fechaDesde.ToString(), "DATETIME");
+                cadenaSql = cadenaSql + ", @FECHA_HASTA = " + fg.fcSql(fechaHasta.ToString(), "DATETIME");
+                ds = con.ejecutarQuerySelect(cadenaSql);
+                return ds;
+            }
+            catch (Exception e)
+            {
+                throw new System.ArgumentException("[Error] - [" + e.Message.ToString() + "]");
+            }
+        }
     }
 }

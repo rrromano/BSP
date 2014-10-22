@@ -43,7 +43,7 @@ namespace ADBISYS.Formularios.Reportes
                     grdVentas = fg.formatoGrilla(grdVentas, 1);
                     btnGenerarReporte.Enabled = true;
                     btnVisualizar.Enabled = true;
-                    //actualizarLabelTotal();
+                    actualizarGanancia();
                 }
                 else
                 {
@@ -73,6 +73,15 @@ namespace ADBISYS.Formularios.Reportes
             {
                 MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void actualizarGanancia()
+        {
+            Entidades.Venta entVentas = new Entidades.Venta();
+            DataSet Ds = new DataSet();
+            Ds.Reset();
+            Ds = entVentas.obtenerGanancia(DateTime.Parse(dtpFechaDesde.Text.ToString()), DateTime.Parse(dtpFechaHasta.Text.ToString()));
+            lblGanancia.Text = Ds.Tables[0].Rows[0]["Ganancia"].ToString();
         }
 
         //private void actualizarLabelTotal()

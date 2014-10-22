@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReporteCajaDiaria));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpGanancia = new System.Windows.Forms.GroupBox();
+            this.lblGanancia = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnItemsEliminados = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -40,15 +42,13 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.dtpFechaCaja = new System.Windows.Forms.DateTimePicker();
-            this.grpGanancia = new System.Windows.Forms.GroupBox();
-            this.lblGanancia = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            this.grpGanancia.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMovimientosCaja)).BeginInit();
             this.groupBox2.SuspendLayout();
-            this.grpGanancia.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -63,6 +63,26 @@
             this.groupBox1.Size = new System.Drawing.Size(799, 646);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // grpGanancia
+            // 
+            this.grpGanancia.Controls.Add(this.lblGanancia);
+            this.grpGanancia.Location = new System.Drawing.Point(19, 516);
+            this.grpGanancia.Name = "grpGanancia";
+            this.grpGanancia.Size = new System.Drawing.Size(302, 112);
+            this.grpGanancia.TabIndex = 10;
+            this.grpGanancia.TabStop = false;
+            this.grpGanancia.Text = "Ganancia";
+            // 
+            // lblGanancia
+            // 
+            this.lblGanancia.AutoSize = true;
+            this.lblGanancia.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGanancia.Location = new System.Drawing.Point(85, 43);
+            this.lblGanancia.Name = "lblGanancia";
+            this.lblGanancia.Size = new System.Drawing.Size(113, 36);
+            this.lblGanancia.TabIndex = 0;
+            this.lblGanancia.Text = "TOTAL";
             // 
             // groupBox5
             // 
@@ -175,27 +195,6 @@
             this.dtpFechaCaja.TabIndex = 1;
             this.dtpFechaCaja.ValueChanged += new System.EventHandler(this.dtpFechaCaja_ValueChanged);
             // 
-            // grpGanancia
-            // 
-            this.grpGanancia.Controls.Add(this.lblGanancia);
-            this.grpGanancia.Location = new System.Drawing.Point(19, 516);
-            this.grpGanancia.Name = "grpGanancia";
-            this.grpGanancia.Size = new System.Drawing.Size(302, 112);
-            this.grpGanancia.TabIndex = 10;
-            this.grpGanancia.TabStop = false;
-            this.grpGanancia.Text = "Ganancia";
-            this.grpGanancia.Visible = false;
-            // 
-            // lblGanancia
-            // 
-            this.lblGanancia.AutoSize = true;
-            this.lblGanancia.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGanancia.Location = new System.Drawing.Point(85, 43);
-            this.lblGanancia.Name = "lblGanancia";
-            this.lblGanancia.Size = new System.Drawing.Size(113, 36);
-            this.lblGanancia.TabIndex = 0;
-            this.lblGanancia.Text = "TOTAL";
-            // 
             // frmReporteCajaDiaria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
@@ -209,14 +208,15 @@
             this.Name = "frmReporteCajaDiaria";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reporte de Caja Diaria";
+            this.Load += new System.EventHandler(this.frmReporteCajaDiaria_Load);
             this.groupBox1.ResumeLayout(false);
+            this.grpGanancia.ResumeLayout(false);
+            this.grpGanancia.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdMovimientosCaja)).EndInit();
             this.groupBox2.ResumeLayout(false);
-            this.grpGanancia.ResumeLayout(false);
-            this.grpGanancia.PerformLayout();
             this.ResumeLayout(false);
 
         }

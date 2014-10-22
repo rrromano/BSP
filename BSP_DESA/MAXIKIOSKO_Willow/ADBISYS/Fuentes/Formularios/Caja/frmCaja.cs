@@ -231,6 +231,7 @@ namespace ADBISYS.Formularios.Caja
                 llenarGrillaMovimientosCaja();
                 grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 1);
                 actualizarCierreParcial();
+                actualizarGanancia();
             }
             catch (Exception ex)
             {
@@ -254,11 +255,21 @@ namespace ADBISYS.Formularios.Caja
                 llenarGrillaMovimientosCaja();
                 grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 1);
                 actualizarCierreParcial();
+                actualizarGanancia();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void actualizarGanancia()
+        {
+            Entidades.Venta entVentas = new Entidades.Venta();
+            DataSet Ds = new DataSet();
+            Ds.Reset();
+            Ds = entVentas.obtenerGanancia(fg.appFechaSistema(), fg.appFechaSistema());
+            lblGanancia.Text = Ds.Tables[0].Rows[0]["Ganancia"].ToString();
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
@@ -268,6 +279,7 @@ namespace ADBISYS.Formularios.Caja
                 llenarGrillaMovimientosCaja();
                 grdMovsCaja = fg.formatoGrilla(grdMovsCaja, 1);
                 actualizarCierreParcial();
+                actualizarGanancia();
             }
             catch (Exception ex)
             {

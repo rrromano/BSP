@@ -82,11 +82,21 @@ namespace ADBISYS.Formularios.Caja
                     grpCierreParcial.Location = new Point(137,358);
                 }
                 actualizarCierreParcial();
+                actualizarGanancia();
             }
             catch (Exception r)
             {
                 MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void actualizarGanancia()
+        {
+            Entidades.Venta entVentas = new Entidades.Venta();
+            DataSet Ds = new DataSet();
+            Ds.Reset();
+            Ds = entVentas.obtenerGanancia(fg.appFechaSistema(), fg.appFechaSistema());
+            lblGanancia.Text = Ds.Tables[0].Rows[0]["Ganancia"].ToString();
         }
 
         private void actualizarCierreParcial()

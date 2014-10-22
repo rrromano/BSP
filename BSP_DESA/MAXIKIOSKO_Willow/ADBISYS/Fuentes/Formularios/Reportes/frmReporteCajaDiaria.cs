@@ -39,6 +39,7 @@ namespace ADBISYS.Formularios.Reportes
                     grdMovimientosCaja.DataSource = Ds.Tables[0];
                     grdMovimientosCaja = fg.formatoGrilla(grdMovimientosCaja, 1);
                     btnGenerarReporte.Enabled = true;
+                    actualizarGanancia();
 
                     Entidades.Reportes reporte = new Entidades.Reportes();
                     Ds = reporte.obtenerItemsEliminados(DateTime.Parse(dtpFechaCaja.Text.ToString()),"");
@@ -56,6 +57,7 @@ namespace ADBISYS.Formularios.Reportes
                     grdMovimientosCaja.DataSource = null;
                     btnItemsEliminados.Enabled = false;
                     btnGenerarReporte.Enabled = false;
+                    vaciarImporte();
                     MessageBox.Show("No existen Movimientos de Caja para la Fecha " + dtpFechaCaja.Text.ToString() + ".", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     dtpFechaCaja.Focus();
                 }
@@ -64,6 +66,15 @@ namespace ADBISYS.Formularios.Reportes
             {
                 MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void actualizarGanancia()
+        {
+            Entidades.Venta entVentas = new Entidades.Venta();
+            DataSet Ds = new DataSet();
+            Ds.Reset();
+            Ds = entVentas.obtenerGanancia(DateTime.Parse(dtpFechaCaja.Text.ToString()), DateTime.Parse(dtpFechaCaja.Text.ToString()));
+            lblGanancia.Text = Ds.Tables[0].Rows[0]["Ganancia"].ToString();
         }
 
         private void btnGenerarReporte_Click(object sender, EventArgs e)
@@ -83,6 +94,7 @@ namespace ADBISYS.Formularios.Reportes
                     grdMovimientosCaja.DataSource = Ds.Tables[0];
                     grdMovimientosCaja = fg.formatoGrilla(grdMovimientosCaja, 1);
                     btnGenerarReporte.Enabled = true;
+                    actualizarGanancia();
 
                     Entidades.Reportes reporte = new Entidades.Reportes();
                     Ds = reporte.obtenerItemsEliminados(DateTime.Parse(dtpFechaCaja.Text.ToString()), "");
@@ -100,6 +112,7 @@ namespace ADBISYS.Formularios.Reportes
                     grdMovimientosCaja.DataSource = null;
                     btnItemsEliminados.Enabled = false;
                     btnGenerarReporte.Enabled = false;
+                    vaciarImporte();
                     MessageBox.Show("No existen Movimientos de Caja para la Fecha " + dtpFechaCaja.Text.ToString() + ".", "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     dtpFechaCaja.Focus();
                 }
@@ -122,6 +135,23 @@ namespace ADBISYS.Formularios.Reportes
             {
                 MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void frmReporteCajaDiaria_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                vaciarImporte();
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void vaciarImporte()
+        {
+            lblGanancia.Text = "0,00";
         }
     }
 }
