@@ -200,6 +200,7 @@ namespace ADBISYS.Formularios.Articulos
                     return;
                 }
                 if (notFilaSeleccionada()) return;
+                if (articuloGeneral()) return;
                 mostrarFormularioModificarArticulo();
                 llenarGrilla();
                 grdArticulos = fg.formatoGrilla(grdArticulos, 1);
@@ -209,6 +210,28 @@ namespace ADBISYS.Formularios.Articulos
             {
                 MessageBox.Show("No existen Artículos.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 btnModificar.Focus();
+            }
+        }
+
+        private bool articuloGeneral()
+        {
+            try
+            {
+                filaSeleccionada = grdArticulos.CurrentCellAddress.Y;
+                if (grdArticulos.Rows[filaSeleccionada].Cells["CÓDIGO"].Value.ToString() == "1")
+                {
+                    MessageBox.Show("El Artículo General no se puede Modificar/Eliminar.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
             }
         }
 
@@ -304,6 +327,7 @@ namespace ADBISYS.Formularios.Articulos
                     return;
                 }
                 if (notFilaSeleccionada()) return;
+                if (articuloGeneral()) return;
                 eliminoArticulo();
                 llenarGrilla();
                 grdArticulos = fg.formatoGrilla(grdArticulos, 1);

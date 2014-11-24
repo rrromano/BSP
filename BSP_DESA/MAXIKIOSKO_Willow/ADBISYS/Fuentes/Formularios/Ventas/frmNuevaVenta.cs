@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ADBISYS.Conexion;
+using ADBISYS.Formularios.Ventas;
 
 
 namespace ADBISYS.Formularios.Ventas
@@ -92,13 +93,19 @@ namespace ADBISYS.Formularios.Ventas
         {
             try
             {
-
                 fg.keyPressNumerosDecimales(e, txtCodigoArticulo);
 
                 if (e.KeyChar == 13 && txtCodigoArticulo.Text.Length > 0 )
                 {
                     //SI APRETO ENTER EJECUTO ESTE CODIGO
 
+                    if (txtCodigoArticulo.Text == "1")
+                    {
+                        ArtGeneral();
+                        txtCodigoArticulo.Text = String.Empty;
+                        return;
+                    }
+                    
                     DataSet DsArticulo = new DataSet();
                     Entidades.Articulo Articulo = new Entidades.Articulo();
                     Entidades.Venta Venta = new Entidades.Venta();
@@ -538,6 +545,21 @@ namespace ADBISYS.Formularios.Ventas
         private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
         {
             fg.keyPressNumeros(e);
+        }
+
+        private void General_Click(object sender, EventArgs e)
+        {
+            ArtGeneral();
+        }
+
+        private void ArtGeneral()
+        {
+            frmArticuloGeneral articuloGeneral = new frmArticuloGeneral();
+            articuloGeneral.cantidad = txtCantidad.Text;
+            articuloGeneral.ShowDialog();
+            cargarArticulosEnGrilla();
+            txtCantidad.Text = "1";
+            txtCodigoArticulo.Focus();
         }
     }
 }

@@ -174,7 +174,8 @@ GO
 create table TMP_ARTICULOS_VENTAS(
 	ID_Item_Venta	  numeric(30) identity  not null,
 	ID_Articulo     numeric(20)           not null, 
-	Cantidad	      numeric(10)           not null
+	Cantidad	      numeric(10)           not null,
+	Importe					numeric(10,2)         null
 )
 GO
 PRINT 'SE CREÓ CORRECTAMENTE LA TABLA TMP_ARTICULOS_VENTAS.'
@@ -402,6 +403,10 @@ INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida,
 INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, Estado, fecha_modif, login_modif, term_modif) VALUES (4,'OTROS GASTOS'		, 0, 1,GETDATE(), 'BSP', 'BSP')
 INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, Estado, fecha_modif, login_modif, term_modif) VALUES (5,'OTROS INGRESOS'	, 1, 1,GETDATE(), 'BSP', 'BSP')
 INSERT INTO TIPOMOVIMIENTO_CAJA (ID_TipoMovimiento, Descripcion, Ingreso_Salida, Estado, fecha_modif, login_modif, term_modif) VALUES (6,'RETIROS'				, 0, 1,GETDATE(), 'BSP', 'BSP')
+-- ============================================================================================
+-- ============================================================================================
+INSERT INTO RUBROS (DESCRIPCION, ESTADO, FECHA_MODIF, LOGIN_MODIF, TERM_MODIF) VALUES ('RUBRO GENERAL', 1, GETDATE(), 'BSP', 'BSP')
+INSERT INTO ARTICULOS(ID_Articulo, Descripcion, Precio_Venta, Precio_Compra, Rubro, Estado, fecha_modif, login_modif, term_modif) VALUES (1,'ARTÍCULO GENERAL', '0.00', '0.00', 1, 1, GETDATE(), 'BSP', 'BSP')
 
 GO
 

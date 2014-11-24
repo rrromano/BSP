@@ -26,7 +26,7 @@ BEGIN TRY
     --SE OBTIENE LA CANTIDAD DE ARTICULOS - SE OBTIENE EL IMPORTE TOTAL DE LA VENTA	
     --=============================================================================
 	  SELECT  @CANTIDAD_ARTICULOS = COUNT(1),  
-	          @IMPORTE = SUM(A.CANTIDAD * B.PRECIO_VENTA)
+	          @IMPORTE = SUM(A.CANTIDAD * A.IMPORTE)
 	  FROM TMP_ARTICULOS_VENTAS A
 	  INNER JOIN ARTICULOS B ON (A.ID_Articulo = B.ID_Articulo)
 	  WHERE B.Estado = 1 
@@ -74,7 +74,7 @@ BEGIN TRY
 	          B.ID_Item_Venta,
 	          B.ID_Articulo,
 	          B.Cantidad,
-	          A.Precio_Venta,
+	          B.IMPORTE,
 	          A.Precio_Compra
 	  FROM ARTICULOS A
 		  INNER JOIN TMP_ARTICULOS_VENTAS B ON (A.ID_Articulo = B.ID_Articulo)

@@ -163,3 +163,4 @@ C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\De
 C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Debug\ADBISYS.Formularios.Ventas.frmModificarVenta.resources
 C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Debug\ADBISYS.Formularios.Ventas.frmBusquedaVenta.resources
 C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Debug\ADBISYS.Formularios.Ventas.frmOrdenarVentas.resources
+C:\Users\SuperUser\Desktop\BSP\BSP_DESA\MAXIKIOSKO_Willow\ADBISYS\Fuentes\obj\Debug\ADBISYS.Formularios.Ventas.frmArticuloGeneral.resources

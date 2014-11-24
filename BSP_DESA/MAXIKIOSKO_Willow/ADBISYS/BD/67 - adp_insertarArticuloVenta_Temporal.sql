@@ -5,15 +5,20 @@ If Exists ( Select 1 From SysObjects Where Name = 'adp_insertarArticuloVenta_Tem
 Go 
 
 -- SP PARA GUARDAR ARTICULOS DE LA VENTA EN LA TABLA TEMPORAL (TABLA QUE TENDRA DATOS HASTA EL MOMENTO DE CONFIRMAR LA VENTA)
-Create procedure dbo.adp_insertarArticuloVenta_Temporal (@Id_Articulo As NUMERIC(20) = NULL, @Cantidad AS NUMERIC(10))
+Create procedure dbo.adp_insertarArticuloVenta_Temporal (@Id_Articulo As NUMERIC(20) = NULL,
+																												 @Cantidad AS NUMERIC(10),
+																												 @Importe AS NUMERIC(10,2) = NULL)
 as
 
 BEGIN TRY
 
 	SET NOCOUNT ON
 	
-  INSERT INTO TMP_ARTICULOS_VENTAS (ID_Articulo, Cantidad)
-  VALUES (@Id_Articulo, @Cantidad)
+  INSERT INTO TMP_ARTICULOS_VENTAS (ID_Articulo, Cantidad, Importe)
+  SELECT ID_Articulo, 
+				 @Cantidad, 
+				 ISNULL(@Importe,Precio_Venta)
+	FROM ARTICULOS WHERE ID_Articulo = @Id_Articulo
   
 	SET NOCOUNT OFF
 	

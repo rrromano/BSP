@@ -42,15 +42,19 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.RBPrecio = new System.Windows.Forms.RadioButton();
             this.RBporcentaje = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cboPrecioCV = new System.Windows.Forms.ComboBox();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.groupBox1);
             this.groupBox4.Controls.Add(this.groupBox3);
             this.groupBox4.Controls.Add(this.groupBox6);
             this.groupBox4.Controls.Add(this.btnActualizar);
@@ -59,7 +63,7 @@
             this.groupBox4.Controls.Add(this.groupBox2);
             this.groupBox4.Location = new System.Drawing.Point(17, 7);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(501, 422);
+            this.groupBox4.Size = new System.Drawing.Size(501, 486);
             this.groupBox4.TabIndex = 33;
             this.groupBox4.TabStop = false;
             // 
@@ -67,16 +71,16 @@
             // 
             this.groupBox3.Controls.Add(this.lblPrecioPorcentaje);
             this.groupBox3.Controls.Add(this.txtPrecioPorcentaje);
-            this.groupBox3.Location = new System.Drawing.Point(16, 239);
+            this.groupBox3.Location = new System.Drawing.Point(16, 299);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(469, 85);
-            this.groupBox3.TabIndex = 47;
+            this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             // 
             // lblPrecioPorcentaje
             // 
             this.lblPrecioPorcentaje.AutoSize = true;
-            this.lblPrecioPorcentaje.Location = new System.Drawing.Point(32, 38);
+            this.lblPrecioPorcentaje.Location = new System.Drawing.Point(26, 38);
             this.lblPrecioPorcentaje.Name = "lblPrecioPorcentaje";
             this.lblPrecioPorcentaje.Size = new System.Drawing.Size(191, 23);
             this.lblPrecioPorcentaje.TabIndex = 40;
@@ -84,19 +88,19 @@
             // 
             // txtPrecioPorcentaje
             // 
-            this.txtPrecioPorcentaje.Location = new System.Drawing.Point(249, 35);
+            this.txtPrecioPorcentaje.Location = new System.Drawing.Point(236, 35);
             this.txtPrecioPorcentaje.Name = "txtPrecioPorcentaje";
-            this.txtPrecioPorcentaje.Size = new System.Drawing.Size(195, 29);
-            this.txtPrecioPorcentaje.TabIndex = 36;
+            this.txtPrecioPorcentaje.Size = new System.Drawing.Size(208, 29);
+            this.txtPrecioPorcentaje.TabIndex = 1;
             this.txtPrecioPorcentaje.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioPorcentaje_KeyPress);
             // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.cboAumentarDisminuir);
-            this.groupBox6.Location = new System.Drawing.Point(252, 115);
+            this.groupBox6.Location = new System.Drawing.Point(252, 191);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(233, 125);
-            this.groupBox6.TabIndex = 46;
+            this.groupBox6.Size = new System.Drawing.Size(233, 106);
+            this.groupBox6.TabIndex = 4;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Aumentar / Disminuir";
             // 
@@ -104,19 +108,19 @@
             // 
             this.cboAumentarDisminuir.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboAumentarDisminuir.FormattingEnabled = true;
-            this.cboAumentarDisminuir.Location = new System.Drawing.Point(28, 53);
+            this.cboAumentarDisminuir.Location = new System.Drawing.Point(31, 44);
             this.cboAumentarDisminuir.Name = "cboAumentarDisminuir";
             this.cboAumentarDisminuir.Size = new System.Drawing.Size(177, 30);
-            this.cboAumentarDisminuir.TabIndex = 45;
+            this.cboAumentarDisminuir.TabIndex = 1;
             // 
             // btnActualizar
             // 
             this.btnActualizar.Image = ((System.Drawing.Image)(resources.GetObject("btnActualizar.Image")));
             this.btnActualizar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnActualizar.Location = new System.Drawing.Point(260, 336);
+            this.btnActualizar.Location = new System.Drawing.Point(252, 398);
             this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(225, 69);
-            this.btnActualizar.TabIndex = 19;
+            this.btnActualizar.Size = new System.Drawing.Size(233, 69);
+            this.btnActualizar.TabIndex = 6;
             this.btnActualizar.Text = "&Aceptar";
             this.btnActualizar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnActualizar.UseVisualStyleBackColor = true;
@@ -126,10 +130,10 @@
             // 
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCancelar.Location = new System.Drawing.Point(16, 336);
+            this.btnCancelar.Location = new System.Drawing.Point(15, 398);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(225, 69);
-            this.btnCancelar.TabIndex = 20;
+            this.btnCancelar.TabIndex = 7;
             this.btnCancelar.Text = "&Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -140,8 +144,8 @@
             this.groupBox5.Controls.Add(this.cboRubro);
             this.groupBox5.Location = new System.Drawing.Point(16, 14);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(469, 95);
-            this.groupBox5.TabIndex = 37;
+            this.groupBox5.Size = new System.Drawing.Size(469, 83);
+            this.groupBox5.TabIndex = 1;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Seleccione el Rubro";
             // 
@@ -150,29 +154,29 @@
             this.cboRubro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboRubro.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboRubro.FormattingEnabled = true;
-            this.cboRubro.Location = new System.Drawing.Point(123, 40);
+            this.cboRubro.Location = new System.Drawing.Point(123, 35);
             this.cboRubro.Name = "cboRubro";
             this.cboRubro.Size = new System.Drawing.Size(223, 30);
-            this.cboRubro.TabIndex = 38;
+            this.cboRubro.TabIndex = 1;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.RBPrecio);
             this.groupBox2.Controls.Add(this.RBporcentaje);
-            this.groupBox2.Location = new System.Drawing.Point(16, 115);
+            this.groupBox2.Location = new System.Drawing.Point(16, 191);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(224, 125);
-            this.groupBox2.TabIndex = 45;
+            this.groupBox2.Size = new System.Drawing.Size(224, 107);
+            this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Actualización Por";
             // 
             // RBPrecio
             // 
             this.RBPrecio.AutoSize = true;
-            this.RBPrecio.Location = new System.Drawing.Point(30, 42);
+            this.RBPrecio.Location = new System.Drawing.Point(30, 33);
             this.RBPrecio.Name = "RBPrecio";
             this.RBPrecio.Size = new System.Drawing.Size(89, 27);
-            this.RBPrecio.TabIndex = 45;
+            this.RBPrecio.TabIndex = 1;
             this.RBPrecio.TabStop = true;
             this.RBPrecio.Text = "Precio";
             this.RBPrecio.UseVisualStyleBackColor = true;
@@ -180,20 +184,40 @@
             // RBporcentaje
             // 
             this.RBporcentaje.AutoSize = true;
-            this.RBporcentaje.Location = new System.Drawing.Point(30, 75);
+            this.RBporcentaje.Location = new System.Drawing.Point(30, 66);
             this.RBporcentaje.Name = "RBporcentaje";
             this.RBporcentaje.Size = new System.Drawing.Size(131, 27);
-            this.RBporcentaje.TabIndex = 44;
+            this.RBporcentaje.TabIndex = 2;
             this.RBporcentaje.TabStop = true;
             this.RBporcentaje.Text = "Porcentaje";
             this.RBporcentaje.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.cboPrecioCV);
+            this.groupBox1.Location = new System.Drawing.Point(16, 102);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(469, 83);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Precio de Compra/Venta";
+            // 
+            // cboPrecioCV
+            // 
+            this.cboPrecioCV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPrecioCV.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboPrecioCV.FormattingEnabled = true;
+            this.cboPrecioCV.Location = new System.Drawing.Point(123, 35);
+            this.cboPrecioCV.Name = "cboPrecioCV";
+            this.cboPrecioCV.Size = new System.Drawing.Size(223, 30);
+            this.cboPrecioCV.TabIndex = 1;
             // 
             // frmActMasivaArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(535, 445);
+            this.ClientSize = new System.Drawing.Size(535, 509);
             this.Controls.Add(this.groupBox4);
             this.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -212,6 +236,7 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -231,5 +256,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RadioButton RBPrecio;
         private System.Windows.Forms.RadioButton RBporcentaje;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox cboPrecioCV;
     }
 }

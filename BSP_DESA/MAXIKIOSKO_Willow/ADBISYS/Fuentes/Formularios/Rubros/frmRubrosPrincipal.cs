@@ -131,7 +131,8 @@ namespace ADBISYS.Formularios.Rubros
             if (grdRubros.DataSource != null)
             {
                 if (notFilaSeleccionada()) return;
-                mostrarFormularioModificarProveedor();
+                if (rubroGeneral()) return;
+                mostrarFormularioModificarRubro();
                 llenarGrilla();
                 grdRubros = fg.formatoGrilla(grdRubros, 1);
                 grdRubros.Focus();
@@ -143,7 +144,29 @@ namespace ADBISYS.Formularios.Rubros
             }
         }
 
-        private void mostrarFormularioModificarProveedor()
+        private bool rubroGeneral()
+        {
+            try
+            {
+                filaSeleccionada = grdRubros.CurrentCellAddress.Y;
+                if (grdRubros.Rows[filaSeleccionada].Cells["CÓDIGO"].Value.ToString() == "1")
+                {
+                   MessageBox.Show("El Rubro General no se puede Modificar/Eliminar.", "Información.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                   return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message.ToString(), "Atención.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
+            }
+        }
+
+        private void mostrarFormularioModificarRubro()
         {
             celdaSeleccionada = grdRubros.CurrentCellAddress.X;
             filaSeleccionada = grdRubros.CurrentCellAddress.Y;
@@ -200,6 +223,7 @@ namespace ADBISYS.Formularios.Rubros
             if (grdRubros.DataSource != null)
             {
                 if (notFilaSeleccionada()) return;
+                if (rubroGeneral()) return;
                 eliminarRubro();
                 llenarGrilla();
                 grdRubros = fg.formatoGrilla(grdRubros, 1);

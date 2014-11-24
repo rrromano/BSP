@@ -28,6 +28,7 @@ BEGIN TRY
 					A.term_modif   = HOST_NAME()
 			FROM ARTICULOS A			
 			WHERE A.Rubro		 = ISNULL(@Articulo_IdRubro, A.Rubro)
+			AND A.Rubro <> 1
 		END
 	--=================================================================================================================================
 	
@@ -43,6 +44,7 @@ BEGIN TRY
 					A.term_modif   = HOST_NAME()
 			FROM ARTICULOS A			
 			WHERE A.Rubro	=	ISNULL(@Articulo_IdRubro, A.Rubro)
+			AND A.Rubro <> 1
 		END
 	--=================================================================================================================================	
 	
