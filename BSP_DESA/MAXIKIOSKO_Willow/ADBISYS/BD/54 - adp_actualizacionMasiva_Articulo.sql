@@ -6,6 +6,7 @@ Go
 
 -- SP QUE MODIFICA MASIVAMENTE LOS ARTICULOS
 Create procedure dbo.adp_actualizacionMasiva_Articulo (	@Articulo_IdRubro	INT = NULL,
+														@Articulo_Precio_CV NUMERIC(1), --1 Precio Venta, 0 Precio Compra
 														@Articulo_TipoAct	NUMERIC(1), --1 POR PORCENTAJE, 0 POR $
 														@Articulo_SumaResta	NUMERIC(1), --1 SUMA, 0 RESTA
 														@Articulo_Valor		NUMERIC(10,2), --VALOR QE SE SUMA O RESTA AL CAMPO PRECIO_VENTA
@@ -21,14 +22,26 @@ BEGIN TRY
 	--=================================================================================================================================
 	IF (@Articulo_TipoAct = 1) 
 		BEGIN
-			UPDATE A
-				SET A.Precio_Venta = Precio_Venta + ( ( (Precio_Venta * @Articulo_Valor)/100) * (CASE WHEN @Articulo_SumaResta = 1 THEN 1 ELSE -1 END) ),		
-					A.fecha_modif  = GETDATE(),
-					A.login_modif  = @Articulo_Login,
-					A.term_modif   = HOST_NAME()
-			FROM ARTICULOS A			
-			WHERE A.Rubro		 = ISNULL(@Articulo_IdRubro, A.Rubro)
-			AND A.Rubro <> 1
+			if @Articulo_Precio_CV = 1
+				BEGIN
+					UPDATE A
+						SET A.Precio_Venta = Precio_Venta + ( ( (Precio_Venta * @Articulo_Valor)/100) * (CASE WHEN @Articulo_SumaResta = 1 THEN 1 ELSE -1 END) ),		
+							A.fecha_modif  = GETDATE(),
+							A.login_modif  = @Articulo_Login,
+							A.term_modif   = HOST_NAME()
+					FROM ARTICULOS A			
+					WHERE A.Rubro		 = ISNULL(@Articulo_IdRubro, A.Rubro)
+					AND A.Rubro <> 1
+				END ELSE BEGIN
+					UPDATE A
+						SET A.Precio_Compra = Precio_Compra + ( ( (Precio_Compra * @Articulo_Valor)/100) * (CASE WHEN @Articulo_SumaResta = 1 THEN 1 ELSE -1 END) ),		
+							A.fecha_modif  = GETDATE(),
+							A.login_modif  = @Articulo_Login,
+							A.term_modif   = HOST_NAME()
+					FROM ARTICULOS A			
+					WHERE A.Rubro		 = ISNULL(@Articulo_IdRubro, A.Rubro)
+					AND A.Rubro <> 1
+				END
 		END
 	--=================================================================================================================================
 	
@@ -37,14 +50,26 @@ BEGIN TRY
 	--=================================================================================================================================
 	IF (@Articulo_TipoAct = 0) 
 		BEGIN
-			UPDATE A
-				SET A.Precio_Venta = Precio_Venta + ( @Articulo_Valor * (CASE WHEN @Articulo_SumaResta = 1 THEN 1 ELSE -1 END) ),		
-					A.fecha_modif  = GETDATE(),
-					A.login_modif  = @Articulo_Login,
-					A.term_modif   = HOST_NAME()
-			FROM ARTICULOS A			
-			WHERE A.Rubro	=	ISNULL(@Articulo_IdRubro, A.Rubro)
-			AND A.Rubro <> 1
+			if @Articulo_Precio_CV = 1
+				BEGIN
+					UPDATE A
+						SET A.Precio_Venta = Precio_Venta + ( @Articulo_Valor * (CASE WHEN @Articulo_SumaResta = 1 THEN 1 ELSE -1 END) ),		
+							A.fecha_modif  = GETDATE(),
+							A.login_modif  = @Articulo_Login,
+							A.term_modif   = HOST_NAME()
+					FROM ARTICULOS A			
+					WHERE A.Rubro	=	ISNULL(@Articulo_IdRubro, A.Rubro)
+					AND A.Rubro <> 1
+				END ELSE BEGIN
+					UPDATE A
+						SET A.Precio_Compra = Precio_Compra + ( @Articulo_Valor * (CASE WHEN @Articulo_SumaResta = 1 THEN 1 ELSE -1 END) ),		
+							A.fecha_modif  = GETDATE(),
+							A.login_modif  = @Articulo_Login,
+							A.term_modif   = HOST_NAME()
+					FROM ARTICULOS A			
+					WHERE A.Rubro	=	ISNULL(@Articulo_IdRubro, A.Rubro)
+					AND A.Rubro <> 1
+				END
 		END
 	--=================================================================================================================================	
 	

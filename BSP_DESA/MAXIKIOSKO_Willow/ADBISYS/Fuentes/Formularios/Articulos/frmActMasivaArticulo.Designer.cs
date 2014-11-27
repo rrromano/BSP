@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmActMasivaArticulo));
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cboPrecioCV = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lblPrecioPorcentaje = new System.Windows.Forms.Label();
             this.txtPrecioPorcentaje = new System.Windows.Forms.TextBox();
@@ -42,14 +44,12 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.RBPrecio = new System.Windows.Forms.RadioButton();
             this.RBporcentaje = new System.Windows.Forms.RadioButton();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cboPrecioCV = new System.Windows.Forms.ComboBox();
             this.groupBox4.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox4
@@ -66,6 +66,26 @@
             this.groupBox4.Size = new System.Drawing.Size(501, 486);
             this.groupBox4.TabIndex = 33;
             this.groupBox4.TabStop = false;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.cboPrecioCV);
+            this.groupBox1.Location = new System.Drawing.Point(16, 102);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(469, 83);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Precio de Venta\\Compra";
+            // 
+            // cboPrecioCV
+            // 
+            this.cboPrecioCV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPrecioCV.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboPrecioCV.FormattingEnabled = true;
+            this.cboPrecioCV.Location = new System.Drawing.Point(123, 35);
+            this.cboPrecioCV.Name = "cboPrecioCV";
+            this.cboPrecioCV.Size = new System.Drawing.Size(223, 30);
+            this.cboPrecioCV.TabIndex = 1;
             // 
             // groupBox3
             // 
@@ -102,7 +122,7 @@
             this.groupBox6.Size = new System.Drawing.Size(233, 106);
             this.groupBox6.TabIndex = 4;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Aumentar / Disminuir";
+            this.groupBox6.Text = "Aumentar \\ Disminuir";
             // 
             // cboAumentarDisminuir
             // 
@@ -192,26 +212,6 @@
             this.RBporcentaje.Text = "Porcentaje";
             this.RBporcentaje.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.cboPrecioCV);
-            this.groupBox1.Location = new System.Drawing.Point(16, 102);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(469, 83);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Precio de Compra/Venta";
-            // 
-            // cboPrecioCV
-            // 
-            this.cboPrecioCV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboPrecioCV.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboPrecioCV.FormattingEnabled = true;
-            this.cboPrecioCV.Location = new System.Drawing.Point(123, 35);
-            this.cboPrecioCV.Name = "cboPrecioCV";
-            this.cboPrecioCV.Size = new System.Drawing.Size(223, 30);
-            this.cboPrecioCV.TabIndex = 1;
-            // 
             // frmActMasivaArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
@@ -230,13 +230,13 @@
             this.Text = "Actualización Masiva de Artículos";
             this.Load += new System.EventHandler(this.frmActMasivaArticulo_Load);
             this.groupBox4.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
